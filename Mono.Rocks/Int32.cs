@@ -27,11 +27,13 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 namespace Mono.Rocks {
 
 	public static class Int32Rocks {
 
+		[Obsolete ("Use Times(int) plus IEnumerableRocks.Action().")]
 		public static void Times (this int self, Action<int> action)
 		{
 			for (int i = 0; i < self; i++) {
@@ -39,6 +41,21 @@ namespace Mono.Rocks {
 			}
 		}
 
+		public static IEnumerable<int> Times (this int self)
+		{
+			if (self < 0)
+				throw new ArgumentOutOfRangeException ("self", "must be >= 0");
+			return CreateTimesIterator (self);
+		}
+
+		private static IEnumerable<int> CreateTimesIterator (int self)
+		{
+			for (int i = 0; i < self; i++) {
+				yield return i;
+			}
+		}
+
+		[Obsolete ("Use UpTo(int,int) plus IEnumerableRocks.Action().")]
 		public static void UpTo (this int self, int limit, Action<int> action)
 		{
 			for (int i = self; i <= limit; i++) {
@@ -46,6 +63,13 @@ namespace Mono.Rocks {
 			}
 		}
 
+		public static IEnumerable<int> UpTo (this int self, int limit)
+		{
+			for (int i = self; i <= limit; ++i)
+				yield return i;
+		}
+
+		[Obsolete ("Use DownTo(int,int) plus IEnumerableRocks.Action().")]
 		public static void DownTo (this int self, int limit, Action<int> action)
 		{
 			for (int i = self; i >= limit; i--) {
@@ -53,11 +77,24 @@ namespace Mono.Rocks {
 			}
 		}
 
+		public static IEnumerable<int> DownTo (this int self, int limit)
+		{
+			for (int i = self; i >= limit; i--)
+				yield return i;
+		}
+
+		[Obsolete ("Use Step(int,int,int) plus IEnumerableRocks.Action().")]
 		public static void Step (this int self, int limit, int step, Action<int> action)
 		{
 			for (int i = self; i <= limit; i += step) {
 				action (i);
 			}
+		}
+
+		public static IEnumerable<int> Step (this int self, int limit, int step)
+		{
+			for (int i = self; i <= limit; i += step)
+				yield return i;
 		}
 	}
 }

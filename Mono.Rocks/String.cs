@@ -27,11 +27,13 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 namespace Mono.Rocks {
 
 	public static class StringRocks {
 
+		[Obsolete ("Use Lines(self).Apply(action).Apply()")]
 		public static void EachLine (this string self, Action<string> action)
 		{
 			Check.Self (self);
@@ -41,6 +43,35 @@ namespace Mono.Rocks {
 			foreach (var s in lines) {
 				action (s);
 			}
+		}
+
+		public static TEnum ToEnum<TEnum> (this string self)
+		{
+			Check.Self (self);
+
+			return (TEnum) Enum.Parse (typeof (TEnum), self);
+		}
+
+		public static IEnumerable<string> Lines (this string self)
+		{
+			Check.Self (self);
+
+			return Lines (self, StringSplitOptions.RemoveEmptyEntries);
+		}
+
+		public static IEnumerable<string> Lines (this string self, StringSplitOptions options)
+		{
+			Check.Self (self);
+
+			return CreateLineIterator (self, options);
+		}
+
+		private static IEnumerable<string> CreateLineIterator (string self, StringSplitOptions options)
+		{
+			var lines = self.Split (new char [] {'\r', '\n'}, options);
+
+			foreach (var line in lines)
+				yield return line;
 		}
 
 		public static string Slice (this string self, int start, int end)
@@ -57,13 +88,6 @@ namespace Mono.Rocks {
 				throw new ArgumentOutOfRangeException ("end");
 
 			return self.Substring (start, end - start);
-		}
-
-		public static TEnum ToEnum<TEnum> (this string self)
-		{
-			Check.Self (self);
-
-			return (TEnum) Enum.Parse (typeof (TEnum), self);
 		}
 	}
 }

@@ -1,3 +1,49 @@
+2008-06-17  Jonathan Pryor  <jpryor@novell.com>
+
+	* Check.cs: Add CheckSourceAndFunc().
+	* Int32.cs: Obsolete Times(int,Action<int>), UpTo(int,int,Action<int>),
+	  DownTo(int,int,Action<int>), Step(int,int,int,Action<int>), and replace
+	  with overloads that don't take an Action<int> parameter but instead return
+	  an IEnumerable<int> which can be used with
+	  Apply<T>(IEnumerable<T>,Action<T>).
+	* String.cs: Add `IEnumerable<string> Lines (string self)` and overloads.
+	  Obsolete EachLine().
+	* IEnumerable.cs: 
+	  - Fix Repeat() so that it does the null check before .MoveNext() is 
+	    called on the iterator.
+	  - Add Apply(IEnumerable,Action) and Apply() methods to allow inserting
+	    "side-effect" methods into an extension method "chain", e.g.
+	      1.UpTo(5)
+	        .Apply (Console.WriteLine)  // original
+	        .Select (n => 2*n)          // multiply by 2
+	        .Apply (Connsole.WriteLine) // final
+	        .Apply ();                  // do it now, not later.
+	  - It was pointed out that, to sort an IEnumerable<int> with 20million 
+	    elements, adding them to a List<int> + sorting was faster than using
+	    .OrderBy(n=>n) (~2s vs. 9s), so provide a Sort extension method for
+	    simple sorting needs.
+	  - Add `List<List<T>> ToList<T>(IEnumerable<IEnumerable<T>>) (to help with
+	    testing Transpose(), below).
+	  - Add slew of Haskell-inspired extension methods:
+	    - (zip) .SelectFromEach<T1,T2,TR>(IEnumerable<T2>,Func<T1,T2,TR>)
+	    - (init) .ExceptLast(), .ExceptLast(int)
+	    - (intersperse) .Intersperse<TSource>(TSource)
+	    - (intercalate) Intersperse<TSource>(IEnumerable<IEnumerable<TSource>>,IEnumerable<TSource>)
+	    - (transpose) Transpose<TSource>(IEnumerable<IEnumerable<TSource>>)
+	    - (foldr1) .AggregateReverse<T>(Func<T,T,T>)
+	    - (foldr) .AggregateReverse<TS,TA>(TA,Func<TA,TS,TA>)
+	    - .AggregateReverse<TS,TA,TR>(TA,Func<TA,TS,TA>,Func<TA,TR>)
+	    - (concat) .Concat<TSource>(params IEnumerable<TSource>[])
+	    - .Concat<TSource>(IEnumerable<IEnumerable<TSource>>)
+	    - (and) And(IEnumerable<bool>)
+	    - (or) Or(IEnumerable<bool>)
+	    - (scanl1) .AggregateWithHistory<T>(Func<T,T,T>)
+	    - (scanl) .AggregateWithHistory<TS,TA>(TA,Func<T,T,T>)
+	    - .AggregateWithHistory<TS,TA,TR>(TA,Func<TA,TS,TA>, Func<TA,TR>)
+	    - (scanr1) .AggregateReverseWithHistory<T>(Func<T,T,T>)
+	    - (scanr) .AggregateReverseWithHistory<TS,TA>(TA,Func<TA,TS,TA>)
+	    - .AggregateReverseWithHistory<TS,TA,TR>(TA,Func<TA,TS,TA>, Func<TA,TR>)
+
 2007-11-17  Jb Evain  <jbevain@novell.com>
 
 	* String.cs: Add ToEnum.
