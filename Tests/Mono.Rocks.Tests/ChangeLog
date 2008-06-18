@@ -1,5 +1,10 @@
 2008-06-17  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerableTest.cs: Add sanity tests for .Sort() overloads and new
+	  .SelectFromEach() overloads.
+
+2008-06-17  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerableTest.cs: Add test for Repeat(), Apply(), SelectFromEach(),
 	  ExceptLast(), Intersperse(), Transpose(), ToList().
 

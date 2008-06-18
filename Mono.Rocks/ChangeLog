@@ -1,6 +1,15 @@
 2008-06-17  Jonathan Pryor  <jpryor@novell.com>
 
-	* Check.cs: Add CheckSourceAndFunc().
+	* Check.cs: Add Check.Source().
+	* IEnumerable.cs: Add error checking to .Sort() methods.  Add
+	  .SelectFromEach() overloads to accept up to 4 lists (i.e. Haskell zip, 
+	  zip3, and zip4 are now supported).  Change semantics of .SelectFromEach()
+	  to accept empty lists (previously this would throw an
+	  InvalidOperationException, but Haskell permits empty lists so why not?).
+
+2008-06-17  Jonathan Pryor  <jpryor@novell.com>
+
+	* Check.cs: Add Check.SourceAndFunc().
 	* Int32.cs: Obsolete Times(int,Action<int>), UpTo(int,int,Action<int>),
 	  DownTo(int,int,Action<int>), Step(int,int,int,Action<int>), and replace
 	  with overloads that don't take an Action<int> parameter but instead return

@@ -38,6 +38,12 @@ namespace Mono.Rocks {
 				throw new ArgumentNullException ("self");
 		}
 
+		public static void Source (object source)
+		{
+			if (source == null)
+				throw new ArgumentNullException ("source");
+		}
+
 		public static void SourceAndFunc (object source, object func)
 		{
 			if (source == null)

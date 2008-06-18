@@ -146,6 +146,8 @@ namespace Mono.Rocks {
 
 		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> source)
 		{
+			Check.Source (source);
+
 			List<TSource> s = source.ToList ();
 			s.Sort ();
 			return s;
@@ -153,6 +155,10 @@ namespace Mono.Rocks {
 
 		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> source, Comparison<TSource> comparison)
 		{
+			Check.Source (source);
+			if (comparison == null)
+				throw new ArgumentNullException ("comparison");
+
 			List<TSource> s = source.ToList ();
 			s.Sort (comparison);
 			return s;
@@ -160,38 +166,117 @@ namespace Mono.Rocks {
 
 		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> source, IComparer<TSource> comparer)
 		{
+			Check.Source (source);
+			if (comparer == null)
+				throw new ArgumentNullException ("comparer");
+
 			List<TSource> s = source.ToList ();
 			s.Sort (comparer);
 			return s;
 		}
 
 		public static IEnumerable<TResult> 
-			SelectFromEach<TFirstSource, TSecondSource, TResult> (this IEnumerable<TFirstSource> self,
-					IEnumerable<TSecondSource> list, Func<TFirstSource, TSecondSource, TResult> selector)
+			SelectFromEach<TFirstSource, TSecondSource, TResult> (
+					this IEnumerable<TFirstSource> source1,
+					IEnumerable<TSecondSource> source2, 
+					Func<TFirstSource, TSecondSource, TResult> selector)
 		{
-			Check.Self (self);
-			if (list == null)
-				throw new ArgumentNullException ("list");
+			if (source1 == null)
+				throw new ArgumentNullException ("source1");
+			if (source2 == null)
+				throw new ArgumentNullException ("source2");
 			if (selector == null)
 				throw new ArgumentNullException ("selector");
-			return CreateSelectFromEachIterator (self, list, selector);
+
+			return CreateSelectFromEachIterator (source1, source2, selector);
 		}
 
 		private static IEnumerable<TResult>
 			CreateSelectFromEachIterator<TFirstSource, TSecondSource, TResult> (
-					IEnumerable<TFirstSource> self, IEnumerable<TSecondSource> list, 
+					IEnumerable<TFirstSource> source1, 
+					IEnumerable<TSecondSource> source2, 
 					Func<TFirstSource, TSecondSource, TResult> selector)
 		{
-			using (IEnumerator<TFirstSource>  a = self.GetEnumerator ())
-			using (IEnumerator<TSecondSource> b = list.GetEnumerator ()) {
-				if (!a.MoveNext())
-					throw new InvalidOperationException ("no elements");
-				if (!b.MoveNext())
-					throw new InvalidOperationException ("no elements");
-
-				do {
+			using (IEnumerator<TFirstSource>  a = source1.GetEnumerator ())
+			using (IEnumerator<TSecondSource> b = source2.GetEnumerator ()) {
+				while (a.MoveNext () && b.MoveNext ()) {
 					yield return selector (a.Current, b.Current);
-				} while (a.MoveNext () && b.MoveNext ());
+				}
+			}
+		}
+
+		public static IEnumerable<TResult> 
+			SelectFromEach<TFirstSource, TSecondSource, TThirdSource, TResult> (
+					this IEnumerable<TFirstSource> source1,
+					IEnumerable<TSecondSource> source2, 
+					IEnumerable<TThirdSource> source3, 
+					Func<TFirstSource, TSecondSource, TThirdSource, TResult> selector)
+		{
+			if (source1 == null)
+				throw new ArgumentNullException ("source1");
+			if (source2 == null)
+				throw new ArgumentNullException ("source2");
+			if (source3 == null)
+				throw new ArgumentNullException ("source3");
+			if (selector == null)
+				throw new ArgumentNullException ("selector");
+
+			return CreateSelectFromEachIterator (source1, source2, source3, selector);
+		}
+
+		private static IEnumerable<TResult>
+			CreateSelectFromEachIterator<TFirstSource, TSecondSource, TThirdSource, TResult> (
+					IEnumerable<TFirstSource> source1, 
+					IEnumerable<TSecondSource> source2, 
+					IEnumerable<TThirdSource> source3, 
+					Func<TFirstSource, TSecondSource, TThirdSource, TResult> selector)
+		{
+			using (IEnumerator<TFirstSource>  a = source1.GetEnumerator ())
+			using (IEnumerator<TSecondSource> b = source2.GetEnumerator ())
+			using (IEnumerator<TThirdSource>  c = source3.GetEnumerator ()) {
+				while (a.MoveNext () && b.MoveNext () && c.MoveNext ()) {
+					yield return selector (a.Current, b.Current, c.Current);
+				}
+			}
+		}
+
+		public static IEnumerable<TResult> 
+			SelectFromEach<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> (
+					this IEnumerable<TFirstSource> source1,
+					IEnumerable<TSecondSource> source2, 
+					IEnumerable<TThirdSource> source3, 
+					IEnumerable<TFourthSource> source4, 
+					Func<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> selector)
+		{
+			if (source1 == null)
+				throw new ArgumentNullException ("source1");
+			if (source2 == null)
+				throw new ArgumentNullException ("source2");
+			if (source3 == null)
+				throw new ArgumentNullException ("source3");
+			if (source4 == null)
+				throw new ArgumentNullException ("source4");
+			if (selector == null)
+				throw new ArgumentNullException ("selector");
+
+			return CreateSelectFromEachIterator (source1, source2, source3, source4, selector);
+		}
+
+		private static IEnumerable<TResult>
+			CreateSelectFromEachIterator<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> (
+					IEnumerable<TFirstSource> source1, 
+					IEnumerable<TSecondSource> source2, 
+					IEnumerable<TThirdSource> source3, 
+					IEnumerable<TFourthSource> source4, 
+					Func<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> selector)
+		{
+			using (IEnumerator<TFirstSource>  a = source1.GetEnumerator ())
+			using (IEnumerator<TSecondSource> b = source2.GetEnumerator ())
+			using (IEnumerator<TThirdSource>  c = source3.GetEnumerator ())
+			using (IEnumerator<TFourthSource> d = source4.GetEnumerator ()) {
+				while (a.MoveNext () && b.MoveNext () && c.MoveNext () && d.MoveNext ()) {
+					yield return selector (a.Current, b.Current, c.Current, d.Current);
+				}
 			}
 		}
 

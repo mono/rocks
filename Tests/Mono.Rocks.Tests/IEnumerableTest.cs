@@ -166,10 +166,170 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
-		public void SelectFromEach_SelfNull ()
+		public void Sort_SelfNull ()
 		{
-			IEnumerable<char> e = null;
-			e.SelectFromEach<char, char, char> (null, null);
+			IEnumerable<int> e = null;
+			e.Sort ();
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Sort_SelfNull_Comparison ()
+		{
+			IEnumerable<int> e = null;
+			Comparison<int> c = (x,y) => 0;
+			e.Sort (c);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Sort_SelfNull_Comparer ()
+		{
+			IEnumerable<int> e = null;
+			IComparer<int> c = Comparer<int>.Default;
+			e.Sort (c);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Sort_Comparison_Null ()
+		{
+			IEnumerable<int> e = new[]{1};
+			Comparison<int> c = null;
+			e.Sort (c);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Sort_Comparer_Null ()
+		{
+			IEnumerable<int> e = new[]{1};
+			IComparer<int> c = null;
+			e.Sort (c);
+		}
+
+		[Test]
+		public void Sort ()
+		{
+			Assert.AreEqual (new[]{4, 3, 2, 1}.Sort ().Join (""), "1234");
+			Assert.AreEqual (new[]{1, 2, 3, 4}.Sort ((x,y) => x == y ? 0 : x < y ? 1 : -1).Join (""), "4321");
+			Assert.AreEqual (new[]{2, 4, 1, 3}.Sort (Comparer<int>.Default).Join (""), "1234");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach2_Source1Null ()
+		{
+			IEnumerable<int> s1 = null;
+			IEnumerable<int> s2 = new[]{2};
+			s1.SelectFromEach (s2, (a,b) => "");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach2_Source2Null ()
+		{
+			IEnumerable<int> s2 = null;
+			new[]{1}.SelectFromEach (s2, (a,b) => "");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach2_SelectorNull ()
+		{
+			IEnumerable<int> s2 = new[]{2};
+			Func<int,int,string> f = null;
+			new[]{1}.SelectFromEach (s2, f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach3_Source1Null ()
+		{
+			IEnumerable<int> e = null;
+			IEnumerable<int> s2 = new[]{1};
+			IEnumerable<int> s3 = new[]{2};
+			e.SelectFromEach (s2, s3, (a,b,c) => "");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach3_Source2Null ()
+		{
+			IEnumerable<int> s2 = null;
+			IEnumerable<int> s3 = new[]{2};
+			new[]{1}.SelectFromEach (s2, s3, (a,b,c) => "");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach3_Source3Null ()
+		{
+			IEnumerable<int> s2 = new[]{2};
+			IEnumerable<int> s3 = null;
+			new[]{1}.SelectFromEach (s2, s3, (a,b,c) => "");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach3_SelectorNull ()
+		{
+			IEnumerable<int> s2 = new[]{2};
+			IEnumerable<int> s3 = new[]{3};
+			Func<int,int,int,string> f = null;
+			new[]{1}.SelectFromEach (s2, s3, f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach4_Source1Null ()
+		{
+			IEnumerable<int> s1 = null;
+			IEnumerable<int> s2 = new[]{2};
+			IEnumerable<int> s3 = new[]{3};
+			IEnumerable<int> s4 = new[]{4};
+			s1.SelectFromEach (s2, s3, s4, (a,b,c,d) => "");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach4_Source2Null ()
+		{
+			IEnumerable<int> s2 = null;
+			IEnumerable<int> s3 = new[]{3};
+			IEnumerable<int> s4 = new[]{4};
+			new[]{1}.SelectFromEach (s2, s3, s4, (a,b,c,d) => "");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach4_Source3Null ()
+		{
+			IEnumerable<int> s2 = new[]{2};
+			IEnumerable<int> s3 = null;
+			IEnumerable<int> s4 = new[]{4};
+			new[]{1}.SelectFromEach (s2, s3, s4, (a,b,c,d) => "");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach4_Source4Null ()
+		{
+			IEnumerable<int> s2 = new[]{2};
+			IEnumerable<int> s3 = new[]{3};
+			IEnumerable<int> s4 = null;
+			new[]{1}.SelectFromEach (s2, s3, s4, (a,b,c,d) => "");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectFromEach4_SelectorNull ()
+		{
+			IEnumerable<int> s2 = new[]{2};
+			IEnumerable<int> s3 = new[]{3};
+			IEnumerable<int> s4 = new[]{4};
+			Func<int,int,int,int,string> f = null;
+			new[]{1}.SelectFromEach (s2, s3, s4, f);
 		}
 
 		[Test]
@@ -187,6 +347,15 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ('c', c [2].Second);
 			Assert.AreEqual (4,   c [3].First);
 			Assert.AreEqual ('d', c [3].Second);
+
+			Assert.AreEqual (
+					new[]{1}.SelectFromEach (new[]{2}, new[]{3}, 
+						(x,y,z) => x.ToString () + y.ToString () + z.ToString ()).Join (""),
+					"123");
+			Assert.AreEqual (
+					new[]{1}.SelectFromEach (new[]{2}, new[]{3}, new[]{4},
+						(w,x,y,z) => w.ToString () + x.ToString () + y.ToString () + z.ToString ()).Join (""),
+					"1234");
 		}
 
 		[Test]
@@ -284,12 +453,12 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void ToList ()
 		{
+#if CRASH
 			int[][] a = new int[][]{
 				new int[]{1, 2, 3},
 				new int[]{4, 5, 6},
 			};
 			IEnumerable<IEnumerable<int>> b = a;
-#if CRASH
 			List<List<int>> c = b.ToList ();
 			Assert.AreEqual (c.Count, a.Length);
 			Assert.AreEqual (c [0].Count, a [0].Length);
