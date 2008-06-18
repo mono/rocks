@@ -41,27 +41,35 @@ namespace Mono.Rocks.Tests {
 	public class IEnumerableTest : BaseRocksFixture {
 
 		[Test]
-		public void Join ()
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Implode_SourceNull ()
+		{
+			IEnumerable<int> e = null;
+			e.Implode ();
+		}
+
+		[Test]
+		public void Implode ()
 		{
 			var data = new [] { 0, 1, 2, 3, 4, 5 };
 			var result = "0, 1, 2, 3, 4, 5";
 
-			Assert.AreEqual (result, data.Join (", "));
+			Assert.AreEqual (result, data.Implode (", "));
 		}
 
 		[Test]
-		public void JoinEmpty ()
+		public void ImplodeEmpty ()
 		{
 			var data = new int [] {};
 
-			Assert.AreEqual (string.Empty, data.Join ());
+			Assert.AreEqual (string.Empty, data.Implode ());
 		}
 
 		[Test]
 		public void Repeat ()
 		{
-			Assert.AreEqual ("foofoofoo", new [] {"foo"}.Repeat (3).Join ());
-			Assert.AreEqual ("foobarfoobar", new [] {"foo", "bar"}.Repeat (2).Join ());
+			Assert.AreEqual ("foofoofoo", new [] {"foo"}.Repeat (3).Implode ());
+			Assert.AreEqual ("foobarfoobar", new [] {"foo", "bar"}.Repeat (2).Implode ());
 		}
 
 		[Test]
@@ -211,9 +219,9 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Sort ()
 		{
-			Assert.AreEqual (new[]{4, 3, 2, 1}.Sort ().Join (""), "1234");
-			Assert.AreEqual (new[]{1, 2, 3, 4}.Sort ((x,y) => x == y ? 0 : x < y ? 1 : -1).Join (""), "4321");
-			Assert.AreEqual (new[]{2, 4, 1, 3}.Sort (Comparer<int>.Default).Join (""), "1234");
+			Assert.AreEqual (new[]{4, 3, 2, 1}.Sort ().Implode (), "1234");
+			Assert.AreEqual (new[]{1, 2, 3, 4}.Sort ((x,y) => x == y ? 0 : x < y ? 1 : -1).Implode (), "4321");
+			Assert.AreEqual (new[]{2, 4, 1, 3}.Sort (Comparer<int>.Default).Implode (), "1234");
 		}
 
 		[Test]
@@ -350,11 +358,11 @@ namespace Mono.Rocks.Tests {
 
 			Assert.AreEqual (
 					new[]{1}.SelectFromEach (new[]{2}, new[]{3}, 
-						(x,y,z) => x.ToString () + y.ToString () + z.ToString ()).Join (""),
+						(x,y,z) => x.ToString () + y.ToString () + z.ToString ()).Implode (),
 					"123");
 			Assert.AreEqual (
 					new[]{1}.SelectFromEach (new[]{2}, new[]{3}, new[]{4},
-						(w,x,y,z) => w.ToString () + x.ToString () + y.ToString () + z.ToString ()).Join (""),
+						(w,x,y,z) => w.ToString () + x.ToString () + y.ToString () + z.ToString ()).Implode (),
 					"1234");
 		}
 
@@ -376,12 +384,12 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void ExceptLast ()
 		{
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(0).Join (""), "1234");
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(1).Join (""), "123");
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(2).Join (""), "12");
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(3).Join (""), "1");
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(4).Join (""), "");
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(5).Join (""), "");
+			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(0).Implode (), "1234");
+			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(1).Implode (), "123");
+			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(2).Implode (), "12");
+			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(3).Implode (), "1");
+			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(4).Implode (), "");
+			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(5).Implode (), "");
 		}
 
 		[Test]
@@ -395,15 +403,15 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Intersperse ()
 		{
-			Assert.AreEqual (new[]{1,2,3,4}.Intersperse (9).Join (""), "1929394");
-			Assert.AreEqual (new[]{'a','z'}.Intersperse ('.').Join (""), "a.z");
+			Assert.AreEqual (new[]{1,2,3,4}.Intersperse (9).Implode (), "1929394");
+			Assert.AreEqual (new[]{'a','z'}.Intersperse ('.').Implode (), "a.z");
 #if CRASH
 			IEnumerable<IEnumerable<char>> e = new char[][]{ 
 				new char[]{'b', 'c', 'd'}, 
 				new char[]{'e', 'f', 'g'},
 			};
 			IEnumerable<char> x = new char[]{'a', 'a'};
-			Assert.AreEqual (e.Intersperse (x).Join (""), "bcdaaefg");
+			Assert.AreEqual (e.Intersperse (x).Implode (), "bcdaaefg");
 #endif
 		}
 

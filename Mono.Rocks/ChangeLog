@@ -1,3 +1,9 @@
+2008-06-18  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerable.cs: Rename Join() to Implode(), as .NET already provides a
+	  Join() function with completely different semantics (SQL JOIN, i.e. list
+	  intersection), so this should remove ambiguity/confusion.
+
 2008-06-17  Jonathan Pryor  <jpryor@novell.com>
 
 	* Check.cs: Add Check.Source().

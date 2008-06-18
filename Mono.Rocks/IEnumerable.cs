@@ -36,33 +36,33 @@ namespace Mono.Rocks {
 
 	public static class IEnumerableRocks {
 
-		public static string Join<TSource> (this IEnumerable<TSource> self, string separator)
+		public static string Implode<TSource> (this IEnumerable<TSource> source, string separator)
 		{
-			Check.Self (self);
+			Check.Source (source);
 
-			var coll = self as ICollection<TSource>;
+			var coll = source as ICollection<TSource>;
 			if (coll != null && coll.Count == 0)
 				return string.Empty;
 
-			int i = 0;
+			bool needSep = false;
 			var s = new StringBuilder ();
 
-			foreach (var element in self) {
-				if (i > 0 && separator != null)
+			foreach (var element in source) {
+				if (needSep && separator != null)
 					s.Append (separator);
 
 				s.Append (element);
-				i++;
+				needSep = true;
 			}
 
 			return s.ToString ();
 		}
 
-		public static string Join<TSource> (this IEnumerable<TSource> self)
+		public static string Implode<TSource> (this IEnumerable<TSource> source)
 		{
-			Check.Self (self);
+			Check.Source (source);
 
-			return self.Join (null);
+			return Implode (source, null);
 		}
 
 		public static IEnumerable<TSource> Repeat<TSource> (this IEnumerable<TSource> self, int number)

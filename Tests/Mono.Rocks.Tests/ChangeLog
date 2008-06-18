@@ -1,3 +1,7 @@
+2008-06-18  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerableTest.cs: Join() was renamed to Implode() -- update.
+
 2008-06-17  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerableTest.cs: Add sanity tests for .Sort() overloads and new
