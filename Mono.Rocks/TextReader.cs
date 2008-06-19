@@ -35,33 +35,33 @@ namespace Mono.Rocks {
 
 	public static class TextReaderRocks {
 
-		public static IEnumerable<string> Lines (this TextReader source)
+		public static IEnumerable<string> Lines (this TextReader self)
 		{
-			Check.Source (source);
+			Check.Self (self);
 
-			return CreateLineIterator (source);
+			return CreateLineIterator (self);
 		}
 
-		private static IEnumerable<string> CreateLineIterator (TextReader source)
+		private static IEnumerable<string> CreateLineIterator (TextReader self)
 		{
 			string line;
-			while ((line = source.ReadLine ()) != null)
+			while ((line = self.ReadLine ()) != null)
 				yield return line;
 		}
 
-		public static IEnumerable<string> Words (this TextReader source)
+		public static IEnumerable<string> Words (this TextReader self)
 		{
-			Check.Source (source);
+			Check.Self (self);
 
-			return CreateWordsIterator (source);
+			return CreateWordsIterator (self);
 		}
 
-		private static IEnumerable<string> CreateWordsIterator (TextReader source)
+		private static IEnumerable<string> CreateWordsIterator (TextReader self)
 		{
 			StringBuilder buf = new StringBuilder ();
 			int c;
 			bool inWord = false;
-			while ((c = source.Read ()) >= 0) {
+			while ((c = self.Read ()) >= 0) {
 				if (!char.IsWhiteSpace ((char) c)) {
 					inWord = true;
 					buf.Append ((char) c);

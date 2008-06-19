@@ -3,8 +3,9 @@
 //
 // Author:
 //   Jb Evain (jbevain@novell.com)
+//   Jonathan Pryor  <jpryor@novell.com>
 //
-// Copyright (c) 2007 Novell, Inc. (http://www.novell.com)
+// Copyright (c) 2007, 2008 Novell, Inc. (http://www.novell.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -36,18 +37,18 @@ namespace Mono.Rocks {
 
 	public static class IEnumerableRocks {
 
-		public static string Implode<TSource> (this IEnumerable<TSource> source, string separator)
+		public static string Implode<TSource> (this IEnumerable<TSource> self, string separator)
 		{
-			Check.Source (source);
+			Check.Self (self);
 
-			var coll = source as ICollection<TSource>;
+			var coll = self as ICollection<TSource>;
 			if (coll != null && coll.Count == 0)
 				return string.Empty;
 
 			bool needSep = false;
 			var s = new StringBuilder ();
 
-			foreach (var element in source) {
+			foreach (var element in self) {
 				if (needSep && separator != null)
 					s.Append (separator);
 
@@ -58,11 +59,11 @@ namespace Mono.Rocks {
 			return s.ToString ();
 		}
 
-		public static string Implode<TSource> (this IEnumerable<TSource> source)
+		public static string Implode<TSource> (this IEnumerable<TSource> self)
 		{
-			Check.Source (source);
+			Check.Self (self);
 
-			return Implode (source, null);
+			return Implode (self, null);
 		}
 
 		public static IEnumerable<TSource> Repeat<TSource> (this IEnumerable<TSource> self, int number)
@@ -144,60 +145,59 @@ namespace Mono.Rocks {
 #pragma warning restore 168, 219
 		}
 
-		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> source)
+		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> self)
 		{
-			Check.Source (source);
+			Check.Self (self);
 
-			List<TSource> s = source.ToList ();
+			List<TSource> s = self.ToList ();
 			s.Sort ();
 			return s;
 		}
 
-		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> source, Comparison<TSource> comparison)
+		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> self, Comparison<TSource> comparison)
 		{
-			Check.Source (source);
+			Check.Self (self);
 			if (comparison == null)
 				throw new ArgumentNullException ("comparison");
 
-			List<TSource> s = source.ToList ();
+			List<TSource> s = self.ToList ();
 			s.Sort (comparison);
 			return s;
 		}
 
-		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> source, IComparer<TSource> comparer)
+		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> self, IComparer<TSource> comparer)
 		{
-			Check.Source (source);
+			Check.Self (self);
 			if (comparer == null)
 				throw new ArgumentNullException ("comparer");
 
-			List<TSource> s = source.ToList ();
+			List<TSource> s = self.ToList ();
 			s.Sort (comparer);
 			return s;
 		}
 
 		public static IEnumerable<TResult> 
 			SelectFromEach<TFirstSource, TSecondSource, TResult> (
-					this IEnumerable<TFirstSource> source1,
+					this IEnumerable<TFirstSource> self,
 					IEnumerable<TSecondSource> source2, 
 					Func<TFirstSource, TSecondSource, TResult> selector)
 		{
-			if (source1 == null)
-				throw new ArgumentNullException ("source1");
+			Check.Self (self);
 			if (source2 == null)
 				throw new ArgumentNullException ("source2");
 			if (selector == null)
 				throw new ArgumentNullException ("selector");
 
-			return CreateSelectFromEachIterator (source1, source2, selector);
+			return CreateSelectFromEachIterator (self, source2, selector);
 		}
 
 		private static IEnumerable<TResult>
 			CreateSelectFromEachIterator<TFirstSource, TSecondSource, TResult> (
-					IEnumerable<TFirstSource> source1, 
+					IEnumerable<TFirstSource> self, 
 					IEnumerable<TSecondSource> source2, 
 					Func<TFirstSource, TSecondSource, TResult> selector)
 		{
-			using (IEnumerator<TFirstSource>  a = source1.GetEnumerator ())
+			using (IEnumerator<TFirstSource>  a = self.GetEnumerator ())
 			using (IEnumerator<TSecondSource> b = source2.GetEnumerator ()) {
 				while (a.MoveNext () && b.MoveNext ()) {
 					yield return selector (a.Current, b.Current);
@@ -207,13 +207,12 @@ namespace Mono.Rocks {
 
 		public static IEnumerable<TResult> 
 			SelectFromEach<TFirstSource, TSecondSource, TThirdSource, TResult> (
-					this IEnumerable<TFirstSource> source1,
+					this IEnumerable<TFirstSource> self,
 					IEnumerable<TSecondSource> source2, 
-					IEnumerable<TThirdSource> source3, 
+					IEnumerable<TThirdSource> source3,
 					Func<TFirstSource, TSecondSource, TThirdSource, TResult> selector)
 		{
-			if (source1 == null)
-				throw new ArgumentNullException ("source1");
+			Check.Self (self);
 			if (source2 == null)
 				throw new ArgumentNullException ("source2");
 			if (source3 == null)
@@ -221,17 +220,17 @@ namespace Mono.Rocks {
 			if (selector == null)
 				throw new ArgumentNullException ("selector");
 
-			return CreateSelectFromEachIterator (source1, source2, source3, selector);
+			return CreateSelectFromEachIterator (self, source2, source3, selector);
 		}
 
 		private static IEnumerable<TResult>
 			CreateSelectFromEachIterator<TFirstSource, TSecondSource, TThirdSource, TResult> (
-					IEnumerable<TFirstSource> source1, 
+					IEnumerable<TFirstSource> self, 
 					IEnumerable<TSecondSource> source2, 
 					IEnumerable<TThirdSource> source3, 
 					Func<TFirstSource, TSecondSource, TThirdSource, TResult> selector)
 		{
-			using (IEnumerator<TFirstSource>  a = source1.GetEnumerator ())
+			using (IEnumerator<TFirstSource>  a = self.GetEnumerator ())
 			using (IEnumerator<TSecondSource> b = source2.GetEnumerator ())
 			using (IEnumerator<TThirdSource>  c = source3.GetEnumerator ()) {
 				while (a.MoveNext () && b.MoveNext () && c.MoveNext ()) {
@@ -242,14 +241,14 @@ namespace Mono.Rocks {
 
 		public static IEnumerable<TResult> 
 			SelectFromEach<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> (
-					this IEnumerable<TFirstSource> source1,
+					this IEnumerable<TFirstSource> self,
 					IEnumerable<TSecondSource> source2, 
 					IEnumerable<TThirdSource> source3, 
 					IEnumerable<TFourthSource> source4, 
 					Func<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> selector)
 		{
-			if (source1 == null)
-				throw new ArgumentNullException ("source1");
+			if (self == null)
+				throw new ArgumentNullException ("self");
 			if (source2 == null)
 				throw new ArgumentNullException ("source2");
 			if (source3 == null)
@@ -259,18 +258,18 @@ namespace Mono.Rocks {
 			if (selector == null)
 				throw new ArgumentNullException ("selector");
 
-			return CreateSelectFromEachIterator (source1, source2, source3, source4, selector);
+			return CreateSelectFromEachIterator (self, source2, source3, source4, selector);
 		}
 
 		private static IEnumerable<TResult>
 			CreateSelectFromEachIterator<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> (
-					IEnumerable<TFirstSource> source1, 
+					IEnumerable<TFirstSource> self, 
 					IEnumerable<TSecondSource> source2, 
 					IEnumerable<TThirdSource> source3, 
 					IEnumerable<TFourthSource> source4, 
 					Func<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> selector)
 		{
-			using (IEnumerator<TFirstSource>  a = source1.GetEnumerator ())
+			using (IEnumerator<TFirstSource>  a = self.GetEnumerator ())
 			using (IEnumerator<TSecondSource> b = source2.GetEnumerator ())
 			using (IEnumerator<TThirdSource>  c = source3.GetEnumerator ())
 			using (IEnumerator<TFourthSource> d = source4.GetEnumerator ()) {
@@ -381,12 +380,12 @@ namespace Mono.Rocks {
 			}
 		}
 
-		public static List<List<TSource>> ToList<TSource> (this IEnumerable<IEnumerable<TSource>> source)
+		public static List<List<TSource>> ToList<TSource> (this IEnumerable<IEnumerable<TSource>> self)
 		{
-			Check.Self (source);
+			Check.Self (self);
 
 			List<List<TSource>> r = new List<List<TSource>> ();
-			foreach (IEnumerable<TSource> row in source) {
+			foreach (IEnumerable<TSource> row in self) {
 				List<TSource> items = new List<TSource> ();
 				r.Add (items);
 				foreach (TSource item in row) {
@@ -399,13 +398,13 @@ namespace Mono.Rocks {
 		#region AggregateReverse
 
 		// Haskell: foldr1
-		public static TSource AggregateReverse<TSource> (this IEnumerable<TSource> source, Func<TSource, TSource, TSource> func)
+		public static TSource AggregateReverse<TSource> (this IEnumerable<TSource> self, Func<TSource, TSource, TSource> func)
 		{
-			Check.SourceAndFunc (source, func);
+			Check.SelfAndFunc (self, func);
 
-			IList<TSource> s = GetList (source);
+			IList<TSource> s = GetList (self);
 			if (s.Count == 0)
-				throw new InvalidOperationException ("No elements in source list");
+				throw new InvalidOperationException ("No elements in self list");
 
 			TSource folded = s [s.Count - 1];
 			for (int i = s.Count-2; i >= 0; --i) {
@@ -414,23 +413,23 @@ namespace Mono.Rocks {
 			return folded;
 		}
 
-		private static IList<TSource> GetList<TSource> (IEnumerable<TSource> source)
+		private static IList<TSource> GetList<TSource> (IEnumerable<TSource> self)
 		{
-			IList<TSource> s = source as IList<TSource>;
+			IList<TSource> s = self as IList<TSource>;
 			if (s == null) {
-				s = new List<TSource> (source);
+				s = new List<TSource> (self);
 			}
 
 			return s;
 		}
 
 		// Haskell: foldr
-		public static TAccumulate AggregateReverse<TSource, TAccumulate> (this IEnumerable<TSource> source,
+		public static TAccumulate AggregateReverse<TSource, TAccumulate> (this IEnumerable<TSource> self,
 			TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 		{
-			Check.SourceAndFunc (source, func);
+			Check.SelfAndFunc (self, func);
 
-			IList<TSource> s = GetList (source);
+			IList<TSource> s = GetList (self);
 
 			TAccumulate folded = seed;
 			for (int i = s.Count-1; i >= 0; --i) {
@@ -440,13 +439,13 @@ namespace Mono.Rocks {
 			return folded;
 		}
 
-		public static TResult AggregateReverse<TSource, TAccumulate, TResult> (this IEnumerable<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+		public static TResult AggregateReverse<TSource, TAccumulate, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
 		{
-			Check.SourceAndFunc (source, func);
+			Check.SelfAndFunc (self, func);
 			if (resultSelector == null)
 				throw new ArgumentNullException ("resultSelector");
 
-			IList<TSource> s = GetList (source);
+			IList<TSource> s = GetList (self);
 
 			var result = seed;
 			for (int i = s.Count-1; i >= 0; --i)
@@ -458,64 +457,64 @@ namespace Mono.Rocks {
 		#endregion
 
 		// Haskell concat
-		public static IEnumerable<TSource> Concat<TSource> (this IEnumerable<TSource> source, params IEnumerable<TSource>[] sources)
+		public static IEnumerable<TSource> Concat<TSource> (this IEnumerable<TSource> self, params IEnumerable<TSource>[] selfs)
 		{
-			IEnumerable<IEnumerable<TSource>> e = sources;
-			return Concat (source, e);
+			IEnumerable<IEnumerable<TSource>> e = selfs;
+			return Concat (self, e);
 		}
 
-		public static IEnumerable<TSource> Concat<TSource> (this IEnumerable<TSource> source, IEnumerable<IEnumerable<TSource>> sources)
+		public static IEnumerable<TSource> Concat<TSource> (this IEnumerable<TSource> self, IEnumerable<IEnumerable<TSource>> selfs)
 		{
-			Check.Source (source);
-			if (sources == null)
-				throw new ArgumentNullException ("sources");
+			Check.Self (self);
+			if (selfs == null)
+				throw new ArgumentNullException ("selfs");
 
-			return CreateConcatIterator (source, sources);
+			return CreateConcatIterator (self, selfs);
 		}
 
-		private static IEnumerable<TSource> CreateConcatIterator<TSource> (IEnumerable<TSource> source, IEnumerable<IEnumerable<TSource>> sources)
+		private static IEnumerable<TSource> CreateConcatIterator<TSource> (IEnumerable<TSource> self, IEnumerable<IEnumerable<TSource>> selfs)
 		{
-			foreach (TSource e in source)
+			foreach (TSource e in self)
 				yield return e;
-			foreach (IEnumerable<TSource> outer in sources) {
+			foreach (IEnumerable<TSource> outer in selfs) {
 				foreach (TSource e in outer)
 					yield return e;
 			}
 		}
 
 		// Haskell: and
-		public static bool And (this IEnumerable<bool> source)
+		public static bool And (this IEnumerable<bool> self)
 		{
-			Check.Self (source);
+			Check.Self (self);
 
-			return source.Aggregate ((a, b) => a && b);
+			return self.Aggregate ((a, b) => a && b);
 		}
 
 		// Haskell: or
-		public static bool Or (this IEnumerable<bool> source)
+		public static bool Or (this IEnumerable<bool> self)
 		{
-			Check.Self (source);
+			Check.Self (self);
 
-			return source.Aggregate ((a, b) => a || b);
+			return self.Aggregate ((a, b) => a || b);
 		}
 
 		#region AggregateHistory
 
 		// Haskell: scanl1
-		public static IEnumerable<TSource> AggregateHistory<TSource> (this IEnumerable<TSource> source, Func<TSource, TSource, TSource> func)
+		public static IEnumerable<TSource> AggregateHistory<TSource> (this IEnumerable<TSource> self, Func<TSource, TSource, TSource> func)
 		{
-			Check.SourceAndFunc (source, func);
+			Check.SelfAndFunc (self, func);
 
-			return CreateAggregateHistoryIterator (source, func);
+			return CreateAggregateHistoryIterator (self, func);
 		}
 
-		private static IEnumerable<TSource> CreateAggregateHistoryIterator<TSource> (IEnumerable<TSource> source, Func<TSource, TSource, TSource> func)
+		private static IEnumerable<TSource> CreateAggregateHistoryIterator<TSource> (IEnumerable<TSource> self, Func<TSource, TSource, TSource> func)
 		{
 			// custom foreach so that we can efficiently throw an exception
 			// if zero elements and treat the first element differently
-			using (var enumerator = source.GetEnumerator ()) {
+			using (var enumerator = self.GetEnumerator ()) {
 				if (!enumerator.MoveNext ())
-					throw new InvalidOperationException ("No elements in source list");
+					throw new InvalidOperationException ("No elements in self list");
 
 				TSource folded;
 				yield return (folded = enumerator.Current);
@@ -527,37 +526,37 @@ namespace Mono.Rocks {
 		}
 
 		// Haskell: scanl
-		public static IEnumerable<TAccumulate> AggregateHistory<TSource, TAccumulate> (this IEnumerable<TSource> source,
+		public static IEnumerable<TAccumulate> AggregateHistory<TSource, TAccumulate> (this IEnumerable<TSource> self,
 			TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 		{
-			Check.SourceAndFunc (source, func);
+			Check.SelfAndFunc (self, func);
 
-			return CreateAggregateHistoryIterator (source, seed, func);
+			return CreateAggregateHistoryIterator (self, seed, func);
 		}
 
-		private static IEnumerable<TAccumulate> CreateAggregateHistoryIterator<TSource, TAccumulate> (IEnumerable<TSource> source,
+		private static IEnumerable<TAccumulate> CreateAggregateHistoryIterator<TSource, TAccumulate> (IEnumerable<TSource> self,
 			TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 		{
 			TAccumulate folded;
 			yield return (folded = seed);
-			foreach (TSource element in source)
+			foreach (TSource element in self)
 				yield return (folded = func (folded, element));
 		}
 
-		public static IEnumerable<TResult> AggregateHistory<TSource, TAccumulate, TResult> (this IEnumerable<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+		public static IEnumerable<TResult> AggregateHistory<TSource, TAccumulate, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
 		{
-			Check.SourceAndFunc (source, func);
+			Check.SelfAndFunc (self, func);
 			if (resultSelector == null)
 				throw new ArgumentNullException ("resultSelector");
 
-			return CreateAggregateHistoryIterator (source, seed, func, resultSelector);
+			return CreateAggregateHistoryIterator (self, seed, func, resultSelector);
 		}
 
-		private static IEnumerable<TResult> CreateAggregateHistoryIterator<TSource, TAccumulate, TResult> (IEnumerable<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+		private static IEnumerable<TResult> CreateAggregateHistoryIterator<TSource, TAccumulate, TResult> (IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
 		{
 			var result = seed;
 			yield return resultSelector (result);
-			foreach (var e in source)
+			foreach (var e in self)
 				yield return resultSelector (result = func (result, e));
 		}
 
@@ -566,18 +565,18 @@ namespace Mono.Rocks {
 		#region AggregateReverseHistory
 
 		// Haskell: scanr1
-		public static IEnumerable<TSource> AggregateReverseHistory<TSource> (this IEnumerable<TSource> source, Func<TSource, TSource, TSource> func)
+		public static IEnumerable<TSource> AggregateReverseHistory<TSource> (this IEnumerable<TSource> self, Func<TSource, TSource, TSource> func)
 		{
-			Check.SourceAndFunc (source, func);
+			Check.SelfAndFunc (self, func);
 
-			return CreateAggregateReverseHistoryIterator (source, func);
+			return CreateAggregateReverseHistoryIterator (self, func);
 		}
 
-		private static IEnumerable<TSource> CreateAggregateReverseHistoryIterator<TSource> (IEnumerable<TSource> source, Func<TSource, TSource, TSource> func)
+		private static IEnumerable<TSource> CreateAggregateReverseHistoryIterator<TSource> (IEnumerable<TSource> self, Func<TSource, TSource, TSource> func)
 		{
-			IList<TSource> s = GetList (source);
+			IList<TSource> s = GetList (self);
 			if (s.Count == 0)
-				throw new InvalidOperationException ("No elements in source list");
+				throw new InvalidOperationException ("No elements in self list");
 
 			TSource folded;
 			yield return (folded = s [s.Count - 1]);
@@ -586,18 +585,18 @@ namespace Mono.Rocks {
 		}
 
 		// Haskell: scanr
-		public static IEnumerable<TAccumulate> AggregateReverseHistory<TSource, TAccumulate> (this IEnumerable<TSource> source,
+		public static IEnumerable<TAccumulate> AggregateReverseHistory<TSource, TAccumulate> (this IEnumerable<TSource> self,
 			TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 		{
-			Check.SourceAndFunc (source, func);
+			Check.SelfAndFunc (self, func);
 
-			return CreateAggregateReverseHistoryIterator (source, seed, func);
+			return CreateAggregateReverseHistoryIterator (self, seed, func);
 		}
 
-		private static IEnumerable<TAccumulate> CreateAggregateReverseHistoryIterator<TSource, TAccumulate> (IEnumerable<TSource> source,
+		private static IEnumerable<TAccumulate> CreateAggregateReverseHistoryIterator<TSource, TAccumulate> (IEnumerable<TSource> self,
 			TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 		{
-			IList<TSource> s = GetList (source);
+			IList<TSource> s = GetList (self);
 
 			TAccumulate folded;
 			yield return (folded = seed);
@@ -605,18 +604,18 @@ namespace Mono.Rocks {
 				yield return (folded = func (folded, s [i]));
 		}
 
-		public static IEnumerable<TResult> AggregateReverseHistory<TSource, TAccumulate, TResult> (this IEnumerable<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+		public static IEnumerable<TResult> AggregateReverseHistory<TSource, TAccumulate, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
 		{
-			Check.SourceAndFunc (source, func);
+			Check.SelfAndFunc (self, func);
 			if (resultSelector == null)
 				throw new ArgumentNullException ("resultSelector");
 
-			return CreateAggregateReverseHistoryIterator (source, seed, func, resultSelector);
+			return CreateAggregateReverseHistoryIterator (self, seed, func, resultSelector);
 		}
 
-		private static IEnumerable<TResult> CreateAggregateReverseHistoryIterator<TSource, TAccumulate, TResult> (IEnumerable<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+		private static IEnumerable<TResult> CreateAggregateReverseHistoryIterator<TSource, TAccumulate, TResult> (IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
 		{
-			IList<TSource> s = GetList (source);
+			IList<TSource> s = GetList (self);
 
 			var result = seed;
 			yield return resultSelector (result);

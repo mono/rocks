@@ -41,7 +41,7 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
-		public void Lines_SourceNull ()
+		public void Lines_SelfNull ()
 		{
 			TextReader s = null;
 			s.Lines ();
@@ -64,7 +64,7 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
-		public void Words_SourceNull ()
+		public void Words_SelfNull ()
 		{
 			TextReader s = null;
 			s.Words ();

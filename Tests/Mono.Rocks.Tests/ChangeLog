@@ -1,5 +1,9 @@
 2008-06-19  Jonathan Pryor  <jpryor@novell.com>
 
+	* StringTest.cs, TextReaderTest.cs: s/Source/Self/g.
+
+2008-06-19  Jonathan Pryor  <jpryor@novell.com>
+
 	* StringTest.cs: Remove EachLine() test; add tests for Lines() and
 	  Words().
 	* TextReaderTest.cs: Added; tests for TextReaderRocks, and the

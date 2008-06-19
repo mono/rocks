@@ -42,18 +42,18 @@ namespace Mono.Rocks {
 			return (TEnum) Enum.Parse (typeof (TEnum), self);
 		}
 
-		public static IEnumerable<string> Lines (this string source)
+		public static IEnumerable<string> Lines (this string self)
 		{
-			Check.Source (source);
+			Check.Self (self);
 
-			return new StringReader (source).Lines ();
+			return new StringReader (self).Lines ();
 		}
 
-		public static IEnumerable<string> Words (this string source)
+		public static IEnumerable<string> Words (this string self)
 		{
-			Check.Source (source);
+			Check.Self (self);
 
-			return new StringReader (source).Words ();
+			return new StringReader (self).Words ();
 		}
 
 		public static string Slice (this string self, int start, int end)

@@ -1,5 +1,11 @@
 2008-06-19  Jonathan Pryor  <jpryor@novell.com>
 
+	* Check.cs: Remove Source() and rename SourceAndFunc() to
+	  SelfAndFunc().
+	* IEnumerable.cs, String.cs, TextReader.cs: s/source/self/g.
+
+2008-06-19  Jonathan Pryor  <jpryor@novell.com>
+
 	* String.cs: Remove EachLine(), re-implement Lines() in terms of
 	  TextReaderRocks.Lines(), and add a Words() extension method.
 	* TextReader.cs: Added; extension methods Lines() and Words() for
