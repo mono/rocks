@@ -1,5 +1,9 @@
 2008-06-18  Jonathan Pryor  <jpryor@novell.com>
 
+	* Int32.cs: Remove [Obsolete] methods.
+
+2008-06-18  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerable.cs: Rename AggregateWithHistory() to AggregateHistory()
 	  and AggregateReverseWithHistory() to AggregateReverseHistory().
 

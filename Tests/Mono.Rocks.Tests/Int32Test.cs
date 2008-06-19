@@ -43,7 +43,7 @@ namespace Mono.Rocks.Tests {
 			var data = new int [6];
 			var result = new int [] { 0, 1, 2, 3, 4, 5 };
 
-			6.Times (i => data [i] = i);
+			6.Times ().Apply (i => data [i] = i).Apply ();
 
 			AssertAreSame (result, data);
 		}
@@ -55,7 +55,7 @@ namespace Mono.Rocks.Tests {
 			var result = new int [] { 6, 7, 8, 9, 10, 11, 12 };
 
 			int j = 0;
-			6.UpTo (12, i => { data [j++] = i; });
+			6.UpTo (12).Apply (i => { data [j++] = i; }).Apply ();
 
 			AssertAreSame (result, data);
 		}
@@ -67,7 +67,7 @@ namespace Mono.Rocks.Tests {
 			var result = new int [] { 12, 11, 10, 9, 8, 7, 6 };
 
 			int j = 0;
-			12.DownTo (6, i => data [j++] = i);
+			12.DownTo (6).Apply (i => data [j++] = i).Apply ();
 
 			AssertAreSame (result, data);
 		}
@@ -79,7 +79,7 @@ namespace Mono.Rocks.Tests {
 			var result = new int [] { 1, 3, 5, 7, 9 };
 
 			int j = 0;
-			1.Step (9, 2, i => data [j++] = i);
+			1.Step (9, 2).Apply (i => data [j++] = i).Apply ();
 
 			AssertAreSame (result, data);
 		}
