@@ -30,6 +30,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 using NUnit.Framework;
 
@@ -356,14 +357,12 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (4,   c [3].First);
 			Assert.AreEqual ('d', c [3].Second);
 
-			Assert.AreEqual (
+			Assert.AreEqual ("123",
 					new[]{1}.SelectFromEach (new[]{2}, new[]{3}, 
-						(x,y,z) => x.ToString () + y.ToString () + z.ToString ()).Implode (),
-					"123");
-			Assert.AreEqual (
+						(x,y,z) => x.ToString () + y.ToString () + z.ToString ()).Implode ());
+			Assert.AreEqual ("1234",
 					new[]{1}.SelectFromEach (new[]{2}, new[]{3}, new[]{4},
-						(w,x,y,z) => w.ToString () + x.ToString () + y.ToString () + z.ToString ()).Implode (),
-					"1234");
+						(w,x,y,z) => w.ToString () + x.ToString () + y.ToString () + z.ToString ()).Implode ());
 		}
 
 		[Test]
@@ -384,12 +383,12 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void ExceptLast ()
 		{
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(0).Implode (), "1234");
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(1).Implode (), "123");
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(2).Implode (), "12");
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(3).Implode (), "1");
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(4).Implode (), "");
-			Assert.AreEqual (new[]{1,2,3,4}.ExceptLast(5).Implode (), "");
+			Assert.AreEqual ("1234", new[]{1,2,3,4}.ExceptLast(0).Implode ());
+			Assert.AreEqual ("123",  new[]{1,2,3,4}.ExceptLast(1).Implode ());
+			Assert.AreEqual ("12",   new[]{1,2,3,4}.ExceptLast(2).Implode ());
+			Assert.AreEqual ("1",    new[]{1,2,3,4}.ExceptLast(3).Implode ());
+			Assert.AreEqual ("",     new[]{1,2,3,4}.ExceptLast(4).Implode ());
+			Assert.AreEqual ("",     new[]{1,2,3,4}.ExceptLast(5).Implode ());
 		}
 
 		[Test]
@@ -403,15 +402,15 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Intersperse ()
 		{
-			Assert.AreEqual (new[]{1,2,3,4}.Intersperse (9).Implode (), "1929394");
-			Assert.AreEqual (new[]{'a','z'}.Intersperse ('.').Implode (), "a.z");
+			Assert.AreEqual ("1929394", new[]{1,2,3,4}.Intersperse (9).Implode ());
+			Assert.AreEqual ("a.z",     new[]{'a','z'}.Intersperse ('.').Implode ());
 #if CRASH
 			IEnumerable<IEnumerable<char>> e = new char[][]{ 
 				new char[]{'b', 'c', 'd'}, 
 				new char[]{'e', 'f', 'g'},
 			};
 			IEnumerable<char> x = new char[]{'a', 'a'};
-			Assert.AreEqual (e.Intersperse (x).Implode (), "bcdaaefg");
+			Assert.AreEqual ("bcdaaefg", e.Intersperse (x).Implode ());
 #endif
 		}
 
@@ -468,16 +467,431 @@ namespace Mono.Rocks.Tests {
 			};
 			IEnumerable<IEnumerable<int>> b = a;
 			List<List<int>> c = b.ToList ();
-			Assert.AreEqual (c.Count, a.Length);
-			Assert.AreEqual (c [0].Count, a [0].Length);
-			Assert.AreEqual (c [1].Count, a [1].Length);
-			Assert.AreEqual (c [0][0], a [0][0]);
-			Assert.AreEqual (c [0][1], a [0][1]);
-			Assert.AreEqual (c [0][2], a [0][2]);
-			Assert.AreEqual (c [1][0], a [1][0]);
-			Assert.AreEqual (c [1][1], a [1][1]);
-			Assert.AreEqual (c [1][2], a [1][2]);
+			Assert.AreEqual (a.Count, c.Length);
+			Assert.AreEqual (a [0].Count, c [0].Length);
+			Assert.AreEqual (a [1].Count, c [1].Length);
+			Assert.AreEqual (a [0][0], c [0][0]);
+			Assert.AreEqual (a [0][1], c [0][1]);
+			Assert.AreEqual (a [0][2], c [0][2]);
+			Assert.AreEqual (a [1][0], c [1][0]);
+			Assert.AreEqual (a [1][1], c [1][1]);
+			Assert.AreEqual (a [1][2], c [1][2]);
 #endif
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverse_SF_SourceNull ()
+		{
+			IEnumerable<int>  s = null;
+			Func<int,int,int> f = (a,b) => a-b;
+			s.AggregateReverse (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (InvalidOperationException))]
+		public void AggregateReverse_SF_SourceEmpty ()
+		{
+			IEnumerable<int>  s = new int[]{};
+			Func<int,int,int> f = (a,b) => a-b;
+			s.AggregateReverse (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverse_SF_FuncNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = null;
+			s.AggregateReverse (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverse_SSF_SourceNull ()
+		{
+			IEnumerable<int>  s = null;
+			Func<int,int,int> f = (a,b) => a-b;
+			s.AggregateReverse (0, f);
+		}
+
+		[Test]
+		public void AggregateReverse_SSF_SourceEmpty ()
+		{
+			IEnumerable<int>  s = new int[]{};
+			Func<int,int,int> f = (a,b) => a-b;
+			s.AggregateReverse (0, f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverse_SSF_FuncNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = null;
+			s.AggregateReverse (0, f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverse_SSFR_SourceNull ()
+		{
+			IEnumerable<int>  s = null;
+			Func<int,int,int> f = (a,b) => a-b;
+			Func<int,int>     r = x => x;
+			s.AggregateReverse (0, f, r);
+		}
+
+		[Test]
+		public void AggregateReverse_SSFR_SourceEmpty ()
+		{
+			IEnumerable<int>  s = new int[]{};
+			Func<int,int,int> f = (a,b) => a-b;
+			Func<int,int>     r = x => x;
+			s.AggregateReverse (0, f, r);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverse_SSFR_FuncNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = null;
+			Func<int,int>     r = x => x;
+			s.AggregateReverse (0, f, r);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverse_SSFR_ResultNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = (a,b) => a-b;
+			Func<int,int>     r = null;
+			s.AggregateReverse (0, f, r);
+		}
+
+		[Test]
+		public void AggregateReverse ()
+		{
+			IEnumerable<int> s = new []{1, 2, 3, 4, 5};
+			Assert.AreEqual (-5, s.AggregateReverse ((a,b) => a - b));
+			Assert.AreEqual ("54321",
+					s.AggregateReverse (new StringBuilder (), (a,b) => a.Append (b)).ToString ());
+			Assert.AreEqual (1,
+					new int[]{}.AggregateReverse (1, (a,b) => a+b));
+			Assert.AreEqual ("54321",
+					s.AggregateReverse (new StringBuilder (), (a,b) => a.Append (b), a => a.ToString ()));
+			Assert.AreEqual (1,
+					new int[]{}.AggregateReverse (1, (a,b) => a+b, x => x));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Concat_SourceNull ()
+		{
+			IEnumerable<int> s = null;
+			IEnumerable<IEnumerable<int>> ss = new []{new []{1}};
+			s.Concat (ss);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Concat_SourceesNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			IEnumerable<IEnumerable<int>> ss = null;
+			s.Concat (ss);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Concat_Params_SourceNull ()
+		{
+			IEnumerable<int> s = null;
+			s.Concat (new[]{1});
+		}
+
+		[Test]
+		public void Concat ()
+		{
+			IEnumerable<int> s = new[]{1};
+			Assert.AreEqual ("1234567",
+					s.Concat (new[]{2, 3}, new[]{4, 5}, new[]{6, 7}).Implode ());
+#if CRASH
+			IEnumerable<IEnumerable<int>> ss = new []{
+				new[]{2,3},
+				new[]{4,5},
+				new[]{6,7},
+			};
+			Assert.AreEqual ("1234567", s.Concat (ss).Implode ());
+#endif
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void And_SourceNull ()
+		{
+			IEnumerable<bool> s = null;
+			s.And ();
+		}
+
+		[Test]
+		public void And ()
+		{
+			Assert.AreEqual (false,
+					new[]{true, false, true, true}.And ());
+			Assert.AreEqual (false,
+					new[]{false, false, false, false}.And ());
+			Assert.AreEqual (true,
+					new[]{true, true, true, true}.And ());
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Or_SourceNull ()
+		{
+			IEnumerable<bool> s = null;
+			s.Or ();
+		}
+
+		[Test]
+		public void Or ()
+		{
+			Assert.AreEqual (true,
+					new[]{true, false, true, true}.Or ());
+			Assert.AreEqual (false,
+					new[]{false, false, false, false}.Or ());
+			Assert.AreEqual (true,
+					new[]{true, true, true, true}.Or ());
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateWithHistory_SF_SourceNull ()
+		{
+			IEnumerable<int>  s = null;
+			Func<int,int,int> f = (a,b) => a-b;
+			s.AggregateWithHistory (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (InvalidOperationException))]
+		public void AggregateWithHistory_SF_SourceEmpty ()
+		{
+			IEnumerable<int>  s = new int[]{};
+			Func<int,int,int> f = (a,b) => a-b;
+			// need .Apply() as check for empty source is delayed until enumeration.
+			s.AggregateWithHistory (f).Apply ();
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateWithHistory_SF_FuncNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = null;
+			s.AggregateWithHistory (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateWithHistory_SSF_SourceNull ()
+		{
+			IEnumerable<int>  s = null;
+			Func<int,int,int> f = (a,b) => a-b;
+			s.AggregateWithHistory (0, f);
+		}
+
+		[Test]
+		public void AggregateWithHistory_SSF_SourceEmpty ()
+		{
+			IEnumerable<int>  s = new int[]{};
+			Func<int,int,int> f = (a,b) => a-b;
+			s.AggregateWithHistory (0, f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateWithHistory_SSF_FuncNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = null;
+			s.AggregateWithHistory (0, f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateWithHistory_SSFR_SourceNull ()
+		{
+			IEnumerable<int>  s = null;
+			Func<int,int,int> f = (a,b) => a-b;
+			Func<int,int>     r = x => x;
+			s.AggregateWithHistory (0, f, r);
+		}
+
+		[Test]
+		public void AggregateWithHistory_SSFR_SourceEmpty ()
+		{
+			IEnumerable<int>  s = new int[]{};
+			Func<int,int,int> f = (a,b) => a-b;
+			Func<int,int>     r = x => x;
+			s.AggregateWithHistory (0, f, r);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateWithHistory_SSFR_FuncNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = null;
+			Func<int,int>     r = x => x;
+			s.AggregateWithHistory (0, f, r);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateWithHistory_SSFR_ResultNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = (a,b) => a-b;
+			Func<int,int>     r = null;
+			s.AggregateWithHistory (0, f, r);
+		}
+
+		[Test]
+		public void AggregateWithHistory ()
+		{
+			IEnumerable<int> s = new []{1, 2, 3, 4, 5};
+			Assert.AreEqual (
+					"1,-1,-4,-8,-13",
+					s.AggregateWithHistory ((a,b) => a - b).Implode (","));
+			Assert.AreEqual (
+					",1,12,123,1234,12345",
+					s.AggregateWithHistory (new StringBuilder (), (a,b) => a.Append (b)).Implode (","));
+			Assert.AreEqual ("1",
+					new int[]{}.AggregateWithHistory (1, (a,b) => a+b).Implode (","));
+			Assert.AreEqual (
+					"R,R1,R12,R123,R1234,R12345",
+					s.AggregateWithHistory (new StringBuilder (), 
+						(a,b) => a.Append (b), 
+						a => "R" + a.ToString ()).Implode (","));
+			Assert.AreEqual ("1",
+					new int[]{}.AggregateWithHistory (1, (a,b) => a+b, x => x).Implode (","));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverseWithHistory_SF_SourceNull ()
+		{
+			IEnumerable<int>  s = null;
+			Func<int,int,int> f = (a,b) => a-b;
+			s.AggregateReverseWithHistory (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (InvalidOperationException))]
+		public void AggregateReverseWithHistory_SF_SourceEmpty ()
+		{
+			IEnumerable<int>  s = new int[]{};
+			Func<int,int,int> f = (a,b) => a-b;
+			// need .Apply() as check for empty source is delayed until enumeration.
+			s.AggregateReverseWithHistory (f).Apply ();
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverseWithHistory_SF_FuncNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = null;
+			s.AggregateReverseWithHistory (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverseWithHistory_SSF_SourceNull ()
+		{
+			IEnumerable<int>  s = null;
+			Func<int,int,int> f = (a,b) => a-b;
+			s.AggregateReverseWithHistory (0, f);
+		}
+
+		[Test]
+		public void AggregateReverseWithHistory_SSF_SourceEmpty ()
+		{
+			IEnumerable<int>  s = new int[]{};
+			Func<int,int,int> f = (a,b) => a-b;
+			s.AggregateReverseWithHistory (0, f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverseWithHistory_SSF_FuncNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = null;
+			s.AggregateReverseWithHistory (0, f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverseWithHistory_SSFR_SourceNull ()
+		{
+			IEnumerable<int>  s = null;
+			Func<int,int,int> f = (a,b) => a-b;
+			Func<int,int>     r = x => x;
+			s.AggregateReverseWithHistory (0, f, r);
+		}
+
+		[Test]
+		public void AggregateReverseWithHistory_SSFR_SourceEmpty ()
+		{
+			IEnumerable<int>  s = new int[]{};
+			Func<int,int,int> f = (a,b) => a-b;
+			Func<int,int>     r = x => x;
+			s.AggregateReverseWithHistory (0, f, r);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverseWithHistory_SSFR_FuncNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = null;
+			Func<int,int>     r = x => x;
+			s.AggregateReverseWithHistory (0, f, r);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void AggregateReverseWithHistory_SSFR_ResultNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int,int,int> f = (a,b) => a-b;
+			Func<int,int>     r = null;
+			s.AggregateReverseWithHistory (0, f, r);
+		}
+
+		[Test]
+		public void AggregateReverseWithHistory ()
+		{
+			IEnumerable<int> s = new []{1, 2, 3, 4, 5};
+			Assert.AreEqual (
+					"5,1,-2,-4,-5",
+					s.AggregateReverseWithHistory ((a,b) => a - b).Implode (","));
+			Assert.AreEqual (
+					",5,54,543,5432,54321",
+					s.AggregateReverseWithHistory (new StringBuilder (), (a,b) => a.Append (b)).Implode (","));
+			Assert.AreEqual ("1",
+					new int[]{}.AggregateReverseWithHistory (1, (a,b) => a+b).Implode (","));
+			Assert.AreEqual (
+					"R,R5,R54,R543,R5432,R54321",
+					s.AggregateReverseWithHistory (new StringBuilder (), 
+						(a,b) => a.Append (b), 
+						a => "R" + a.ToString ()).Implode (","));
+			Assert.AreEqual ("1",
+					new int[]{}.AggregateReverseWithHistory (1, (a,b) => a+b, x => x).Implode (","));
 		}
 	}
 }

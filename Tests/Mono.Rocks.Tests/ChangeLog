@@ -1,5 +1,12 @@
 2008-06-18  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerableTest.cs: Correct ordering of parameters to
+	  Assert.AreEqual().  Add tests for AggregateReverse(), Concat(),
+	  And(), Or(), AggregateWithHistory(), AggregateReverseWithHistory().
+	  This should cover all IEnumerableRocks extension methods.
+
+2008-06-18  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerableTest.cs: Join() was renamed to Implode() -- update.
 
 2008-06-17  Jonathan Pryor  <jpryor@novell.com>

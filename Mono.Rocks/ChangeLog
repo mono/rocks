@@ -1,5 +1,17 @@
 2008-06-18  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerable.cs: 
+	  - Change semantics of AggregateReverse(), AggregateWithHistory(), 
+	    AggregateReverseWithHistory() so that an empty sequence is invalid 
+	    only if a seed value isn't provided.  This matches the semantics 
+	    of Aggregate().  
+	  - Fix AggregateWithHistory() and AggregateReverseWithHistory() so that
+	    parameter-checking exceptions are emitted immediately, not delayed.
+	  - Fix *WithHistory() so they don't return too many elements.
+	  - Parameter name cleanup/consistency.
+
+2008-06-18  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerable.cs: Rename Join() to Implode(), as .NET already provides a
 	  Join() function with completely different semantics (SQL JOIN, i.e. list
 	  intersection), so this should remove ambiguity/confusion.
