@@ -1,3 +1,10 @@
+2008-06-19  Jonathan Pryor  <jpryor@novell.com>
+
+	* StringTest.cs: Remove EachLine() test; add tests for Lines() and
+	  Words().
+	* TextReaderTest.cs: Added; tests for TextReaderRocks, and the
+	  .Words() and .Lines() extension methods.
+
 2008-06-18  Jonathan Pryor  <jpryor@novell.com>
 
 	* Int32Test.cs: Test the current methods.

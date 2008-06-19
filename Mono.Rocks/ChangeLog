@@ -1,3 +1,10 @@
+2008-06-19  Jonathan Pryor  <jpryor@novell.com>
+
+	* String.cs: Remove EachLine(), re-implement Lines() in terms of
+	  TextReaderRocks.Lines(), and add a Words() extension method.
+	* TextReader.cs: Added; extension methods Lines() and Words() for
+	  TextReader instances.
+
 2008-06-18  Jonathan Pryor  <jpryor@novell.com>
 
 	* Int32.cs: Remove [Obsolete] methods.

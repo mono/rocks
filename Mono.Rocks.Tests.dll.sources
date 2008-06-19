@@ -2,5 +2,6 @@
 ./Tests/Mono.Rocks.Tests/Int32Test.cs
 ./Tests/Mono.Rocks.Tests/BaseRocksFixture.cs
 ./Tests/Mono.Rocks.Tests/StringTest.cs
+./Tests/Mono.Rocks.Tests/TextReaderTest.cs
 ./Tests/Mono.Rocks.Tests/IEnumerableTest.cs
 ./Tests/Mono.Rocks.Tests/ICustomAttributeProviderTest.cs

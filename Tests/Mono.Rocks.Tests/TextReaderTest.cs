@@ -1,11 +1,10 @@
 ﻿//
-// StringTest.cs
+// TextReaderTest.cs
 //
 // Author:
-//   Jb Evain (jbevain@novell.com)
 //   Jonathan Pryor  <jpryor@novell.com>
 //
-// Copyright (c) 2007, 2008 Novell, Inc. (http://www.novell.com)
+// Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -28,6 +27,7 @@
 //
 
 using System;
+using System.IO;
 using System.Linq;
 
 using NUnit.Framework;
@@ -37,93 +37,51 @@ using Mono.Rocks;
 namespace Mono.Rocks.Tests {
 
 	[TestFixture]
-	public class StringTest : BaseRocksFixture {
+	public class TextReaderTest : BaseRocksFixture {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void Lines_SourceNull ()
 		{
-			string s = null;
+			TextReader s = null;
 			s.Lines ();
 		}
 
 		[Test]
 		public void Lines ()
 		{
-			var data = new string [4];
-			var result = new [] { "", "one", "two", "three" };
-
-			int i = 0;
-			@"
-			one
-			two
-			three".Lines ().Apply (line => data [i++] = line.Trim ()).Apply ();
-
-#if false
-			foreach (string s in data)
-				Console.WriteLine ("data: {0}", s);
-
-			foreach (string s in result)
-				Console.WriteLine ("result: {0}", s);
-#endif
-
-			AssertAreSame (result, data);
+			string[] lines = 
+							new StringReader ("hello\nout\rthere\r\nin\nTV\nland!")
+							.Lines ().ToArray ();
+			Assert.AreEqual (6, lines.Length);
+			Assert.AreEqual ("hello", lines [0]);
+			Assert.AreEqual ("out",   lines [1]);
+			Assert.AreEqual ("there", lines [2]);
+			Assert.AreEqual ("in",    lines [3]);
+			Assert.AreEqual ("TV",    lines [4]);
+			Assert.AreEqual ("land!", lines [5]);
 		}
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void Words_SourceNull ()
 		{
-			string s = null;
+			TextReader s = null;
 			s.Words ();
 		}
 
 		[Test]
 		public void Words ()
 		{
-			string[] expected = {"skip", "leading", "and", "trailing", "whitespace"};
-			string[] actual = 
-				"   skip  leading\r\n\tand trailing\vwhitespace   "
+			string[] words = 
+				new StringReader ("   skip  leading\r\n\tand trailing\vwhitespace   ")
 				.Words ().ToArray ();
-			AssertAreSame (expected, actual);
-		}
-
-		[Test]
-		public void Slice ()
-		{
-			var data = "0123456789";
-
-			Assert.AreEqual ("0", data.Slice (0, 1));
-			Assert.AreEqual ("89", data.Slice (8, 10));
-			Assert.AreEqual ("456789", data.Slice (4, -1));
-			Assert.AreEqual ("8", data.Slice (8, -2));
-		}
-
-		enum Foo {
-			Bar,
-			Baz,
-			Gazonk
-		}
-
-		[Test]
-		public void ToEnum ()
-		{
-			Assert.AreEqual (Foo.Gazonk, "Gazonk".ToEnum<Foo> ());
-			Assert.AreEqual (Foo.Bar, "Bar".ToEnum<Foo> ());
-		}
-
-		[Test]
-		[ExpectedException (typeof (ArgumentException))]
-		public void ToEnumNotInEnum ()
-		{
-			"Gens".ToEnum<Foo> ();
-		}
-
-		[Test]
-		[ExpectedException (typeof (ArgumentException))]
-		public void ToEnumNotEnum ()
-		{
-			"Bar".ToEnum<string> ();
+			Assert.AreEqual (5, words.Length);
+			Assert.AreEqual ("skip",        words [0]);
+			Assert.AreEqual ("leading",     words [1]);
+			Assert.AreEqual ("and",         words [2]);
+			Assert.AreEqual ("trailing",    words [3]);
+			Assert.AreEqual ("whitespace",  words [4]);
 		}
 	}
 }

@@ -1,11 +1,10 @@
 ﻿//
-// String.cs
+// TextReader.cs
 //
 // Author:
-//   Jb Evain (jbevain@novell.com)
-//   Jonathan Pryor  <jpryor@novell.com>
+//   Jonathan Pryor <jpryor@novell.com>
 //
-// Copyright (c) 2007, 2008 Novell, Inc. (http://www.novell.com)
+// Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -30,46 +29,53 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Mono.Rocks {
 
-	public static class StringRocks {
+	public static class TextReaderRocks {
 
-		public static TEnum ToEnum<TEnum> (this string self)
-		{
-			Check.Self (self);
-
-			return (TEnum) Enum.Parse (typeof (TEnum), self);
-		}
-
-		public static IEnumerable<string> Lines (this string source)
+		public static IEnumerable<string> Lines (this TextReader source)
 		{
 			Check.Source (source);
 
-			return new StringReader (source).Lines ();
+			return CreateLineIterator (source);
 		}
 
-		public static IEnumerable<string> Words (this string source)
+		private static IEnumerable<string> CreateLineIterator (TextReader source)
+		{
+			string line;
+			while ((line = source.ReadLine ()) != null)
+				yield return line;
+		}
+
+		public static IEnumerable<string> Words (this TextReader source)
 		{
 			Check.Source (source);
 
-			return new StringReader (source).Words ();
+			return CreateWordsIterator (source);
 		}
 
-		public static string Slice (this string self, int start, int end)
+		private static IEnumerable<string> CreateWordsIterator (TextReader source)
 		{
-			Check.Self (self);
-
-			if (start < 0 || start >= self.Length)
-				throw new ArgumentOutOfRangeException ("start");
-
-			if (end < 0)
-				end += self.Length + 1;
-
-			if (end < start || end > self.Length)
-				throw new ArgumentOutOfRangeException ("end");
-
-			return self.Substring (start, end - start);
+			StringBuilder buf = new StringBuilder ();
+			int c;
+			bool inWord = false;
+			while ((c = source.Read ()) >= 0) {
+				if (!char.IsWhiteSpace ((char) c)) {
+					inWord = true;
+					buf.Append ((char) c);
+				}
+				else {
+					if (inWord) {
+						yield return buf.ToString ();
+						buf.Length = 0;
+					}
+					inWord = false;
+				}
+			}
+			if (buf.Length > 0)
+				yield return buf.ToString ();
 		}
 	}
 }
