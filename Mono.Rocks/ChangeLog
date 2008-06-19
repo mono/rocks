@@ -1,5 +1,10 @@
 2008-06-18  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerable.cs: Rename AggregateWithHistory() to AggregateHistory()
+	  and AggregateReverseWithHistory() to AggregateReverseHistory().
+
+2008-06-18  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerable.cs: 
 	  - Change semantics of AggregateReverse(), AggregateWithHistory(), 
 	    AggregateReverseWithHistory() so that an empty sequence is invalid 

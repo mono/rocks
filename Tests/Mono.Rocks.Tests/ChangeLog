@@ -1,5 +1,10 @@
 2008-06-18  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerable.cs: Rename AggregateWithHistory() to AggregateHistory()
+	  and AggregateReverseWithHistory() to AggregateReverseHistory().
+
+2008-06-18  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerableTest.cs: Correct ordering of parameters to
 	  Assert.AreEqual().  Add tests for AggregateReverse(), Concat(),
 	  And(), Or(), AggregateWithHistory(), AggregateReverseWithHistory().
