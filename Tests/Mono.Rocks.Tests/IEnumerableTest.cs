@@ -227,6 +227,113 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
+		public void OrderByNatural_SelfNull ()
+		{
+			IEnumerable<int> e = null;
+			e.OrderByNatural (x => x.ToString ());
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void OrderByNatural_FuncNull ()
+		{
+			IEnumerable<int> e = new[]{1};
+			Func<int,string> f = null;
+			e.OrderByNatural (f);
+		}
+
+		[Test]
+		public void OrderByNatural ()
+		{
+			string[] expected = {
+				"a.1.b.2.c.3.d.4.e.5.f.6.g.7.h.8.i.9.j.10.k.11",
+				"a.1.b.2.c.3.d.4.e.5.f.6.g.7.h.8.i.9.j.10.k.12",
+				"bar",
+				"foo",
+				"foo",
+				"foo1",
+				"foo2",
+				"foo3",
+				"foo4",
+				"foo5",
+				"foo6",
+				"foo7",
+				"foo8",
+				"foo9",
+				"foo10",
+			};
+			IEnumerable<string> actual = new[]{
+				"foo",
+				"foo",
+				"foo10",
+				"foo1",
+				"foo4",
+				"foo2",
+				"foo3",
+				"foo9",
+				"foo5",
+				"foo7",
+				"foo8",
+				"foo6",
+				"bar",
+				"a.1.b.2.c.3.d.4.e.5.f.6.g.7.h.8.i.9.j.10.k.12",
+				"a.1.b.2.c.3.d.4.e.5.f.6.g.7.h.8.i.9.j.10.k.11",
+			}.OrderByNatural (s => s);
+
+			AssertAreSame (expected, actual);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SortNatural_SelfNull ()
+		{
+			IEnumerable<string> e = null;
+			e.SortNatural ();
+		}
+
+		[Test]
+		public void SortNatural ()
+		{
+			string[] expected = {
+				"a.1.b.2.c.3.d.4.e.5.f.6.g.7.h.8.i.9.j.10.k.11",
+				"a.1.b.2.c.3.d.4.e.5.f.6.g.7.h.8.i.9.j.10.k.12",
+				"bar",
+				"foo",
+				"foo",
+				"foo1",
+				"foo2",
+				"foo3",
+				"foo4",
+				"foo5",
+				"foo6",
+				"foo7",
+				"foo8",
+				"foo9",
+				"foo10",
+			};
+			IEnumerable<string> actual = new[]{
+				"foo",
+				"foo",
+				"foo10",
+				"foo1",
+				"foo4",
+				"foo2",
+				"foo3",
+				"foo9",
+				"foo5",
+				"foo7",
+				"foo8",
+				"foo6",
+				"bar",
+				"a.1.b.2.c.3.d.4.e.5.f.6.g.7.h.8.i.9.j.10.k.12",
+				"a.1.b.2.c.3.d.4.e.5.f.6.g.7.h.8.i.9.j.10.k.11",
+			}.SortNatural ();
+
+			AssertAreSame (expected, actual);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
 		public void SelectFromEach2_Source1Null ()
 		{
 			IEnumerable<int> s1 = null;
@@ -431,6 +538,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Transpose ()
 		{
+#if RUNTIME_BUGXXX
 			IEnumerable<IEnumerable<int>> a = new int[][]{
 				new int[]{1, 2, 3},
 				new int[]{4, 5, 6},
@@ -447,6 +555,7 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (5, c [1][1]);
 			Assert.AreEqual (3, c [2][0]);
 			Assert.AreEqual (6, c [2][1]);
+#endif
 		}
 
 		[Test]

@@ -1,3 +1,10 @@
+2008-06-23  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerableTest.cs: Add tests for OrderByNatural(), SortNaqtural();
+	  disable the Transpose() test as svn-HEAD is throwing
+	  TypeLoadExceptions within it for some random reason.
+	* NaturalStringComparerTest.cs: Added; Tests for NaturalStringComparer.
+
 2008-06-19  Jonathan Pryor  <jpryor@novell.com>
 
 	* StringTest.cs, TextReaderTest.cs: s/Source/Self/g.

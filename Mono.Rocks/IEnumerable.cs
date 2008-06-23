@@ -176,6 +176,18 @@ namespace Mono.Rocks {
 			return s;
 		}
 
+		public static IEnumerable<TSource> OrderByNatural<TSource> (this IEnumerable<TSource> self, Func<TSource, string> func)
+		{
+			Check.SelfAndFunc (self, func);
+
+			return self.OrderBy (func, NaturalStringComparer.Default);
+		}
+
+		public static IEnumerable<string> SortNatural (this IEnumerable<string> self)
+		{
+			return Sort (self, NaturalStringComparer.Default);
+		}
+
 		public static IEnumerable<TResult> 
 			SelectFromEach<TFirstSource, TSecondSource, TResult> (
 					this IEnumerable<TFirstSource> self,

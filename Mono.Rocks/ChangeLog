@@ -1,3 +1,12 @@
+2008-06-23  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerable.cs: Add OrderByNatural() to allow easy "natural" ordering,
+	  and SortNatural() to allow easy "natural" sorting.
+	* NaturalStringComparer.cs: Added; IComparer<string> implementation 
+	  which sorts strings "naturaly", i.e. sorting embedded numbers 
+	  numerically instead of lexicographically.  This allows "1 2 10" to be 
+	  sorted as "1 2 10" instead of as "1 10 2" (lexicographic comparison).
+
 2008-06-19  Jonathan Pryor  <jpryor@novell.com>
 
 	* Check.cs: Remove Source() and rename SourceAndFunc() to
