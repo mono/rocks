@@ -1,5 +1,12 @@
 2008-06-23  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerable.cs: Add more Haskell-inspired extension methods:
+	  - (mapAccumL)
+	    .SelectAggregated<S,A,AR,R>(A,Func<A,S,KVP<A,AR>>,Func<A,List<AR>,R>)
+	  - (mapAccumR) .SelectReverseAggregated<S,A,AR,R>(A,Func<A,S,KVP<A,AR>,Func<A,List<AR>,R>)
+
+2008-06-23  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerable.cs: Add OrderByNatural() to allow easy "natural" ordering,
 	  and SortNatural() to allow easy "natural" sorting.
 	* NaturalStringComparer.cs: Added; IComparer<string> implementation 

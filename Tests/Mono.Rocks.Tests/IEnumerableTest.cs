@@ -511,7 +511,7 @@ namespace Mono.Rocks.Tests {
 		{
 			Assert.AreEqual ("1929394", new[]{1,2,3,4}.Intersperse (9).Implode ());
 			Assert.AreEqual ("a.z",     new[]{'a','z'}.Intersperse ('.').Implode ());
-#if CRASH
+#if BNC_400716
 			IEnumerable<IEnumerable<char>> e = new char[][]{ 
 				new char[]{'b', 'c', 'd'}, 
 				new char[]{'e', 'f', 'g'},
@@ -538,7 +538,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Transpose ()
 		{
-#if RUNTIME_BUGXXX
+#if BNC_402888
 			IEnumerable<IEnumerable<int>> a = new int[][]{
 				new int[]{1, 2, 3},
 				new int[]{4, 5, 6},
@@ -569,16 +569,16 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void ToList ()
 		{
-#if CRASH
+#if BNC_400716
 			int[][] a = new int[][]{
 				new int[]{1, 2, 3},
 				new int[]{4, 5, 6},
 			};
 			IEnumerable<IEnumerable<int>> b = a;
 			List<List<int>> c = b.ToList ();
-			Assert.AreEqual (a.Count, c.Length);
-			Assert.AreEqual (a [0].Count, c [0].Length);
-			Assert.AreEqual (a [1].Count, c [1].Length);
+			Assert.AreEqual (a.Length, c.Count);
+			Assert.AreEqual (a [0].Length, c [0].Count);
+			Assert.AreEqual (a [1].Length, c [1].Count);
 			Assert.AreEqual (a [0][0], c [0][0]);
 			Assert.AreEqual (a [0][1], c [0][1]);
 			Assert.AreEqual (a [0][2], c [0][2]);
@@ -727,7 +727,7 @@ namespace Mono.Rocks.Tests {
 			IEnumerable<int> s = new[]{1};
 			Assert.AreEqual ("1234567",
 					s.Concat (new[]{2, 3}, new[]{4, 5}, new[]{6, 7}).Implode ());
-#if CRASH
+#if BNC_400716
 			IEnumerable<IEnumerable<int>> ss = new []{
 				new[]{2,3},
 				new[]{4,5},
@@ -1001,6 +1001,98 @@ namespace Mono.Rocks.Tests {
 						a => "R" + a.ToString ()).Implode (","));
 			Assert.AreEqual ("1",
 					new int[]{}.AggregateReverseHistory (1, (a,b) => a+b, x => x).Implode (","));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectAggregated_SelfNull ()
+		{
+			IEnumerable<int>                      s  = null;
+			Func<int, int, KeyValuePair<int,int>> f  = (x,y) => new KeyValuePair<int,int> (x, y);
+			Func<int, List<int>, int>             rs = (x,y) => x;
+			s.SelectAggregated (0, f, rs);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectAggregated_FuncNull ()
+		{
+			IEnumerable<int>                      s  = new[]{1};
+			Func<int, int, KeyValuePair<int,int>> f  = null;
+			Func<int, List<int>, int>             rs = (x,y) => x;
+			s.SelectAggregated (0, f, rs);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectAggregated_ResultSelectorNull ()
+		{
+			IEnumerable<int>                      s  = new[]{1};
+			Func<int, int, KeyValuePair<int,int>> f  = (x,y) => new KeyValuePair<int,int> (x, y);
+			Func<int, List<int>, int>             rs = null;
+			s.SelectAggregated (0, f, rs);
+		}
+
+		[Test]
+		public void SelectAggregated ()
+		{
+			IEnumerable<int> s = new []{2, 3, 4, 5};
+			Assert.AreEqual (
+					"-13:s-1,s-4,s-8,s-13",
+					s.SelectAggregated (1, 
+						(a,b) => new KeyValuePair<int,string> (a-b, "s" + (a-b)),
+						(r,l) => r + ":" + l.Implode (",")));
+			Assert.AreEqual (
+					"42,0",
+					new int[]{}.SelectAggregated (42, 
+						(a,b) => new KeyValuePair<int, int> (a-b, b),
+						(r,l) => r + "," + l.Count));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectReverseAggregated_SelfNull ()
+		{
+			IEnumerable<int>                      s  = null;
+			Func<int, int, KeyValuePair<int,int>> f  = (x,y) => new KeyValuePair<int,int> (x, y);
+			Func<int, List<int>, int>             rs = (x,y) => x;
+			s.SelectReverseAggregated (0, f, rs);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectReverseAggregated_FuncNull ()
+		{
+			IEnumerable<int>                      s  = new[]{1};
+			Func<int, int, KeyValuePair<int,int>> f  = null;
+			Func<int, List<int>, int>             rs = (x,y) => x;
+			s.SelectReverseAggregated (0, f, rs);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SelectReverseAggregated_ResultSelectorNull ()
+		{
+			IEnumerable<int>                      s  = new[]{1};
+			Func<int, int, KeyValuePair<int,int>> f  = (x,y) => new KeyValuePair<int,int> (x, y);
+			Func<int, List<int>, int>             rs = null;
+			s.SelectReverseAggregated (0, f, rs);
+		}
+
+		[Test]
+		public void SelectReverseAggregated ()
+		{
+			IEnumerable<int> s = new []{1, 2, 3, 4};
+			Assert.AreEqual (
+					"-5:s1,s-2,s-4,s-5",
+					s.SelectReverseAggregated (5, 
+						(a,b) => new KeyValuePair<int,string> (a-b, "s" + (a-b)),
+						(r,l) => r + ":" + l.Implode (",")));
+			Assert.AreEqual (
+					"42,0",
+					new int[]{}.SelectReverseAggregated (42, 
+						(a,b) => new KeyValuePair<int, int> (a-b, b),
+						(r,l) => r + "," + l.Count));
 		}
 	}
 }

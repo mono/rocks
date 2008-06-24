@@ -1,5 +1,11 @@
 2008-06-23  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerableTest.cs: s/#if .*/#if BNC_XXX/, where XXX is the
+	  bugzilla.novell.com bug blocking execution of that test.  Add tests
+	  for .SelectAggregated() and .SelectReverseAggregated().
+
+2008-06-23  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerableTest.cs: Add tests for OrderByNatural(), SortNaqtural();
 	  disable the Transpose() test as svn-HEAD is throwing
 	  TypeLoadExceptions within it for some random reason.
