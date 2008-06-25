@@ -1,3 +1,10 @@
+2008-06-25  Jonathan Pryor  <jpryor@novell.com>
+
+	* KeyValuePairTest.cs: Added; tests for KeyValuePairRocks.
+	* IEnumerableTest.cs: Add tests for new Implode() overloads, re-enable the
+	  Transpose() test (the runtime bug was fixed), and cope with changes to
+	  .SelectAggregated() and .SelectReverseAggregated().
+
 2008-06-23  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerableTest.cs: s/#if .*/#if BNC_XXX/, where XXX is the

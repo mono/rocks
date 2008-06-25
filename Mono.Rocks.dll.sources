@@ -3,6 +3,7 @@
 ./Mono.Rocks/ICustomAttributeProvider.cs
 ./Mono.Rocks/IEnumerable.cs
 ./Mono.Rocks/Int32.cs
+./Mono.Rocks/KeyValuePair.cs
 ./Mono.Rocks/NaturalStringComparer.cs
 ./Mono.Rocks/String.cs
 ./Mono.Rocks/TextReader.cs

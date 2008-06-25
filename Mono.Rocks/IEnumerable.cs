@@ -39,7 +39,26 @@ namespace Mono.Rocks {
 
 		public static string Implode<TSource> (this IEnumerable<TSource> self, string separator)
 		{
+			return Implode (self, separator, (b, e) => {b.Append (e.ToString ());});
+		}
+
+		public static string Implode<TSource> (this IEnumerable<TSource> self)
+		{
+			return Implode (self, null);
+		}
+
+		public static string Implode<TSource, TResult> (this IEnumerable<TSource> self, string separator, Func<TSource, TResult> selector)
+		{
+			if (selector == null)
+				throw new ArgumentNullException ("selector");
+			return Implode (self, separator, (b, e) => {b.Append (selector (e).ToString ());});
+		}
+
+		public static string Implode<TSource> (this IEnumerable<TSource> self, string separator, Action<StringBuilder, TSource> appender)
+		{
 			Check.Self (self);
+			if (appender == null)
+				throw new ArgumentNullException ("appender");
 
 			var coll = self as ICollection<TSource>;
 			if (coll != null && coll.Count == 0)
@@ -52,18 +71,11 @@ namespace Mono.Rocks {
 				if (needSep && separator != null)
 					s.Append (separator);
 
-				s.Append (element);
+				appender (s, element);
 				needSep = true;
 			}
 
 			return s.ToString ();
-		}
-
-		public static string Implode<TSource> (this IEnumerable<TSource> self)
-		{
-			Check.Self (self);
-
-			return Implode (self, null);
 		}
 
 		public static IEnumerable<TSource> Repeat<TSource> (this IEnumerable<TSource> self, int number)
@@ -638,16 +650,14 @@ namespace Mono.Rocks {
 		#endregion
 		
 		// Haskell: mapAccumL
-		public static TResult SelectAggregated<TSource, TAccumulate, TAggregateResult, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, KeyValuePair<TAccumulate,TAggregateResult>> func, Func<TAccumulate, List<TAggregateResult>, TResult> resultSelector)
+		public static KeyValuePair<TAccumulate, List<TResult>> SelectAggregated<TSource, TAccumulate, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, KeyValuePair<TAccumulate,TResult>> func)
 		{
 			Check.SelfAndFunc (self, func);
-			if (resultSelector == null)
-				throw new ArgumentNullException ("resultSelector");
 
 			ICollection<TSource> cself = self as ICollection<TSource>;
 			var aggregates = cself != null 
-				?  new List<TAggregateResult> (cself.Count)
-				:  new List<TAggregateResult> ();
+				?  new List<TResult> (cself.Count)
+				:  new List<TResult> ();
 
 			var result = seed;
 			foreach (var element in self) {
@@ -656,18 +666,16 @@ namespace Mono.Rocks {
 				aggregates.Add (r.Value);
 			}
 
-			return resultSelector (result, aggregates);
+			return new KeyValuePair<TAccumulate, List<TResult>> (result, aggregates);
 		}
 
 		// Haskell: mapAccumR
-		public static TResult SelectReverseAggregated<TSource, TAccumulate, TAggregateResult, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, KeyValuePair<TAccumulate,TAggregateResult>> func, Func<TAccumulate, List<TAggregateResult>, TResult> resultSelector)
+		public static KeyValuePair<TAccumulate, List<TResult>> SelectReverseAggregated<TSource, TAccumulate, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, KeyValuePair<TAccumulate,TResult>> func)
 		{
 			Check.SelfAndFunc (self, func);
-			if (resultSelector == null)
-				throw new ArgumentNullException ("resultSelector");
 
 			var s = GetList (self);
-			var aggregates = new List<TAggregateResult> (s.Count);
+			var aggregates = new List<TResult> (s.Count);
 			var result = seed;
 
 			for (int i = s.Count-1; i >= 0; --i) {
@@ -676,7 +684,7 @@ namespace Mono.Rocks {
 				aggregates.Add (r.Value);
 			}
 
-			return resultSelector (result, aggregates);
+			return new KeyValuePair<TAccumulate, List<TResult>> (result, aggregates);
 		}
 	}
 }
