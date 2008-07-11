@@ -29,6 +29,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -180,6 +181,62 @@ namespace Mono.Rocks {
 					while (s.MoveNext ())
 						yield return s.Current;
 			}
+		}
+
+		public static void Convert<TSource, TValue> (this IEnumerable<TSource> self, out TValue value)
+		{
+			TValue v1 = default(TValue);
+			ApplyPairs (self, 
+					v => v1 = Convert<TSource, TValue> (v)).Apply ();
+			value = v1;
+		}
+
+		private static TResult Convert<TSource, TResult> (TSource value)
+		{
+			TypeConverter conv = TypeDescriptor.GetConverter (typeof(TResult));
+			return (TResult) conv.ConvertFrom (value);
+		}
+
+		public static void Convert<TSource, TValue1, TValue2> (this IEnumerable<TSource> self, out TValue1 value1, out TValue2 value2)
+		{
+			TValue1 v1 = default(TValue1);
+			TValue2 v2 = default(TValue2);
+			ApplyPairs (self, 
+					v => v1 = Convert<TSource, TValue1> (v),
+					v => v2 = Convert<TSource, TValue2> (v)).Apply ();
+			value1 = v1;
+			value2 = v2;
+		}
+
+		public static void Convert<TSource, TValue1, TValue2, TValue3> (this IEnumerable<TSource> self, out TValue1 value1, out TValue2 value2, out TValue3 value3)
+		{
+			TValue1 v1 = default(TValue1);
+			TValue2 v2 = default(TValue2);
+			TValue3 v3 = default(TValue3);
+			ApplyPairs (self, 
+					v => v1 = Convert<TSource, TValue1> (v),
+					v => v2 = Convert<TSource, TValue2> (v),
+					v => v3 = Convert<TSource, TValue3> (v)).Apply ();
+			value1 = v1;
+			value2 = v2;
+			value3 = v3;
+		}
+
+		public static void Convert<TSource, TValue1, TValue2, TValue3, TValue4> (this IEnumerable<TSource> self, out TValue1 value1, out TValue2 value2, out TValue3 value3, out TValue4 value4)
+		{
+			TValue1 v1 = default(TValue1);
+			TValue2 v2 = default(TValue2);
+			TValue3 v3 = default(TValue3);
+			TValue4 v4 = default(TValue4);
+			ApplyPairs (self, 
+					v => v1 = Convert<TSource, TValue1> (v),
+					v => v2 = Convert<TSource, TValue2> (v),
+					v => v3 = Convert<TSource, TValue3> (v),
+					v => v4 = Convert<TSource, TValue4> (v)).Apply ();
+			value1 = v1;
+			value2 = v2;
+			value3 = v3;
+			value4 = v4;
 		}
 
 		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> self)

@@ -232,6 +232,33 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test]
+		public void Convert ()
+		{
+			string s;
+			DateTime c;
+			double d;
+			int n;
+
+			"a 1970-01-01 2 3.14".Words().Convert (out s);
+			Assert.AreEqual ("a", s);
+
+			"a 1970-01-01 2 3.14".Words().Convert (out s, out c);
+			Assert.AreEqual ("a", s);
+			Assert.AreEqual (new DateTime (1970, 1, 1), c);
+
+			"a 1970-01-01 2 3.14".Words().Convert (out s, out c, out n);
+			Assert.AreEqual ("a", s);
+			Assert.AreEqual (new DateTime (1970, 1, 1), c);
+			Assert.AreEqual (2, n);
+
+			"a 1970-01-01 2 3.14".Words().Convert (out s, out c, out n, out d);
+			Assert.AreEqual ("a", s);
+			Assert.AreEqual (new DateTime (1970, 1, 1), c);
+			Assert.AreEqual (2, n);
+			Assert.AreEqual (3.14, d);
+		}
+
+		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void Sort_SelfNull ()
 		{

@@ -1,5 +1,15 @@
 2008-07-11  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerable.cs: Add .Convert(), which is a simpler interface for
+	  scanf(3)-like behavior than .ApplyPairs(), and also more limiting.
+	  Allows usage such as `"w 1 1.5".Words().Convert(out a, out b, out c)`
+	  where the default TypeConverter is used to perform the type
+	  conversion based on the target type, so 
+	    DateTime d; "1977-01-1".Scan (out d);
+	  properly converts the string to a DateTime instance.
+
+2008-07-11  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerable.cs: Add .ApplyPairs(), which is a pair-wise application of
 	  elements from an IEnumerable<T> to correspondingly indexed elements
 	  from an Action<T> array.  The scenario is in the spirit of scanf(3),

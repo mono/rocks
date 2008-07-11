@@ -1,5 +1,9 @@
 2008-07-11  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerableTest.cs: Add tests for .Convert().
+
+2008-07-11  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerableTest.cs: Add tests for .ApplyPairs().
 
 2008-06-25  Jonathan Pryor  <jpryor@novell.com>
