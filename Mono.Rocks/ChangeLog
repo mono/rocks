@@ -1,3 +1,24 @@
+2008-07-11  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerable.cs: Add .ApplyPairs(), which is a pair-wise application of
+	  elements from an IEnumerable<T> to correspondingly indexed elements
+	  from an Action<T> array.  The scenario is in the spirit of scanf(3),
+	  where of sequence of values must be "scanned", converted, and stored
+	  into a series of variables.  .ApplyPairs() uses delegates for the
+	  conversion and storage portion.  So:
+	    char buf[10]; int n; double d;
+	    sscanf("w 1 1.5", "%s %d %lf", buf, &n, &d);
+	  would become:
+	    string s; int n; double d;
+	    "w 1 1.5".Words().ApplyPairs (
+	      v => s = v, 
+	      v => n = int.Parse (v), 
+	      v => d = double.Parse (v)
+	    ).Apply ();
+	  In this fashion the actual parsing of the input string is kept
+	  separate from conversion & storage, so any routine to split a string
+	  into a sequence could be used (e.g. string.Split(), regex, etc.).
+
 2008-06-25  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerable.cs: 

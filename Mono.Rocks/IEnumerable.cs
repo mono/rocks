@@ -157,6 +157,31 @@ namespace Mono.Rocks {
 #pragma warning restore 168, 219
 		}
 
+		public static IEnumerable<TSource> ApplyPairs<TSource> (this IEnumerable<TSource> self, params Action<TSource>[] actions)
+		{
+			Check.Self (self);
+			if (actions == null)
+				throw new ArgumentNullException ("actions");
+
+			return CreateApplyPairsIterator (self, actions);
+		}
+
+		private static IEnumerable<TSource> CreateApplyPairsIterator<TSource> (IEnumerable<TSource> self, IEnumerable<Action<TSource>> actions)
+		{
+			using (IEnumerator<TSource> s = self.GetEnumerator ())
+			using (IEnumerator<Action<TSource>> a = actions.GetEnumerator ()) {
+				bool have_s;
+				while ((have_s = s.MoveNext ()) && a.MoveNext ()) {
+					a.Current (s.Current);
+					yield return s.Current;
+				}
+
+				if (have_s)
+					while (s.MoveNext ())
+						yield return s.Current;
+			}
+		}
+
 		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> self)
 		{
 			Check.Self (self);

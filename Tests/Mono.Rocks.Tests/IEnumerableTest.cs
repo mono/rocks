@@ -201,6 +201,38 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
+		public void ApplyPairs_SelfNull ()
+		{
+			IEnumerable<char> e = null;
+			e.ApplyPairs ();
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ApplyPairs_ActionsNull ()
+		{
+			IEnumerable<char> e = "a";
+			e.ApplyPairs (null);
+		}
+
+		[Test]
+		public void ApplyPairs ()
+		{
+			string s = null;
+			int n = 0;
+			double d = 0;
+			"word 10 10.5".Words().ApplyPairs (
+					v => s = v,
+					v => n = int.Parse (v),
+					v => d = double.Parse (v)
+			).Apply ();
+			Assert.AreEqual ("word", s);
+			Assert.AreEqual (10, n);
+			Assert.AreEqual (10.5, d);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
 		public void Sort_SelfNull ()
 		{
 			IEnumerable<int> e = null;
