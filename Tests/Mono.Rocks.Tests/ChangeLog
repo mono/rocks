@@ -1,5 +1,11 @@
 2008-07-25  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerableTest.cs: Add tests for SplitAt(), Span(), Break(),
+	  SkipPrefix(), HaskellGroup(), InitialSegments(), TrailingSegments(),
+	  HaskellGroupBy().
+
+2008-07-25  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerableTest.cs, SequenceTest.cs: Use Tuple instead of KeyValuePair.
 
 2008-07-25  Jonathan Pryor  <jpryor@novell.com>

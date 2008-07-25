@@ -1172,5 +1172,216 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("1,2,3,1,2,3,1,2,3,1,2,3,1,2,3",
 					x.Cycle ().Take (3*5).Implode (","));
 		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SplitAt_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.SplitAt (0);
+		}
+
+		[Test]
+		public void SplitAt ()
+		{
+			Assert.AreEqual ("Hello |World!",
+					"Hello World!".SplitAt (6)
+					.Aggregate ((x,y) => x.Implode () + "|" + y.Implode ()));
+			Assert.AreEqual ("123|45",
+					new[]{1,2,3,4,5}.SplitAt (3)
+					.Aggregate ((x,y) => x.Implode () + "|" + y.Implode ()));
+			Assert.AreEqual ("1|23",
+					new[]{1,2,3}.SplitAt (1)
+					.Aggregate ((x,y) => x.Implode () + "|" + y.Implode ()));
+			Assert.AreEqual ("123|",
+					new[]{1,2,3}.SplitAt (3)
+					.Aggregate ((x,y) => x.Implode () + "|" + y.Implode ()));
+			Assert.AreEqual ("123|",
+					new[]{1,2,3}.SplitAt (4)
+					.Aggregate ((x,y) => x.Implode () + "|" + y.Implode ()));
+			Assert.AreEqual ("|123",
+					new[]{1,2,3}.SplitAt (0)
+					.Aggregate ((x,y) => x.Implode () + "|" + y.Implode ()));
+			Assert.AreEqual ("|123",
+					new[]{1,2,3}.SplitAt (-1)
+					.Aggregate ((x,y) => x.Implode () + "|" + y.Implode ()));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Span_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			Func<int, bool>  p = x => true;
+			s.Span (p);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Span_FuncNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			Func<int, bool>  p = null;
+			s.Span (p);
+		}
+
+		[Test]
+		public void Span ()
+		{
+			Assert.AreEqual ("12|341234",
+					new[]{1,2,3,4,1,2,3,4}.Span (e => e < 3)
+					.Aggregate ((x, y) => x.Implode () + "|" + y.Implode ()));
+			Assert.AreEqual ("123|",
+					new[]{1,2,3}.Span (e => e < 9)
+					.Aggregate ((x, y) => x.Implode () + "|" + y.Implode ()));
+			Assert.AreEqual ("|123",
+					new[]{1,2,3}.Span (e => e < 0)
+					.Aggregate ((x, y) => x.Implode () + "|" + y.Implode ()));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Break_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			Func<int, bool>  p = x => true;
+			s.Break (p);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Break_FuncNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			Func<int, bool>  p = null;
+			s.Break (p);
+		}
+
+		[Test]
+		public void Break ()
+		{
+			Assert.AreEqual ("123|41234",
+					new[]{1,2,3,4,1,2,3,4}.Break (e => e > 3)
+					.Aggregate ((x, y) => x.Implode () + "|" + y.Implode ()));
+			Assert.AreEqual ("|123",
+					new[]{1,2,3}.Break (e => e < 9)
+					.Aggregate ((x, y) => x.Implode () + "|" + y.Implode ()));
+			Assert.AreEqual ("123|",
+					new[]{1,2,3}.Break (e => e > 9)
+					.Aggregate ((x, y) => x.Implode () + "|" + y.Implode ()));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SkipPrefix_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			IEnumerable<int> p = new[]{1};
+			s.SkipPrefix (p);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void SkipPrefix_PrefixNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			IEnumerable<int> p = null;
+			s.SkipPrefix (p);
+		}
+
+		[Test]
+		public void SkipPrefix ()
+		{
+			Assert.AreEqual ("bar",
+					"foobar".SkipPrefix ("foo").Implode ());
+			Assert.AreEqual ("",
+					"foo".SkipPrefix ("foo").Implode ());
+			Assert.AreEqual (null,
+					"barfoo".SkipPrefix ("foo"));
+			Assert.AreEqual (null,
+					"barfoobaz".SkipPrefix ("foo"));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void HaskellGroup_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.HaskellGroup ();
+		}
+
+		[Test]
+		public void HaskellGroup ()
+		{
+			IEnumerable<IEnumerable<char>> e = "Mississippi".HaskellGroup ();
+			var l = e.ToList ();
+			Assert.AreEqual (8, l.Count);
+			AssertAreSame (new[]{'M'},      l [0]);
+			AssertAreSame (new[]{'i'},      l [1]);
+			AssertAreSame (new[]{'s', 's'}, l [2]);
+			AssertAreSame (new[]{'i'},      l [3]);
+			AssertAreSame (new[]{'s', 's'}, l [4]);
+			AssertAreSame (new[]{'i'},      l [5]);
+			AssertAreSame (new[]{'p', 'p'}, l [6]);
+			AssertAreSame (new[]{'i'},      l [7]);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void InitialSegments_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.InitialSegments ();
+		}
+
+		[Test]
+		public void InitialSegments ()
+		{
+			IEnumerable<IEnumerable<char>> e = "abc".InitialSegments ();
+			var l = e.ToList ();
+			Assert.AreEqual (4, l.Count);
+			AssertAreSame (new char[]{},          l [0]);
+			AssertAreSame (new[]{'a'},            l [1]);
+			AssertAreSame (new[]{'a', 'b'},       l [2]);
+			AssertAreSame (new[]{'a', 'b', 'c'},  l [3]);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void TrailingSegments_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.TrailingSegments ();
+		}
+
+		[Test]
+		public void TrailingSegments ()
+		{
+			IEnumerable<IEnumerable<char>> e = "abc".TrailingSegments ();
+			var l = e.ToList ();
+			Assert.AreEqual (4, l.Count);
+			AssertAreSame (new[]{'a', 'b', 'c'},  l [0]);
+			AssertAreSame (new[]{'a', 'b'},       l [1]);
+			AssertAreSame (new[]{'a'},            l [2]);
+			AssertAreSame (new char[]{},          l [3]);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void HaskellGroupBy_SelfNull ()
+		{
+			IEnumerable<int>      s = null;
+			Func<int, int, bool>  f = (a, b) => true;
+			s.HaskellGroupBy (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void HaskellGroupBy_FuncNull ()
+		{
+			IEnumerable<int>      s = new[]{1};
+			Func<int, int, bool>  f = null;
+			s.HaskellGroupBy (f);
+		}
 	}
 }

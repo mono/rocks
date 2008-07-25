@@ -1,5 +1,17 @@
 2008-07-25  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerable.cs: Add more Haskell-inspired extension methods:
+	  - (splitAt) .SplitAt<S>(IEnumerable<S>, int)
+		- (span) .Span<S>(IEnumerable<S>, Func<S, bool>)
+		- (break) .Break<S>(IEnumerable<S>, Func<S, bool>)
+		- (stripPrefix) .SkipPrefix<S>(IEnumerable<S>, IEnumerable<S>)
+		- (group) .HaskellGroup<S>(IEnumerable<S>)
+		- (inits) .InitialSegments<S>(IEnumerable<S>)
+		- (tails) .TrailingSegments<S>(IEnumerable<S>)
+		- (groupBy) .HaskellGroupBy<S>(IEnumerable<S>, Func<S,S,bool>)
+
+2008-07-25  Jonathan Pryor  <jpryor@novell.com>
+
 	* KeyValuePair.cs: Remove KeyValuePair type.
 	* IEnumerable.cs, Sequence.cs: Use Tuple`2 instead of KeyValuePair`2, for
 	  several reasons:

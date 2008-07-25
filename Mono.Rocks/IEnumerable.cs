@@ -782,5 +782,126 @@ namespace Mono.Rocks {
 				foreach (var e in self)
 					yield return e;
 		}
+
+		// Haskell: splitAt
+		public static Tuple<IEnumerable<TSource>, IEnumerable<TSource>> SplitAt<TSource> (this IEnumerable<TSource> self, int firstLength)
+		{
+			Check.Self (self);
+			if (firstLength <= 0)
+				firstLength = 0;
+			return Tuple.Create (self.Take (firstLength), self.Skip (firstLength));
+		}
+
+		// Haskell: span
+		public static Tuple<IEnumerable<TSource>, IEnumerable<TSource>> Span<TSource> (this IEnumerable<TSource> self, Func<TSource, bool> func)
+		{
+			Check.SelfAndFunc (self, func);
+
+			return Tuple.Create (self.TakeWhile (func), self.SkipWhile (func));
+		}
+
+		// Haskell: break
+		public static Tuple<IEnumerable<TSource>, IEnumerable<TSource>> Break<TSource> (this IEnumerable<TSource> self, Func<TSource, bool> func)
+		{
+			Check.SelfAndFunc (self, func);
+
+			return Tuple.Create (self.TakeWhile (e => !func (e)), self.SkipWhile (e => !func (e)));
+		}
+
+		// Haskell: stripPrefix
+		public static IEnumerable<TSource> SkipPrefix<TSource> (this IEnumerable<TSource> self, IEnumerable<TSource> prefix)
+		{
+			Check.Self (self);
+			if (prefix == null)
+				throw new ArgumentNullException ("prefix");
+
+			using (IEnumerator<TSource> s = self.GetEnumerator ())
+			using (IEnumerator<TSource> p = prefix.GetEnumerator ()) {
+				int c = 0;
+				bool have_s = s.MoveNext(), have_p = p.MoveNext(), have_match = true;
+				do {
+					++c;
+					if ((have_p && !have_s) || !EqualityComparer<TSource>.Default.Equals (s.Current, p.Current)) {
+						have_match = false;
+						break;
+					}
+				} while ((have_s = s.MoveNext ()) && (have_p = p.MoveNext ()));
+				if (have_match)
+					return self.Skip (c);
+				return null;
+			}
+		}
+
+		// Haskell: group
+		public static IEnumerable<IEnumerable<TSource>> HaskellGroup<TSource> (this IEnumerable<TSource> self)
+		{
+			return HaskellGroupBy (self, (a, b) => EqualityComparer<TSource>.Default.Equals (a, b));
+		}
+
+		// Haskell: inits
+		public static IEnumerable<IEnumerable<TSource>> InitialSegments<TSource> (this IEnumerable<TSource> self)
+		{
+			Check.Self (self);
+
+			return CreateInitialSegmentsIterator (self);
+		}
+
+		private static IEnumerable<IEnumerable<TSource>> CreateInitialSegmentsIterator<TSource> (IEnumerable<TSource> self)
+		{
+			var e = new List<TSource> ();
+			yield return e;
+			using (IEnumerator<TSource> s = self.GetEnumerator ()) {
+				while (s.MoveNext ()) {
+					e.Add (s.Current);
+					yield return e;
+				}
+			}
+		}
+
+		// Haskell: tails
+		public static IEnumerable<IEnumerable<TSource>> TrailingSegments<TSource> (this IEnumerable<TSource> self)
+		{
+			Check.Self (self);
+
+			return CreateTrailingSegmentsIterator (self);
+		}
+
+		private static IEnumerable<IEnumerable<TSource>> CreateTrailingSegmentsIterator<TSource> (IEnumerable<TSource> self)
+		{
+			var e = self.ToList ();
+			yield return e;
+			while (e.Count > 0) {
+				e.RemoveAt (e.Count-1);
+				yield return e;
+			}
+		}
+
+		// Haskell: groupBy
+		public static IEnumerable<IEnumerable<TSource>> HaskellGroupBy<TSource> (this IEnumerable<TSource> self, Func<TSource, TSource, bool> func)
+		{
+			Check.SelfAndFunc (self, func);
+
+			return CreateHaskellGroupByIterator (self, func);
+		}
+
+		private static IEnumerable<IEnumerable<TSource>> CreateHaskellGroupByIterator<TSource> (IEnumerable<TSource> self, Func<TSource, TSource, bool> func)
+		{
+			using (IEnumerator<TSource> s = self.GetEnumerator ()) {
+				var e = new List<TSource> ();
+				while (s.MoveNext ()) {
+					if (e.Count == 0)
+						e.Add (s.Current);
+					else if (func (e [0], s.Current))
+						e.Add (s.Current);
+					else {
+						yield return e;
+						e.Clear ();
+						e.Add (s.Current);
+					}
+				}
+				if (e.Count > 0)
+					yield return e;
+			}
+		}
 	}
 }
