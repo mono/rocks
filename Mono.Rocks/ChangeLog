@@ -1,3 +1,13 @@
+2008-07-25  Jonathan Pryor  <jpryor@novell.com>
+
+	* KeyValuePair.cs: Add a new KeyValuePair class to simplify the creation of
+	  KeyValuePair<TKey, TValue> instances (more type inferencing!);
+	  KeyValuePair.Create(K,V) creates a KeyValuePair<K,V>, while
+	  KeyValuePair.Just(K,V) creates a Nullable<KeyValuePair<K,V>> (the name
+	  "Just" comes from the Haskell Maybe type).
+	* Sequence.cs: Add more Haskell-inspired methods:
+	  - (unfoldr) .GenerateReverse<S,R>(S,Func<S,KeyValuePair<R,S>?>) -> IEnumerable<R>
+
 2008-07-24  Jonathan Pryor  <jpryor@novell.com>
 
 	* Check.cs: Add Check.Func().
