@@ -768,5 +768,19 @@ namespace Mono.Rocks {
 
 			return new KeyValuePair<TAccumulate, List<TResult>> (result, aggregates);
 		}
+
+		// Haskell: cycle
+		public static IEnumerable<TSource> Cycle<TSource> (this IEnumerable<TSource> self)
+		{
+			Check.Self (self);
+			return CreateCycleIterator (self);
+		}
+
+		private static IEnumerable<TSource> CreateCycleIterator<TSource> (IEnumerable<TSource> self)
+		{
+			while (true)
+				foreach (var e in self)
+					yield return e;
+		}
 	}
 }

@@ -1,10 +1,10 @@
-﻿//
-// Check.cs
+//
+// Sequence.cs
 //
 // Author:
-//   Jb Evain (jbevain@novell.com)
+//   Jonathan Pryor  <jpryor@novell.com>
 //
-// Copyright (c) 2007 Novell, Inc. (http://www.novell.com)
+// Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -27,27 +27,31 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 namespace Mono.Rocks {
 
-	static class Check {
+	public static class Sequence {
 
-		public static void Self (object self)
+		public static IEnumerable<TSource> Iterate<TSource> (TSource value, Func<TSource, TSource> func)
 		{
-			if (self == null)
-				throw new ArgumentNullException ("self");
+			Check.Func (func);
+
+			return CreateIterateIterator (value, func);
 		}
 
-		public static void Func (object func)
+		private static IEnumerable<TSource> CreateIterateIterator<TSource> (TSource value, Func<TSource, TSource> func)
 		{
-			if (func == null)
-				throw new ArgumentNullException ("func");
+			yield return value;
+			while (true)
+				yield return (value = func (value));
 		}
 
-		public static void SelfAndFunc (object self, object func)
+		public static IEnumerable<TSource> Repeat<TSource> (TSource value)
 		{
-			Self (self);
-			Func (func);
+			while (true)
+				yield return value;
 		}
 	}
 }
+

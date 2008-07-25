@@ -54,7 +54,7 @@ namespace Mono.Rocks.Tests {
 		public void Implode_SelectorNull ()
 		{
 			IEnumerable<int> e = new int[0];
-			Func<int, int>   f = null;
+			Func<int, string> f = null;
 			e.Implode (null, f);
 		}
 
@@ -73,15 +73,14 @@ namespace Mono.Rocks.Tests {
 			var data = new [] { 0, 1, 2, 3, 4, 5 };
 			var result = "0, 1, 2, 3, 4, 5";
 
+			Assert.AreEqual ("", new string[]{}.Implode (", "));
 			Assert.AreEqual (result, data.Implode (", "));
 			Assert.AreEqual (
 					"'foo', 'bar'",
 					new[]{"foo", "bar"}.Implode (", ", (b, e) => {b.Append ("'").Append (e).Append ("'");}));
-#if BNC_403894
 			Assert.AreEqual (
 					"'foo', 'bar'",
 					new[]{"foo", "bar"}.Implode (", ", e => "'" + e + "'"));
-#endif
 		}
 
 		[Test]
@@ -1152,6 +1151,26 @@ namespace Mono.Rocks.Tests {
 					new int[]{}.SelectReverseAggregated (42, 
 						(a,b) => new KeyValuePair<int, int> (a-b, b))
 					.Aggregate ((r, l) => r + "," + l.Count));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Cycle_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.Cycle ();
+		}
+
+		[Test]
+		public void Cycle ()
+		{
+			// not entirely sure how you sanely test an infinite list...
+			var x = new[]{1};
+			Assert.AreEqual ("1,1,1,1,1",
+					x.Cycle ().Take (5).Implode (","));
+			x = new[]{1, 2, 3};
+			Assert.AreEqual ("1,2,3,1,2,3,1,2,3,1,2,3,1,2,3",
+					x.Cycle ().Take (3*5).Implode (","));
 		}
 	}
 }

@@ -1,3 +1,13 @@
+2008-07-24  Jonathan Pryor  <jpryor@novell.com>
+
+	* Check.cs: Add Check.Func().
+	* IEnumerable.cs: Add more Haskell-inspired extension methods:
+	  - (cycle) .Cycle<S>(IEnumerable<S>)
+	* Sequence.cs: Added; more Haskell-inspired methods that don't yet make
+	  sense as extension methods:
+	  - (iterate) Iterate<TSource>(TSource, Func<TSource, TSource>)
+	  - (repeat) Repeat<TSource>(TSource)
+
 2008-07-11  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerable.cs: Add .Convert(), which is a simpler interface for

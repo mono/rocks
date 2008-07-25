@@ -5,5 +5,6 @@
 ./Mono.Rocks/Int32.cs
 ./Mono.Rocks/KeyValuePair.cs
 ./Mono.Rocks/NaturalStringComparer.cs
+./Mono.Rocks/Sequence.cs
 ./Mono.Rocks/String.cs
 ./Mono.Rocks/TextReader.cs

@@ -1,10 +1,10 @@
-﻿//
-// Check.cs
+//
+// SequenceTest.cs
 //
 // Author:
-//   Jb Evain (jbevain@novell.com)
+//   Jonathan Pryor  <jpryor@novell.com>
 //
-// Copyright (c) 2007 Novell, Inc. (http://www.novell.com)
+// Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -27,27 +27,40 @@
 //
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Mono.Rocks {
+using NUnit.Framework;
 
-	static class Check {
+using Mono.Rocks;
 
-		public static void Self (object self)
+namespace Mono.Rocks.Tests {
+
+	[TestFixture]
+	public class SequenceTest : BaseRocksFixture {
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Iterate_FuncNull ()
 		{
-			if (self == null)
-				throw new ArgumentNullException ("self");
+			Func<int, int> f = null;
+			Sequence.Iterate (0, f);
 		}
 
-		public static void Func (object func)
+		[Test]
+		public void Iterate ()
 		{
-			if (func == null)
-				throw new ArgumentNullException ("func");
+			// not entirely sure how you sanely test an infinite list...
+			Assert.AreEqual ("16,8,4,2,1",
+					Sequence.Iterate (16, v => v / 2).Take (5).Implode (","));
 		}
 
-		public static void SelfAndFunc (object self, object func)
+		[Test]
+		public void Repeat ()
 		{
-			Self (self);
-			Func (func);
+			// not entirely sure how you sanely test an infinite list...
+			Assert.AreEqual ("1,1,1,1,1",
+					Sequence.Repeat (1).Take (5).Implode (","));
 		}
 	}
 }

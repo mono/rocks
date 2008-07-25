@@ -1,3 +1,8 @@
+2008-07-24  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerableTest.cs: Add tests for .Cycle().
+	* SequenceTest.cs: Added; tests for Sequence.
+
 2008-07-11  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerableTest.cs: Add tests for .Convert().
