@@ -1,5 +1,11 @@
 2008-07-25  Jonathan Pryor  <jpryor@novell.com>
 
+	* Tuple.cs, Tuples.cs: Added; implementation of Tuples and related types 
+	  of arity up to 4.
+	* KeyValuePair.cs: Add a .ToTuple() extension method.
+
+2008-07-25  Jonathan Pryor  <jpryor@novell.com>
+
 	* KeyValuePair.cs: Add a new KeyValuePair class to simplify the creation of
 	  KeyValuePair<TKey, TValue> instances (more type inferencing!);
 	  KeyValuePair.Create(K,V) creates a KeyValuePair<K,V>, while

@@ -40,6 +40,11 @@ namespace Mono.Rocks {
 
 			return func (self.Key, self.Value);
 		}
+
+		public static Tuple<TKey, TValue> ToTuple<TKey, TValue> (this KeyValuePair<TKey, TValue> self)
+		{
+			return Tuple.Create (self.Key, self.Value);
+		}
 	}
 
 	public static class KeyValuePair

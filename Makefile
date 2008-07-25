@@ -6,6 +6,9 @@ Mono.Rocks.dll: Mono.Rocks.dll.sources $(shell cat Mono.Rocks.dll.sources)
 
 all: Mono.Rocks.dll
 
+Mono.Rocks/Tuples.cs : mktuples Makefile
+	./mktuples -n 4 > $@
+
 clean:
 	rm -f *.dll
 

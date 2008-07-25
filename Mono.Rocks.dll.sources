@@ -8,3 +8,5 @@
 ./Mono.Rocks/Sequence.cs
 ./Mono.Rocks/String.cs
 ./Mono.Rocks/TextReader.cs
+./Mono.Rocks/Tuple.cs
+./Mono.Rocks/Tuples.cs

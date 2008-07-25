@@ -1,0 +1,331 @@
+#!/usr/bin/perl
+use strict;
+use Getopt::Long;
+
+my $n = 1;
+my $namespace = "Mono.Rocks";
+my $output = "Tuples.cs";
+my $help = undef;
+my $num_system_funcs = 4;
+
+GetOptions (
+	"n|count=i",    \$n,
+	"o|output=s",   \$output,
+	"namespace=s",  \$namespace,
+	"h|?|help",     \$help
+);
+
+if ($help) {
+	print <<EOF;
+$0 [-n N] [-o FILE] [-h]
+Create a C# file containing N tuple types.
+
+Options:
+  -n, --count=N       The number of types to generate.  Defaults is 1.
+  -o, --output=FILE   The file to create.  Default is `Tuples.cs'.
+      --namespace=NS  Place the types within the namespace NS.
+                        Default is `Mono.Rocks'.
+  -h, -?, --help      Show this message and exit.
+EOF
+	exit 0;
+}
+
+if ($n < 1) {
+	print STDERR "error: n must be >= 1, was $n\n";
+	exit 1;
+}
+
+my $handle = *STDOUT;
+
+print $handle <<EOF;
+//
+// $output: Tuple types.
+//
+// GENERATED CODE: DO NOT EDIT.
+// 
+// To regenerate this code, execute: $0 -n $n -o $output
+//
+// Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+//
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// Code License: Public Domain.
+//
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
+
+namespace $namespace {
+
+EOF
+
+create_tuple ($n);
+
+create_funcs ($n);
+
+for (my $i = 1; $i <= $n; ++$i) {
+	create_type ($i);
+}
+
+print <<EOF;
+}
+EOF
+
+sub create_tuple {
+	print $handle <<EOF;
+\tpublic abstract partial class Tuple {
+
+EOF
+	create_tuple_method (1);
+
+	for (my $i = 2; $i <= $n; ++$i) {
+		print $handle "\n";
+		create_tuple_method ($i);
+	}
+
+	print $handle "\t}\n";
+}
+
+sub create_funcs {
+	my ($n) = @_;
+	if ($n > $num_system_funcs) {
+		for (my $i = $num_system_funcs+1; $i <= $n; ++$i) {
+			print $handle "\n\tpublic delegate TResult RocksFunc<";
+			create_targ_list ($i);
+			print $handle ", TResult> (";
+			create_marg_list ($i);
+			print $handle ");"
+		}
+		print $handle "\n";
+	}
+}
+
+sub create_tuple_method {
+	my ($n) = @_;
+
+	print $handle "\t\tpublic static Tuple<";
+	create_targ_list ($n);
+	print $handle ">\n";
+	print $handle "\t\t\tCreate<";
+	create_targ_list ($n);
+	print $handle "> (";
+	create_marg_list ($n);
+	print $handle ")\n";
+	print $handle "\t\t{\n";
+	print $handle "\t\t\treturn new Tuple<";
+	create_targ_list ($n);
+	print $handle "> (";
+	create_parg_list ($n);
+	print $handle ");\n";
+	print $handle "\t\t}\n";
+}
+
+sub create_type {
+	my ($n) = @_;
+
+	create_type_name ($n);
+	create_base_type ($n);
+	print $handle "\t{\n";
+	for (my $i = 1; $i <= $n; ++$i) {
+		print $handle "\t\tprivate readonly ";
+		create_targ ($i, $n);
+		print $handle " ";
+		create_parg ($i, $n);
+		print $handle ";\n";
+	}
+	print $handle "\n";
+	print $handle "\t\tpublic Tuple (";
+	create_marg_list ($n);
+	print $handle ")\n";
+	print $handle "\t\t{\n";
+	for (my $i = 1; $i <= $n; ++$i) {
+		print $handle "\t\t\tthis.";
+		create_parg ($i, $n);
+		print $handle " = ";
+		create_parg ($i, $n);
+		print $handle ";\n";
+	}
+	print $handle "\t\t}\n\n";
+	for (my $i = 1; $i <= $n; ++$i) {
+		print $handle "\t\tpublic ";
+		create_targ ($i, $n);
+		print $handle " _$i {get{return ";
+		create_parg ($i, $n);
+		print $handle ";}}\n";
+	}
+	print $handle "\n";
+	print $handle "\t\tpublic override int Count {\n";
+	print $handle "\t\t\tget {return $n;}\n";
+	print $handle "\t\t}\n\n";
+	print $handle "\t\tpublic override int GetHashCode ()\n";
+	print $handle "\t\t{\n";
+	print $handle "\t\t\tint hc = 0;\n";
+	for (my $i = 1; $i <= $n; ++$i) {
+		print $handle "\t\t\thc ^= _$i.GetHashCode ();\n";
+	}
+	print $handle "\t\t\treturn hc;\n";
+	print $handle "\t\t}\n\n";
+	print $handle "\t\tpublic override bool Equals (object o)\n";
+	print $handle "\t\t{\n";
+	print $handle "\t\t\tTuple<";
+	create_targ_list ($n);
+	print $handle "> t = o as Tuple<";
+	create_targ_list ($n);
+	print $handle ">;\n";
+	print $handle "\t\t\tif (t == null)\n";
+	print $handle "\t\t\t\treturn false;\n";
+	print $handle "\t\t\treturn Equals (t);\n";
+	print $handle "\t\t}\n\n";
+	print $handle "\t\tpublic bool Equals (Tuple<";
+	create_targ_list ($n);
+	print $handle "> o)\n";
+	print $handle "\t\t{\n";
+	print $handle "\t\t\treturn EqualityComparer<";
+	create_targ (1, $n);
+	print $handle ">.Default.Equals (_1, o._1)\n";
+	for (my $i = 2; $i <= $n; ++$i) {
+		print $handle "\t\t\t\t&& EqualityComparer<T$i>.Default.Equals (_$i, o._$i)\n";
+	}
+	print $handle "\t\t\t\t;\n";
+	print $handle "\t\t}\n\n";
+	print $handle "\t\tpublic override object this [int index] {\n";
+	print $handle "\t\t\tget {\n";
+	print $handle "\t\t\t\tswitch (index) {\n";
+	for (my $i = 1; $i <= $n; ++$i) {
+		print $handle "\t\t\t\t\tcase ", $i-1, ": return _$i;\n";
+	}
+	print $handle "\t\t\t\t}\n";
+	print $handle "\t\t\t\treturn base [index];\n";
+	print $handle "\t\t\t}\n";
+	print $handle "\t\t}\n";
+	print $handle "\n";
+	print $handle "\t\tpublic TResult Aggregate<TResult> (";
+	if ($n <= $num_system_funcs) {
+		print $handle "Func";
+	}
+	else {
+		print $handle "RocksFunc";
+	}
+	print $handle "<";
+	create_targ_list ($n);
+	print $handle ", TResult> func)\n";
+	print $handle "\t\t{\n";
+	print $handle "\t\t\treturn func (";
+	create_parg_list ($n);
+	print $handle ");\n";
+	print $handle "\t\t}\n";
+	print $handle "\n";
+	print $handle "\t\tprotected override void AppendValue (StringBuilder buf)\n";
+	print $handle "\t\t{\n";
+	print $handle "\t\t\tbuf.Append (_1);\n";
+	for (my $i = 2; $i <= $n; ++$i) {
+		print $handle "\t\t\tbuf.Append (\", \");\n";
+		print $handle "\t\t\tbuf.Append (_$i);\n";
+	}
+	print $handle "\t\t}\n";
+	print $handle "\t}\n";
+}
+
+sub create_type_name {
+	my ($n) = @_;
+
+	print $handle "\n\tpublic class Tuple<";
+	create_targ_list ($n);
+	print $handle ">\n";
+}
+
+sub create_targ {
+	my ($i, $n) = @_;
+	if ($n == 1) {
+		print $handle "T";
+	}
+	else {
+		print $handle "T$i";
+	}
+}
+
+sub create_targ_list {
+	my ($n) = @_;
+
+	create_targ (1, $n);
+	for (my $i = 2; $i <= $n; ++$i) {
+		print $handle ", ";
+		create_targ ($i, $n);
+	}
+}
+
+sub create_marg {
+	my ($i, $n) = @_;
+	if ($n == 1) {
+		print $handle "T value";
+	}
+	else {
+		print $handle "T$i value$i";
+	}
+}
+
+sub create_marg_list {
+	my ($n) = @_;
+
+	return if $n == 0;
+
+	if ($n == 1) {
+		print $handle "T value";
+		return;
+	}
+
+	create_marg (1, $n);
+	for (my $i = 2; $i <= $n; ++$i) {
+		print $handle ", ";
+		create_marg ($i, $n);
+	}
+}
+
+sub create_parg {
+	my ($i, $n) = @_;
+	if ($n == 1) {
+		print $handle "value";
+	}
+	else {
+		print $handle "value$i";
+	}
+}
+
+sub create_parg_list {
+	my ($n) = @_;
+
+	return if $n == 0;
+
+	create_parg (1, $n);
+	for (my $i = 2; $i <= $n; ++$i) {
+		print $handle ", ";
+		create_parg ($i, $n);
+	}
+}
+
+sub create_base_type {
+	my ($n) = @_;
+
+	print $handle "\t\t: Tuple, IEquatable<Tuple<";
+	create_targ_list ($n);
+	print $handle ">>\n";
+}
+
