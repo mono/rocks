@@ -1,5 +1,5 @@
 MCS = gmcs
-MCS_FLAGS = -langversion:linq
+MCS_FLAGS = 
 
 Mono.Rocks.dll: Mono.Rocks.dll.sources $(shell cat Mono.Rocks.dll.sources)
 	$(MCS) -debug+ -t:library -r:System.Core -out:Mono.Rocks.dll $(MCS_FLAGS) @Mono.Rocks.dll.sources

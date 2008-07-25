@@ -67,7 +67,7 @@ namespace Mono.Rocks.Tests {
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void GenerateReverse_FuncNull ()
 		{
-			Func<int, KeyValuePair<int,int>?> f = null;
+			Func<int, Tuple<int,int>> f = null;
 			Sequence.GenerateReverse (0, f);
 		}
 
@@ -78,7 +78,8 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("10,9,8,7,6,5,4,3,2,1",
 				Sequence.GenerateReverse (10, b => b == 0 
 						? null 
-						: KeyValuePair.Just (b, b-1)).Implode (","));
+						: Tuple.Create (b, b-1))
+				.Implode (","));
 		}
 	}
 }

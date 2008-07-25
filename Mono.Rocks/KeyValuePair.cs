@@ -46,17 +46,5 @@ namespace Mono.Rocks {
 			return Tuple.Create (self.Key, self.Value);
 		}
 	}
-
-	public static class KeyValuePair
-	{
-		public static KeyValuePair<TKey, TValue> Create<TKey, TValue> (TKey key, TValue value)
-		{
-			return new KeyValuePair<TKey, TValue> (key, value);
-		}
-
-		public static KeyValuePair<TKey, TValue>? Just<TKey, TValue> (TKey key, TValue value)
-		{
-			return new KeyValuePair<TKey, TValue> (key, value);
-		}
-	}
 }
+

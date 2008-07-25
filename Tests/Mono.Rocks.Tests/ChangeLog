@@ -1,5 +1,9 @@
 2008-07-25  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerableTest.cs, SequenceTest.cs: Use Tuple instead of KeyValuePair.
+
+2008-07-25  Jonathan Pryor  <jpryor@novell.com>
+
 	* SequenceTest.cs: Add tests for Sequence.GenerateReverse().
 
 2008-07-24  Jonathan Pryor  <jpryor@novell.com>

@@ -732,7 +732,7 @@ namespace Mono.Rocks {
 		#endregion
 		
 		// Haskell: mapAccumL
-		public static KeyValuePair<TAccumulate, List<TResult>> SelectAggregated<TSource, TAccumulate, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, KeyValuePair<TAccumulate,TResult>> func)
+		public static Tuple<TAccumulate, List<TResult>> SelectAggregated<TSource, TAccumulate, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, Tuple<TAccumulate,TResult>> func)
 		{
 			Check.SelfAndFunc (self, func);
 
@@ -744,15 +744,15 @@ namespace Mono.Rocks {
 			var result = seed;
 			foreach (var element in self) {
 				var r = func (result, element);
-				result = r.Key;
-				aggregates.Add (r.Value);
+				result = r._1;
+				aggregates.Add (r._2);
 			}
 
-			return new KeyValuePair<TAccumulate, List<TResult>> (result, aggregates);
+			return new Tuple<TAccumulate, List<TResult>> (result, aggregates);
 		}
 
 		// Haskell: mapAccumR
-		public static KeyValuePair<TAccumulate, List<TResult>> SelectReverseAggregated<TSource, TAccumulate, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, KeyValuePair<TAccumulate,TResult>> func)
+		public static Tuple<TAccumulate, List<TResult>> SelectReverseAggregated<TSource, TAccumulate, TResult> (this IEnumerable<TSource> self, TAccumulate seed, Func<TAccumulate, TSource, Tuple<TAccumulate,TResult>> func)
 		{
 			Check.SelfAndFunc (self, func);
 
@@ -762,11 +762,11 @@ namespace Mono.Rocks {
 
 			for (int i = s.Count-1; i >= 0; --i) {
 				var r = func (result, s [i]);
-				result = r.Key;
-				aggregates.Add (r.Value);
+				result = r._1;
+				aggregates.Add (r._2);
 			}
 
-			return new KeyValuePair<TAccumulate, List<TResult>> (result, aggregates);
+			return new Tuple<TAccumulate, List<TResult>> (result, aggregates);
 		}
 
 		// Haskell: cycle

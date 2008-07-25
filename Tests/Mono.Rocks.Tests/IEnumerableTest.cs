@@ -1089,8 +1089,8 @@ namespace Mono.Rocks.Tests {
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void SelectAggregated_SelfNull ()
 		{
-			IEnumerable<int>                      s  = null;
-			Func<int, int, KeyValuePair<int,int>> f  = (x,y) => new KeyValuePair<int,int> (x, y);
+			IEnumerable<int>               s  = null;
+			Func<int, int, Tuple<int,int>> f  = (x,y) => Tuple.Create (x, y);
 			s.SelectAggregated (0, f);
 		}
 
@@ -1099,7 +1099,7 @@ namespace Mono.Rocks.Tests {
 		public void SelectAggregated_FuncNull ()
 		{
 			IEnumerable<int>                      s  = new[]{1};
-			Func<int, int, KeyValuePair<int,int>> f  = null;
+			Func<int, int, Tuple<int,int>>        f  = null;
 			s.SelectAggregated (0, f);
 		}
 
@@ -1110,12 +1110,12 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (
 					"-13:s-1,s-4,s-8,s-13",
 					s.SelectAggregated (1, 
-						(a,b) => new KeyValuePair<int,string> (a-b, "s" + (a-b)))
+						(a,b) => Tuple.Create (a-b, "s" + (a-b)))
 					.Aggregate ((r, l) => r + ":" + l.Implode (",")));
 			Assert.AreEqual (
 					"42,0",
 					new int[]{}.SelectAggregated (42, 
-						(a,b) => new KeyValuePair<int, int> (a-b, b))
+						(a,b) => Tuple.Create (a-b, b))
 					.Aggregate ((r, l) => r + "," + l.Count));
 		}
 
@@ -1123,8 +1123,8 @@ namespace Mono.Rocks.Tests {
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void SelectReverseAggregated_SelfNull ()
 		{
-			IEnumerable<int>                      s  = null;
-			Func<int, int, KeyValuePair<int,int>> f  = (x,y) => new KeyValuePair<int,int> (x, y);
+			IEnumerable<int>                s  = null;
+			Func<int, int, Tuple<int,int>>  f  = (x,y) => Tuple.Create (x, y);
 			s.SelectReverseAggregated (0, f);
 		}
 
@@ -1132,8 +1132,8 @@ namespace Mono.Rocks.Tests {
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void SelectReverseAggregated_FuncNull ()
 		{
-			IEnumerable<int>                      s  = new[]{1};
-			Func<int, int, KeyValuePair<int,int>> f  = null;
+			IEnumerable<int>                s  = new[]{1};
+			Func<int, int, Tuple<int,int>>  f  = null;
 			s.SelectReverseAggregated (0, f);
 		}
 
@@ -1144,12 +1144,12 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (
 					"-5:s1,s-2,s-4,s-5",
 					s.SelectReverseAggregated (5, 
-						(a,b) => new KeyValuePair<int,string> (a-b, "s" + (a-b)))
+						(a,b) => Tuple.Create (a-b, "s" + (a-b)))
 					.Aggregate ((r, l) => r + ":" + l.Implode (",")));
 			Assert.AreEqual (
 					"42,0",
 					new int[]{}.SelectReverseAggregated (42, 
-						(a,b) => new KeyValuePair<int, int> (a-b, b))
+						(a,b) => Tuple.Create (a-b, b))
 					.Aggregate ((r, l) => r + "," + l.Count));
 		}
 

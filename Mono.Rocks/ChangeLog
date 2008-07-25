@@ -1,5 +1,23 @@
 2008-07-25  Jonathan Pryor  <jpryor@novell.com>
 
+	* KeyValuePair.cs: Remove KeyValuePair type.
+	* IEnumerable.cs, Sequence.cs: Use Tuple`2 instead of KeyValuePair`2, for
+	  several reasons:
+	  - Future Haskell functions require tuples of up to 7 elements, e.g.
+	    unzip7, so (if these are to be supported) we need a Tuple type.
+	  - If we're going to have Tuples, then they should be integrated elsewhere
+	    and used consistently.
+	  - Tuple.Create(a,b) is *much* shorter than `new KeyValuePair<TA,TB>(a,b)`,
+	    simplifying the tests and the use of Sequence.GenerateReverse().
+	  - It removes the need for a potential future ambiguity, the static
+	    KeyValuePair class (added to contain .Create() and .Just() static
+	    methods to simplify KeyValuePair usage in the Sequence.GenerateReverse()
+	    tests).  Since KeyValuePair`2 is controlled by Microsoft, and nothing
+	    stops them from overriding this type in the future, `KeyValuePair` could
+	    result in compilation errors in the future.
+
+2008-07-25  Jonathan Pryor  <jpryor@novell.com>
+
 	* Tuple.cs, Tuples.cs: Added; implementation of Tuples and related types 
 	  of arity up to 4.
 	* KeyValuePair.cs: Add a .ToTuple() extension method.
