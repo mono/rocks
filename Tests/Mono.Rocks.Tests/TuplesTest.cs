@@ -1,5 +1,5 @@
 //
-// KeyValuePairTest.cs
+// TuplesTest.cs
 //
 // Author:
 //   Jonathan Pryor  <jpryor@novell.com>
@@ -37,34 +37,48 @@ using Mono.Rocks;
 namespace Mono.Rocks.Tests {
 
 	[TestFixture]
-	public class KeyValuePairTest : BaseRocksFixture {
+	public class TuplesTest : BaseRocksFixture {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
-		public void Aggregate_FuncNull ()
+		public void ToTuple_ValuesNull ()
 		{
-			Func<int, int, int> f = null;
-			new KeyValuePair<int,int> (1, 2).Aggregate (f);
+			IEnumerable<object> v = null;
+			v.ToTuple ();
 		}
 
 		[Test]
-		public void Aggregate ()
+		[ExpectedException (typeof (NotSupportedException))]
+		public void ToTuple_TooManyValues ()
 		{
-			Assert.AreEqual (
-					3, 
-					new KeyValuePair<int, int>(1, 2).Aggregate ((k, v) => k+v));
-			Assert.AreEqual (
-					"1,2", 
-					new KeyValuePair<int, int>(1, 2).Aggregate ((k, v) => k+","+v));
+			Enumerable.Range (0, Tuple.MaxValues+1).ToTuple ();
 		}
 
 		[Test]
 		public void ToTuple ()
 		{
-			KeyValuePair<int, string> k = new KeyValuePair<int, string> (42, "42");
-			var t = k.ToTuple ();
-			Assert.AreEqual (k.Key,   t._1);
-			Assert.AreEqual (k.Value, t._2);
+			var a = Tuple.Create (1U, 2L, '\x3', (byte) 4);
+			Assert.AreEqual (true,
+					a.Equals (new object[]{1U, 2L, '\x3', (byte) 4}.ToTuple ()));
+			Assert.AreEqual (a,
+					a.AsEnumerable ().ToTuple ());
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ToKeyValuePair_TupleNull ()
+		{
+			Tuple<int, string> t = null;
+			t.ToKeyValuePair ();
+		}
+
+		[Test]
+		public void ToKeyValuePair ()
+		{
+			var t = Tuple.Create (42, "42");
+			var k = t.ToKeyValuePair ();
+			Assert.AreEqual (t._1,  k.Key);
+			Assert.AreEqual (t._2,  k.Value);
 		}
 	}
 }

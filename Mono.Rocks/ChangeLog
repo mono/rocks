@@ -1,3 +1,11 @@
+2008-07-26  Jonathan Pryor  <jpryor@novell.com>
+
+	* Tuple.cs: Change extension method parameters names to `self` for
+	  consistency; improve parameter checking, exception types & messages.
+	* Tuples.cs: Add static Tuple.MaxValues readonly field, so that external
+	  code can determine the maximum number of supported Tuple values.  This is
+	  used by TuplesTest.ToTuple_TooManyValues().
+
 2008-07-25  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerable.cs: Add more Haskell-inspired extension methods:

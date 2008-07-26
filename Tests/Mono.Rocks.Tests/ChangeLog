@@ -1,3 +1,8 @@
+2008-07-26  Jonathan Pryor  <jpryor@novell.com>
+
+	* TuplesTest.cs: Added; tests for Tuple & related types.
+	* KeyValuePairTest.cs: Add .ToTuple() test.
+
 2008-07-25  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerableTest.cs: Add tests for SplitAt(), Span(), Break(),

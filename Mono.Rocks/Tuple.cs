@@ -153,16 +153,19 @@ namespace Mono.Rocks {
 	public static class TupleExtensions
 	{
 		public static KeyValuePair<TKey, TValue>
-			ToKeyValuePair<TKey, TValue> (this Tuple<TKey, TValue> tuple)
+			ToKeyValuePair<TKey, TValue> (this Tuple<TKey, TValue> self)
 		{
-			return new KeyValuePair<TKey, TValue> (tuple._1, tuple._2);
+			Check.Self (self);
+			return new KeyValuePair<TKey, TValue> (self._1, self._2);
 		}
 
-		public static Tuple ToTuple<T> (this IEnumerable<T> values)
+		public static Tuple ToTuple<T> (this IEnumerable<T> self)
 		{
+			Check.Self (self);
+
 			List<Type> types;
 			List<object> args;
-			ICollection<T> c = values as ICollection<T>;
+			ICollection<T> c = self as ICollection<T>;
 			if (c != null) {
 				types = new List<Type> (c.Count);
 				args  = new List<object> (c.Count);
@@ -171,7 +174,7 @@ namespace Mono.Rocks {
 				types = new List<Type> ();
 				args  = new List<object> ();
 			}
-			foreach (T val in values) {
+			foreach (T val in self) {
 				types.Add (val.GetType ());
 				args.Add (val);
 			}
@@ -180,7 +183,8 @@ namespace Mono.Rocks {
 				false
 			);
 			if (tuple == null)
-				throw new InvalidOperationException ("Tuple size not supported.");
+				throw new NotSupportedException (
+						string.Format ("Tuples with {0} values are not supported.", types.Count));
 			tuple = tuple.MakeGenericType (types.ToArray ());
 			return (Tuple) Activator.CreateInstance (tuple, args.ToArray ());
 		}

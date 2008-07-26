@@ -93,6 +93,8 @@ sub create_tuple {
 	print $handle <<EOF;
 \tpublic abstract partial class Tuple {
 
+\t\tpublic static readonly int MaxValues = $n;
+
 EOF
 	create_tuple_method (1);
 

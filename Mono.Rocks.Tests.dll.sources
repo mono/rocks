@@ -8,3 +8,4 @@
 ./Tests/Mono.Rocks.Tests/TextReaderTest.cs
 ./Tests/Mono.Rocks.Tests/IEnumerableTest.cs
 ./Tests/Mono.Rocks.Tests/ICustomAttributeProviderTest.cs
+./Tests/Mono.Rocks.Tests/TuplesTest.cs

@@ -37,6 +37,8 @@ namespace Mono.Rocks {
 
 	public abstract partial class Tuple {
 
+		public static readonly int MaxValues = 4;
+
 		public static Tuple<T>
 			Create<T> (T value)
 		{
