@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Mono.Rocks {
@@ -280,6 +281,36 @@ namespace Mono.Rocks {
 		public static IEnumerable<string> SortNatural (this IEnumerable<string> self)
 		{
 			return Sort (self, NaturalStringComparer.Default);
+		}
+
+		public static Tuple ToTuple<T> (this IEnumerable<T> self)
+		{
+			Check.Self (self);
+
+			List<Type> types;
+			List<object> args;
+			ICollection<T> c = self as ICollection<T>;
+			if (c != null) {
+				types = new List<Type> (c.Count);
+				args  = new List<object> (c.Count);
+			}
+			else {
+				types = new List<Type> ();
+				args  = new List<object> ();
+			}
+			foreach (T val in self) {
+				types.Add (val.GetType ());
+				args.Add (val);
+			}
+			Type tuple = Assembly.GetExecutingAssembly().GetType (
+				"Mono.Rocks.Tuple`" + types.Count, 
+				false
+			);
+			if (tuple == null)
+				throw new NotSupportedException (
+						string.Format ("Tuples with {0} values are not supported.", types.Count));
+			tuple = tuple.MakeGenericType (types.ToArray ());
+			return (Tuple) Activator.CreateInstance (tuple, args.ToArray ());
 		}
 
 		public static IEnumerable<TResult> 
@@ -874,6 +905,17 @@ namespace Mono.Rocks {
 				e.RemoveAt (e.Count-1);
 				yield return e;
 			}
+		}
+
+		// Haskell: partition
+		public static Tuple<IEnumerable<TSource>, IEnumerable<TSource>> Partition<TSource> (this IEnumerable<TSource> self, Func<TSource, bool> predicate)
+		{
+			Check.Self (self);
+			Check.Predicate (predicate);
+
+			return Tuple.Create (
+					self.Where (predicate), 
+					self.Where (e => !predicate (e)));
 		}
 
 		// Haskell: groupBy

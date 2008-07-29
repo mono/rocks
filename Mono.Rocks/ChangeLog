@@ -1,3 +1,10 @@
+2008-07-29  Jonathan Pryor  <jpryor@novell.com>
+
+	* Check.cs: Add Check.Predicate() method.
+	* IEnumerable.cs: Add .ToTuple() from Tuple.cs; add Haskell-inspired method:
+	  - (partition) .Partition<S>(IEnumerable<S>, Func<S,bool>)
+	* Tuple.cs: Move TupleExtensions.ToTuple() to IEnumerableRocks.
+
 2008-07-26  Jonathan Pryor  <jpryor@novell.com>
 
 	* Tuple.cs: Change extension method parameters names to `self` for

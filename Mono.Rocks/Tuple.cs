@@ -158,36 +158,6 @@ namespace Mono.Rocks {
 			Check.Self (self);
 			return new KeyValuePair<TKey, TValue> (self._1, self._2);
 		}
-
-		public static Tuple ToTuple<T> (this IEnumerable<T> self)
-		{
-			Check.Self (self);
-
-			List<Type> types;
-			List<object> args;
-			ICollection<T> c = self as ICollection<T>;
-			if (c != null) {
-				types = new List<Type> (c.Count);
-				args  = new List<object> (c.Count);
-			}
-			else {
-				types = new List<Type> ();
-				args  = new List<object> ();
-			}
-			foreach (T val in self) {
-				types.Add (val.GetType ());
-				args.Add (val);
-			}
-			Type tuple = Assembly.GetExecutingAssembly().GetType (
-				"Mono.Rocks.Tuple`" + types.Count, 
-				false
-			);
-			if (tuple == null)
-				throw new NotSupportedException (
-						string.Format ("Tuples with {0} values are not supported.", types.Count));
-			tuple = tuple.MakeGenericType (types.ToArray ());
-			return (Tuple) Activator.CreateInstance (tuple, args.ToArray ());
-		}
 	}
 }
 

@@ -1,3 +1,7 @@
+2008-07-29  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerableTest.cs: Add tests for .Partition().
+
 2008-07-26  Jonathan Pryor  <jpryor@novell.com>
 
 	* TuplesTest.cs: Added; tests for Tuple & related types.

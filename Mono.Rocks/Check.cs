@@ -49,5 +49,11 @@ namespace Mono.Rocks {
 			Self (self);
 			Func (func);
 		}
+
+		public static void Predicate (object predicate)
+		{
+			if (predicate == null)
+				throw new ArgumentNullException ("predicate");
+		}
 	}
 }

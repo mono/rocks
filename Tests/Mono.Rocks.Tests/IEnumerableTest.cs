@@ -1368,6 +1368,32 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
+		public void Partition_SelfNull ()
+		{
+			IEnumerable<int>  s = null;
+			Func<int, bool>   f = e => true;
+			s.Partition (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Partition_PredicateNull ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			Func<int, bool>   f = null;
+			s.Partition (f);
+		}
+
+		[Test]
+		public void Partition ()
+		{
+			Assert.AreEqual ("2,4,6|1,3,5",
+					Enumerable.Range (1,6).Partition (x => x % 2 == 0)
+					.Aggregate ((a, b) => a.Implode (",") + "|" + b.Implode (",")));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
 		public void HaskellGroupBy_SelfNull ()
 		{
 			IEnumerable<int>      s = null;
