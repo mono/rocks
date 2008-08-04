@@ -1717,6 +1717,29 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
+		public void Insert_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.Insert (0);
+		}
+
+		[Test]
+		public void Insert ()
+		{
+			Assert.AreEqual ("1,2,3,4",
+					new[]{1,3,4}.Insert (2).Implode (","));
+			Assert.AreEqual ("1,2,3,4",
+					new[]{1,2,3}.Insert (4).Implode (","));
+			Assert.AreEqual ("0",
+					new int[]{}.Insert (0).Implode (","));
+			Assert.AreEqual ("1,2,3,4,1",
+					new[]{1,2,4,1}.Insert (3).Implode (","));
+			Assert.AreEqual ("1,2,3,4",
+					new[]{4}.Insert (3).Insert (2).Insert (1).Implode (","));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
 		public void HaskellGroupBy_SelfNull ()
 		{
 			IEnumerable<int>      s = null;
@@ -1731,6 +1754,15 @@ namespace Mono.Rocks.Tests {
 			IEnumerable<int>      s = new[]{1};
 			Func<int, int, bool>  f = null;
 			s.HaskellGroupBy (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Insert_FuncNull ()
+		{
+			IEnumerable<int>    s = new[]{1};
+			Func<int, int, int> f = null;
+			s.Insert (0, f);
 		}
 	}
 }

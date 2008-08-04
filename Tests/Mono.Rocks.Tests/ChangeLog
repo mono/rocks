@@ -1,5 +1,9 @@
 2008-08-04  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerableTest.cs: Add tests for .Insert().
+
+2008-08-04  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerableTest.cs: Add tests for .Zip() and .Unzip() (+ overloads).
 
 2008-08-03  Jonathan Pryor  <jpryor@novell.com>

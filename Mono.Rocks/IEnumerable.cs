@@ -1052,6 +1052,12 @@ namespace Mono.Rocks {
 					self.Select (t => t._4));
 		}
 
+		// Haskell: insert
+		public static IEnumerable<TSource> Insert<TSource> (this IEnumerable<TSource> self, TSource value)
+		{
+			return Insert (self, value, Comparer<TSource>.Default.Compare);
+		}
+
 		// Haskell: groupBy
 		public static IEnumerable<IEnumerable<TSource>> HaskellGroupBy<TSource> (this IEnumerable<TSource> self, Func<TSource, TSource, bool> func)
 		{
@@ -1078,6 +1084,29 @@ namespace Mono.Rocks {
 				if (e.Count > 0)
 					yield return e;
 			}
+		}
+
+		// Haskell: insertBy
+		public static IEnumerable<TSource> Insert<TSource> (this IEnumerable<TSource> self, TSource value, Func<TSource, TSource, int> func)
+		{
+			Check.Self (self);
+			Check.Func (func);
+
+			return CreateInsertIterator (self, value, func);
+		}
+
+		private static IEnumerable<TSource> CreateInsertIterator<TSource>(IEnumerable<TSource> self, TSource value, Func<TSource, TSource, int> func)
+		{
+			bool inserted = false;
+			foreach (var e in self) {
+				if (!inserted && func (e, value) > 0) {
+					inserted = true;
+					yield return value;
+				}
+				yield return e;
+			}
+			if (!inserted)
+				yield return value;
 		}
 	}
 }

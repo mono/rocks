@@ -1,6 +1,12 @@
 2008-08-04  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerable.cs: Add Haskell-inspired (and related) methods:
+	  - (insert)    .Insert<A>(IEnumerable<A>,A)
+	  - (insertBy)  .Insert<A>(IEnumerable<A>,A,Func<A,A,int>)
+
+2008-08-04  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerable.cs: Add Haskell-inspired (and related) methods:
 	  - (zip)    .Zip<A,B>(IEnumerable<A>,IEnumerable<B>)
 	  - (zip3)   .Zip<A,B,C>(IEnumerable<A>,IEnumerable<B>,IEnumerable<C>)
 	  - (zip4)   .Zip<A,B,C,D>(IEnumerable<A>,IEnumerable<B>,IEnumerable<C>,IEnumerable<D>)
