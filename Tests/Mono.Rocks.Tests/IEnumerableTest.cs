@@ -1558,6 +1558,165 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
+		public void Zip_SelfNull ()
+		{
+			IEnumerable<int>  s = null;
+			IEnumerable<int>  v = new[]{1};
+			s.Zip (v);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Zip_Source2Null ()
+		{
+			IEnumerable<int>  s = new[]{1};
+			IEnumerable<int>  v = null;
+			s.Zip (v);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Zip3_SelfNull ()
+		{
+			IEnumerable<int>  s  = null;
+			IEnumerable<int>  v1 = new[]{1};
+			IEnumerable<int>  v2 = new[]{1};
+			s.Zip (v1, v2);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Zip3_Source2Null ()
+		{
+			IEnumerable<int>  s  = new[]{1};
+			IEnumerable<int>  v1 = null;
+			IEnumerable<int>  v2 = new[]{1};
+			s.Zip (v1, v2);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Zip3_Source3Null ()
+		{
+			IEnumerable<int>  s  = new[]{1};
+			IEnumerable<int>  v1 = new[]{1};
+			IEnumerable<int>  v2 = null;
+			s.Zip (v1, v2);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Zip4_SelfNull ()
+		{
+			IEnumerable<int>  s  = null;
+			IEnumerable<int>  v1 = new[]{1};
+			IEnumerable<int>  v2 = new[]{1};
+			IEnumerable<int>  v3 = new[]{1};
+			s.Zip (v1, v2, v3);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Zip4_Source2Null ()
+		{
+			IEnumerable<int>  s  = new[]{1};
+			IEnumerable<int>  v1 = null;
+			IEnumerable<int>  v2 = new[]{1};
+			IEnumerable<int>  v3 = new[]{1};
+			s.Zip (v1, v2, v3);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Zip4_Source3Null ()
+		{
+			IEnumerable<int>  s  = new[]{1};
+			IEnumerable<int>  v1 = new[]{1};
+			IEnumerable<int>  v2 = null;
+			IEnumerable<int>  v3 = new[]{1};
+			s.Zip (v1, v2, v3);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Zip4_Source4Null ()
+		{
+			IEnumerable<int>  s  = new[]{1};
+			IEnumerable<int>  v1 = new[]{1};
+			IEnumerable<int>  v2 = new[]{1};
+			IEnumerable<int>  v3 = null;
+			s.Zip (v1, v2, v3);
+		}
+
+		[Test]
+		public void Zip ()
+		{
+			Assert.AreEqual ("1,5|2,4|",
+					new[]{1,2}.Zip (new[]{5,4,3})
+					.Aggregate (new StringBuilder(), 
+						(b, e) => b.AppendFormat ("{0},{1}|", e._1, e._2)).ToString ());
+			Assert.AreEqual ("",
+					new int[]{}.Zip (new[]{5,4,3})
+					.Aggregate (new StringBuilder(), 
+						(b, e) => b.AppendFormat ("{0},{1}|", e._1, e._2)).ToString ());
+			Assert.AreEqual ("1,3,5|2,4,6|",
+					new[]{1,2}.Zip (new[]{3,4,5,6}, new[]{5,6,7})
+					.Aggregate (new StringBuilder(), 
+						(b, e) => b.AppendFormat ("{0},{1},{2}|", e._1, e._2, e._3)).ToString ());
+			Assert.AreEqual ("",
+					new int[]{}.Zip (new[]{5,4,3}, new[]{1,2,3})
+					.Aggregate (new StringBuilder(), 
+						(b, e) => b.AppendFormat ("{0},{1},{2}|", e._1, e._2, e._3)).ToString ());
+			Assert.AreEqual ("1,3,5,7|2,4,6,8|",
+					new[]{1,2}.Zip (new[]{3,4,5,6}, new[]{5,6,7}, new[]{7,8})
+					.Aggregate (new StringBuilder(), 
+						(b, e) => b.AppendFormat ("{0},{1},{2},{3}|", e._1, e._2, e._3, e._4)).ToString ());
+			Assert.AreEqual ("",
+					new int[]{}.Zip (new[]{3,4,5,6}, new[]{5,6,7}, new[]{7,8})
+					.Aggregate (new StringBuilder(), 
+						(b, e) => b.AppendFormat ("{0},{1},{2},{3}|", e._1, e._2, e._3, e._4)).ToString ());
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Unzip_SelfNull ()
+		{
+			IEnumerable<Tuple<int,int>> s = null;
+			s.Unzip ();
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Unzip3_SelfNull ()
+		{
+			IEnumerable<Tuple<int,int,int>> s = null;
+			s.Unzip ();
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Unzip4_SelfNull ()
+		{
+			IEnumerable<Tuple<int,int,int>> s = null;
+			s.Unzip ();
+		}
+
+		[Test]
+		public void Unzip ()
+		{
+			Assert.AreEqual ("1,2|3,4",
+					new[]{1,2}.Zip (new[]{3,4,5}).Unzip ()
+					.Aggregate ((a, b) => a.Implode (",") + "|" + b.Implode (",")));
+			Assert.AreEqual ("1,2|3,4|5,6",
+					new[]{1,2}.Zip (new[]{3,4,5}, new[]{5,6}).Unzip ()
+					.Aggregate ((a, b, c) => a.Implode (",") + "|" + b.Implode (",") + "|" + c.Implode (",")));
+			Assert.AreEqual ("1,2|3,4|5,6|7,8",
+					new[]{1,2}.Zip (new[]{3,4,5,6}, new[]{5,6,7}, new[]{7,8}).Unzip ()
+					.Aggregate ((a, b, c, d) => a.Implode (",") + "|" + b.Implode (",") + "|" + c.Implode (",") + "|" + d.Implode (",")));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
 		public void HaskellGroupBy_SelfNull ()
 		{
 			IEnumerable<int>      s = null;

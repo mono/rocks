@@ -1,3 +1,13 @@
+2008-08-04  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerable.cs: Add Haskell-inspired (and related) methods:
+	  - (zip)    .Zip<A,B>(IEnumerable<A>,IEnumerable<B>)
+	  - (zip3)   .Zip<A,B,C>(IEnumerable<A>,IEnumerable<B>,IEnumerable<C>)
+	  - (zip4)   .Zip<A,B,C,D>(IEnumerable<A>,IEnumerable<B>,IEnumerable<C>,IEnumerable<D>)
+	  - (unzip)  .Unzip<A,B>(IEnumerable<Tuple<A,B>>)
+	  - (unzip3) .Unzip<A,B,C>(IEnumerable<Tuple<A,B,C>>)
+	  - (unzip4) .Unzip<A,B,C,D>(IEnumerable<Tuple<A,B,C,D>>)
+
 2008-08-03  Jonathan Pryor  <jpryor@novell.com>
 
 	* Check.cs: Add Check.Values() method.

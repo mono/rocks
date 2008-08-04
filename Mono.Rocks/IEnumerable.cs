@@ -313,6 +313,7 @@ namespace Mono.Rocks {
 			return (Tuple) Activator.CreateInstance (tuple, args.ToArray ());
 		}
 
+		// Haskell: zipWith
 		public static IEnumerable<TResult> 
 			SelectFromEach<TFirstSource, TSecondSource, TResult> (
 					this IEnumerable<TFirstSource> self,
@@ -342,6 +343,7 @@ namespace Mono.Rocks {
 			}
 		}
 
+		// Haskell: zipWith3
 		public static IEnumerable<TResult> 
 			SelectFromEach<TFirstSource, TSecondSource, TThirdSource, TResult> (
 					this IEnumerable<TFirstSource> self,
@@ -376,6 +378,7 @@ namespace Mono.Rocks {
 			}
 		}
 
+		// Haskell: zipWith4
 		public static IEnumerable<TResult> 
 			SelectFromEach<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> (
 					this IEnumerable<TFirstSource> self,
@@ -996,6 +999,57 @@ namespace Mono.Rocks {
 				if (predicate (e))
 					yield return c;
 			}
+		}
+
+		// Haskell: zip
+		public static IEnumerable<Tuple<T1, T2>> Zip<T1, T2> (this IEnumerable<T1> self, IEnumerable<T2> source2)
+		{
+			return SelectFromEach (self, source2, (a, b) => Tuple.Create (a, b));
+		}
+
+		// Haskell: zip3
+		public static IEnumerable<Tuple<T1, T2, T3>> Zip<T1, T2, T3> (this IEnumerable<T1> self, IEnumerable<T2> source2, IEnumerable<T3> source3)
+		{
+			return SelectFromEach (self, source2, source3, (a, b, c) => Tuple.Create (a, b, c));
+		}
+
+		// Haskell: zip4
+		public static IEnumerable<Tuple<T1, T2, T3, T4>> Zip<T1, T2, T3, T4> (this IEnumerable<T1> self, IEnumerable<T2> source2, IEnumerable<T3> source3, IEnumerable<T4> source4)
+		{
+			return SelectFromEach (self, source2, source3, source4, (a, b, c, d) => Tuple.Create (a, b, c, d));
+		}
+
+		// Haskell: unzip
+		public static Tuple<IEnumerable<T1>, IEnumerable<T2>> Unzip<T1, T2> (this IEnumerable<Tuple<T1, T2>> self)
+		{
+			Check.Self (self);
+
+			return Tuple.Create (
+					self.Select (t => t._1),
+					self.Select (t => t._2));
+		}
+
+		// Haskell: unzip3
+		public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>> Unzip<T1, T2, T3> (this IEnumerable<Tuple<T1, T2, T3>> self)
+		{
+			Check.Self (self);
+
+			return Tuple.Create (
+					self.Select (t => t._1),
+					self.Select (t => t._2),
+					self.Select (t => t._3));
+		}
+
+		// Haskell: unzip4
+		public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>> Unzip<T1, T2, T3, T4> (this IEnumerable<Tuple<T1, T2, T3, T4>> self)
+		{
+			Check.Self (self);
+
+			return Tuple.Create (
+					self.Select (t => t._1),
+					self.Select (t => t._2),
+					self.Select (t => t._3),
+					self.Select (t => t._4));
 		}
 
 		// Haskell: groupBy
