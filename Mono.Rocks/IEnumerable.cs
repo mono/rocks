@@ -918,6 +918,86 @@ namespace Mono.Rocks {
 					self.Where (e => !predicate (e)));
 		}
 
+		// Haskell: elemIndex
+		public static int IndexOf<TSource> (this IEnumerable<TSource> self, TSource value)
+		{
+			Check.Self (self);
+
+			return FindIndex (self, v => EqualityComparer<TSource>.Default.Equals (v, value));
+		}
+
+		public static int IndexOfAny<TSource> (this IEnumerable<TSource> self, params TSource[] values)
+		{
+			IEnumerable<TSource> v = values;
+
+			return IndexOfAny (self, v);
+		}
+
+		public static int IndexOfAny<TSource> (this IEnumerable<TSource> self, IEnumerable<TSource> values)
+		{
+			Check.Self (self);
+			Check.Values (values);
+
+			return FindIndex (self, v => values.Contains (v));
+		}
+
+		// Haskell: elemIndices
+		public static IEnumerable<int> IndicesOf<TSource> (this IEnumerable<TSource> self, TSource value)
+		{
+			Check.Self (self);
+
+			return FindIndices (self, v => EqualityComparer<TSource>.Default.Equals (v, value));
+		}
+
+		public static IEnumerable<int> IndicesOfAny<TSource> (this IEnumerable<TSource> self, params TSource[] values)
+		{
+			IEnumerable<TSource> v = values;
+
+			return IndicesOfAny (self, v);
+		}
+
+		public static IEnumerable<int> IndicesOfAny<TSource> (this IEnumerable<TSource> self, IEnumerable<TSource> values)
+		{
+			Check.Self (self);
+			Check.Values (values);
+
+			return FindIndices (self, v => values.Contains (v));
+		}
+
+		// Haskell: findIndex
+		public static int FindIndex<TSource> (this IEnumerable<TSource> self, Func<TSource, bool> predicate)
+		{
+			Check.Self (self);
+			Check.Predicate (predicate);
+
+			int c = -1;
+			foreach (var e in self) {
+				++c;
+				if (predicate (e))
+					return c;
+			}
+			return -1;
+		}
+
+		// Haskell: findIndices
+		public static IEnumerable<int> FindIndices<TSource> (this IEnumerable<TSource> self, Func<TSource, bool> predicate)
+		{
+			Check.Self (self);
+			Check.Predicate (predicate);
+
+			return CreateFindIndicesIterator (self, predicate);
+		}
+
+		private static IEnumerable<int> CreateFindIndicesIterator<TSource> (this IEnumerable<TSource> self, Func<TSource, bool> predicate)
+		{
+			int c = -1;
+			foreach (var e in self) {
+				++c;
+				if (predicate (e))
+					yield return c;
+			}
+		}
+
 		// Haskell: groupBy
 		public static IEnumerable<IEnumerable<TSource>> HaskellGroupBy<TSource> (this IEnumerable<TSource> self, Func<TSource, TSource, bool> func)
 		{

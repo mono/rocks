@@ -1394,6 +1394,170 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
+		public void IndexOf_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.IndexOf (0);
+		}
+
+		[Test]
+		public void IndexOf ()
+		{
+			Assert.AreEqual (2,
+					new[]{0,1,2}.IndexOf (2));
+			Assert.AreEqual (-1,
+					new[]{0,1,2}.IndexOf (3));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void IndexOfAny_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			IEnumerable<int> v = new[]{1};
+			s.IndexOfAny (v);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void IndexOfAny_ValuesNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			IEnumerable<int> v = null;
+			s.IndexOfAny (v);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void IndexOfAny_ParamsValuesNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			int[]            v = null;
+			s.IndexOfAny (v);
+		}
+
+		[Test]
+		public void IndexOfAny ()
+		{
+			Assert.AreEqual (2,
+					new[]{0,1,2}.IndexOfAny (2, 3, 4));
+			Assert.AreEqual (1,
+					new[]{0,1,2}.IndexOfAny (3, 2, 1));
+			Assert.AreEqual (-1,
+					new[]{0,1,2}.IndexOfAny (3, 4, 5));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void IndicesOf_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.IndicesOf (0);
+		}
+
+		[Test]
+		public void IndicesOf ()
+		{
+			Assert.AreEqual ("0,3",
+					new[]{0,1,2,0}.IndicesOf (0).Implode (","));
+			Assert.AreEqual ("",
+					new[]{0,1,2}.IndicesOf (3).Implode (","));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void IndicesOfAny_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			IEnumerable<int> v = new[]{1};
+			s.IndicesOfAny (v);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void IndicesOfAny_ValuesNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			IEnumerable<int> v = null;
+			s.IndicesOfAny (v);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void IndicesOfAny_ParamsValuesNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			int[]            v = null;
+			s.IndicesOfAny (v);
+		}
+
+		[Test]
+		public void IndicesOfAny ()
+		{
+			Assert.AreEqual ("0,3",
+					new[]{0,1,2,0}.IndicesOfAny (0, 3, 4).Implode (","));
+			Assert.AreEqual ("0,1,2,3",
+					new[]{0,1,2,0}.IndicesOfAny (2, 1, 0).Implode (","));
+			Assert.AreEqual ("",
+					new[]{0,1,2}.IndicesOfAny (3, 4, 5).Implode (","));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void FindIndex_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			Func<int, bool>  f = v => v == 2;
+			s.FindIndex (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void FindIndex_PredicateNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			Func<int, bool>  f = null;
+			s.FindIndex (f);
+		}
+
+		[Test]
+		public void FindIndex ()
+		{
+			Assert.AreEqual (3,
+					new[]{1,3,5,6,7,9}.FindIndex (v => (v % 2) == 0));
+			Assert.AreEqual (-1,
+					new[]{1,3,5,7,9}.FindIndex (v => (v % 2) == 0));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void FindIndices_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			Func<int, bool>  f = v => v == 2;
+			s.FindIndices (f);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void FindIndices_PredicateNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			Func<int, bool>  f = null;
+			s.FindIndices (f);
+		}
+
+		[Test]
+		public void FindIndices ()
+		{
+			Assert.AreEqual ("3,6",
+					new[]{1,3,5,6,7,9,10}.FindIndices (v => (v % 2) == 0).Implode (","));
+			Assert.AreEqual ("",
+					new[]{1,3,5,7,9}.FindIndices (v => (v % 2) == 0).Implode (","));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
 		public void HaskellGroupBy_SelfNull ()
 		{
 			IEnumerable<int>      s = null;

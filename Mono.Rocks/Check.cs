@@ -55,5 +55,11 @@ namespace Mono.Rocks {
 			if (predicate == null)
 				throw new ArgumentNullException ("predicate");
 		}
+
+		public static void Values (object values)
+		{
+			if (values == null)
+				throw new ArgumentNullException ("values");
+		}
 	}
 }

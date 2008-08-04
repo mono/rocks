@@ -1,3 +1,16 @@
+2008-08-03  Jonathan Pryor  <jpryor@novell.com>
+
+	* Check.cs: Add Check.Values() method.
+	* IEnumerable.cs: Add Haskell-inspired (and related) methods:
+	  - (elemIndex)   .IndexOf<S>(IEnumerable<S>, S)
+	  -               .IndexOfAny<S>(IEnumerable<S>, params S[])
+	  -               .IndexOfAny<S>(IEnumerable<S>, IEnumerable<S>)
+	  - (elemIndices) .IndicesOf<S>(IEnumerable<S>, S)
+	  -               .IndicesOfAny<S>(IEnumerable<S>, params S[])
+	  -               .IndicesOfAny<S>(IEnumerable<S>, IEnumerable<S>)
+	  - (findIndex)   .FindIndex<S>(IEnumerable<S>, Func<S,bool>)
+	  - (findIndices) .FindIndices<S>(IEnumerable<S>, Func<S,bool>)
+
 2008-07-29  Jonathan Pryor  <jpryor@novell.com>
 
 	* Check.cs: Add Check.Predicate() method.
