@@ -1,3 +1,8 @@
+2008-08-05  Jonathan Pryor  <jpryor@novell.com>
+
+	* Tuple.cs: Rename TupleExtensions to TupleRocks, for consistency with other
+	  extension method-containing types.
+
 2008-08-04  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerable.cs: Add Haskell-inspired (and related) methods:

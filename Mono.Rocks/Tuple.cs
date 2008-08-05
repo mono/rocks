@@ -150,7 +150,7 @@ namespace Mono.Rocks {
 		}
 	}
 
-	public static class TupleExtensions
+	public static class TupleRocks
 	{
 		public static KeyValuePair<TKey, TValue>
 			ToKeyValuePair<TKey, TValue> (this Tuple<TKey, TValue> self)
