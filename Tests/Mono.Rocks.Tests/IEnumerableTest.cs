@@ -1740,6 +1740,31 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
+		public void RemoveFirstOccurrence_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.RemoveFirstOccurrence (0);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentOutOfRangeException))]
+		public void RemoveFirstOccurrences_NegativeCount()
+		{
+			IEnumerable<int> s = new[]{1};
+			s.RemoveFirstOccurrences (0, -1);
+		}
+
+		[Test]
+		public void RemoveFirstOccurrences ()
+		{
+			Assert.AreEqual ("bnana",
+					"banana".RemoveFirstOccurrence ('a').Implode ());
+			Assert.AreEqual ("bnna",
+					"banana".RemoveFirstOccurrences ('a', 2).Implode ());
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
 		public void HaskellGroupBy_SelfNull ()
 		{
 			IEnumerable<int>      s = null;

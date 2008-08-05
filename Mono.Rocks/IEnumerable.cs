@@ -1058,6 +1058,33 @@ namespace Mono.Rocks {
 			return Insert (self, value, Comparer<TSource>.Default.Compare);
 		}
 
+		// Haskell: delete
+		public static IEnumerable<TSource> RemoveFirstOccurrence<TSource> (this IEnumerable<TSource> self, TSource value)
+		{
+			return RemoveFirstOccurrences (self, value, 1);
+		}
+
+		public static IEnumerable<TSource> RemoveFirstOccurrences<TSource> (this IEnumerable<TSource> self, TSource value, int count)
+		{
+			Check.Self (self);
+			if (count < 0)
+				throw new ArgumentOutOfRangeException ("count < 0");
+
+			return self.Where (CreateRemoveOccurrencesPredicate (value, count));
+		}
+
+		private static Func<TSource, bool> CreateRemoveOccurrencesPredicate<TSource> (TSource value, int maxCount)
+		{
+			int count = 0;
+			return e => {
+				if (count < maxCount && EqualityComparer<TSource>.Default.Equals (e, value)) {
+					++count;
+					return false;
+				}
+				return true;
+			};
+		}
+
 		// Haskell: groupBy
 		public static IEnumerable<IEnumerable<TSource>> HaskellGroupBy<TSource> (this IEnumerable<TSource> self, Func<TSource, TSource, bool> func)
 		{
@@ -1095,7 +1122,7 @@ namespace Mono.Rocks {
 			return CreateInsertIterator (self, value, func);
 		}
 
-		private static IEnumerable<TSource> CreateInsertIterator<TSource>(IEnumerable<TSource> self, TSource value, Func<TSource, TSource, int> func)
+		private static IEnumerable<TSource> CreateInsertIterator<TSource> (IEnumerable<TSource> self, TSource value, Func<TSource, TSource, int> func)
 		{
 			bool inserted = false;
 			foreach (var e in self) {
