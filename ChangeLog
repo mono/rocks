@@ -1,0 +1,9 @@
+2008-08-05  Jonathan Pryor  <jpryor@novell.com>
+
+	* . (svn:ignore): Ignore generated files.
+	* archive: Added; ignore generated files.
+	* doc/**: Added; documentation stubs, Makefile.include to update the docs
+	  and generate an HTML version of the output, etc.
+	* ChangeLog: Added.
+	* Makefile: include doc/Makefile.include to allow documentation generation.
+

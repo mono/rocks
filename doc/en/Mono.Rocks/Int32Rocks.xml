@@ -1,0 +1,126 @@
+<Type Name="Int32Rocks" FullName="Mono.Rocks.Int32Rocks">
+  <TypeSignature Language="C#" Value="public static class Int32Rocks" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Rocks</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>Extension methods for <see cref="T:System.Int32" />.</summary>
+    <remarks></remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="DownTo">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; DownTo (this int self, int limit);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.Int32" RefType="this" />
+        <Parameter Name="limit" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="self">To be added.</param>
+        <param name="limit">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Step">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; Step (this int self, int limit, int step);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.Int32" RefType="this" />
+        <Parameter Name="limit" Type="System.Int32" />
+        <Parameter Name="step" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="self">To be added.</param>
+        <param name="limit">To be added.</param>
+        <param name="step">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Times">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; Times (this int self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.Int32" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UpTo">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; UpTo (this int self, int limit);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.Int32" RefType="this" />
+        <Parameter Name="limit" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="self">To be added.</param>
+        <param name="limit">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

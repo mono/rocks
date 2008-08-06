@@ -1,0 +1,92 @@
+<Type Name="Sequence" FullName="Mono.Rocks.Sequence">
+  <TypeSignature Language="C#" Value="public static class Sequence" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Rocks</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="GenerateReverse&lt;TSource,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; GenerateReverse&lt;TSource,TResult&gt; (TSource value, Func&lt;TSource,Mono.Rocks.Tuple&lt;TResult,TSource&gt;&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="value" Type="TSource" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,Mono.Rocks.Tuple&lt;TResult,TSource&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="value">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Iterate&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Iterate&lt;TSource&gt; (TSource value, Func&lt;TSource,TSource&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="value" Type="TSource" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="value">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Repeat&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Repeat&lt;TSource&gt; (TSource value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="value" Type="TSource" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

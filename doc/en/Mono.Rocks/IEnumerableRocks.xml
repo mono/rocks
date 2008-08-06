@@ -1,0 +1,2269 @@
+<Type Name="IEnumerableRocks" FullName="Mono.Rocks.IEnumerableRocks">
+  <TypeSignature Language="C#" Value="public static class IEnumerableRocks" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Rocks</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="AggregateHistory&lt;TSource,TAccumulate,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; AggregateHistory&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func, Func&lt;TAccumulate,TResult&gt; resultSelector);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TAccumulate" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="seed" Type="TAccumulate" />
+        <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+        <Parameter Name="resultSelector" Type="System.Func&lt;TAccumulate,TResult&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TAccumulate">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="seed">To be added.</param>
+        <param name="func">To be added.</param>
+        <param name="resultSelector">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AggregateHistory&lt;TSource,TAccumulate&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TAccumulate&gt; AggregateHistory&lt;TSource,TAccumulate&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TAccumulate&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TAccumulate" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="seed" Type="TAccumulate" />
+        <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TAccumulate">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="seed">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AggregateHistory&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; AggregateHistory&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,TSource,TSource&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,TSource,TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AggregateReverse&lt;TSource,TAccumulate,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static TResult AggregateReverse&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func, Func&lt;TAccumulate,TResult&gt; resultSelector);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>TResult</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TAccumulate" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="seed" Type="TAccumulate" />
+        <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+        <Parameter Name="resultSelector" Type="System.Func&lt;TAccumulate,TResult&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TAccumulate">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="seed">To be added.</param>
+        <param name="func">To be added.</param>
+        <param name="resultSelector">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AggregateReverse&lt;TSource,TAccumulate&gt;">
+      <MemberSignature Language="C#" Value="public static TAccumulate AggregateReverse&lt;TSource,TAccumulate&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>TAccumulate</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TAccumulate" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="seed" Type="TAccumulate" />
+        <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TAccumulate">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="seed">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AggregateReverse&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static TSource AggregateReverse&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,TSource,TSource&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>TSource</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,TSource,TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AggregateReverseHistory&lt;TSource,TAccumulate,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; AggregateReverseHistory&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func, Func&lt;TAccumulate,TResult&gt; resultSelector);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TAccumulate" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="seed" Type="TAccumulate" />
+        <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+        <Parameter Name="resultSelector" Type="System.Func&lt;TAccumulate,TResult&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TAccumulate">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="seed">To be added.</param>
+        <param name="func">To be added.</param>
+        <param name="resultSelector">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AggregateReverseHistory&lt;TSource,TAccumulate&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TAccumulate&gt; AggregateReverseHistory&lt;TSource,TAccumulate&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TAccumulate&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TAccumulate" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="seed" Type="TAccumulate" />
+        <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TAccumulate">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="seed">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AggregateReverseHistory&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; AggregateReverseHistory&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,TSource,TSource&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,TSource,TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="And">
+      <MemberSignature Language="C#" Value="public static bool And (this System.Collections.Generic.IEnumerable&lt;bool&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Boolean&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Apply&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static void Apply&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Apply&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Apply&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Action&lt;TSource&gt; action);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="action" Type="System.Action&lt;TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="action">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ApplyPairs&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; ApplyPairs&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Action&lt;TSource&gt;[] actions);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="actions" Type="System.Action&lt;TSource&gt;[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="actions">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Break&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Break&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Concat&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Concat&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; selfs);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="selfs" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="selfs">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Concat&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Concat&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt;[] selfs);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="selfs" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="selfs">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Convert&lt;TSource,TValue&gt;">
+      <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TValue" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value" Type="TValue&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TValue">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Convert&lt;TSource,TValue1,TValue2,TValue3,TValue4&gt;">
+      <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue1,TValue2,TValue3,TValue4&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue1 value1, out TValue2 value2, out TValue3 value3, out TValue4 value4);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TValue1" />
+        <TypeParameter Name="TValue2" />
+        <TypeParameter Name="TValue3" />
+        <TypeParameter Name="TValue4" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value1" Type="TValue1&amp;" RefType="out" />
+        <Parameter Name="value2" Type="TValue2&amp;" RefType="out" />
+        <Parameter Name="value3" Type="TValue3&amp;" RefType="out" />
+        <Parameter Name="value4" Type="TValue4&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TValue1">To be added.</typeparam>
+        <typeparam name="TValue2">To be added.</typeparam>
+        <typeparam name="TValue3">To be added.</typeparam>
+        <typeparam name="TValue4">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value1">To be added.</param>
+        <param name="value2">To be added.</param>
+        <param name="value3">To be added.</param>
+        <param name="value4">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Convert&lt;TSource,TValue1,TValue2,TValue3&gt;">
+      <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue1,TValue2,TValue3&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue1 value1, out TValue2 value2, out TValue3 value3);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TValue1" />
+        <TypeParameter Name="TValue2" />
+        <TypeParameter Name="TValue3" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value1" Type="TValue1&amp;" RefType="out" />
+        <Parameter Name="value2" Type="TValue2&amp;" RefType="out" />
+        <Parameter Name="value3" Type="TValue3&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TValue1">To be added.</typeparam>
+        <typeparam name="TValue2">To be added.</typeparam>
+        <typeparam name="TValue3">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value1">To be added.</param>
+        <param name="value2">To be added.</param>
+        <param name="value3">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Convert&lt;TSource,TValue1,TValue2&gt;">
+      <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue1,TValue2&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue1 value1, out TValue2 value2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TValue1" />
+        <TypeParameter Name="TValue2" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value1" Type="TValue1&amp;" RefType="out" />
+        <Parameter Name="value2" Type="TValue2&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TValue1">To be added.</typeparam>
+        <typeparam name="TValue2">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value1">To be added.</param>
+        <param name="value2">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Cycle&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Cycle&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExceptLast&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; ExceptLast&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExceptLast&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; ExceptLast&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, int count);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="count" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="count">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FindIndex&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static int FindIndex&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; predicate);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="predicate" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="predicate">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FindIndices&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; FindIndices&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; predicate);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="predicate" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="predicate">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="HaskellGroup&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; HaskellGroup&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="HaskellGroupBy&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; HaskellGroupBy&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,TSource,bool&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,TSource,System.Boolean&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Implode&lt;TSource,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static string Implode&lt;TSource,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator, Func&lt;TSource,TResult&gt; selector);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="separator" Type="System.String" />
+        <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="separator">To be added.</param>
+        <param name="selector">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Implode&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Implode&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="separator" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="separator">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Implode&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator, Action&lt;System.Text.StringBuilder,TSource&gt; appender);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="separator" Type="System.String" />
+        <Parameter Name="appender" Type="System.Action&lt;System.Text.StringBuilder,TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="separator">To be added.</param>
+        <param name="appender">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndexOf&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static int IndexOf&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value" Type="TSource" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndexOfAny&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static int IndexOfAny&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; values);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="values" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="values">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndexOfAny&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static int IndexOfAny&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource[] values);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="values" Type="TSource[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="values">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndicesOf&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; IndicesOf&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value" Type="TSource" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndicesOfAny&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; IndicesOfAny&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; values);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="values" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="values">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IndicesOfAny&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; IndicesOfAny&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource[] values);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="values" Type="TSource[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="values">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InitialSegments&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; InitialSegments&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Insert&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Insert&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value" Type="TSource" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Insert&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Insert&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value, Func&lt;TSource,TSource,int&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value" Type="TSource" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,TSource,System.Int32&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Intersperse&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Intersperse&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; between);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" RefType="this" />
+        <Parameter Name="between" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="between">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Intersperse&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Intersperse&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value" Type="TSource" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Or">
+      <MemberSignature Language="C#" Value="public static bool Or (this System.Collections.Generic.IEnumerable&lt;bool&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Boolean&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OrderByNatural&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; OrderByNatural&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,string&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,System.String&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Partition&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Partition&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; predicate);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="predicate" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="predicate">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PathCombine">
+      <MemberSignature Language="C#" Value="public static string PathCombine (this System.Collections.Generic.IEnumerable&lt;string&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.String&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RemoveFirstOccurrence&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; RemoveFirstOccurrence&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value" Type="TSource" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RemoveFirstOccurrences&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; RemoveFirstOccurrences&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value, int count);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="value" Type="TSource" />
+        <Parameter Name="count" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="value">To be added.</param>
+        <param name="count">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Repeat&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Repeat&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, int number);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="number" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="number">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelectAggregated&lt;TSource,TAccumulate,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;TAccumulate,System.Collections.Generic.List&lt;TResult&gt;&gt; SelectAggregated&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,Mono.Rocks.Tuple&lt;TAccumulate,TResult&gt;&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Tuple&lt;TAccumulate,System.Collections.Generic.List&lt;TResult&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TAccumulate" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="seed" Type="TAccumulate" />
+        <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,Mono.Rocks.Tuple&lt;TAccumulate,TResult&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TAccumulate">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="seed">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelectFromEach&lt;TFirstSource,TSecondSource,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; SelectFromEach&lt;TFirstSource,TSecondSource,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TFirstSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSecondSource&gt; source2, Func&lt;TFirstSource,TSecondSource,TResult&gt; selector);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TFirstSource" />
+        <TypeParameter Name="TSecondSource" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TFirstSource&gt;" RefType="this" />
+        <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;TSecondSource&gt;" />
+        <Parameter Name="selector" Type="System.Func&lt;TFirstSource,TSecondSource,TResult&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TFirstSource">To be added.</typeparam>
+        <typeparam name="TSecondSource">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="source2">To be added.</param>
+        <param name="selector">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelectFromEach&lt;TFirstSource,TSecondSource,TThirdSource,TFourthSource,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; SelectFromEach&lt;TFirstSource,TSecondSource,TThirdSource,TFourthSource,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TFirstSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSecondSource&gt; source2, System.Collections.Generic.IEnumerable&lt;TThirdSource&gt; source3, System.Collections.Generic.IEnumerable&lt;TFourthSource&gt; source4, Func&lt;TFirstSource,TSecondSource,TThirdSource,TFourthSource,TResult&gt; selector);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TFirstSource" />
+        <TypeParameter Name="TSecondSource" />
+        <TypeParameter Name="TThirdSource" />
+        <TypeParameter Name="TFourthSource" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TFirstSource&gt;" RefType="this" />
+        <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;TSecondSource&gt;" />
+        <Parameter Name="source3" Type="System.Collections.Generic.IEnumerable&lt;TThirdSource&gt;" />
+        <Parameter Name="source4" Type="System.Collections.Generic.IEnumerable&lt;TFourthSource&gt;" />
+        <Parameter Name="selector" Type="System.Func&lt;TFirstSource,TSecondSource,TThirdSource,TFourthSource,TResult&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TFirstSource">To be added.</typeparam>
+        <typeparam name="TSecondSource">To be added.</typeparam>
+        <typeparam name="TThirdSource">To be added.</typeparam>
+        <typeparam name="TFourthSource">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="source2">To be added.</param>
+        <param name="source3">To be added.</param>
+        <param name="source4">To be added.</param>
+        <param name="selector">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelectFromEach&lt;TFirstSource,TSecondSource,TThirdSource,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; SelectFromEach&lt;TFirstSource,TSecondSource,TThirdSource,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TFirstSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSecondSource&gt; source2, System.Collections.Generic.IEnumerable&lt;TThirdSource&gt; source3, Func&lt;TFirstSource,TSecondSource,TThirdSource,TResult&gt; selector);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TFirstSource" />
+        <TypeParameter Name="TSecondSource" />
+        <TypeParameter Name="TThirdSource" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TFirstSource&gt;" RefType="this" />
+        <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;TSecondSource&gt;" />
+        <Parameter Name="source3" Type="System.Collections.Generic.IEnumerable&lt;TThirdSource&gt;" />
+        <Parameter Name="selector" Type="System.Func&lt;TFirstSource,TSecondSource,TThirdSource,TResult&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TFirstSource">To be added.</typeparam>
+        <typeparam name="TSecondSource">To be added.</typeparam>
+        <typeparam name="TThirdSource">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="source2">To be added.</param>
+        <param name="source3">To be added.</param>
+        <param name="selector">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelectReverseAggregated&lt;TSource,TAccumulate,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;TAccumulate,System.Collections.Generic.List&lt;TResult&gt;&gt; SelectReverseAggregated&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,Mono.Rocks.Tuple&lt;TAccumulate,TResult&gt;&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Tuple&lt;TAccumulate,System.Collections.Generic.List&lt;TResult&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TAccumulate" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="seed" Type="TAccumulate" />
+        <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,Mono.Rocks.Tuple&lt;TAccumulate,TResult&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TAccumulate">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="seed">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SkipPrefix&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; SkipPrefix&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; prefix);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="prefix" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="prefix">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sort&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Sort&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sort&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Sort&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IComparer&lt;TSource&gt; comparer);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="comparer" Type="System.Collections.Generic.IComparer&lt;TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="comparer">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sort&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Sort&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Comparison&lt;TSource&gt; comparison);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="comparison" Type="System.Comparison&lt;TSource&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="comparison">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SortNatural">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; SortNatural (this System.Collections.Generic.IEnumerable&lt;string&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.String&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Span&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Span&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; func);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="func">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SplitAt&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; SplitAt&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, int firstLength);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="firstLength" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="firstLength">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToList&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.List&lt;System.Collections.Generic.List&lt;TSource&gt;&gt; ToList&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.List&lt;System.Collections.Generic.List&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToTuple&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple ToTuple&lt;T&gt; (this System.Collections.Generic.IEnumerable&lt;T&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Tuple</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TrailingSegments&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; TrailingSegments&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Transpose&lt;TSource&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Transpose&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Unzip&lt;T1,T2,T3,T4&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;,System.Collections.Generic.IEnumerable&lt;T3&gt;,System.Collections.Generic.IEnumerable&lt;T4&gt;&gt; Unzip&lt;T1,T2,T3,T4&gt; (this System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;,System.Collections.Generic.IEnumerable&lt;T3&gt;,System.Collections.Generic.IEnumerable&lt;T4&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+        <TypeParameter Name="T4" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">To be added.</typeparam>
+        <typeparam name="T2">To be added.</typeparam>
+        <typeparam name="T3">To be added.</typeparam>
+        <typeparam name="T4">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Unzip&lt;T1,T2,T3&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;,System.Collections.Generic.IEnumerable&lt;T3&gt;&gt; Unzip&lt;T1,T2,T3&gt; (this System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;,System.Collections.Generic.IEnumerable&lt;T3&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">To be added.</typeparam>
+        <typeparam name="T2">To be added.</typeparam>
+        <typeparam name="T3">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Unzip&lt;T1,T2&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;&gt; Unzip&lt;T1,T2&gt; (this System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt; self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">To be added.</typeparam>
+        <typeparam name="T2">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Zip&lt;T1,T2,T3,T4&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt; Zip&lt;T1,T2,T3,T4&gt; (this System.Collections.Generic.IEnumerable&lt;T1&gt; self, System.Collections.Generic.IEnumerable&lt;T2&gt; source2, System.Collections.Generic.IEnumerable&lt;T3&gt; source3, System.Collections.Generic.IEnumerable&lt;T4&gt; source4);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+        <TypeParameter Name="T4" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T1&gt;" RefType="this" />
+        <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;T2&gt;" />
+        <Parameter Name="source3" Type="System.Collections.Generic.IEnumerable&lt;T3&gt;" />
+        <Parameter Name="source4" Type="System.Collections.Generic.IEnumerable&lt;T4&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">To be added.</typeparam>
+        <typeparam name="T2">To be added.</typeparam>
+        <typeparam name="T3">To be added.</typeparam>
+        <typeparam name="T4">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="source2">To be added.</param>
+        <param name="source3">To be added.</param>
+        <param name="source4">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Zip&lt;T1,T2,T3&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt; Zip&lt;T1,T2,T3&gt; (this System.Collections.Generic.IEnumerable&lt;T1&gt; self, System.Collections.Generic.IEnumerable&lt;T2&gt; source2, System.Collections.Generic.IEnumerable&lt;T3&gt; source3);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T1&gt;" RefType="this" />
+        <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;T2&gt;" />
+        <Parameter Name="source3" Type="System.Collections.Generic.IEnumerable&lt;T3&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">To be added.</typeparam>
+        <typeparam name="T2">To be added.</typeparam>
+        <typeparam name="T3">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="source2">To be added.</param>
+        <param name="source3">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Zip&lt;T1,T2&gt;">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt; Zip&lt;T1,T2&gt; (this System.Collections.Generic.IEnumerable&lt;T1&gt; self, System.Collections.Generic.IEnumerable&lt;T2&gt; source2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T1&gt;" RefType="this" />
+        <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;T2&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">To be added.</typeparam>
+        <typeparam name="T2">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="source2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

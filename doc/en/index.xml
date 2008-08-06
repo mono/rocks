@@ -1,0 +1,2389 @@
+<Overview>
+  <Assemblies>
+    <Assembly Name="Mono.Rocks" Version="0.1.0.0">
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyFileVersion("0.1.0.0")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.InteropServices.Guid("098c331b-2893-4367-8d3a-4a350ef2e9bb")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.InteropServices.ComVisible(false)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTrademark("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCopyright("Copyright © 2007 Novell, Inc. and contributors")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyProduct("Mono")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCompany("Novell, Inc.")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyConfiguration("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyDescription("A useful extension methods collection")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTitle("Mono.Rocks")</AttributeName>
+        </Attribute>
+      </Attributes>
+    </Assembly>
+  </Assemblies>
+  <Remarks>To be added.</Remarks>
+  <Copyright>To be added.</Copyright>
+  <Types>
+    <Namespace Name="Mono.Rocks">
+      <Type Name="ICustomAttributeProviderRocks" Kind="Class" />
+      <Type Name="IEnumerableRocks" Kind="Class" />
+      <Type Name="Int32Rocks" Kind="Class" />
+      <Type Name="KeyValuePairRocks" Kind="Class" />
+      <Type Name="NaturalStringComparer" Kind="Class" />
+      <Type Name="Sequence" Kind="Class" />
+      <Type Name="StringRocks" Kind="Class" />
+      <Type Name="TextReaderRocks" Kind="Class" />
+      <Type Name="Tuple" Kind="Class" />
+      <Type Name="Tuple`1" DisplayName="Tuple&lt;T&gt;" Kind="Class" />
+      <Type Name="Tuple`2" DisplayName="Tuple&lt;T1,T2&gt;" Kind="Class" />
+      <Type Name="Tuple`3" DisplayName="Tuple&lt;T1,T2,T3&gt;" Kind="Class" />
+      <Type Name="Tuple`4" DisplayName="Tuple&lt;T1,T2,T3,T4&gt;" Kind="Class" />
+      <Type Name="TupleRocks" Kind="Class" />
+    </Namespace>
+  </Types>
+  <Title>Mono.Rocks</Title>
+  <ExtensionMethods>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Reflection.ICustomAttributeProvider" />
+      </Targets>
+      <Member MemberName="GetCustomAttribute&lt;TAttribute&gt;">
+        <MemberSignature Language="C#" Value="public static TAttribute GetCustomAttribute&lt;TAttribute&gt; (this System.Reflection.ICustomAttributeProvider self) where TAttribute : Attribute;" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>TAttribute</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TAttribute">
+            <Constraints>
+              <BaseTypeName>System.Attribute</BaseTypeName>
+            </Constraints>
+          </TypeParameter>
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Reflection.ICustomAttributeProvider" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TAttribute">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.ICustomAttributeProviderRocks" Member="M:Mono.Rocks.ICustomAttributeProviderRocks.GetCustomAttribute``1(System.Reflection.ICustomAttributeProvider)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Reflection.ICustomAttributeProvider" />
+      </Targets>
+      <Member MemberName="GetCustomAttributes&lt;TAttribute&gt;">
+        <MemberSignature Language="C#" Value="public static TAttribute[] GetCustomAttributes&lt;TAttribute&gt; (this System.Reflection.ICustomAttributeProvider self) where TAttribute : Attribute;" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>TAttribute[]</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TAttribute">
+            <Constraints>
+              <BaseTypeName>System.Attribute</BaseTypeName>
+            </Constraints>
+          </TypeParameter>
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Reflection.ICustomAttributeProvider" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TAttribute">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.ICustomAttributeProviderRocks" Member="M:Mono.Rocks.ICustomAttributeProviderRocks.GetCustomAttributes``1(System.Reflection.ICustomAttributeProvider)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="AggregateHistory&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; AggregateHistory&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,TSource,TSource&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="func" Type="System.Func&lt;TSource,TSource,TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.AggregateHistory``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="AggregateHistory&lt;TSource,TAccumulate&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TAccumulate&gt; AggregateHistory&lt;TSource,TAccumulate&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TAccumulate&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TAccumulate" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="seed" Type="TAccumulate" />
+          <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TAccumulate">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="seed">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.AggregateHistory``2(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="AggregateHistory&lt;TSource,TAccumulate,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; AggregateHistory&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func, Func&lt;TAccumulate,TResult&gt; resultSelector);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TAccumulate" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="seed" Type="TAccumulate" />
+          <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+          <Parameter Name="resultSelector" Type="System.Func&lt;TAccumulate,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TAccumulate">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="seed">To be added.</param>
+          <param name="func">To be added.</param>
+          <param name="resultSelector">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.AggregateHistory``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1},System.Func{``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="AggregateReverse&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static TSource AggregateReverse&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,TSource,TSource&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>TSource</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="func" Type="System.Func&lt;TSource,TSource,TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.AggregateReverse``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="AggregateReverse&lt;TSource,TAccumulate&gt;">
+        <MemberSignature Language="C#" Value="public static TAccumulate AggregateReverse&lt;TSource,TAccumulate&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>TAccumulate</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TAccumulate" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="seed" Type="TAccumulate" />
+          <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TAccumulate">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="seed">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.AggregateReverse``2(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="AggregateReverse&lt;TSource,TAccumulate,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static TResult AggregateReverse&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func, Func&lt;TAccumulate,TResult&gt; resultSelector);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>TResult</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TAccumulate" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="seed" Type="TAccumulate" />
+          <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+          <Parameter Name="resultSelector" Type="System.Func&lt;TAccumulate,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TAccumulate">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="seed">To be added.</param>
+          <param name="func">To be added.</param>
+          <param name="resultSelector">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.AggregateReverse``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1},System.Func{``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="AggregateReverseHistory&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; AggregateReverseHistory&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,TSource,TSource&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="func" Type="System.Func&lt;TSource,TSource,TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.AggregateReverseHistory``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="AggregateReverseHistory&lt;TSource,TAccumulate&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TAccumulate&gt; AggregateReverseHistory&lt;TSource,TAccumulate&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TAccumulate&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TAccumulate" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="seed" Type="TAccumulate" />
+          <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TAccumulate">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="seed">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.AggregateReverseHistory``2(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="AggregateReverseHistory&lt;TSource,TAccumulate,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; AggregateReverseHistory&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; func, Func&lt;TAccumulate,TResult&gt; resultSelector);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TAccumulate" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="seed" Type="TAccumulate" />
+          <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+          <Parameter Name="resultSelector" Type="System.Func&lt;TAccumulate,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TAccumulate">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="seed">To be added.</param>
+          <param name="func">To be added.</param>
+          <param name="resultSelector">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.AggregateReverseHistory``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1},System.Func{``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="And">
+        <MemberSignature Language="C#" Value="public static bool And (this System.Collections.Generic.IEnumerable&lt;bool&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Boolean&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.And(System.Collections.Generic.IEnumerable{System.Boolean})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Apply&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static void Apply&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Void</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Apply``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Apply&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Apply&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Action&lt;TSource&gt; action);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="action" Type="System.Action&lt;TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="action">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Apply``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="ApplyPairs&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; ApplyPairs&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Action&lt;TSource&gt;[] actions);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="actions" Type="System.Action&lt;TSource&gt;[]">
+            <Attributes>
+              <Attribute>
+                <AttributeName>System.ParamArray</AttributeName>
+              </Attribute>
+            </Attributes>
+          </Parameter>
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="actions">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ApplyPairs``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0}[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Break&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Break&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="func" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Break``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Concat&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Concat&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt;[] selfs);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="selfs" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;[]">
+            <Attributes>
+              <Attribute>
+                <AttributeName>System.ParamArray</AttributeName>
+              </Attribute>
+            </Attributes>
+          </Parameter>
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="selfs">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Concat``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0}[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Concat&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Concat&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; selfs);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="selfs" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="selfs">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Concat``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Convert&lt;TSource,TValue&gt;">
+        <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Void</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value" Type="TValue&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Convert``2(System.Collections.Generic.IEnumerable{``0},``1@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Convert&lt;TSource,TValue1,TValue2&gt;">
+        <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue1,TValue2&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue1 value1, out TValue2 value2);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Void</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TValue1" />
+          <TypeParameter Name="TValue2" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value1" Type="TValue1&amp;" RefType="out" />
+          <Parameter Name="value2" Type="TValue2&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TValue1">To be added.</typeparam>
+          <typeparam name="TValue2">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Convert``3(System.Collections.Generic.IEnumerable{``0},``1@,``2@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Convert&lt;TSource,TValue1,TValue2,TValue3&gt;">
+        <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue1,TValue2,TValue3&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue1 value1, out TValue2 value2, out TValue3 value3);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Void</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TValue1" />
+          <TypeParameter Name="TValue2" />
+          <TypeParameter Name="TValue3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value1" Type="TValue1&amp;" RefType="out" />
+          <Parameter Name="value2" Type="TValue2&amp;" RefType="out" />
+          <Parameter Name="value3" Type="TValue3&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TValue1">To be added.</typeparam>
+          <typeparam name="TValue2">To be added.</typeparam>
+          <typeparam name="TValue3">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <param name="value3">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Convert``4(System.Collections.Generic.IEnumerable{``0},``1@,``2@,``3@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Convert&lt;TSource,TValue1,TValue2,TValue3,TValue4&gt;">
+        <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue1,TValue2,TValue3,TValue4&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue1 value1, out TValue2 value2, out TValue3 value3, out TValue4 value4);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Void</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TValue1" />
+          <TypeParameter Name="TValue2" />
+          <TypeParameter Name="TValue3" />
+          <TypeParameter Name="TValue4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value1" Type="TValue1&amp;" RefType="out" />
+          <Parameter Name="value2" Type="TValue2&amp;" RefType="out" />
+          <Parameter Name="value3" Type="TValue3&amp;" RefType="out" />
+          <Parameter Name="value4" Type="TValue4&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TValue1">To be added.</typeparam>
+          <typeparam name="TValue2">To be added.</typeparam>
+          <typeparam name="TValue3">To be added.</typeparam>
+          <typeparam name="TValue4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <param name="value3">To be added.</param>
+          <param name="value4">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Convert``5(System.Collections.Generic.IEnumerable{``0},``1@,``2@,``3@,``4@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Cycle&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Cycle&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Cycle``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="ExceptLast&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; ExceptLast&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ExceptLast``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="ExceptLast&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; ExceptLast&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, int count);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="count" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="count">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ExceptLast``1(System.Collections.Generic.IEnumerable{``0},System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="FindIndex&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static int FindIndex&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; predicate);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="predicate" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="predicate">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.FindIndex``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="FindIndices&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; FindIndices&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; predicate);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="predicate" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="predicate">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.FindIndices``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="HaskellGroup&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; HaskellGroup&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.HaskellGroup``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="HaskellGroupBy&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; HaskellGroupBy&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,TSource,bool&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="func" Type="System.Func&lt;TSource,TSource,System.Boolean&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.HaskellGroupBy``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,System.Boolean})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Implode&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.String</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Implode``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Implode&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.String</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="separator" Type="System.String" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="separator">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Implode``1(System.Collections.Generic.IEnumerable{``0},System.String)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Implode&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator, Action&lt;System.Text.StringBuilder,TSource&gt; appender);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.String</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="separator" Type="System.String" />
+          <Parameter Name="appender" Type="System.Action&lt;System.Text.StringBuilder,TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="separator">To be added.</param>
+          <param name="appender">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Implode``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Action{System.Text.StringBuilder,``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Implode&lt;TSource,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static string Implode&lt;TSource,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator, Func&lt;TSource,TResult&gt; selector);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.String</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="separator" Type="System.String" />
+          <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="separator">To be added.</param>
+          <param name="selector">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Implode``2(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="IndexOf&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static int IndexOf&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value" Type="TSource" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.IndexOf``1(System.Collections.Generic.IEnumerable{``0},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="IndexOfAny&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static int IndexOfAny&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource[] values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="values" Type="TSource[]">
+            <Attributes>
+              <Attribute>
+                <AttributeName>System.ParamArray</AttributeName>
+              </Attribute>
+            </Attributes>
+          </Parameter>
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.IndexOfAny``1(System.Collections.Generic.IEnumerable{``0},``0[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="IndexOfAny&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static int IndexOfAny&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="values" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.IndexOfAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="IndicesOf&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; IndicesOf&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value" Type="TSource" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.IndicesOf``1(System.Collections.Generic.IEnumerable{``0},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="IndicesOfAny&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; IndicesOfAny&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource[] values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="values" Type="TSource[]">
+            <Attributes>
+              <Attribute>
+                <AttributeName>System.ParamArray</AttributeName>
+              </Attribute>
+            </Attributes>
+          </Parameter>
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.IndicesOfAny``1(System.Collections.Generic.IEnumerable{``0},``0[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="IndicesOfAny&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; IndicesOfAny&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="values" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.IndicesOfAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="InitialSegments&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; InitialSegments&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.InitialSegments``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Insert&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Insert&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value" Type="TSource" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Insert``1(System.Collections.Generic.IEnumerable{``0},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Insert&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Insert&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value, Func&lt;TSource,TSource,int&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value" Type="TSource" />
+          <Parameter Name="func" Type="System.Func&lt;TSource,TSource,System.Int32&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Insert``1(System.Collections.Generic.IEnumerable{``0},``0,System.Func{``0,``0,System.Int32})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Intersperse&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Intersperse&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value" Type="TSource" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Intersperse``1(System.Collections.Generic.IEnumerable{``0},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Intersperse&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Intersperse&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; between);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" RefType="this" />
+          <Parameter Name="between" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="between">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Intersperse``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}},System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Or">
+        <MemberSignature Language="C#" Value="public static bool Or (this System.Collections.Generic.IEnumerable&lt;bool&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Boolean&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Or(System.Collections.Generic.IEnumerable{System.Boolean})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="OrderByNatural&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; OrderByNatural&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,string&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="func" Type="System.Func&lt;TSource,System.String&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.OrderByNatural``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Partition&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Partition&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; predicate);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="predicate" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="predicate">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Partition``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="PathCombine">
+        <MemberSignature Language="C#" Value="public static string PathCombine (this System.Collections.Generic.IEnumerable&lt;string&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.String</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.String&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.PathCombine(System.Collections.Generic.IEnumerable{System.String})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="RemoveFirstOccurrence&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; RemoveFirstOccurrence&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value" Type="TSource" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.RemoveFirstOccurrence``1(System.Collections.Generic.IEnumerable{``0},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="RemoveFirstOccurrences&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; RemoveFirstOccurrences&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TSource value, int count);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value" Type="TSource" />
+          <Parameter Name="count" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <param name="count">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.RemoveFirstOccurrences``1(System.Collections.Generic.IEnumerable{``0},``0,System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Repeat&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Repeat&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, int number);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="number" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="number">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Repeat``1(System.Collections.Generic.IEnumerable{``0},System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="SelectAggregated&lt;TSource,TAccumulate,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;TAccumulate,System.Collections.Generic.List&lt;TResult&gt;&gt; SelectAggregated&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,Mono.Rocks.Tuple&lt;TAccumulate,TResult&gt;&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple&lt;TAccumulate,System.Collections.Generic.List&lt;TResult&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TAccumulate" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="seed" Type="TAccumulate" />
+          <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,Mono.Rocks.Tuple&lt;TAccumulate,TResult&gt;&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TAccumulate">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="seed">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SelectAggregated``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,Mono.Rocks.Tuple{``1,``2}})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="SelectFromEach&lt;TFirstSource,TSecondSource,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; SelectFromEach&lt;TFirstSource,TSecondSource,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TFirstSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSecondSource&gt; source2, Func&lt;TFirstSource,TSecondSource,TResult&gt; selector);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TFirstSource" />
+          <TypeParameter Name="TSecondSource" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TFirstSource&gt;" RefType="this" />
+          <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;TSecondSource&gt;" />
+          <Parameter Name="selector" Type="System.Func&lt;TFirstSource,TSecondSource,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TFirstSource">To be added.</typeparam>
+          <typeparam name="TSecondSource">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="source2">To be added.</param>
+          <param name="selector">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SelectFromEach``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="SelectFromEach&lt;TFirstSource,TSecondSource,TThirdSource,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; SelectFromEach&lt;TFirstSource,TSecondSource,TThirdSource,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TFirstSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSecondSource&gt; source2, System.Collections.Generic.IEnumerable&lt;TThirdSource&gt; source3, Func&lt;TFirstSource,TSecondSource,TThirdSource,TResult&gt; selector);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TFirstSource" />
+          <TypeParameter Name="TSecondSource" />
+          <TypeParameter Name="TThirdSource" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TFirstSource&gt;" RefType="this" />
+          <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;TSecondSource&gt;" />
+          <Parameter Name="source3" Type="System.Collections.Generic.IEnumerable&lt;TThirdSource&gt;" />
+          <Parameter Name="selector" Type="System.Func&lt;TFirstSource,TSecondSource,TThirdSource,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TFirstSource">To be added.</typeparam>
+          <typeparam name="TSecondSource">To be added.</typeparam>
+          <typeparam name="TThirdSource">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="source2">To be added.</param>
+          <param name="source3">To be added.</param>
+          <param name="selector">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SelectFromEach``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2},System.Func{``0,``1,``2,``3})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="SelectFromEach&lt;TFirstSource,TSecondSource,TThirdSource,TFourthSource,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; SelectFromEach&lt;TFirstSource,TSecondSource,TThirdSource,TFourthSource,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TFirstSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSecondSource&gt; source2, System.Collections.Generic.IEnumerable&lt;TThirdSource&gt; source3, System.Collections.Generic.IEnumerable&lt;TFourthSource&gt; source4, Func&lt;TFirstSource,TSecondSource,TThirdSource,TFourthSource,TResult&gt; selector);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TFirstSource" />
+          <TypeParameter Name="TSecondSource" />
+          <TypeParameter Name="TThirdSource" />
+          <TypeParameter Name="TFourthSource" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TFirstSource&gt;" RefType="this" />
+          <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;TSecondSource&gt;" />
+          <Parameter Name="source3" Type="System.Collections.Generic.IEnumerable&lt;TThirdSource&gt;" />
+          <Parameter Name="source4" Type="System.Collections.Generic.IEnumerable&lt;TFourthSource&gt;" />
+          <Parameter Name="selector" Type="System.Func&lt;TFirstSource,TSecondSource,TThirdSource,TFourthSource,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TFirstSource">To be added.</typeparam>
+          <typeparam name="TSecondSource">To be added.</typeparam>
+          <typeparam name="TThirdSource">To be added.</typeparam>
+          <typeparam name="TFourthSource">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="source2">To be added.</param>
+          <param name="source3">To be added.</param>
+          <param name="source4">To be added.</param>
+          <param name="selector">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SelectFromEach``5(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2},System.Collections.Generic.IEnumerable{``3},System.Func{``0,``1,``2,``3,``4})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="SelectReverseAggregated&lt;TSource,TAccumulate,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;TAccumulate,System.Collections.Generic.List&lt;TResult&gt;&gt; SelectReverseAggregated&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,Mono.Rocks.Tuple&lt;TAccumulate,TResult&gt;&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple&lt;TAccumulate,System.Collections.Generic.List&lt;TResult&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TAccumulate" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="seed" Type="TAccumulate" />
+          <Parameter Name="func" Type="System.Func&lt;TAccumulate,TSource,Mono.Rocks.Tuple&lt;TAccumulate,TResult&gt;&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TAccumulate">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="seed">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SelectReverseAggregated``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,Mono.Rocks.Tuple{``1,``2}})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="SkipPrefix&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; SkipPrefix&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; prefix);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="prefix" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="prefix">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SkipPrefix``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Sort&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Sort&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Sort``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Sort&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Sort&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IComparer&lt;TSource&gt; comparer);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="comparer" Type="System.Collections.Generic.IComparer&lt;TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="comparer">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Sort``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IComparer{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Sort&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Sort&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Comparison&lt;TSource&gt; comparison);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="comparison" Type="System.Comparison&lt;TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="comparison">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Sort``1(System.Collections.Generic.IEnumerable{``0},System.Comparison{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="SortNatural">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; SortNatural (this System.Collections.Generic.IEnumerable&lt;string&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.String&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SortNatural(System.Collections.Generic.IEnumerable{System.String})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Span&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Span&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="func" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Span``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="SplitAt&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; SplitAt&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, int firstLength);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="firstLength" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="firstLength">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SplitAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="ToList&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.List&lt;System.Collections.Generic.List&lt;TSource&gt;&gt; ToList&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.List&lt;System.Collections.Generic.List&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ToList``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="ToTuple&lt;T&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple ToTuple&lt;T&gt; (this System.Collections.Generic.IEnumerable&lt;T&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ToTuple``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="TrailingSegments&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; TrailingSegments&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.TrailingSegments``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Transpose&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Transpose&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Transpose``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Unzip&lt;T1,T2&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;&gt; Unzip&lt;T1,T2&gt; (this System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Unzip``2(System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{``0,``1}})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Unzip&lt;T1,T2,T3&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;,System.Collections.Generic.IEnumerable&lt;T3&gt;&gt; Unzip&lt;T1,T2,T3&gt; (this System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;,System.Collections.Generic.IEnumerable&lt;T3&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Unzip``3(System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{``0,``1,``2}})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Unzip&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;,System.Collections.Generic.IEnumerable&lt;T3&gt;,System.Collections.Generic.IEnumerable&lt;T4&gt;&gt; Unzip&lt;T1,T2,T3,T4&gt; (this System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;T1&gt;,System.Collections.Generic.IEnumerable&lt;T2&gt;,System.Collections.Generic.IEnumerable&lt;T3&gt;,System.Collections.Generic.IEnumerable&lt;T4&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Unzip``4(System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{``0,``1,``2,``3}})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Zip&lt;T1,T2&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt; Zip&lt;T1,T2&gt; (this System.Collections.Generic.IEnumerable&lt;T1&gt; self, System.Collections.Generic.IEnumerable&lt;T2&gt; source2);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T1&gt;" RefType="this" />
+          <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;T2&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="source2">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Zip&lt;T1,T2,T3&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt; Zip&lt;T1,T2,T3&gt; (this System.Collections.Generic.IEnumerable&lt;T1&gt; self, System.Collections.Generic.IEnumerable&lt;T2&gt; source2, System.Collections.Generic.IEnumerable&lt;T3&gt; source3);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T1&gt;" RefType="this" />
+          <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;T2&gt;" />
+          <Parameter Name="source3" Type="System.Collections.Generic.IEnumerable&lt;T3&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="source2">To be added.</param>
+          <param name="source3">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Zip``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Zip&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt; Zip&lt;T1,T2,T3,T4&gt; (this System.Collections.Generic.IEnumerable&lt;T1&gt; self, System.Collections.Generic.IEnumerable&lt;T2&gt; source2, System.Collections.Generic.IEnumerable&lt;T3&gt; source3, System.Collections.Generic.IEnumerable&lt;T4&gt; source4);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T1&gt;" RefType="this" />
+          <Parameter Name="source2" Type="System.Collections.Generic.IEnumerable&lt;T2&gt;" />
+          <Parameter Name="source3" Type="System.Collections.Generic.IEnumerable&lt;T3&gt;" />
+          <Parameter Name="source4" Type="System.Collections.Generic.IEnumerable&lt;T4&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="source2">To be added.</param>
+          <param name="source3">To be added.</param>
+          <param name="source4">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Zip``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2},System.Collections.Generic.IEnumerable{``3})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Int32" />
+      </Targets>
+      <Member MemberName="DownTo">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; DownTo (this int self, int limit);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.Int32" RefType="this" />
+          <Parameter Name="limit" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="limit">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.DownTo(System.Int32,System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Int32" />
+      </Targets>
+      <Member MemberName="Step">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; Step (this int self, int limit, int step);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.Int32" RefType="this" />
+          <Parameter Name="limit" Type="System.Int32" />
+          <Parameter Name="step" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="limit">To be added.</param>
+          <param name="step">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.Step(System.Int32,System.Int32,System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Int32" />
+      </Targets>
+      <Member MemberName="Times">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; Times (this int self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.Int32" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.Times(System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Int32" />
+      </Targets>
+      <Member MemberName="UpTo">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;int&gt; UpTo (this int self, int limit);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.Int32" RefType="this" />
+          <Parameter Name="limit" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="limit">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.UpTo(System.Int32,System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.KeyValuePair`2" />
+      </Targets>
+      <Member MemberName="Aggregate&lt;TKey,TValue,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static TResult Aggregate&lt;TKey,TValue,TResult&gt; (this System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt; self, Func&lt;TKey,TValue,TResult&gt; func);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>TResult</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TKey" />
+          <TypeParameter Name="TValue" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;" RefType="this" />
+          <Parameter Name="func" Type="System.Func&lt;TKey,TValue,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TKey">To be added.</typeparam>
+          <typeparam name="TValue">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.KeyValuePairRocks" Member="M:Mono.Rocks.KeyValuePairRocks.Aggregate``3(System.Collections.Generic.KeyValuePair{``0,``1},System.Func{``0,``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.KeyValuePair`2" />
+      </Targets>
+      <Member MemberName="ToTuple&lt;TKey,TValue&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;TKey,TValue&gt; ToTuple&lt;TKey,TValue&gt; (this System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Tuple&lt;TKey,TValue&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TKey" />
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TKey">To be added.</typeparam>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.KeyValuePairRocks" Member="M:Mono.Rocks.KeyValuePairRocks.ToTuple``2(System.Collections.Generic.KeyValuePair{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="Lines">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Lines (this string self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Lines(System.String)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="Slice">
+        <MemberSignature Language="C#" Value="public static string Slice (this string self, int start, int end);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.String</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+          <Parameter Name="start" Type="System.Int32" />
+          <Parameter Name="end" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="start">To be added.</param>
+          <param name="end">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Slice(System.String,System.Int32,System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="ToEnum&lt;TEnum&gt;">
+        <MemberSignature Language="C#" Value="public static TEnum ToEnum&lt;TEnum&gt; (this string self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>TEnum</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TEnum" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TEnum">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.ToEnum``1(System.String)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="Words">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this string self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Words(System.String)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.TextReader" />
+      </Targets>
+      <Member MemberName="Lines">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Lines (this System.IO.TextReader self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Lines(System.IO.TextReader)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.TextReader" />
+      </Targets>
+      <Member MemberName="Words">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:Mono.Rocks.Tuple`2" />
+      </Targets>
+      <Member MemberName="ToKeyValuePair&lt;TKey,TValue&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt; ToKeyValuePair&lt;TKey,TValue&gt; (this Mono.Rocks.Tuple&lt;TKey,TValue&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TKey" />
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="Mono.Rocks.Tuple&lt;TKey,TValue&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TKey">To be added.</typeparam>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.TupleRocks" Member="M:Mono.Rocks.TupleRocks.ToKeyValuePair``2(Mono.Rocks.Tuple{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+  </ExtensionMethods>
+</Overview>

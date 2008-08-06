@@ -1,0 +1,70 @@
+<Type Name="TextReaderRocks" FullName="Mono.Rocks.TextReaderRocks">
+  <TypeSignature Language="C#" Value="public static class TextReaderRocks" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Rocks</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Lines">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Lines (this System.IO.TextReader self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Words">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
