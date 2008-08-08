@@ -1,3 +1,7 @@
+2008-08-07  Jonathan Pryor  <jpryor@novell.com>
+
+	* StreamTests.cs: Added; unit tests for Mono.Rocks.StreamRocks.AsEnumerable.
+
 2008-08-04  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerableTest.cs: Add tests for .RemoveFirstOccurrence(),

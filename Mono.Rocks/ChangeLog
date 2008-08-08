@@ -1,3 +1,7 @@
+2008-08-07  Jonathan Pryor  <jpryor@novell.com>
+
+	* Stream.cs: Added; .AsEnumerable() extension method for System.IO.Stream.
+
 2008-08-05  Jonathan Pryor  <jpryor@novell.com>
 
 	* Tuple.cs: Rename TupleExtensions to TupleRocks, for consistency with other
