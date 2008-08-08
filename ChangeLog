@@ -1,5 +1,10 @@
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/Mono.Rocks/StreamRocks.xml: Added; stubs for
+	  Mono.Rocks.StreamRocks.
+
+2008-08-07  Jonathan Pryor  <jpryor@novell.com>
+
 	* Mono.Rocks.dll.sources: Add Mono.Rocks/Stream.cs to the build.
 	* Mono.Rocks.Tests.dll.sources: Add Tests/Mono.Rocks.Tests/StreamTest.cs 
 	  to the build.
