@@ -1,3 +1,11 @@
+2008-08-08  Jonathan Pryor  <jpryor@novell.com>
+
+	* Tests/Mono.Rocks.Tests.csproj: Add additional tests.
+	* Mono.Rocks.sln: Add doc/doc.mdproj to the build.
+	* doc/doc.mdproj: Added; project file to build documentation.
+	* doc/ndesk-options-docs.source: Renamed to doc/mono-rocks-docs.source.
+	* lib/mono-rocks, lib/monodoc/sources: Added.
+
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
 
 	* Mono.Rocks.csproj: Add Mono.Rocks/Stream.cs to the build.

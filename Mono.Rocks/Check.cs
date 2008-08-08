@@ -1,4 +1,4 @@
-﻿//
+//
 // Check.cs
 //
 // Author:
