@@ -1,11 +1,15 @@
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
 
-	* StreamTests.cs: Add test for new functionality.  (Disabled, due to
+	* StreamTest.cs: bnc#415644 has been fixed; re-enable the test.
+
+2008-08-07  Jonathan Pryor  <jpryor@novell.com>
+
+	* StreamTest.cs: Add test for new functionality.  (Disabled, due to
 	  bnc#415644).
 
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
 
-	* StreamTests.cs: Added; unit tests for Mono.Rocks.StreamRocks.AsEnumerable.
+	* StreamTest.cs: Added; unit tests for Mono.Rocks.StreamRocks.AsEnumerable.
 
 2008-08-04  Jonathan Pryor  <jpryor@novell.com>
 

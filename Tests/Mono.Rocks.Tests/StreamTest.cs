@@ -56,13 +56,11 @@ namespace Mono.Rocks.Tests {
 					Encoding.UTF8.GetBytes ("Hello, World!"));
 			Assert.AreEqual ("Hello, World!",
 					ms.AsEnumerable ().Select (b => (char) b).Implode ());
-#if BNC_415644
 			ms.Position = 0;
 			foreach (byte b in ms.AsEnumerable ().Take (2)) {
 				byte b2 = b;
 			}
 			Assert.AreEqual (2, ms.Position);
-#endif
 		}
 	}
 }
