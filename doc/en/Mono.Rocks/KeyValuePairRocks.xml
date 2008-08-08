@@ -18,7 +18,8 @@
       Extension methods for 
       <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
     </summary>
-    <remarks></remarks>
+    <remarks>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName="Aggregate&lt;TKey,TValue,TResult&gt;">
@@ -49,20 +50,20 @@
         <typeparam name="TValue">Type type of the value.</typeparam>
         <typeparam name="TResult">The type to accumulator value.</typeparam>
         <param name="self">
-          A <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}"/>.
+          A <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
           instance to convert into a <typeparamref name="TResult" />.
         </param>
         <param name="func">
           A <see cref="T:System.Func{TKey,TValue,TResult}" /> which is invoked
           to convert the 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}"/>
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />
           into a <typeparamref name="TResult" />.
         </param>
         <summary>
           Applies an accumulator to a 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}"/>,
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />,
           converting the 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}"/>
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />
           into a different value.
         </summary>
         <returns>
@@ -73,7 +74,7 @@
           <para>
             This is useful primarily to avoid an unseemly temporary (or to
             more easily use 
-            <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}"/>s
+            <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />s
             within expressions).
           </para>
           <code lang="C#">
@@ -84,8 +85,8 @@ var dict = new Dictionary&lt;int, int&gt; {
 };
 string entries = dict
     .Select( 
-        e => /* e is a KeyValuePair&lt;int,int&gt; */ 
-            e.Aggregate( (k, v) => string.Format("({0},{1})", k, v) ) )
+        e =&gt; /* e is a KeyValuePair&lt;int,int&gt; */ 
+            e.Aggregate( (k, v) =&gt; string.Format("({0},{1})", k, v) ) )
     .Implode(",");
 // entries contains "(1,1)|(2,4)|(3,9)"
           </code>
@@ -118,28 +119,28 @@ string entries = dict
         <typeparam name="TValue">The type of the value.</typeparam>
         <param name="self">
           A 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}"/>.
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
           to convert into a
           <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" />.
         </param>
         <summary>
           Converts a 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}"/>
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />
           into a
           <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" />.
         </summary>
         <returns>
-          A <see cref="T:Mono.Rocks.Tuple{TKey,TValue}"/> class.
+          A <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> class.
         </returns>
         <remarks>
           <para>
-            The value of the returned <see cref="P:Mono.Rocks.Tuple`2._1"/>
+            The value of the returned <see cref="P:Mono.Rocks.Tuple`2._1" />
             property is copied from 
             <see cref="P:System.Collections.Generic.KeyValuePair`2.Key" />
             and the value of the returned 
             <see cref="P:Mono.Rocks.Tuple`2._2" />
             is copied from 
-            <see cref="P:System.Collections.Generic.KeyValuePair`2.Value"/>.
+            <see cref="P:System.Collections.Generic.KeyValuePair`2.Value" />.
           </para>
           <code lang="C#">
 KeyValuePair&lt;string, int&gt; kvp   = new KeyValuePair&lt;string, int&gt; ("s", 1);

@@ -18,7 +18,8 @@
       Extension methods for 
       <see cref="T:System.Reflection.ICustomAttributeProvider" />.
     </summary>
-    <remarks></remarks>
+    <remarks>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName="GetCustomAttribute&lt;TAttribute&gt;">

@@ -15,7 +15,8 @@
   </Attributes>
   <Docs>
     <summary>Extension methods for <see cref="T:System.Int32" />.</summary>
-    <remarks></remarks>
+    <remarks>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName="DownTo">

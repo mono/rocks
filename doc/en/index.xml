@@ -51,6 +51,7 @@
       <Type Name="KeyValuePairRocks" Kind="Class" />
       <Type Name="NaturalStringComparer" Kind="Class" />
       <Type Name="Sequence" Kind="Class" />
+      <Type Name="StreamRocks" Kind="Class" />
       <Type Name="StringRocks" Kind="Class" />
       <Type Name="TextReaderRocks" Kind="Class" />
       <Type Name="Tuple" Kind="Class" />
@@ -84,9 +85,16 @@
           <Parameter Name="self" Type="System.Reflection.ICustomAttributeProvider" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TAttribute">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TAttribute">The type of the custom attribute to return.</typeparam>
+          <param name="self">
+          A <see cref="T:System.Reflection.ICustomAttributeProvider" />
+          from which to retrieve a custom attribute of type 
+          <typeparamref name="TAttribute" />.
+        </param>
+          <summary>
+          Retrieves a custom attribute of type 
+          <typeparamref name="TAttribute" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.ICustomAttributeProviderRocks" Member="M:Mono.Rocks.ICustomAttributeProviderRocks.GetCustomAttribute``1(System.Reflection.ICustomAttributeProvider)" />
       </Member>
@@ -112,9 +120,16 @@
           <Parameter Name="self" Type="System.Reflection.ICustomAttributeProvider" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TAttribute">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TAttribute">The type of the custom attribute to return.</typeparam>
+          <param name="self">
+          A <see cref="T:System.Reflection.ICustomAttributeProvider" />
+          from which to retrieve custom attributes of type 
+          <typeparamref name="TAttribute" />.
+        </param>
+          <summary>
+          Retrieves all custom attributes of type 
+          <typeparamref name="TAttribute" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.ICustomAttributeProviderRocks" Member="M:Mono.Rocks.ICustomAttributeProviderRocks.GetCustomAttributes``1(System.Reflection.ICustomAttributeProvider)" />
       </Member>
@@ -2195,12 +2210,26 @@
           <Parameter Name="func" Type="System.Func&lt;TKey,TValue,TResult&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="TKey">To be added.</typeparam>
-          <typeparam name="TValue">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="func">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TKey">The type of the key.</typeparam>
+          <typeparam name="TValue">Type type of the value.</typeparam>
+          <typeparam name="TResult">The type to accumulator value.</typeparam>
+          <param name="self">
+          A <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
+          instance to convert into a <typeparamref name="TResult" />.
+        </param>
+          <param name="func">
+          A <see cref="T:System.Func{TKey,TValue,TResult}" /> which is invoked
+          to convert the 
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />
+          into a <typeparamref name="TResult" />.
+        </param>
+          <summary>
+          Applies an accumulator to a 
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />,
+          converting the 
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />
+          into a different value.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.KeyValuePairRocks" Member="M:Mono.Rocks.KeyValuePairRocks.Aggregate``3(System.Collections.Generic.KeyValuePair{``0,``1},System.Func{``0,``1,``2})" />
       </Member>
@@ -2223,12 +2252,42 @@
           <Parameter Name="self" Type="System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TKey">To be added.</typeparam>
-          <typeparam name="TValue">To be added.</typeparam>
+          <typeparam name="TKey">The type of the key.</typeparam>
+          <typeparam name="TValue">The type of the value.</typeparam>
+          <param name="self">
+          A 
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
+          to convert into a
+          <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" />.
+        </param>
+          <summary>
+          Converts a 
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />
+          into a
+          <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" />.
+        </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.KeyValuePairRocks" Member="M:Mono.Rocks.KeyValuePairRocks.ToTuple``2(System.Collections.Generic.KeyValuePair{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="AsEnumerable">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;byte&gt; AsEnumerable (this System.IO.Stream self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Byte&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+        </Parameters>
+        <Docs>
           <param name="self">To be added.</param>
           <summary>To be added.</summary>
         </Docs>
-        <Link Type="Mono.Rocks.KeyValuePairRocks" Member="M:Mono.Rocks.KeyValuePairRocks.ToTuple``2(System.Collections.Generic.KeyValuePair{``0,``1})" />
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.AsEnumerable(System.IO.Stream)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -2377,10 +2436,16 @@
           <Parameter Name="self" Type="Mono.Rocks.Tuple&lt;TKey,TValue&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TKey">To be added.</typeparam>
-          <typeparam name="TValue">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TKey">The type of the key.</typeparam>
+          <typeparam name="TValue">The type of the value.</typeparam>
+          <param name="self">
+          A <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> to convert into a 
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
+        </param>
+          <summary>
+          Converts a <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> into a 
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.TupleRocks" Member="M:Mono.Rocks.TupleRocks.ToKeyValuePair``2(Mono.Rocks.Tuple{``0,``1})" />
       </Member>

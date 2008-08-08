@@ -1,5 +1,9 @@
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/**: Flush.
+
+2008-08-07  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/Mono.Rocks/StreamRocks.xml: Added; stubs for
 	  Mono.Rocks.StreamRocks.
 

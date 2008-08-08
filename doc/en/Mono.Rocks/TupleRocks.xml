@@ -18,7 +18,8 @@
       Extension methods for
       <see cref="T:Mono.Rocks.Tuple" /> and related types.
     </summary>
-    <remarks></remarks>
+    <remarks>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName="ToKeyValuePair&lt;TKey,TValue&gt;">
@@ -47,24 +48,24 @@
         <typeparam name="TValue">The type of the value.</typeparam>
         <param name="self">
           A <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> to convert into a 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}"/>.
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
         </param>
         <summary>
           Converts a <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> into a 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}"/>.
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
         </summary>
         <returns>
           A 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}"/>
+          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />
           structure.
         </returns>
         <remarks>
           <para>
             The value of the returned 
-            <see cref="P:System.Collections.Generic.KeyValuePair`2.Key"/>
+            <see cref="P:System.Collections.Generic.KeyValuePair`2.Key" />
             is copied from <see cref="P:Mono.Rocks.Tuple`2._1" />, 
             and the value of the returned 
-            <see cref="P:System.Collections.Generic.KeyValuePair`2.Value"/>
+            <see cref="P:System.Collections.Generic.KeyValuePair`2.Value" />
             is copied from <see cref="P:Mono.Rocks.Tuple`2._2" />.
           </para>
           <code lang="C#">
@@ -72,8 +73,7 @@ Tuple&lt;string, int&gt;        tuple = Tuple.Create ("s", 1);
 KeyValuePair&lt;string, int&gt; kvp   = tuple.ToKeyValuePair ();
     // kvp.Key == "s", kvp.Value == 1</code>
         </remarks>
-        <altmember
-        cref="M:Mono.Rocks.KeyValuePairRocks.ToTuple``2(System.Collections.Generic.KeyValuePair{``0,``1})" />
+        <altmember cref="M:Mono.Rocks.KeyValuePairRocks.ToTuple``2(System.Collections.Generic.KeyValuePair{``0,``1})" />
       </Docs>
     </Member>
   </Members>
