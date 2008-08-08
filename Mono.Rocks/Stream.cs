@@ -43,7 +43,7 @@ namespace Mono.Rocks {
 
 		private static IEnumerable<byte> CreateAsEnumerableIterator (Stream self)
 		{
-			byte[] buffer = new byte [1024];
+			byte[] buffer = new byte [System.Math.Min (self.Length, 1024)];
 			int read;
 			while ((read = self.Read (buffer, 0, buffer.Length)) > 0) {
 				for (int i = 0; i < read; ++i)
