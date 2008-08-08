@@ -1,5 +1,11 @@
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
 
+	* Stream.cs: use Stream.ReadByte() instead of Stream.Read() so that things
+	  behave sanely when calling .Skip() or .Take() (etc.) methods -- we don't
+	  want to consume too much of the stream.
+
+2008-08-07  Jonathan Pryor  <jpryor@novell.com>
+
 	* Stream.cs: Don't allocate extra memory for the stream buffer.
 
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
