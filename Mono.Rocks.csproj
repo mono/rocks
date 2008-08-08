@@ -37,15 +37,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mono.Rocks\AssemblyInfo.cs" />
     <Compile Include="Mono.Rocks\Check.cs" />
     <Compile Include="Mono.Rocks\ICustomAttributeProvider.cs" />
     <Compile Include="Mono.Rocks\IEnumerable.cs" />
     <Compile Include="Mono.Rocks\Int32.cs" />
-    <Compile Include="Mono.Rocks\String.cs" />
-    <Compile Include="Mono.Rocks\AssemblyInfo.cs" />
     <Compile Include="Mono.Rocks\KeyValuePair.cs" />
     <Compile Include="Mono.Rocks\NaturalStringComparer.cs" />
     <Compile Include="Mono.Rocks\Sequence.cs" />
+    <Compile Include="Mono.Rocks\Stream.cs" />
+    <Compile Include="Mono.Rocks\String.cs" />
     <Compile Include="Mono.Rocks\TextReader.cs" />
     <Compile Include="Mono.Rocks\Tuple.cs" />
     <Compile Include="Mono.Rocks\Tuples.cs" />

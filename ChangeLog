@@ -1,5 +1,9 @@
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
 
+	* Mono.Rocks.csproj: Add Mono.Rocks/Stream.cs to the build.
+
+2008-08-07  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/**: Flush.
 
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
