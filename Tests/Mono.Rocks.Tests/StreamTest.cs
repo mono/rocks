@@ -138,7 +138,7 @@ namespace Mono.Rocks.Tests {
 		{
 			Stream s = null;
 			string value;
-			s.Read (out value, 15, Encoding.UTF8);
+			s.Read (15, Encoding.UTF8, out value);
 		}
 
 		[Test]
@@ -194,7 +194,7 @@ namespace Mono.Rocks.Tests {
 				.Read (out d)
 				.Read (out f)
 				.Read (out og)
-				.Read (out str, 5, Encoding.UTF8);
+				.Read (5, Encoding.UTF8, out str);
 
 			Assert.AreEqual ((ushort) 2124, us);
 			Assert.AreEqual (150291U, ui);

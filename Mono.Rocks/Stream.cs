@@ -144,11 +144,11 @@ namespace Mono.Rocks {
 			return self;
 		}
 
-		public static Stream Read (this Stream self, out string value, int length, Encoding encoding)
+		public static Stream Read (this Stream self, int size, Encoding encoding, out string value)
 		{
 			AssertRead (self);
 
-			value = encoding.GetString (Take (self, length));
+			value = encoding.GetString (Take (self, size));
 
 			return self;
 		}

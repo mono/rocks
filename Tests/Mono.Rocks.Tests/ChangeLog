@@ -1,5 +1,10 @@
 2008-08-08  Jonathan Pryor  <jpryor@novell.com>
 
+	* StreamTest.cs: Change Stream.Read(out string, int, Encoding) to
+	  Stream.Read(int, Encoding, out string) to conform to FxDG.
+
+2008-08-08  Jonathan Pryor  <jpryor@novell.com>
+
 	* StreamTest.cs: Add tests for Stream.Write(byte[]) and 
 	  Stream.Read(out string, int, Encoding).
 

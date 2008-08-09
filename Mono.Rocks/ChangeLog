@@ -1,5 +1,10 @@
 2008-08-08  Jonathan Pryor  <jpryor@novell.com>
 
+	* Stream.cs: Change Stream.Read(out string, int, Encoding) to
+	  Stream.Read(int, Encoding, out string) to conform to FxDG.
+
+2008-08-08  Jonathan Pryor  <jpryor@novell.com>
+
 	* Stream.cs: Add Stream.Write(byte[]) extension method.
 
 2008-08-08  Jonathan Pryor  <jpryor@novell.com>
