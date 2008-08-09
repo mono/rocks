@@ -1,8 +1,9 @@
 //
 // StreamTest.cs
 //
-// Author:
+// Authors:
 //   Jonathan Pryor  <jpryor@novell.com>
+//   Bojan Rajkovic  <bojanr@brandeis.edu>
 //
 // Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
@@ -40,6 +41,170 @@ namespace Mono.Rocks.Tests {
 
 	[TestFixture]
 	public class StreamTest : BaseRocksFixture {
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadShort_SelfNull ()
+		{
+			Stream s = null;
+			short value;
+			s.Read (out value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadInt_SelfNull ()
+		{
+			Stream s = null;
+			int value;
+			s.Read (out value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadLong_SelfNull ()
+		{
+			Stream s = null;
+			long value;
+			s.Read (out value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadUShort_SelfNull ()
+		{
+			Stream s = null;
+			ushort value;
+			s.Read (out value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadUInt_SelfNull ()
+		{
+			Stream s = null;
+			uint value;
+			s.Read (out value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadULong_SelfNull ()
+		{
+			Stream s = null;
+			ulong value;
+			s.Read (out value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadBool_SelfNull ()
+		{
+			Stream s = null;
+			bool value;
+			s.Read (out value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadChar_SelfNull ()
+		{
+			Stream s = null;
+			char value;
+			s.Read (out value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadDouble_SelfNull ()
+		{
+			Stream s = null;
+			double value;
+			s.Read (out value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadFloat_SelfNull ()
+		{
+			Stream s = null;
+			float value;
+			s.Read (out value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadString_SelfNull ()
+		{
+			Stream s = null;
+			string value;
+			s.Read (out value, 15, Encoding.UTF8);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void ReadTValue_SelfNull ()
+		{
+			Stream s = null;
+			ConsoleKeyInfo cki;
+			s.Read (out cki);
+		}
+
+		[Test]
+		public void Read ()
+		{
+			MemoryStream ms = new MemoryStream();	
+
+			Guid guid = Guid.NewGuid ();
+			ms.Write (BitConverter.GetBytes ((ushort)2124), 0, 2);
+			ms.Write (BitConverter.GetBytes ((uint)150291), 0, 4);
+			ms.Write (BitConverter.GetBytes ((ulong)4496977496), 0, 8);
+			ms.Write (BitConverter.GetBytes ((short)-5215), 0, 2);
+			ms.Write (BitConverter.GetBytes (-125191), 0, 4);
+			ms.Write (BitConverter.GetBytes (-4514967426), 0, 8);
+			ms.Write (BitConverter.GetBytes ('c'), 0, 2);
+			ms.Write (BitConverter.GetBytes (true), 0, 1);
+			ms.Write (BitConverter.GetBytes (0.712d), 0, 8);
+			ms.Write (BitConverter.GetBytes (1.23f), 0, 4);
+			ms.Write (guid);
+
+			ushort us;
+			uint ui;
+			ulong ul;
+			short s;
+			int i;
+			long l;
+			char c;
+			bool b;
+			double d;
+			float f;
+			Guid og;
+
+			ms.Position = 0;
+			ms.Read(out us)
+				.Read(out ui)
+				.Read(out ul)
+				.Read(out s)
+				.Read(out i)
+				.Read(out l)
+				.Read(out c)
+				.Read(out b)
+				.Read(out d)
+				.Read(out f)
+				.Read(out og);
+
+			Assert.AreEqual ((ushort) 2124, us);
+			Assert.AreEqual (150291U, ui);
+			Assert.AreEqual (4496977496UL, ul);
+			Assert.AreEqual ((short)-5215, s);
+			Assert.AreEqual (-125191, i);
+			Assert.AreEqual (-4514967426L, l);
+			Assert.AreEqual ('c', c);
+			Assert.AreEqual (true, b);
+			Assert.AreEqual (0.712d, d);
+			Assert.AreEqual (1.23f, f);
+			Assert.AreEqual (guid, og);
+		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Write_Boolean_SelfNull ()

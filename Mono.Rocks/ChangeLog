@@ -1,6 +1,11 @@
 2008-08-08  Jonathan Pryor  <jpryor@novell.com>
 
-	* Mono.Rocks/Stream.cs: Remove the Stream.AsEnumerable() extension
+	* Stream.cs: Add .Read() extension methods to extract a value from a stream.
+	  Thanks to Bojan Rajkovic for the patch.
+
+2008-08-08  Jonathan Pryor  <jpryor@novell.com>
+
+	* Stream.cs: Remove the Stream.AsEnumerable() extension
 	  method, as the semantics were incorrect.  Consider:
 	    IEnumerable<byte> b = stream.AsEnumerable(); 
 	    b.Skip(2).Apply(); 

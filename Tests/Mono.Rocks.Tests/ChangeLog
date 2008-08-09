@@ -1,7 +1,12 @@
 2008-08-08  Jonathan Pryor  <jpryor@novell.com>
 
-	* Tests/Mono.Rocks.Tests/StreamTest.cs: Remove tests for
-	  Stream.AsEnumerable(), and add tests for Stream.Write().
+	* StreamTest.cs: Add tests for Stream.Read() extension methods.
+	  Thanks to Bojan Rajkovic for the patch.
+
+2008-08-08  Jonathan Pryor  <jpryor@novell.com>
+
+	* StreamTest.cs: Remove tests for Stream.AsEnumerable(), and add tests 
+	  for Stream.Write().
 
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
 
