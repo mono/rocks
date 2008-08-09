@@ -1,3 +1,24 @@
+2008-08-08  Jonathan Pryor  <jpryor@novell.com>
+
+	* Mono.Rocks/Stream.cs: Remove the Stream.AsEnumerable() extension
+	  method, as the semantics were incorrect.  Consider:
+	    IEnumerable<byte> b = stream.AsEnumerable(); 
+	    b.Skip(2).Apply(); 
+	    b.Skip(2).Apply();
+	  With Stream.AsEnumerable(), it would increase stream.Position by 4,
+	  thus the `b.Skip()` calls are remembered.  If you use _any_ other
+	  IEnumerable<T> type, the first .Skip() has no effect on the second
+	  .Skip().
+
+	  I couldn't think of a decent workaround, thus while it's "cute" the
+	  semantics of a Stream-backed IEnumerable<byte> don't match the
+	  semantics of other IEnumerable<byte>s, so I removed it.
+
+	  As a replacement, we'll add Stream.Read() and Stream.Write()
+	  extension methods, which will permit "cute" chaining (in the manner
+	  of C++ operator<< and operator>>), e.g.
+	  stream.Write(1).Write('a').Write(3.14);
+
 2008-08-07  Jonathan Pryor  <jpryor@novell.com>
 
 	* Stream.cs: use Stream.ReadByte() instead of Stream.Read() so that things
