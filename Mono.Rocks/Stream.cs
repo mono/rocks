@@ -27,27 +27,110 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Mono.Rocks {
 
 	public static class StreamRocks {
 
-		public static IEnumerable<byte> AsEnumerable (this Stream self)
+		public static Stream Write (this Stream self, bool value)
 		{
 			Check.Self (self);
 
-			return CreateAsEnumerableIterator (self);
+			return WriteBytes (self, BitConverter.GetBytes (value));
 		}
 
-		private static IEnumerable<byte> CreateAsEnumerableIterator (Stream self)
+		private static Stream WriteBytes (Stream self, byte[] value)
 		{
-			int b;
-			while ((b = self.ReadByte ()) >= 0) {
-				yield return (byte) b;
+			self.Write (value, 0, value.Length);
+			return self;
+		}
+
+		public static Stream Write (this Stream self, byte value)
+		{
+			Check.Self (self);
+
+			return WriteBytes (self, new byte []{value});
+		}
+
+		public static Stream Write (this Stream self, char value)
+		{
+			Check.Self (self);
+
+			return WriteBytes (self, BitConverter.GetBytes (value));
+		}
+
+		public static Stream Write (this Stream self, double value)
+		{
+			Check.Self (self);
+
+			return WriteBytes (self, BitConverter.GetBytes (value));
+		}
+
+		public static Stream Write (this Stream self, short value)
+		{
+			Check.Self (self);
+
+			return WriteBytes (self, BitConverter.GetBytes (value));
+		}
+
+		public static Stream Write (this Stream self, int value)
+		{
+			Check.Self (self);
+
+			return WriteBytes (self, BitConverter.GetBytes (value));
+		}
+
+		public static Stream Write (this Stream self, long value)
+		{
+			Check.Self (self);
+
+			return WriteBytes (self, BitConverter.GetBytes (value));
+		}
+
+		public static Stream Write (this Stream self, float value)
+		{
+			Check.Self (self);
+
+			return WriteBytes (self, BitConverter.GetBytes (value));
+		}
+
+		public static Stream Write (this Stream self, ushort value)
+		{
+			Check.Self (self);
+
+			return WriteBytes (self, BitConverter.GetBytes (value));
+		}
+
+		public static Stream Write (this Stream self, uint value)
+		{
+			Check.Self (self);
+
+			return WriteBytes (self, BitConverter.GetBytes (value));
+		}
+
+		public static Stream Write (this Stream self, ulong value)
+		{
+			Check.Self (self);
+
+			return WriteBytes (self, BitConverter.GetBytes (value));
+		}
+
+		public static Stream Write<TValue> (this Stream self, TValue value)
+		{
+			Check.Self (self);
+
+			byte[] data = new byte [Marshal.SizeOf (typeof (TValue))];
+
+			GCHandle handle = GCHandle.Alloc(data, GCHandleType.Pinned);
+			try {
+				Marshal.StructureToPtr (value, handle.AddrOfPinnedObject(), false);
+			} finally {
+				handle.Free();
 			}
+
+			return WriteBytes (self, data);
 		}
 	}
 }
-
