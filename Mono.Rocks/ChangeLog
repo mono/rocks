@@ -1,5 +1,9 @@
 2008-08-08  Jonathan Pryor  <jpryor@novell.com>
 
+	* Stream.cs: Assert Steam.CanRead/Stream.CanWrite, as appropriate.
+
+2008-08-08  Jonathan Pryor  <jpryor@novell.com>
+
 	* Stream.cs: Add .Read() extension methods to extract a value from a stream.
 	  Thanks to Bojan Rajkovic for the patch.
 

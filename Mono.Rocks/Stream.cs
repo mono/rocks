@@ -47,9 +47,16 @@ namespace Mono.Rocks {
 			return buff;
 		}
 
-		public static Stream Read (this Stream self, out short value)
+		private static void AssertRead (Stream self)
 		{
 			Check.Self (self);
+			if (!self.CanRead)
+				throw new ArgumentException ("Cannot read from stream");
+		}
+
+		public static Stream Read (this Stream self, out short value)
+		{
+			AssertRead (self);
 
 			value = BitConverter.ToInt16 (Take (self, 2), 0);
 
@@ -58,7 +65,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read (this Stream self, out int value)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			value = BitConverter.ToInt32 (Take (self, 4), 0);
 
@@ -67,7 +74,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read (this Stream self, out long value)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			value = BitConverter.ToInt64 (Take (self, 8), 0);
 
@@ -76,7 +83,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read (this Stream self, out bool value)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			value = BitConverter.ToBoolean (Take (self, 1), 0);
 
@@ -85,7 +92,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read (this Stream self, out double value)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			value = BitConverter.ToDouble (Take (self, 8), 0);
 
@@ -94,7 +101,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read (this Stream self, out char value)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			value = BitConverter.ToChar (Take (self, 2), 0);
 
@@ -103,7 +110,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read (this Stream self, out float value)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			value = BitConverter.ToSingle (Take (self, 4), 0);
 
@@ -112,7 +119,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read (this Stream self, out ushort value)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			value = BitConverter.ToUInt16(Take (self, 2), 0);
 
@@ -121,7 +128,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read (this Stream self, out uint value)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			value = BitConverter.ToUInt32 (Take (self, 4), 0);
 
@@ -130,7 +137,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read (this Stream self, out ulong value)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			value = BitConverter.ToUInt64(Take (self, 8), 0);
 
@@ -139,7 +146,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read (this Stream self, out string value, int length, Encoding encoding)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			value = encoding.GetString (Take (self, length));
 
@@ -148,7 +155,7 @@ namespace Mono.Rocks {
 
 		public static Stream Read<TValue> (this Stream self, out TValue value)
 		{
-			Check.Self (self);
+			AssertRead (self);
 
 			byte[] buff = Take (self, Marshal.SizeOf (typeof (TValue)));
 			GCHandle handle = GCHandle.Alloc(buff, GCHandleType.Pinned);
@@ -164,9 +171,16 @@ namespace Mono.Rocks {
 
 		public static Stream Write (this Stream self, bool value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, BitConverter.GetBytes (value));
+		}
+
+		private static void AssertWrite (Stream self)
+		{
+			Check.Self (self);
+			if (!self.CanWrite)
+				throw new ArgumentException ("Cannot write to stream");
 		}
 
 		private static Stream WriteBytes (Stream self, byte[] value)
@@ -177,77 +191,77 @@ namespace Mono.Rocks {
 
 		public static Stream Write (this Stream self, byte value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, new byte []{value});
 		}
 
 		public static Stream Write (this Stream self, char value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, double value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, short value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, int value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, long value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, float value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, ushort value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, uint value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, ulong value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			return WriteBytes (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write<TValue> (this Stream self, TValue value)
 		{
-			Check.Self (self);
+			AssertWrite (self);
 
 			byte[] data = new byte [Marshal.SizeOf (typeof (TValue))];
 
