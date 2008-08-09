@@ -173,7 +173,7 @@ namespace Mono.Rocks {
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, BitConverter.GetBytes (value));
+			return Write (self, BitConverter.GetBytes (value));
 		}
 
 		private static void AssertWrite (Stream self)
@@ -183,8 +183,12 @@ namespace Mono.Rocks {
 				throw new ArgumentException ("Cannot write to stream");
 		}
 
-		private static Stream WriteBytes (Stream self, byte[] value)
+		public static Stream Write (this Stream self, byte[] value)
 		{
+			AssertWrite (self);
+			if (value == null)
+				throw new ArgumentNullException ("value");
+
 			self.Write (value, 0, value.Length);
 			return self;
 		}
@@ -193,70 +197,70 @@ namespace Mono.Rocks {
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, new byte []{value});
+			return Write (self, new byte []{value});
 		}
 
 		public static Stream Write (this Stream self, char value)
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, BitConverter.GetBytes (value));
+			return Write (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, double value)
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, BitConverter.GetBytes (value));
+			return Write (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, short value)
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, BitConverter.GetBytes (value));
+			return Write (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, int value)
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, BitConverter.GetBytes (value));
+			return Write (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, long value)
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, BitConverter.GetBytes (value));
+			return Write (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, float value)
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, BitConverter.GetBytes (value));
+			return Write (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, ushort value)
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, BitConverter.GetBytes (value));
+			return Write (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, uint value)
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, BitConverter.GetBytes (value));
+			return Write (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write (this Stream self, ulong value)
 		{
 			AssertWrite (self);
 
-			return WriteBytes (self, BitConverter.GetBytes (value));
+			return Write (self, BitConverter.GetBytes (value));
 		}
 
 		public static Stream Write<TValue> (this Stream self, TValue value)
@@ -272,7 +276,7 @@ namespace Mono.Rocks {
 				handle.Free();
 			}
 
-			return WriteBytes (self, data);
+			return Write (self, data);
 		}
 	}
 }

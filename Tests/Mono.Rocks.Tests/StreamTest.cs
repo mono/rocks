@@ -167,6 +167,7 @@ namespace Mono.Rocks.Tests {
 			ms.Write (BitConverter.GetBytes (0.712d), 0, 8);
 			ms.Write (BitConverter.GetBytes (1.23f), 0, 4);
 			ms.Write (guid);
+			ms.Write (Encoding.UTF8.GetBytes ("Hello"));
 
 			ushort us;
 			uint ui;
@@ -179,19 +180,21 @@ namespace Mono.Rocks.Tests {
 			double d;
 			float f;
 			Guid og;
+			string str;
 
 			ms.Position = 0;
-			ms.Read(out us)
-				.Read(out ui)
-				.Read(out ul)
-				.Read(out s)
-				.Read(out i)
-				.Read(out l)
-				.Read(out c)
-				.Read(out b)
-				.Read(out d)
-				.Read(out f)
-				.Read(out og);
+			ms.Read (out us)
+				.Read (out ui)
+				.Read (out ul)
+				.Read (out s)
+				.Read (out i)
+				.Read (out l)
+				.Read (out c)
+				.Read (out b)
+				.Read (out d)
+				.Read (out f)
+				.Read (out og)
+				.Read (out str, 5, Encoding.UTF8);
 
 			Assert.AreEqual ((ushort) 2124, us);
 			Assert.AreEqual (150291U, ui);
@@ -219,6 +222,22 @@ namespace Mono.Rocks.Tests {
 		{
 			Stream  s      = null;
 			byte   value = (byte) 0;
+			s.Write (value);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Write_Bytes_SelfNull ()
+		{
+			Stream  s      = null;
+			byte[] value = new byte[0];
+			s.Write (value);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Write_Bytes_ValueNull ()
+		{
+			Stream  s      = new MemoryStream ();
+			byte[] value = null;
 			s.Write (value);
 		}
 
@@ -316,7 +335,10 @@ namespace Mono.Rocks.Tests {
 				0x48, 0xe1, 0xa, 0x40,                          // float
 				0x28, 0x0,                                      // ushort
 				0x32, 0x0, 0x0, 0x0,                            // uint
-				0x3c, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0         // ulong
+				0x3c, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,        // ulong
+				0x48, 0x65, 0x6c, 0x6c, 0x6f,                   // "Hello"
+				0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,         // Guid-start
+				0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,         // Guid-end
 			};
 
 			MemoryStream ms = new MemoryStream ();
@@ -330,7 +352,9 @@ namespace Mono.Rocks.Tests {
 				.Write (2.17F)
 				.Write ((ushort) 40)
 				.Write (50U)
-				.Write (60UL);
+				.Write (60UL)
+				.Write (Encoding.UTF8.GetBytes ("Hello"))
+				.Write (new Guid ());
 			byte[] b = ms.ToArray();
 			AssertAreSame (expected, ms.ToArray ());
 		}

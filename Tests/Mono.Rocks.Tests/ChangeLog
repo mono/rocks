@@ -1,5 +1,10 @@
 2008-08-08  Jonathan Pryor  <jpryor@novell.com>
 
+	* StreamTest.cs: Add tests for Stream.Write(byte[]) and 
+	  Stream.Read(out string, int, Encoding).
+
+2008-08-08  Jonathan Pryor  <jpryor@novell.com>
+
 	* StreamTest.cs: Add tests for Stream.Read() extension methods.
 	  Thanks to Bojan Rajkovic for the patch.
 
