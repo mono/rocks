@@ -4,6 +4,7 @@
 // Author:
 //   Jb Evain (jbevain@novell.com)
 //   Jonathan Pryor  <jpryor@novell.com>
+//   Bojan Rajkovic <bojanr@brandeis.edu>
 //
 // Copyright (c) 2007, 2008 Novell, Inc. (http://www.novell.com)
 //
@@ -30,6 +31,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Mono.Rocks {
 
@@ -54,6 +57,77 @@ namespace Mono.Rocks {
 			Check.Self (self);
 
 			return new StringReader (self).Words ();
+		}
+
+		public static IEnumerable<string> Matches (this string self, string regex, RegexOptions options)
+		{
+			Check.Self (self);
+
+			return CreateMatchesIterator(self, regex, options);
+		}
+
+		public static IEnumerable<string> Matches (this string self, string regex)
+		{
+			Check.Self (self);
+
+			return Matches (self, regex, RegexOptions.None);
+		}
+
+		private static IEnumerable<string> CreateMatchesIterator (this string self, string regex, RegexOptions options)
+		{
+			Regex r = new Regex (regex, options);
+			foreach (Match match in r.Matches (self))
+				yield return match.Value;
+		}
+
+		public static IEnumerable<string> Captures (this string self, string regex, RegexOptions options)
+		{
+			Check.Self (self);
+
+			return CreateCapturesIterator (self, regex, options);
+		}
+
+		public static IEnumerable<string> Captures (this string self, string regex)
+		{
+			Check.Self (self);
+
+			return Captures (self, regex, RegexOptions.None);
+		}
+
+		private static IEnumerable<string> CreateCapturesIterator (this string self, string regex, RegexOptions options)
+		{
+			Regex r = new Regex(regex, options);
+			foreach (Match match in r.Matches (self)) {
+				for (int i = 1; i < match.Groups.Count; i++) {
+					yield return match.Groups[i].Value;
+				}
+			}
+		}
+
+		private static IEnumerable<KeyValuePair<string, string>> CreateNamedCapturesIterator (this string self, string regex, RegexOptions options)
+		{
+			Regex r = new Regex (regex, options);
+			foreach (Match match in r.Matches (self)) {
+				for (int i = 1; i < match.Groups.Count; i++) {
+					Group group = match.Groups[i];
+					if (r.GroupNameFromNumber(i) != "0" && group.Value != string.Empty)
+						yield return new KeyValuePair<string, string> (r.GroupNameFromNumber(i), group.Value);
+				}
+			}
+		}
+		
+		public static ILookup<string, string> NamedCaptures (this string self, string regex, RegexOptions options)
+		{
+			Check.Self (self);
+
+			return CreateNamedCapturesIterator (self, regex, options).ToLookup (s => s.Key, s => s.Value);
+		}
+
+		public static ILookup<string, string> NamedCaptures (this string self, string regex)
+		{
+			Check.Self (self);
+
+			return NamedCaptures (self, regex, RegexOptions.None);
 		}
 
 		public static string Slice (this string self, int start, int end)

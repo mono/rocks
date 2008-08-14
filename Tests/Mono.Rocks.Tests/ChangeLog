@@ -1,3 +1,7 @@
+2008-08-14  Bojan Rajkovic  <bojanr@brandeis.edu.
+
+	* StringTest.cs: Added tests for regex convenience extension methods.
+
 2008-08-08  Jonathan Pryor  <jpryor@novell.com>
 
 	* StreamTest.cs: Change Stream.Read(out string, int, Encoding) to

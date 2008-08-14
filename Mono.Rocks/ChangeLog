@@ -1,3 +1,8 @@
+2008-08-14  Bojan Rajkovic  <bojanr@brandeis.edu.
+
+	* String.cs: Added convenience regex methods: Matches,
+	  Captures and NamedCaptures.
+
 2008-08-08  Jonathan Pryor  <jpryor@novell.com>
 
 	* Stream.cs: Change Stream.Read(out string, int, Encoding) to

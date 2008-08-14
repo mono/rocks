@@ -4,6 +4,7 @@
 // Author:
 //   Jb Evain (jbevain@novell.com)
 //   Jonathan Pryor  <jpryor@novell.com>
+//   Bojan Rajkovic <bojanr@brandeis.edu>
 //
 // Copyright (c) 2007, 2008 Novell, Inc. (http://www.novell.com)
 //
@@ -28,7 +29,10 @@
 //
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 using NUnit.Framework;
 
@@ -97,6 +101,112 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("89", data.Slice (8, 10));
 			Assert.AreEqual ("456789", data.Slice (4, -1));
 			Assert.AreEqual ("8", data.Slice (8, -2));
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Matches_SelfNull_NoOptions ()
+		{
+			string s = null;
+			s.Matches (".*");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void Matches_SelfNull_Options ()
+		{
+			string s = null;
+			s.Matches (".*", RegexOptions.ECMAScript);
+		}
+
+		[Test]
+		public void Matches_NoOptions ()
+		{
+			string match = @"a - b
+			c - d
+			e - f";
+
+			string[] expected = {"a - b", "c - d", "e - f"};
+			string[] actual = match.Matches(@"\w+ - \w+").ToArray();
+
+			AssertAreSame (expected, actual);
+		}
+
+		[Test]
+		public void Matches_Options ()
+		{
+			string match = @"a - b
+			c - d
+			e - f";
+
+			string[] expected = {"a - b", "c - d", "e - f"};
+			string[] actual = match.Matches(@"\w+ - \w+", RegexOptions.Compiled).ToArray();
+
+			AssertAreSame (expected, actual);
+		}
+
+		[Test]
+		public void Captures_NoOptions ()
+		{
+			string match = "a - b - c - d - e";
+
+			string[] expected = {"a", "b", "c", "d", "e"};
+			string[] actual = match.Captures(@"(\w+)").ToArray();
+
+			AssertAreSame (expected, actual);
+		}
+
+		[Test]
+		public void Captures_Options ()
+		{
+			string match = "a - b - c - d - e";
+			
+			string[] expected = {"a", "b", "c", "d", "e"};
+			string[] actual = match.Captures(@"(\w+)", RegexOptions.IgnoreCase).ToArray();
+
+			AssertAreSame (expected, actual);
+		}
+
+		[Test]
+		public void NamedCaptures_NoOptions ()
+		{
+			string match = "a5b6";
+
+			List<KeyValuePair<string, string>> expectedValues = new List<KeyValuePair<string, string>> {
+				new KeyValuePair<string, string> ("digita", "5"),
+				new KeyValuePair<string, string> ("digitb", "6")
+			};
+
+			List<KeyValuePair<string, string>> returnedValues = new List<KeyValuePair<string, string>> ();
+
+			ILookup<string, string> matches = match.NamedCaptures (@"a(?'digita'[0-5])|b(?'digitb'[4-7])");
+
+			foreach (IGrouping<string, string> group in matches)
+				foreach (string s in group)
+					returnedValues.Add (new KeyValuePair<string, string> (group.Key, s));
+
+			AssertAreSame (returnedValues, expectedValues);
+		}
+
+		[Test]
+		public void NamedCaptures_Options ()
+		{
+			string match = "A5B6";
+
+			List<KeyValuePair<string, string>> expectedValues = new List<KeyValuePair<string, string>> {
+				new KeyValuePair<string, string> ("digita", "5"),
+				new KeyValuePair<string, string> ("digitb", "6")
+			};
+
+			List<KeyValuePair<string, string>> returnedValues = new List<KeyValuePair<string, string>> ();
+
+			ILookup<string, string> matches = match.NamedCaptures (@"a(?'digita'[0-5])|b(?'digitb'[4-7])", RegexOptions.IgnoreCase);
+
+			foreach (IGrouping<string, string> group in matches)
+				foreach (string s in group)
+					returnedValues.Add (new KeyValuePair<string, string> (group.Key, s));
+
+			AssertAreSame (returnedValues, expectedValues);
 		}
 
 		enum Foo {
