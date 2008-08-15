@@ -185,11 +185,11 @@ sub create_type {
 	}
 	print $handle "\t\t\treturn hc;\n";
 	print $handle "\t\t}\n\n";
-	print $handle "\t\tpublic override bool Equals (object o)\n";
+	print $handle "\t\tpublic override bool Equals (object obj)\n";
 	print $handle "\t\t{\n";
 	print $handle "\t\t\tTuple<";
 	create_targ_list ($n);
-	print $handle "> t = o as Tuple<";
+	print $handle "> t = obj as Tuple<";
 	create_targ_list ($n);
 	print $handle ">;\n";
 	print $handle "\t\t\tif (t == null)\n";
@@ -198,13 +198,13 @@ sub create_type {
 	print $handle "\t\t}\n\n";
 	print $handle "\t\tpublic bool Equals (Tuple<";
 	create_targ_list ($n);
-	print $handle "> o)\n";
+	print $handle "> obj)\n";
 	print $handle "\t\t{\n";
 	print $handle "\t\t\treturn EqualityComparer<";
 	create_targ (1, $n);
-	print $handle ">.Default.Equals (_1, o._1)\n";
+	print $handle ">.Default.Equals (_1, obj._1)\n";
 	for (my $i = 2; $i <= $n; ++$i) {
-		print $handle "\t\t\t\t&& EqualityComparer<T$i>.Default.Equals (_$i, o._$i)\n";
+		print $handle "\t\t\t\t&& EqualityComparer<T$i>.Default.Equals (_$i, obj._$i)\n";
 	}
 	print $handle "\t\t\t\t;\n";
 	print $handle "\t\t}\n\n";

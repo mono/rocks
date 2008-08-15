@@ -87,17 +87,17 @@ namespace Mono.Rocks {
 			return hc;
 		}
 
-		public override bool Equals (object o)
+		public override bool Equals (object obj)
 		{
-			Tuple<T> t = o as Tuple<T>;
+			Tuple<T> t = obj as Tuple<T>;
 			if (t == null)
 				return false;
 			return Equals (t);
 		}
 
-		public bool Equals (Tuple<T> o)
+		public bool Equals (Tuple<T> obj)
 		{
-			return EqualityComparer<T>.Default.Equals (_1, o._1)
+			return EqualityComparer<T>.Default.Equals (_1, obj._1)
 				;
 		}
 
@@ -148,18 +148,18 @@ namespace Mono.Rocks {
 			return hc;
 		}
 
-		public override bool Equals (object o)
+		public override bool Equals (object obj)
 		{
-			Tuple<T1, T2> t = o as Tuple<T1, T2>;
+			Tuple<T1, T2> t = obj as Tuple<T1, T2>;
 			if (t == null)
 				return false;
 			return Equals (t);
 		}
 
-		public bool Equals (Tuple<T1, T2> o)
+		public bool Equals (Tuple<T1, T2> obj)
 		{
-			return EqualityComparer<T1>.Default.Equals (_1, o._1)
-				&& EqualityComparer<T2>.Default.Equals (_2, o._2)
+			return EqualityComparer<T1>.Default.Equals (_1, obj._1)
+				&& EqualityComparer<T2>.Default.Equals (_2, obj._2)
 				;
 		}
 
@@ -217,19 +217,19 @@ namespace Mono.Rocks {
 			return hc;
 		}
 
-		public override bool Equals (object o)
+		public override bool Equals (object obj)
 		{
-			Tuple<T1, T2, T3> t = o as Tuple<T1, T2, T3>;
+			Tuple<T1, T2, T3> t = obj as Tuple<T1, T2, T3>;
 			if (t == null)
 				return false;
 			return Equals (t);
 		}
 
-		public bool Equals (Tuple<T1, T2, T3> o)
+		public bool Equals (Tuple<T1, T2, T3> obj)
 		{
-			return EqualityComparer<T1>.Default.Equals (_1, o._1)
-				&& EqualityComparer<T2>.Default.Equals (_2, o._2)
-				&& EqualityComparer<T3>.Default.Equals (_3, o._3)
+			return EqualityComparer<T1>.Default.Equals (_1, obj._1)
+				&& EqualityComparer<T2>.Default.Equals (_2, obj._2)
+				&& EqualityComparer<T3>.Default.Equals (_3, obj._3)
 				;
 		}
 
@@ -294,20 +294,20 @@ namespace Mono.Rocks {
 			return hc;
 		}
 
-		public override bool Equals (object o)
+		public override bool Equals (object obj)
 		{
-			Tuple<T1, T2, T3, T4> t = o as Tuple<T1, T2, T3, T4>;
+			Tuple<T1, T2, T3, T4> t = obj as Tuple<T1, T2, T3, T4>;
 			if (t == null)
 				return false;
 			return Equals (t);
 		}
 
-		public bool Equals (Tuple<T1, T2, T3, T4> o)
+		public bool Equals (Tuple<T1, T2, T3, T4> obj)
 		{
-			return EqualityComparer<T1>.Default.Equals (_1, o._1)
-				&& EqualityComparer<T2>.Default.Equals (_2, o._2)
-				&& EqualityComparer<T3>.Default.Equals (_3, o._3)
-				&& EqualityComparer<T4>.Default.Equals (_4, o._4)
+			return EqualityComparer<T1>.Default.Equals (_1, obj._1)
+				&& EqualityComparer<T2>.Default.Equals (_2, obj._2)
+				&& EqualityComparer<T3>.Default.Equals (_3, obj._3)
+				&& EqualityComparer<T4>.Default.Equals (_4, obj._4)
 				;
 		}
 

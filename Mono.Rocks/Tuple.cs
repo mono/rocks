@@ -42,18 +42,18 @@ namespace Mono.Rocks {
 
 		public override abstract int GetHashCode ();
 
-		public override abstract bool Equals (object o);
+		public override abstract bool Equals (object obj);
 
 		#region ICollection
 		void ICollection.CopyTo (Array array, int index)
 		{
 			if (array == null)
-				throw new ArgumentNullException ();
+				throw new ArgumentNullException ("array");
 			if (index < 0)
-				throw new ArgumentOutOfRangeException ();
+				throw new ArgumentOutOfRangeException ("index");
 			if (array.Length - index <= 0 ||
 					(array.Length - index) < Count)
-				throw new ArgumentException ();
+				throw new ArgumentException ("index");
 			for (int i = 0; i < Count; ++i) {
 				array.SetValue (this [i], index + i);
 			}
@@ -70,20 +70,20 @@ namespace Mono.Rocks {
 
 		public abstract int Count { get; }
 
-		public bool Contains (object item)
+		public bool Contains (object value)
 		{
-			return IndexOf (item) >= 0;
+			return IndexOf (value) >= 0;
 		}
 
 		public void CopyTo (object[] array, int arrayIndex)
 		{
 			if (array == null)
-				throw new ArgumentNullException ();
+				throw new ArgumentNullException ("array");
 			if (arrayIndex < 0)
-				throw new ArgumentOutOfRangeException ();
+				throw new ArgumentOutOfRangeException ("arrayIndex");
 			if (array.Length - arrayIndex <= 0 ||
 					(array.Length - arrayIndex) < Count)
-				throw new ArgumentException ();
+				throw new ArgumentException ("arrayIndex");
 			for (int i = 0; i < Count; ++i) {
 				array [arrayIndex + i] = this [i];
 			}
@@ -117,10 +117,10 @@ namespace Mono.Rocks {
 		void IList<object>.Insert (int index, object item) {throw new NotSupportedException();}
 		void IList<object>.RemoveAt (int index)            {throw new NotSupportedException();}
 
-		public int IndexOf (object item)
+		public int IndexOf (object value)
 		{
 			for (int i = 0; i < Count; ++i) {
-				if (object.Equals (this [i], item))
+				if (object.Equals (this [i], value))
 					return i;
 			}
 			return -1;
@@ -128,7 +128,7 @@ namespace Mono.Rocks {
 
 		public virtual object this [int index] {
 			get {
-				throw new IndexOutOfRangeException (index.ToString ());
+				throw new ArgumentOutOfRangeException ("index");
 			}
 			set {
 				throw new NotSupportedException ("Tuple is read-only");

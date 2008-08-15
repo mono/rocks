@@ -1,3 +1,7 @@
+2008-08-14  Jonathan Pryor  <jpryor@novell.com>
+
+	* mktuples: Change method parameter names to please Gendarme.
+
 2008-08-08  Jonathan Pryor  <jpryor@novell.com>
 
 	* Tests/Mono.Rocks.Tests.csproj: Add additional tests.
