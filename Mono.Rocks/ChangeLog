@@ -1,5 +1,9 @@
 2008-08-17  Jonathan Pryor  <jpryor@novell.com>
 
+	* String.cs: Rename NamedCaptures to CaptureNamedGroups.
+
+2008-08-17  Jonathan Pryor  <jpryor@novell.com>
+
 	* Int16.cs, Int64.cs, UInt16.cs, UInt32.cs, UInt64.cs: Added; extension
 	  methods .IsEven() and .IsOdd() for short, ushort, uint, long, ulong.
 	  Patch courtesy of Kim Johansson.

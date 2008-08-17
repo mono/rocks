@@ -1,4 +1,4 @@
-﻿//
+//
 // StringTest.cs
 //
 // Author:
@@ -168,7 +168,7 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test]
-		public void NamedCaptures_NoOptions ()
+		public void CaptureNamedGroups_NoOptions ()
 		{
 			string match = "a5b6";
 
@@ -179,7 +179,7 @@ namespace Mono.Rocks.Tests {
 
 			List<KeyValuePair<string, string>> returnedValues = new List<KeyValuePair<string, string>> ();
 
-			ILookup<string, string> matches = match.NamedCaptures (@"a(?'digita'[0-5])|b(?'digitb'[4-7])");
+			ILookup<string, string> matches = match.CaptureNamedGroups (@"a(?'digita'[0-5])|b(?'digitb'[4-7])");
 
 			foreach (IGrouping<string, string> group in matches)
 				foreach (string s in group)
@@ -189,7 +189,7 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test]
-		public void NamedCaptures_Options ()
+		public void CaptureNamedGroups_Options ()
 		{
 			string match = "A5B6";
 
@@ -200,7 +200,7 @@ namespace Mono.Rocks.Tests {
 
 			List<KeyValuePair<string, string>> returnedValues = new List<KeyValuePair<string, string>> ();
 
-			ILookup<string, string> matches = match.NamedCaptures (@"a(?'digita'[0-5])|b(?'digitb'[4-7])", RegexOptions.IgnoreCase);
+			ILookup<string, string> matches = match.CaptureNamedGroups (@"a(?'digita'[0-5])|b(?'digitb'[4-7])", RegexOptions.IgnoreCase);
 
 			foreach (IGrouping<string, string> group in matches)
 				foreach (string s in group)

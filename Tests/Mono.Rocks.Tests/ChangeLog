@@ -1,5 +1,9 @@
 2008-08-17  Jonathan Pryor  <jpryor@novell.com>
 
+	* StringTest.cs: Rename NamedCaptures to CaptureNamedGroups.
+
+2008-08-17  Jonathan Pryor  <jpryor@novell.com>
+
 	* Int16Test.cs, Int64Test.cs, UInt16Test.cs, UInt32Test.cs, UInt64Test.cs: 
 	  Added; tests for .IsEven() and .IsOdd() on short, ushort, uint, long, ulong.
 	* Int32Test.cs: Add tests for .IsEven() and .IsOdd().

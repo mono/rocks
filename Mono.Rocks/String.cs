@@ -104,7 +104,7 @@ namespace Mono.Rocks {
 			}
 		}
 
-		private static IEnumerable<KeyValuePair<string, string>> CreateNamedCapturesIterator (this string self, string regex, RegexOptions options)
+		private static IEnumerable<KeyValuePair<string, string>> CreateCaptureNamedGroupsIterator (this string self, string regex, RegexOptions options)
 		{
 			Regex r = new Regex (regex, options);
 			foreach (Match match in r.Matches (self)) {
@@ -116,18 +116,18 @@ namespace Mono.Rocks {
 			}
 		}
 		
-		public static ILookup<string, string> NamedCaptures (this string self, string regex, RegexOptions options)
+		public static ILookup<string, string> CaptureNamedGroups (this string self, string regex, RegexOptions options)
 		{
 			Check.Self (self);
 
-			return CreateNamedCapturesIterator (self, regex, options).ToLookup (s => s.Key, s => s.Value);
+			return CreateCaptureNamedGroupsIterator (self, regex, options).ToLookup (s => s.Key, s => s.Value);
 		}
 
-		public static ILookup<string, string> NamedCaptures (this string self, string regex)
+		public static ILookup<string, string> CaptureNamedGroups (this string self, string regex)
 		{
 			Check.Self (self);
 
-			return NamedCaptures (self, regex, RegexOptions.None);
+			return CaptureNamedGroups (self, regex, RegexOptions.None);
 		}
 
 		public static string Slice (this string self, int start, int end)
