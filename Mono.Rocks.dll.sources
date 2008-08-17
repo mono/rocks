@@ -2,7 +2,9 @@
 ./Mono.Rocks/Check.cs
 ./Mono.Rocks/ICustomAttributeProvider.cs
 ./Mono.Rocks/IEnumerable.cs
+./Mono.Rocks/Int16.cs
 ./Mono.Rocks/Int32.cs
+./Mono.Rocks/Int64.cs
 ./Mono.Rocks/KeyValuePair.cs
 ./Mono.Rocks/NaturalStringComparer.cs
 ./Mono.Rocks/Sequence.cs
@@ -11,3 +13,6 @@
 ./Mono.Rocks/TextReader.cs
 ./Mono.Rocks/Tuple.cs
 ./Mono.Rocks/Tuples.cs
+./Mono.Rocks/UInt16.cs
+./Mono.Rocks/UInt32.cs
+./Mono.Rocks/UInt64.cs

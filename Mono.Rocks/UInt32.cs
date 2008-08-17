@@ -1,5 +1,5 @@
 //
-// Int32.cs
+// UInt32.cs
 //
 // Author:
 //   Jb Evain (jbevain@novell.com)
@@ -34,46 +34,14 @@ using System.Collections.Generic;
 
 namespace Mono.Rocks {
 
-	public static class Int32Rocks {
+	public static class UInt32Rocks {
 
-		public static IEnumerable<int> Times (this int self)
-		{
-			if (self < 0)
-				throw new ArgumentOutOfRangeException ("self", "must be >= 0");
-			return CreateTimesIterator (self);
-		}
-
-		private static IEnumerable<int> CreateTimesIterator (int self)
-		{
-			for (int i = 0; i < self; i++) {
-				yield return i;
-			}
-		}
-
-		public static IEnumerable<int> UpTo (this int self, int limit)
-		{
-			for (int i = self; i <= limit; ++i)
-				yield return i;
-		}
-
-		public static IEnumerable<int> DownTo (this int self, int limit)
-		{
-			for (int i = self; i >= limit; i--)
-				yield return i;
-		}
-
-		public static IEnumerable<int> Step (this int self, int limit, int step)
-		{
-			for (int i = self; i <= limit; i += step)
-				yield return i;
-		}
-
-		public static bool IsEven (this int value)
+		public static bool IsEven (this uint value)
 		{
 			return (value & 0x1) == 0;
 		}
 
-		public static bool IsOdd (this int value)
+		public static bool IsOdd (this uint value)
 		{
 			return (value & 0x1) == 1;
 		}

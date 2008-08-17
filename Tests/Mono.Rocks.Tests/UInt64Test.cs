@@ -1,10 +1,10 @@
 //
-// Int32Test.cs
+// UInt64Test.cs
 //
 // Author:
-//   Jb Evain (jbevain@novell.com)
+//   Jonathan Pryor
 //
-// Copyright (c) 2007 Novell, Inc. (http://www.novell.com)
+// Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -35,67 +35,20 @@ using Mono.Rocks;
 namespace Mono.Rocks.Tests {
 
 	[TestFixture]
-	public class Int32Test : BaseRocksFixture {
-
-		[Test]
-		public void Times ()
-		{
-			var data = new int [6];
-			var result = new int [] { 0, 1, 2, 3, 4, 5 };
-
-			6.Times ().Apply (i => data [i] = i).Apply ();
-
-			AssertAreSame (result, data);
-		}
-
-		[Test]
-		public void UpTo ()
-		{
-			var data = new int [7];
-			var result = new int [] { 6, 7, 8, 9, 10, 11, 12 };
-
-			int j = 0;
-			6.UpTo (12).Apply (i => { data [j++] = i; }).Apply ();
-
-			AssertAreSame (result, data);
-		}
-
-		[Test]
-		public void DownTo ()
-		{
-			var data = new int [7];
-			var result = new int [] { 12, 11, 10, 9, 8, 7, 6 };
-
-			int j = 0;
-			12.DownTo (6).Apply (i => data [j++] = i).Apply ();
-
-			AssertAreSame (result, data);
-		}
-
-		[Test]
-		public void Step ()
-		{
-			var data = new int [5];
-			var result = new int [] { 1, 3, 5, 7, 9 };
-
-			int j = 0;
-			1.Step (9, 2).Apply (i => data [j++] = i).Apply ();
-
-			AssertAreSame (result, data);
-		}
+	public class UInt64Test : BaseRocksFixture {
 
 		[Test]
 		public void IsEven ()
 		{
-			Assert.IsTrue (2.IsEven ());
-			Assert.IsFalse (3.IsEven ());
+			Assert.IsTrue (2UL.IsEven ());
+			Assert.IsFalse (3UL.IsEven ());
 		}
 
 		[Test]
 		public void IsOdd ()
 		{
-			Assert.IsFalse (2.IsOdd ());
-			Assert.IsTrue (3.IsOdd ());
+			Assert.IsFalse (2UL.IsOdd ());
+			Assert.IsTrue (3UL.IsOdd ());
 		}
 	}
 }

@@ -1,12 +1,11 @@
 //
-// Int32.cs
+// UInt64.cs
 //
 // Author:
-//   Jb Evain (jbevain@novell.com)
 //   Jonathan Pryor <jpryor@novell.com>
 //   Kim Johansson <hagbarddenstore@gmail.com>
 //
-// Copyright (c) 2007-2008 Novell, Inc. (http://www.novell.com)
+// Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 // Copyright (c) 2008 Kim Johansson
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -30,52 +29,19 @@
 //
 
 using System;
-using System.Collections.Generic;
 
-namespace Mono.Rocks {
-
-	public static class Int32Rocks {
-
-		public static IEnumerable<int> Times (this int self)
-		{
-			if (self < 0)
-				throw new ArgumentOutOfRangeException ("self", "must be >= 0");
-			return CreateTimesIterator (self);
-		}
-
-		private static IEnumerable<int> CreateTimesIterator (int self)
-		{
-			for (int i = 0; i < self; i++) {
-				yield return i;
-			}
-		}
-
-		public static IEnumerable<int> UpTo (this int self, int limit)
-		{
-			for (int i = self; i <= limit; ++i)
-				yield return i;
-		}
-
-		public static IEnumerable<int> DownTo (this int self, int limit)
-		{
-			for (int i = self; i >= limit; i--)
-				yield return i;
-		}
-
-		public static IEnumerable<int> Step (this int self, int limit, int step)
-		{
-			for (int i = self; i <= limit; i += step)
-				yield return i;
-		}
-
-		public static bool IsEven (this int value)
+namespace Mono.Rocks
+{
+	public static class UInt64Rocks
+	{
+		public static bool IsEven (this ulong value)
 		{
 			return (value & 0x1) == 0;
 		}
 
-		public static bool IsOdd (this int value)
+		public static bool IsOdd (this ulong value)
 		{
 			return (value & 0x1) == 1;
 		}
-	}
+}
 }

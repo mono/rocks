@@ -41,18 +41,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mono.Rocks.Tests\AssemblyInfo.cs" />
     <Compile Include="Mono.Rocks.Tests\BaseRocksFixture.cs" />
     <Compile Include="Mono.Rocks.Tests\ICustomAttributeProviderTest.cs" />
-    <Compile Include="Mono.Rocks.Tests\StringTest.cs" />
     <Compile Include="Mono.Rocks.Tests\IEnumerableTest.cs" />
+    <Compile Include="Mono.Rocks.Tests\Int16Test.cs" />
     <Compile Include="Mono.Rocks.Tests\Int32Test.cs" />
-    <Compile Include="Mono.Rocks.Tests\AssemblyInfo.cs" />
+    <Compile Include="Mono.Rocks.Tests\Int64Test.cs" />
     <Compile Include="Mono.Rocks.Tests\KeyValuePairTest.cs" />
     <Compile Include="Mono.Rocks.Tests\NaturalStringComparerTest.cs" />
     <Compile Include="Mono.Rocks.Tests\SequenceTest.cs" />
     <Compile Include="Mono.Rocks.Tests\StreamTest.cs" />
+    <Compile Include="Mono.Rocks.Tests\StringTest.cs" />
     <Compile Include="Mono.Rocks.Tests\TextReaderTest.cs" />
     <Compile Include="Mono.Rocks.Tests\TuplesTest.cs" />
+    <Compile Include="Mono.Rocks.Tests\UInt16Test.cs" />
+    <Compile Include="Mono.Rocks.Tests\UInt32Test.cs" />
+    <Compile Include="Mono.Rocks.Tests\UInt64Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mono.Rocks.csproj">

@@ -1,3 +1,10 @@
+2008-08-17  Jonathan Pryor  <jpryor@novell.com>
+
+	* Int16.cs, Int64.cs, UInt16.cs, UInt32.cs, UInt64.cs: Added; extension
+	  methods .IsEven() and .IsOdd() for short, ushort, uint, long, ulong.
+	  Patch courtesy of Kim Johansson.
+	* Int32.cs: Add .IsEven() and .IsOdd().
+
 2008-08-14  Jonathan Pryor  <jpryor@novell.com>
 
 	* Tuple.cs, Tuples.cs: Remove some Gendarme warnings.
