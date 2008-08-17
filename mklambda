@@ -1,0 +1,195 @@
+#!/usr/bin/perl
+use strict;
+use Getopt::Long;
+
+my $n = 1;
+my $namespace = "Mono.Rocks";
+my $output = "Lambda.cs";
+my $help = undef;
+my $num_system_funcs = 4;
+
+GetOptions (
+	"n|count=i",    \$n,
+	"o|output=s",   \$output,
+	"namespace=s",  \$namespace,
+	"h|?|help",     \$help
+);
+
+if ($help) {
+	print <<EOF;
+$0 [-n N] [-o FILE] [-h]
+Create a C# file containing C# lambda helper methods.
+
+Options:
+  -n, --count=N       The number of types to generate.  Default is 1.
+  -o, --output=FILE   The file to create.  Default is `Tuples.cs'.
+      --namespace=NS  Place the types within the namespace NS.
+                        Default is `Mono.Rocks'.
+  -h, -?, --help      Show this message and exit.
+EOF
+	exit 0;
+}
+
+if ($n < 1) {
+	print STDERR "error: n must be >= 1, was $n\n";
+	exit 1;
+}
+
+my $handle = *STDOUT;
+
+print $handle <<EOF;
+//
+// $output: C# Lambda Expression Helpers.
+//
+// GENERATED CODE: DO NOT EDIT.
+// 
+// To regenerate this code, execute: $0 -n $n -o $output
+//
+// Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+//
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// Code License: Public Domain.
+//
+using System;
+using System.Linq.Expressions;
+
+namespace $namespace {
+EOF
+
+create_actions ($n);
+
+create_lambda ($n);
+
+print <<EOF;
+}
+EOF
+
+sub create_actions {
+	my ($n) = @_;
+	if ($n > $num_system_funcs) {
+		for (my $i = $num_system_funcs+1; $i <= $n; ++$i) {
+			print $handle "\n\tpublic delegate void RocksAction<";
+			create_targ_list ($i);
+			print $handle "> (";
+			create_marg_list ($i);
+			print $handle ");"
+		}
+		print $handle "\n";
+	}
+}
+
+sub create_lambda {
+	my ($n) = @_;
+
+	print $handle "\n\tpublic static class Lambda {\n\n";
+
+	print $handle "\t\tpublic static Action Func (Action action)\n";
+	print $handle "\t\t{\n";
+	print $handle "\t\t\treturn action;\n";
+	print $handle "\t\t}\n\n";
+
+	print $handle "\t\tpublic static Func<TResult> Func<TResult> (Func<TResult> func)\n";
+	print $handle "\t\t{\n";
+	print $handle "\t\t\treturn func;\n";
+	print $handle "\t\t}\n\n";
+
+	print $handle "\t\tpublic static Expression<Action> Expression (Expression<Action> expr)\n";
+	print $handle "\t\t{\n";
+	print $handle "\t\t\treturn expr;\n";
+	print $handle "\t\t}\n\n";
+
+	print $handle "\t\tpublic static Expression<Func<TResult>> Expression<TResult> (Expression<Func<TResult>> expr)\n";
+	print $handle "\t\t{\n";
+	print $handle "\t\t\treturn expr;\n";
+	print $handle "\t\t}\n";
+
+	for (my $i = 1; $i <= $n; ++$i) {
+		my $func = ($i <= $num_system_funcs) ? "Func" : "RocksFunc";
+		my $act  = ($i <= $num_system_funcs) ? "Action" : "RocksAction";
+
+		print $handle "\n";
+		print $handle "\t\tpublic static $act<";
+		create_targ_list ($i);
+		print $handle ">\n\t\t\tFunc<";
+		create_targ_list ($i);
+		print $handle "> ($act<";
+		create_targ_list ($i);
+		print $handle "> action)\n";
+		print $handle "\t\t{\n";
+		print $handle "\t\t\treturn action;\n";
+		print $handle "\t\t}\n\n";
+
+		print $handle "\t\tpublic static $func<";
+		create_targ_list ($i);
+		print $handle ", TResult>\n\t\t\tFunc<";
+		create_targ_list ($i);
+		print $handle ", TResult> ($func<";
+		create_targ_list ($i);
+		print $handle ", TResult> func)\n";
+		print $handle "\t\t{\n";
+		print $handle "\t\t\treturn func;\n";
+		print $handle "\t\t}\n\n";
+
+		print $handle "\t\tpublic static Expression<$act<";
+		create_targ_list ($i);
+		print $handle ">>\n\t\t\tExpression<";
+		create_targ_list ($i);
+		print $handle "> (Expression<$act<";
+		create_targ_list ($i);
+		print $handle ">> expr)\n";
+		print $handle "\t\t{\n";
+		print $handle "\t\t\treturn expr;\n";
+		print $handle "\t\t}\n\n";
+
+		print $handle "\t\tpublic static Expression<$func<";
+		create_targ_list ($i);
+		print $handle ", TResult>>\n\t\t\tExpression<";
+		create_targ_list ($i);
+		print $handle ", TResult> (Expression<$func<";
+		create_targ_list ($i);
+		print $handle ", TResult>> expr)\n";
+		print $handle "\t\t{\n";
+		print $handle "\t\t\treturn expr;\n";
+		print $handle "\t\t}\n";
+	}
+
+	print $handle "\t}\n";
+}
+
+sub create_targ {
+	my ($i, $n) = @_;
+	if ($n == 1) {
+		print $handle "T";
+	}
+	else {
+		print $handle "T$i";
+	}
+}
+
+sub create_targ_list {
+	my ($n) = @_;
+
+	create_targ (1, $n);
+	for (my $i = 2; $i <= $n; ++$i) {
+		print $handle ", ";
+		create_targ ($i, $n);
+	}
+}
+

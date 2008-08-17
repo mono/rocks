@@ -4,6 +4,7 @@
 ./Tests/Mono.Rocks.Tests/Int64Test.cs
 ./Tests/Mono.Rocks.Tests/BaseRocksFixture.cs
 ./Tests/Mono.Rocks.Tests/KeyValuePairTest.cs
+./Tests/Mono.Rocks.Tests/LambdaTest.cs
 ./Tests/Mono.Rocks.Tests/NaturalStringComparerTest.cs
 ./Tests/Mono.Rocks.Tests/SequenceTest.cs
 ./Tests/Mono.Rocks.Tests/StreamTest.cs

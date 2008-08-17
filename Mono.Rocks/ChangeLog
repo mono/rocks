@@ -1,5 +1,9 @@
 2008-08-17  Jonathan Pryor  <jpryor@novell.com>
 
+	* Lambda.cs: Added; helpers to create "standard" delegate types.
+
+2008-08-17  Jonathan Pryor  <jpryor@novell.com>
+
 	* String.cs: Rename NamedCaptures to CaptureNamedGroups.
 
 2008-08-17  Jonathan Pryor  <jpryor@novell.com>

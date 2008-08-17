@@ -49,6 +49,7 @@
     <Compile Include="Mono.Rocks.Tests\Int32Test.cs" />
     <Compile Include="Mono.Rocks.Tests\Int64Test.cs" />
     <Compile Include="Mono.Rocks.Tests\KeyValuePairTest.cs" />
+    <Compile Include="Mono.Rocks.Tests\LambdaTest.cs" />
     <Compile Include="Mono.Rocks.Tests\NaturalStringComparerTest.cs" />
     <Compile Include="Mono.Rocks.Tests\SequenceTest.cs" />
     <Compile Include="Mono.Rocks.Tests\StreamTest.cs" />

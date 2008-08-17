@@ -6,6 +6,7 @@
 ./Mono.Rocks/Int32.cs
 ./Mono.Rocks/Int64.cs
 ./Mono.Rocks/KeyValuePair.cs
+./Mono.Rocks/Lambda.cs
 ./Mono.Rocks/NaturalStringComparer.cs
 ./Mono.Rocks/Sequence.cs
 ./Mono.Rocks/Stream.cs

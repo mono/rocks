@@ -15,6 +15,9 @@ include doc/Makefile.include
 Mono.Rocks/Tuples.cs : mktuples Makefile
 	./mktuples -n 4 > $@
 
+Mono.Rocks/Lambda.cs : mklambda Makefile
+	./mklambda -n 4 > $@
+
 check-gendarme:
 	gendarme --html errors.html --ignore gendarme.ignore Mono.Rocks.dll
 

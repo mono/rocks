@@ -1,5 +1,13 @@
 2008-08-17  Jonathan Pryor  <jpryor@novell.com>
 
+	* Mono.Rocks.csproj, Mono.Rocks.dll.sources: Add Lambda.cs to the build.
+	* Mono.Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Add
+	  LambdaTest.cs to the build.
+	* Makefile: Generate Mono.Rocks/Lambda.cs from mklambda.
+	* mklambda: Added; Lambda.cs generation program.
+
+2008-08-17  Jonathan Pryor  <jpryor@novell.com>
+
 	* . (svn:ignore): Add files to ignore.
 	* doc/Makefile.include: cleanup warnings from `make clean` in topdir.
 	* Makefile: Add check-gendarme target, to check Mono.Rocks.dll for coding
