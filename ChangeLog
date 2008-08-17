@@ -1,5 +1,9 @@
 2008-08-17  Jonathan Pryor  <jpryor@novell.com>
 
+	* ., doc, Tests (svn:ignore): Add files to ignore.
+
+2008-08-17  Jonathan Pryor  <jpryor@novell.com>
+
 	* Mono.Rocks.csproj, Mono.Rocks.dll.sources: Add Int16.cs, Int64.cs,
 	  UInt16.cs, UInt32.cs, UInt64.cs to the build.
 	* Mono.Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Add

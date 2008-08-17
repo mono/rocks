@@ -15,7 +15,10 @@ include doc/Makefile.include
 Mono.Rocks/Tuples.cs : mktuples Makefile
 	./mktuples -n 4 > $@
 
-clean:
+check-gendarme:
+	gendarme --html errors.html --ignore gendarme.ignore Mono.Rocks.dll
+
+clean: doc-clean
 	rm -f *.dll
 
 run-test:

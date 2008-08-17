@@ -1,0 +1,66 @@
+# OK - Stylistic choice
+R: Gendarme.Rules.Design.AvoidRefAndOutParametersRule
+## StreamRocks uses the return value for chaining
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.Boolean&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.Char&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.Double&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.Int16&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.Int32&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.Int64&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.Single&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.UInt16&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.UInt32&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.UInt64&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,TValue&)
+M: System.IO.Stream Mono.Rocks.StreamRocks::Read(System.IO.Stream,System.Int32,System.Text.Encoding,System.String&)
+## IEnumerableRocks.Convert uses parameters to do type detection
+M: System.Void Mono.Rocks.IEnumerableRocks::Convert(System.Collections.Generic.IEnumerable`1<TSource>,TValue&)
+M: System.Void Mono.Rocks.IEnumerableRocks::Convert(System.Collections.Generic.IEnumerable`1<TSource>,TValue1&,TValue2&)
+M: System.Void Mono.Rocks.IEnumerableRocks::Convert(System.Collections.Generic.IEnumerable`1<TSource>,TValue1&,TValue2&,TValue3&)
+M: System.Void Mono.Rocks.IEnumerableRocks::Convert(System.Collections.Generic.IEnumerable`1<TSource>,TValue1&,TValue2&,TValue3&,TValue4&)
+
+# OK - Tuple is a special case (disables warnings on _1, etc.)
+R: Gendarme.Rules.Naming.UseCorrectCasingRule
+T: Mono.Rocks.Tuple`1
+T: Mono.Rocks.Tuple`2
+T: Mono.Rocks.Tuple`3
+T: Mono.Rocks.Tuple`4
+
+# OK - Tuple is a special case (disables "Collection" suffix)
+R: Gendarme.Rules.Naming.UseCorrectSuffixRule
+T: Mono.Rocks.Tuple
+T: Mono.Rocks.Tuple`1
+T: Mono.Rocks.Tuple`2
+T: Mono.Rocks.Tuple`3
+T: Mono.Rocks.Tuple`4
+
+# OK - A poll on ##csharp and local devs prefers "Indices" over "Indexes" here
+R: Gendarme.Rules.Naming.UsePreferredTermsRule
+## public methods
+M: System.Collections.Generic.IEnumerable`1<System.Int32> Mono.Rocks.IEnumerableRocks::FindIndices(System.Collections.Generic.IEnumerable`1<TSource>,System.Func`2<TSource,System.Boolean>)
+M: System.Collections.Generic.IEnumerable`1<System.Int32> Mono.Rocks.IEnumerableRocks::IndicesOf(System.Collections.Generic.IEnumerable`1<TSource>,TSource)
+M: System.Collections.Generic.IEnumerable`1<System.Int32> Mono.Rocks.IEnumerableRocks::IndicesOfAny(System.Collections.Generic.IEnumerable`1<TSource>,System.Collections.Generic.IEnumerable`1<TSource>)
+M: System.Collections.Generic.IEnumerable`1<System.Int32> Mono.Rocks.IEnumerableRocks::IndicesOfAny(System.Collections.Generic.IEnumerable`1<TSource>,TSource[])
+## private methods
+M: System.Collections.Generic.IEnumerable`1<System.Int32> Mono.Rocks.IEnumerableRocks::CreateFindIndicesIterator(System.Collections.Generic.IEnumerable`1<TSource>,System.Func`2<TSource,System.Boolean>)
+
+# OK - Mono BUG makes it report false positives in some cases where generics are used:
+# https://bugzilla.novell.com/show_bug.cgi?id=320901
+R: Gendarme.Rules.Performance.AvoidUncalledPrivateCodeRule
+T: Mono.Rocks.IEnumerableRocks
+T: Mono.Rocks.Sequence
+
+# OK - Gendarme Bug?
+R: Gendarme.Rules.Performance.ImplementEqualsTypeRule
+T: Mono.Rocks.Tuple`1
+T: Mono.Rocks.Tuple`2
+T: Mono.Rocks.Tuple`3
+T: Mono.Rocks.Tuple`4
+## This is by design: Tuple shouldn't have Tuple.Equals(Tuple), as then *all*
+## Tuple subclasses would need to worry about it in addition to Equals(object).
+T: Mono.Rocks.Tuple
+
+# OK - it's cleaner with the extra local (otherwise manually write `foreach`).
+R: Gendarme.Rules.Performance.RemoveUnusedLocalVariablesRule
+M: System.Void Mono.Rocks.IEnumerableRocks::Apply(System.Collections.Generic.IEnumerable`1<TSource>)
+
