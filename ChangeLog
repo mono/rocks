@@ -1,5 +1,13 @@
 2008-08-17  Jonathan Pryor  <jpryor@novell.com>
 
+	* . (svn:ignore): Add files to ignore.
+	* doc/Makefile.include: cleanup warnings from `make clean` in topdir.
+	* Makefile: Add check-gendarme target, to check Mono.Rocks.dll for coding
+	  warnings/errors with Gendarme.
+	* gendarme.ignore: List of Gendarme warnings to ignore.
+
+2008-08-17  Jonathan Pryor  <jpryor@novell.com>
+
 	* ., doc, Tests (svn:ignore): Add files to ignore.
 
 2008-08-17  Jonathan Pryor  <jpryor@novell.com>
