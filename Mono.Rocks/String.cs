@@ -1,4 +1,4 @@
-﻿//
+//
 // String.cs
 //
 // Author:
@@ -59,32 +59,40 @@ namespace Mono.Rocks {
 			return new StringReader (self).Words ();
 		}
 
-		public static IEnumerable<string> Matches (this string self, string regex, RegexOptions options)
+		public static IEnumerable<Match> Matches (this string self, string regex)
 		{
-			Check.Self (self);
-
-			return CreateMatchesIterator(self, regex, options);
-		}
-
-		public static IEnumerable<string> Matches (this string self, string regex)
-		{
-			Check.Self (self);
-
 			return Matches (self, regex, RegexOptions.None);
 		}
 
-		private static IEnumerable<string> CreateMatchesIterator (this string self, string regex, RegexOptions options)
+		public static IEnumerable<Match> Matches (this string self, string regex, RegexOptions options)
 		{
-			Regex r = new Regex (regex, options);
-			foreach (Match match in r.Matches (self))
-				yield return match.Value;
+			Check.Self (self);
+
+			return new Regex (regex, options).Matches (self).Cast<Match> ();
+		}
+
+		public static IEnumerable<string> MatchValues (this string self, string regex, RegexOptions options)
+		{
+			Check.Self (self);
+
+			return Matches (self, regex, options)
+				.Select (m => m.Value);
+		}
+
+		public static IEnumerable<string> MatchValues (this string self, string regex)
+		{
+			Check.Self (self);
+
+			return MatchValues (self, regex, RegexOptions.None);
 		}
 
 		public static IEnumerable<string> Captures (this string self, string regex, RegexOptions options)
 		{
 			Check.Self (self);
 
-			return CreateCapturesIterator (self, regex, options);
+			return Matches (self, regex, options)
+				.SelectMany (m => m.Groups.Cast<Group> ().Skip (1))
+				.Select (g => g.Value);
 		}
 
 		public static IEnumerable<string> Captures (this string self, string regex)
@@ -92,16 +100,6 @@ namespace Mono.Rocks {
 			Check.Self (self);
 
 			return Captures (self, regex, RegexOptions.None);
-		}
-
-		private static IEnumerable<string> CreateCapturesIterator (this string self, string regex, RegexOptions options)
-		{
-			Regex r = new Regex(regex, options);
-			foreach (Match match in r.Matches (self)) {
-				for (int i = 1; i < match.Groups.Count; i++) {
-					yield return match.Groups[i].Value;
-				}
-			}
 		}
 
 		private static IEnumerable<KeyValuePair<string, string>> CreateCaptureNamedGroupsIterator (this string self, string regex, RegexOptions options)

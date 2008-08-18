@@ -126,10 +126,11 @@ namespace Mono.Rocks.Tests {
 			c - d
 			e - f";
 
-			string[] expected = {"a - b", "c - d", "e - f"};
-			string[] actual = match.Matches(@"\w+ - \w+").ToArray();
-
-			AssertAreSame (expected, actual);
+			Match[] matches = match.Matches (@"\w+ - \w+").ToArray();
+			Assert.AreEqual (3, matches.Length);
+			Assert.AreEqual ("a - b", matches [0].Value);
+			Assert.AreEqual ("c - d", matches [1].Value);
+			Assert.AreEqual ("e - f", matches [2].Value);
 		}
 
 		[Test]
@@ -139,8 +140,51 @@ namespace Mono.Rocks.Tests {
 			c - d
 			e - f";
 
+			Match[] matches = match.Matches (@"\w+ - \w+", RegexOptions.Compiled).ToArray();
+			Assert.AreEqual (3, matches.Length);
+			Assert.AreEqual ("a - b", matches [0].Value);
+			Assert.AreEqual ("c - d", matches [1].Value);
+			Assert.AreEqual ("e - f", matches [2].Value);
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void MatchValues_SelfNull_NoOptions ()
+		{
+			string s = null;
+			s.MatchValues (".*");
+		}
+
+		[Test]
+		[ExpectedException (typeof (ArgumentNullException))]
+		public void MatchValues_SelfNull_Options ()
+		{
+			string s = null;
+			s.MatchValues (".*", RegexOptions.ECMAScript);
+		}
+
+		[Test]
+		public void MatchValues_NoOptions ()
+		{
+			string match = @"a - b
+			c - d
+			e - f";
+
 			string[] expected = {"a - b", "c - d", "e - f"};
-			string[] actual = match.Matches(@"\w+ - \w+", RegexOptions.Compiled).ToArray();
+			string[] actual = match.MatchValues(@"\w+ - \w+").ToArray();
+
+			AssertAreSame (expected, actual);
+		}
+
+		[Test]
+		public void MatchValues_Options ()
+		{
+			string match = @"a - b
+			c - d
+			e - f";
+
+			string[] expected = {"a - b", "c - d", "e - f"};
+			string[] actual = match.MatchValues(@"\w+ - \w+", RegexOptions.Compiled).ToArray();
 
 			AssertAreSame (expected, actual);
 		}

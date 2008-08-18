@@ -1,3 +1,9 @@
+2008-08-18  Jonathan Pryor  <jpryor@novell.com>
+
+	* String.cs: Rename Matches() to .MatchValues(), and add a .Matches()
+	  extension method which returns System.Text.RegularExpressions.Match
+	  instances.
+
 2008-08-17  Jonathan Pryor  <jpryor@novell.com>
 
 	* Lambda.cs: Added; helpers to create "standard" delegate types.
