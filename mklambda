@@ -5,7 +5,7 @@ use Getopt::Long;
 
 my $n = 1;
 my $namespace = "Mono.Rocks";
-my $output = "Lambda.cs";
+my $output = "Lambdas.cs";
 my $help = undef;
 
 GetOptions (
@@ -57,7 +57,7 @@ $g->Write ("using System.Linq.Expressions;\n\n");
 $g->Namespace ($namespace, sub {
 	create_actions ($g, $n);
 
-	$g->Type ("\npublic static class Lambda", sub {
+	$g->Type ("\npublic static partial class Lambda", sub {
 		$g->Method (
 			"\npublic static Action ", "Func", "Action action", "return action;\n"
 		);

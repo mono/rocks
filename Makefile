@@ -15,7 +15,7 @@ include doc/Makefile.include
 Mono.Rocks/Tuples.cs : mktuples Makefile
 	./mktuples -n 4 > $@
 
-Mono.Rocks/Lambda.cs : mklambda Makefile
+Mono.Rocks/Lambdas.cs : mklambda Makefile
 	./mklambda -n 4 > $@
 
 Mono.Rocks/Curry.cs : mkcurry Makefile

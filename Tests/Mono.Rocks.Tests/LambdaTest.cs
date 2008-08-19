@@ -56,5 +56,19 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (typeof(Func<int, int, int>),
 				Lambda.Func ((int a, int b) => a+b ).GetType());
 		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void RecFunc_SelfNull ()
+		{
+			Lambda.RecFunc<int> (null);
+		}
+
+		[Test]
+		public void RecFunc ()
+		{
+			Func<int, int> factorial = Lambda.RecFunc<int> (
+					fac => x => x == 0 ? 1 : x * fac(x-1));
+			Assert.AreEqual (120, factorial (5));
+		}
 	}
 }

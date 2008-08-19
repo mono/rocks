@@ -1,5 +1,12 @@
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>
 
+	* Makefile: mklambda should generate Lambdas.cs.
+	* mklambda.cs: Make Lambda a partial class.
+	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add Mono.Rocks/Lambdas.cs 
+	  to the build.
+
+2008-08-19  Jonathan Pryor  <jpryor@novell.com>
+
 	* Generator.pm: Added; utility type for C# source generation.
 	* mkcurry: Added; generator for Mono.Rocks/Curry.cs
 	* mklambda, mktuple: Refactor/rewrite using Generator.pm.

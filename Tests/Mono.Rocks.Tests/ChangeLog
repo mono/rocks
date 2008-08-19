@@ -1,5 +1,9 @@
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>
 
+	* LambdaTest.cs: Test RecFunc().
+
+2008-08-19  Jonathan Pryor  <jpryor@novell.com>
+
 	* CurryTest.cs: Added; tests for .Curry extension methods.
 
 2008-08-18  Jonathan Pryor  <jpryor@novell.com>

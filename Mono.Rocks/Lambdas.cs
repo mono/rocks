@@ -1,9 +1,9 @@
 //
-// Lambda.cs: C# Lambda Expression Helpers.
+// Lambdas.cs: C# Lambda Expression Helpers.
 //
 // GENERATED CODE: DO NOT EDIT.
 //
-// To regenerate this code, execute: ./mklambda -n 4 -o Lambda.cs
+// To regenerate this code, execute: ./mklambda -n 4 -o Lambdas.cs
 //
 // Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
@@ -31,7 +31,7 @@ using System.Linq.Expressions;
 
 namespace Mono.Rocks {
 
-	public static class Lambda {
+	public static partial class Lambda {
 
 		public static Action Func (Action action)
 		{
