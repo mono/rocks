@@ -1,3 +1,7 @@
+2008-08-19  Jonathan Pryor  <jpryor@novell.com>
+
+	* CurryTest.cs: Added; tests for .Curry extension methods.
+
 2008-08-18  Jonathan Pryor  <jpryor@novell.com>
 
 	* StringTest.cs: Rename .Matches() to .MatchValues(); add tests for

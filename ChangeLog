@@ -1,3 +1,14 @@
+2008-08-19  Jonathan Pryor  <jpryor@novell.com>
+
+	* Generator.pm: Added; utility type for C# source generation.
+	* mkcurry: Added; generator for Mono.Rocks/Curry.cs
+	* mklambda, mktuple: Refactor/rewrite using Generator.pm.
+	* Makefile: Generate Mono.Rocks/Curry.cs.
+	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add Mono.Rocks/Curry.cs 
+	  to the build.
+	* Mono>Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Add
+	  Tests/Mono.Rocks.Tests/CurryTest.cs to the build.
+
 2008-08-17  Jonathan Pryor  <jpryor@novell.com>
 
 	* Mono.Rocks.csproj, Mono.Rocks.dll.sources: Add Lambda.cs to the build.

@@ -1,5 +1,6 @@
 ./Mono.Rocks/AssemblyInfo.cs
 ./Mono.Rocks/Check.cs
+./Mono.Rocks/Curry.cs
 ./Mono.Rocks/ICustomAttributeProvider.cs
 ./Mono.Rocks/IEnumerable.cs
 ./Mono.Rocks/Int16.cs

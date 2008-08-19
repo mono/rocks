@@ -1,0 +1,155 @@
+#!/usr/bin/perl
+use strict;
+use Generator;
+use Getopt::Long;
+
+my $n = 1;
+my $namespace = "Mono.Rocks";
+my $output = "Curry.cs";
+my $help = undef;
+
+GetOptions (
+	"n|count=i",    \$n,
+	"o|output=s",   \$output,
+	"namespace=s",  \$namespace,
+	"h|?|help",     \$help
+);
+
+if ($help) {
+	print <<EOF;
+$0 [-n N] [-o FILE] [-h]
+Create a C# file containing C# Func/Action curry extension methods.
+
+Options:
+  -n, --count=N       The number of types to generate.  Default is 1.
+  -o, --output=FILE   The file to create.  Default is `Tuples.cs'.
+      --namespace=NS  Place the types within the namespace NS.
+                        Default is `Mono.Rocks'.
+  -h, -?, --help      Show this message and exit.
+EOF
+	exit 0;
+}
+
+if ($n < 1) {
+	print STDERR "error: n must be >= 1, was $n\n";
+	exit 1;
+}
+
+my $handle = *STDOUT;
+
+my $g = Generator->new ($handle);
+
+my $header = <<EOF;
+//
+// $output: C# Action and Func Currying Helpers
+// 
+// GENERATED CODE: DO NOT EDIT.
+//
+// To regenerate this code, execute: $0 -n $n -o $output
+//
+// Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
+EOF
+$g->Write ($header);
+$g->WriteLicense ();
+$g->Write ("using System;\n");
+$g->Write ("using System.Linq.Expressions;\n\n");
+
+$g->Namespace ($namespace, sub {
+	$g->Type ("\npublic static class CurryRocks ", sub {
+		for (my $ntypes = 1; $ntypes <= $n; ++$ntypes) {
+			for (my $nret = 0; $nret < $ntypes; ++$nret) {
+				$g->Write ("\n");
+				$g->Method (
+					sub { action_ret_type ($g, $nret, $ntypes); },
+					sub { action_curry ($g, $nret, $ntypes); },
+					sub { action_args ($g, $nret, $ntypes); },
+					sub { body ($g, $nret, $ntypes); }
+				);
+				$g->Write ("\n");
+				$g->Method (
+					sub { func_ret_type ($g, $nret, $ntypes); },
+					sub { func_curry ($g, $nret, $ntypes); },
+					sub { func_args ($g, $nret, $ntypes); },
+					sub { body ($g, $nret, $ntypes); }
+				);
+			}
+		}
+	});
+});
+
+sub action_ret_type {
+	my ($g, $nret, $ntypes) = @_;
+
+	$g->Write ("public static ")->Action ($nret);
+	my $ret_start = $ntypes - $nret + 1;
+	if ($nret) {
+		$g->Write ("<");
+		$g->TypeParameterList ($ntypes, $ret_start);
+		$g->Write (">");
+	}
+}
+
+sub action_curry {
+	my ($g, $nret, $ntypes) = @_;
+
+	$g->Write ("\n\tCurry<");
+	$g->TypeParameterList ($ntypes);
+	$g->Write (">");
+}
+
+sub action_args {
+	my ($g, $nret, $ntypes) = @_;
+
+	$g->Write ("this ")->Action ($nret)->Write ("<");
+	$g->TypeParameterList ($ntypes);
+	$g->Write ("> self, ");
+	$g->MethodParameterList ($ntypes, 1, $ntypes - $nret);
+}
+
+sub body {
+	my ($g, $nret, $ntypes) = @_;
+
+	my $ret_start = $ntypes - $nret + 1;
+	$g->Write ("Check.Self (self);\n\n");
+	$g->Write ("return (");
+	if ($nret) {
+		$g->ValueList ($ntypes, $ret_start);
+	}
+	$g->Write (") => self (");
+	$g->ValueList ($ntypes, 1, $ntypes - $nret);
+	if ($nret) {
+		$g->Write (", ");
+		$g->ValueList ($ntypes, $ret_start);
+	}
+	$g->Write (");\n");
+}
+
+sub func_ret_type {
+	my ($g, $nret, $ntypes) = @_;
+
+	$g->Write ("public static ")->Func ($nret)->Write ("<");
+	my $ret_start = $ntypes - $nret + 1;
+	if ($nret) {
+		$g->TypeParameterList ($ntypes, $ret_start);
+		$g->Write (", ");
+	}
+	$g->Write ("TResult>");
+}
+
+sub func_curry {
+	my ($g, $nret, $ntypes) = @_;
+
+	$g->Write ("\n\tCurry<");
+	$g->TypeParameterList ($ntypes);
+	$g->Write (", TResult>");
+}
+
+sub func_args {
+	my ($g, $nret, $ntypes) = @_;
+
+	$g->Write ("this ")->Func ($nret)->Write ("<");
+	$g->TypeParameterList ($ntypes);
+	$g->Write (", TResult> self, ");
+	$g->MethodParameterList ($ntypes, 1, $ntypes - $nret);
+}
+

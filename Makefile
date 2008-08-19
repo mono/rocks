@@ -18,6 +18,9 @@ Mono.Rocks/Tuples.cs : mktuples Makefile
 Mono.Rocks/Lambda.cs : mklambda Makefile
 	./mklambda -n 4 > $@
 
+Mono.Rocks/Curry.cs : mkcurry Makefile
+	./mkcurry -n 4 > $@
+
 check-gendarme:
 	gendarme --html errors.html --ignore gendarme.ignore Mono.Rocks.dll
 

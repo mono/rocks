@@ -2,7 +2,7 @@
 // Lambda.cs: C# Lambda Expression Helpers.
 //
 // GENERATED CODE: DO NOT EDIT.
-// 
+//
 // To regenerate this code, execute: ./mklambda -n 4 -o Lambda.cs
 //
 // Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
@@ -25,7 +25,6 @@
 // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-// Code License: Public Domain.
 //
 using System;
 using System.Linq.Expressions;

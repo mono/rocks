@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Mono.Rocks.Tests\AssemblyInfo.cs" />
     <Compile Include="Mono.Rocks.Tests\BaseRocksFixture.cs" />
+    <Compile Include="Mono.Rocks.Tests\CurryTest.cs" />
     <Compile Include="Mono.Rocks.Tests\ICustomAttributeProviderTest.cs" />
     <Compile Include="Mono.Rocks.Tests\IEnumerableTest.cs" />
     <Compile Include="Mono.Rocks.Tests\Int16Test.cs" />

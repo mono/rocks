@@ -1,12 +1,12 @@
 #!/usr/bin/perl
 use strict;
+use Generator;
 use Getopt::Long;
 
 my $n = 1;
 my $namespace = "Mono.Rocks";
 my $output = "Tuples.cs";
 my $help = undef;
-my $num_system_funcs = 4;
 
 GetOptions (
 	"n|count=i",    \$n,
@@ -37,297 +37,160 @@ if ($n < 1) {
 
 my $handle = *STDOUT;
 
-print $handle <<EOF;
+my $g = Generator->new ($handle);
+
+my $header = <<EOF;
 //
 // $output: Tuple types.
 //
 // GENERATED CODE: DO NOT EDIT.
-// 
+//
 // To regenerate this code, execute: $0 -n $n -o $output
 //
 // Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-// Code License: Public Domain.
-//
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-
-namespace $namespace {
-
 EOF
+$g->Write ($header);
+$g->WriteLicense ();
+$g->Write ("using System;\n");
+$g->Write ("using System.Collections;\n");
+$g->Write ("using System.Collections.Generic;\n");
+$g->Write ("using System.Reflection;\n");
+$g->Write ("using System.Text;\n\n");
 
-create_tuple ($n);
+$g->Namespace ($namespace, sub {
+	create_tuple ($g, $n);
 
-create_funcs ($n);
+	create_funcs ($g, $n);
 
-for (my $i = 1; $i <= $n; ++$i) {
-	create_type ($i);
-}
-
-print <<EOF;
-}
-EOF
-
-sub create_tuple {
-	print $handle <<EOF;
-\tpublic abstract partial class Tuple {
-
-\t\tpublic static readonly int MaxValues = $n;
-
-EOF
-	create_tuple_method (1);
-
-	for (my $i = 2; $i <= $n; ++$i) {
-		print $handle "\n";
-		create_tuple_method ($i);
+	for (my $i = 1; $i <= $n; ++$i) {
+		create_type ($g, $i);
 	}
 
-	print $handle "\t}\n";
+});
+
+sub create_tuple {
+	my ($g, $n) = @_;
+
+	$g->Type ( "\npublic abstract partial class Tuple", sub {
+		$g->Write ("\npublic static readonly int MaxValues = $n;\n");
+
+		create_tuple_method ($g, 1);
+
+		for (my $i = 2; $i <= $n; ++$i) {
+			create_tuple_method ($g, $i);
+		}
+	});
+
 }
 
 sub create_funcs {
-	my ($n) = @_;
-	if ($n > $num_system_funcs) {
-		for (my $i = $num_system_funcs+1; $i <= $n; ++$i) {
-			print $handle "\n\tpublic delegate TResult RocksFunc<";
-			create_targ_list ($i);
-			print $handle ", TResult> (";
-			create_marg_list ($i);
-			print $handle ");"
+	my ($g, $n) = @_;
+	if ($n > $g->MaxSystemFuncs) {
+		for (my $i = $g->MaxSystemFuncs+1; $i <= $n; ++$i) {
+			$g->Write ("\npublic delegate TResult RocksFunc<");
+			$g->TypeParameterList ($i);
+			$g->Write (", TResult> (");
+			$g->MethodParameterList ($i);
+			$g->Write (");");
 		}
-		print $handle "\n";
+		$g->Write ("\n");
 	}
 }
 
 sub create_tuple_method {
-	my ($n) = @_;
+	my ($g, $n) = @_;
 
-	print $handle "\t\tpublic static Tuple<";
-	create_targ_list ($n);
-	print $handle ">\n";
-	print $handle "\t\t\tCreate<";
-	create_targ_list ($n);
-	print $handle "> (";
-	create_marg_list ($n);
-	print $handle ")\n";
-	print $handle "\t\t{\n";
-	print $handle "\t\t\treturn new Tuple<";
-	create_targ_list ($n);
-	print $handle "> (";
-	create_parg_list ($n);
-	print $handle ");\n";
-	print $handle "\t\t}\n";
+	$g->Method (
+		sub { $g->Write ("\npublic static Tuple<")->TypeParameterList ($n)->Write (">"); },
+		sub { $g->Write ("\n\tCreate<")->TypeParameterList ($n)->Write (">"); },
+		sub { $g->MethodParameterList ($n); },
+		sub {
+			$g->Write ("return new Tuple<")->TypeParameterList ($n)->Write ("> (")
+				->ValueList ($n)->Write (");\n");
+		}
+	);
 }
 
 sub create_type {
-	my ($n) = @_;
+	my ($g, $n) = @_;
 
-	create_type_name ($n);
-	create_base_type ($n);
-	print $handle "\t{\n";
-	for (my $i = 1; $i <= $n; ++$i) {
-		print $handle "\t\tprivate readonly ";
-		create_targ ($i, $n);
-		print $handle " ";
-		create_parg ($i, $n);
-		print $handle ";\n";
-	}
-	print $handle "\n";
-	print $handle "\t\tpublic Tuple (";
-	create_marg_list ($n);
-	print $handle ")\n";
-	print $handle "\t\t{\n";
-	for (my $i = 1; $i <= $n; ++$i) {
-		print $handle "\t\t\tthis.";
-		create_parg ($i, $n);
-		print $handle " = ";
-		create_parg ($i, $n);
-		print $handle ";\n";
-	}
-	print $handle "\t\t}\n\n";
-	for (my $i = 1; $i <= $n; ++$i) {
-		print $handle "\t\tpublic ";
-		create_targ ($i, $n);
-		print $handle " _$i {get{return ";
-		create_parg ($i, $n);
-		print $handle ";}}\n";
-	}
-	print $handle "\n";
-	print $handle "\t\tpublic override int Count {\n";
-	print $handle "\t\t\tget {return $n;}\n";
-	print $handle "\t\t}\n\n";
-	print $handle "\t\tpublic override int GetHashCode ()\n";
-	print $handle "\t\t{\n";
-	print $handle "\t\t\tint hc = 0;\n";
-	for (my $i = 1; $i <= $n; ++$i) {
-		print $handle "\t\t\thc ^= _$i.GetHashCode ();\n";
-	}
-	print $handle "\t\t\treturn hc;\n";
-	print $handle "\t\t}\n\n";
-	print $handle "\t\tpublic override bool Equals (object obj)\n";
-	print $handle "\t\t{\n";
-	print $handle "\t\t\tTuple<";
-	create_targ_list ($n);
-	print $handle "> t = obj as Tuple<";
-	create_targ_list ($n);
-	print $handle ">;\n";
-	print $handle "\t\t\tif (t == null)\n";
-	print $handle "\t\t\t\treturn false;\n";
-	print $handle "\t\t\treturn Equals (t);\n";
-	print $handle "\t\t}\n\n";
-	print $handle "\t\tpublic bool Equals (Tuple<";
-	create_targ_list ($n);
-	print $handle "> obj)\n";
-	print $handle "\t\t{\n";
-	print $handle "\t\t\treturn EqualityComparer<";
-	create_targ (1, $n);
-	print $handle ">.Default.Equals (_1, obj._1)\n";
-	for (my $i = 2; $i <= $n; ++$i) {
-		print $handle "\t\t\t\t&& EqualityComparer<T$i>.Default.Equals (_$i, obj._$i)\n";
-	}
-	print $handle "\t\t\t\t;\n";
-	print $handle "\t\t}\n\n";
-	print $handle "\t\tpublic override object this [int index] {\n";
-	print $handle "\t\t\tget {\n";
-	print $handle "\t\t\t\tswitch (index) {\n";
-	for (my $i = 1; $i <= $n; ++$i) {
-		print $handle "\t\t\t\t\tcase ", $i-1, ": return _$i;\n";
-	}
-	print $handle "\t\t\t\t}\n";
-	print $handle "\t\t\t\treturn base [index];\n";
-	print $handle "\t\t\t}\n";
-	print $handle "\t\t}\n";
-	print $handle "\n";
-	print $handle "\t\tpublic TResult Aggregate<TResult> (";
-	if ($n <= $num_system_funcs) {
-		print $handle "Func";
-	}
-	else {
-		print $handle "RocksFunc";
-	}
-	print $handle "<";
-	create_targ_list ($n);
-	print $handle ", TResult> func)\n";
-	print $handle "\t\t{\n";
-	print $handle "\t\t\treturn func (";
-	create_parg_list ($n);
-	print $handle ");\n";
-	print $handle "\t\t}\n";
-	print $handle "\n";
-	print $handle "\t\tprotected override void AppendValue (StringBuilder buf)\n";
-	print $handle "\t\t{\n";
-	print $handle "\t\t\tbuf.Append (_1);\n";
-	for (my $i = 2; $i <= $n; ++$i) {
-		print $handle "\t\t\tbuf.Append (\", \");\n";
-		print $handle "\t\t\tbuf.Append (_$i);\n";
-	}
-	print $handle "\t\t}\n";
-	print $handle "\t}\n";
-}
+	$g->Type (
+		sub { 
+			$g->Write ("\npublic class Tuple<")->TypeParameterList ($n)->Write (">\n")
+				->Write ("\t: Tuple, IEquatable<Tuple<")->TypeParameterList ($n)->Write (">>\n");
+		},
+		sub {
+			for (my $i = 1; $i <= $n; ++$i) {
+				$g->Write ("private readonly ")->TypeParameter ($n, $i)->Write (" ")
+					->Value ($n, $i)->Write (";\n");
+			}
 
-sub create_type_name {
-	my ($n) = @_;
+			$g->Method (
+				"\npublic ",
+				"Tuple",
+				sub { $g->MethodParameterList ($n); },
+				sub {
+					for (my $i = 1; $i <= $n; ++$i) {
+						$g->Write ("this.")->Value ($n, $i)->Write (" = ")->Value ($n, $i)->Write (";\n");
+					}
+			});
 
-	print $handle "\n\tpublic class Tuple<";
-	create_targ_list ($n);
-	print $handle ">\n";
-}
+			$g->Write ("\n");
 
-sub create_targ {
-	my ($i, $n) = @_;
-	if ($n == 1) {
-		print $handle "T";
-	}
-	else {
-		print $handle "T$i";
-	}
-}
+			for (my $i = 1; $i <= $n; ++$i) {
+				$g->Write ("public ")->TypeParameter ($n, $i)
+					->Write (" _$i {get{return ")->Value ($n, $i)->Write (";}}\n");
+			}
 
-sub create_targ_list {
-	my ($n) = @_;
+			$g->Write ("\npublic override int Count {\n\tget {return $n;}\n}\n");
+			$g->Method ( "\npublic override int ", "GetHashCode", "", sub {
+					$g->Write ("int hc = 0;\n");
+					for (my $i = 1; $i <= $n; ++$i) {
+						$g->Write ("hc ^= _$i.GetHashCode ();\n");
+					}
+					$g->Write ("return hc;\n");
+			});
+			$g->Method ("\npublic override bool ", "Equals", "object obj", sub {
+				$g->Write ("Tuple<")->TypeParameterList ($n)->Write ("> t = obj as ")
+					->Write ("Tuple<")->TypeParameterList ($n)->Write (">;\n")
+					->Write ("if (t == null)\n")
+					->Write ("\treturn false;\n")
+					->Write ("return Equals (t);\n");
+			});
+			$g->Method ("\npublic bool ", "Equals", 
+				sub { $g->Write ("Tuple<")->TypeParameterList ($n)->Write ("> obj"); },
+				sub {
+					$g->Write ("return EqualityComparer<")->TypeParameter ($n, 1)
+						->Write (">.Default.Equals (_1, obj._1)\n");
+					for (my $i = 2; $i <= $n; ++$i) {
+						$g->Write ("\t&& EqualityComparer<")->TypeParameter ($n, $i)
+							->Write (">.Default.Equals (_$i, obj._$i)\n");
+					}
+					$g->Write ("\t;\n");
+			});
+			$g->Write ("\npublic override object this [int index] {\n")
+				->Write ("\tget {\n")
+				->Write ("\t\tswitch (index) {\n");
+			for (my $i = 1; $i <= $n; ++$i) {
+				$g->Write ("\t\t\tcase ", $i-1, ": return _$i;\n");
+			}
+			$g->Write ("\t\t}\n");
+			$g->Write ("\t\treturn base [index];\n");
+			$g->Write ("\t}\n");
+			$g->Write ("}\n");
 
-	create_targ (1, $n);
-	for (my $i = 2; $i <= $n; ++$i) {
-		print $handle ", ";
-		create_targ ($i, $n);
-	}
-}
+			$g->Method ("\npublic TResult ", "Aggregate<TResult>", 
+				sub { $g->Func ($n)->Write ("<")->TypeParameterList ($n)->Write (", TResult> func"); },
+				sub { $g->Write ("return func (")->ValueList ($n)->Write (");\n"); }
+			);
 
-sub create_marg {
-	my ($i, $n) = @_;
-	if ($n == 1) {
-		print $handle "T value";
-	}
-	else {
-		print $handle "T$i value$i";
-	}
-}
-
-sub create_marg_list {
-	my ($n) = @_;
-
-	return if $n == 0;
-
-	if ($n == 1) {
-		print $handle "T value";
-		return;
-	}
-
-	create_marg (1, $n);
-	for (my $i = 2; $i <= $n; ++$i) {
-		print $handle ", ";
-		create_marg ($i, $n);
-	}
-}
-
-sub create_parg {
-	my ($i, $n) = @_;
-	if ($n == 1) {
-		print $handle "value";
-	}
-	else {
-		print $handle "value$i";
-	}
-}
-
-sub create_parg_list {
-	my ($n) = @_;
-
-	return if $n == 0;
-
-	create_parg (1, $n);
-	for (my $i = 2; $i <= $n; ++$i) {
-		print $handle ", ";
-		create_parg ($i, $n);
-	}
-}
-
-sub create_base_type {
-	my ($n) = @_;
-
-	print $handle "\t\t: Tuple, IEquatable<Tuple<";
-	create_targ_list ($n);
-	print $handle ">>\n";
+			$g->Method ("\nprotected override void ", "AppendValue", "StringBuilder buf", sub {
+				$g->Write ("buf.Append (_1);\n");
+				for (my $i = 2; $i <= $n; ++$i) {
+					$g->Write ("buf.Append (\", \");\n");
+					$g->Write ("buf.Append (_$i);\n");
+				}
+			});
+	});
 }
 
