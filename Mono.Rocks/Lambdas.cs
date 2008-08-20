@@ -148,5 +148,46 @@ namespace Mono.Rocks {
 		{
 			return expr;
 		}
+
+		//
+		// Y-Combinators
+		// http://blogs.msdn.com/madst/archive/2007/05/11/recursive-lambda-expressions.aspx
+		//
+
+		public static Func<T, TResult>
+			RecFunc<T, TResult> (Func<Func<T, TResult>, Func<T, TResult>> func)
+		{
+			if (func == null)
+				throw new ArgumentNullException ("func");
+
+			return (value) => func (RecFunc (func))(value);
+		}
+
+		public static Func<T1, T2, TResult>
+			RecFunc<T1, T2, TResult> (Func<Func<T1, T2, TResult>, Func<T1, T2, TResult>> func)
+		{
+			if (func == null)
+				throw new ArgumentNullException ("func");
+
+			return (value1, value2) => func (RecFunc (func))(value1, value2);
+		}
+
+		public static Func<T1, T2, T3, TResult>
+			RecFunc<T1, T2, T3, TResult> (Func<Func<T1, T2, T3, TResult>, Func<T1, T2, T3, TResult>> func)
+		{
+			if (func == null)
+				throw new ArgumentNullException ("func");
+
+			return (value1, value2, value3) => func (RecFunc (func))(value1, value2, value3);
+		}
+
+		public static Func<T1, T2, T3, T4, TResult>
+			RecFunc<T1, T2, T3, T4, TResult> (Func<Func<T1, T2, T3, T4, TResult>, Func<T1, T2, T3, T4, TResult>> func)
+		{
+			if (func == null)
+				throw new ArgumentNullException ("func");
+
+			return (value1, value2, value3, value4) => func (RecFunc (func))(value1, value2, value3, value4);
+		}
 	}
 }

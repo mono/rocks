@@ -58,15 +58,33 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void RecFunc_SelfNull ()
+		public void RecFunc_P1_FuncNull ()
 		{
-			Lambda.RecFunc<int> (null);
+			Lambda.RecFunc<int, int> (null);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void RecFunc_P2_FuncNull ()
+		{
+			Lambda.RecFunc<int, int, int> (null);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void RecFunc_P3_FuncNull ()
+		{
+			Lambda.RecFunc<int, int, int, int> (null);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void RecFunc_P4_FuncNull ()
+		{
+			Lambda.RecFunc<int, int, int, int> (null);
 		}
 
 		[Test]
-		public void RecFunc ()
+		public void RecFuncs ()
 		{
-			Func<int, int> factorial = Lambda.RecFunc<int> (
+			var factorial = Lambda.RecFunc<int, int> (
 					fac => x => x == 0 ? 1 : x * fac(x-1));
 			Assert.AreEqual (120, factorial (5));
 		}

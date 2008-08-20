@@ -108,6 +108,29 @@ $g->Namespace ($namespace, sub {
 				"return expr;\n"
 			);
 		}
+		$g->Write ("\n//\n");
+		$g->Write ("// Y-Combinators\n");
+		$g->Write ("// http://blogs.msdn.com/madst/archive/2007/05/11/recursive-lambda-expressions.aspx\n");
+		$g->Write ("//\n");
+		for (my $i = 1; $i <= $n; ++$i) {
+			$g->Method (
+				sub {
+					$g->Write ("\npublic static ")->Func ($i)
+						->Write ("<")->TypeParameterList ($i)->Write (", TResult>");
+				},
+				sub { $g->Write ("\n\tRecFunc<")->TypeParameterList ($i)->Write (", TResult>"); },
+				sub { $g->Func ($i)->Write ("<")
+					->Func ($i)->Write ("<")->TypeParameterList ($i)->Write (", TResult>, ")
+					->Func ($i)->Write ("<")->TypeParameterList ($i)->Write (", TResult>> func");
+				},
+				sub {
+					$g->Write ("if (func == null)\n")
+						->Write ("\tthrow new ArgumentNullException (\"func\");\n\n");
+					$g->Write ("return (")->ValueList ($i)->Write (") => ")
+						->Write ("func (RecFunc (func))(")->ValueList ($i)->Write (");\n");
+				}
+			);
+		}
 	});
 });
 

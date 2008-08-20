@@ -1,5 +1,10 @@
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>
 
+	* mklambda: Generate RecFunc() methods.
+	* Makefile: Improve dependency checking for Mono.Rocks.Tests.dll.
+
+2008-08-19  Jonathan Pryor  <jpryor@novell.com>
+
 	* Makefile: mklambda should generate Lambdas.cs.
 	* mklambda.cs: Make Lambda a partial class.
 	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add Mono.Rocks/Lambdas.cs 

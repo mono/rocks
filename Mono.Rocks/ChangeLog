@@ -1,5 +1,9 @@
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>
 
+	* Lambda.cs: Remove RecFunc(), as mklamba now generates it.
+
+2008-08-19  Jonathan Pryor  <jpryor@novell.com>
+
 	* Lambda.cs: Rename to Lambdas.cs, and add a new Lambda.cs which
 	  contains a new hand-written Lambda helper, RecFunc().
 
