@@ -1,5 +1,10 @@
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>
 
+	* mkcurry: Add Tuple overloads for each Curry function, such that
+	  a.Curry(1,2) is equivalent to a.Curry(Tuple.Create(1,2)).
+
+2008-08-19  Jonathan Pryor  <jpryor@novell.com>
+
 	* mklambda: Generate RecFunc() methods.
 	* Makefile: Improve dependency checking for Mono.Rocks.Tests.dll.
 

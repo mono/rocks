@@ -1,5 +1,9 @@
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>
 
+	* CurryTest.cs: *Actually* add the file.
+
+2008-08-19  Jonathan Pryor  <jpryor@novell.com>
+
 	* LambdaTest.cs: Add/fix tests for additional RecFunc() overloads.
 
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>

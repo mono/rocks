@@ -67,10 +67,24 @@ $g->Namespace ($namespace, sub {
 				);
 				$g->Write ("\n");
 				$g->Method (
+					sub { action_ret_type ($g, $nret, $ntypes); },
+					sub { action_curry ($g, $nret, $ntypes); },
+					sub { action_tuple_args ($g, $nret, $ntypes); },
+					sub { tuple_body ($g, $nret, $ntypes); }
+				);
+				$g->Write ("\n");
+				$g->Method (
 					sub { func_ret_type ($g, $nret, $ntypes); },
 					sub { func_curry ($g, $nret, $ntypes); },
 					sub { func_args ($g, $nret, $ntypes); },
 					sub { body ($g, $nret, $ntypes); }
+				);
+				$g->Write ("\n");
+				$g->Method (
+					sub { func_ret_type ($g, $nret, $ntypes); },
+					sub { func_curry ($g, $nret, $ntypes); },
+					sub { func_tuple_args ($g, $nret, $ntypes); },
+					sub { tuple_body ($g, $nret, $ntypes); }
 				);
 			}
 		}
@@ -106,6 +120,15 @@ sub action_args {
 	$g->MethodParameterList ($ntypes, 1, $ntypes - $nret);
 }
 
+sub action_tuple_args {
+	my ($g, $nret, $ntypes) = @_;
+
+	$g->Write ("this ")->Action ($nret)->Write ("<");
+	$g->TypeParameterList ($ntypes);
+	$g->Write ("> self, ");
+	$g->Write ("Tuple<")->TypeParameterList ($ntypes, 1, $ntypes - $nret)->Write ("> values");
+}
+
 sub body {
 	my ($g, $nret, $ntypes) = @_;
 
@@ -117,6 +140,29 @@ sub body {
 	}
 	$g->Write (") => self (");
 	$g->ValueList ($ntypes, 1, $ntypes - $nret);
+	if ($nret) {
+		$g->Write (", ");
+		$g->ValueList ($ntypes, $ret_start);
+	}
+	$g->Write (");\n");
+}
+
+sub tuple_body {
+	my ($g, $nret, $ntypes) = @_;
+
+	my $ret_start = $ntypes - $nret + 1;
+	$g->Write ("Check.Self (self);\n");
+	$g->Write ("if (values == null)\n");
+	$g->Write ("\tthrow new ArgumentNullException (\"values\");\n\n");
+	$g->Write ("return (");
+	if ($nret) {
+		$g->ValueList ($ntypes, $ret_start);
+	}
+	$g->Write (") => self (");
+	$g->Write ("values._1");
+	for (my $i = 2; $i <= $ntypes - $nret; ++$i) {
+		$g->Write (", ")->Write ("values._$i");
+	}
 	if ($nret) {
 		$g->Write (", ");
 		$g->ValueList ($ntypes, $ret_start);
@@ -151,5 +197,14 @@ sub func_args {
 	$g->TypeParameterList ($ntypes);
 	$g->Write (", TResult> self, ");
 	$g->MethodParameterList ($ntypes, 1, $ntypes - $nret);
+}
+
+sub func_tuple_args {
+	my ($g, $nret, $ntypes) = @_;
+
+	$g->Write ("this ")->Func ($nret)->Write ("<");
+	$g->TypeParameterList ($ntypes);
+	$g->Write (", TResult> self, ");
+	$g->Write ("Tuple<")->TypeParameterList ($ntypes, 1, $ntypes - $nret)->Write ("> values");
 }
 
