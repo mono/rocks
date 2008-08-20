@@ -1,5 +1,9 @@
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>
 
+	* Lambda.cs: Oops; *actually* add Lambda.cs.
+
+2008-08-19  Jonathan Pryor  <jpryor@novell.com>
+
 	* Lambda.cs: Remove RecFunc(), as mklamba now generates it.
 
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>
