@@ -32,6 +32,18 @@ namespace Mono.Rocks {
 
 	static class Check {
 
+		public static void Comparer (object comparer)
+		{
+			if (comparer == null)
+				throw new ArgumentNullException ("comparer");
+		}
+
+		public static void List (object list)
+		{
+			if (list == null)
+				throw new ArgumentNullException ("list");
+		}
+
 		public static void Self (object self)
 		{
 			if (self == null)

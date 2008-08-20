@@ -416,6 +416,62 @@ namespace Mono.Rocks.Tests {
 			AssertAreSame (expected, actual);
 		}
 
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void ToTuple_SelfNull ()
+		{
+			IEnumerable<object> s = null;
+			s.ToTuple ();
+		}
+
+		[Test]
+		public void ToTuple ()
+		{
+			IEnumerable<object> s = new object[]{1, '2', 3L, "4"};
+			Tuple t = s.ToTuple ();
+			Assert.AreEqual (typeof(Tuple<int, char, long, string>), t.GetType());
+			Assert.AreEqual (4, t.Count);
+			Assert.AreEqual (1,   t [0]);
+			Assert.AreEqual ('2', t [1]);
+			Assert.AreEqual (3L,  t [2]);
+			Assert.AreEqual ("4", t [3]);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void SequenceCompare_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.SequenceCompare (new int[0]);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void SequenceCompare_ListNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			s.SequenceCompare (null);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void SequenceCompare_ComparerNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			s.SequenceCompare (new[]{1}, null);
+		}
+
+		[Test]
+		public void SequenceCompare ()
+		{
+			Assert.AreEqual (0,
+					new[]{1, 2}.SequenceCompare (new[]{1, 2}));
+			Assert.AreEqual (-1,
+					new[]{1, 1}.SequenceCompare (new[]{1, 2}));
+			Assert.AreEqual (1,
+					new[]{1, 3}.SequenceCompare (new[]{1, 2}));
+			Assert.AreEqual (-1,
+					new[]{1, 2}.SequenceCompare (new[]{1}));
+			Assert.AreEqual (1,
+					new[]{1}.SequenceCompare (new[]{1, 2}));
+		}
+
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void SelectFromEach2_Source1Null ()

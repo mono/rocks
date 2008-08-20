@@ -313,6 +313,33 @@ namespace Mono.Rocks {
 			return (Tuple) Activator.CreateInstance (tuple, args.ToArray ());
 		}
 
+		public static int SequenceCompare<TSource> (this IEnumerable<TSource> self, IEnumerable<TSource> list)
+		{
+			return SequenceCompare (self, list, Comparer<TSource>.Default);
+		}
+
+		public static int SequenceCompare<TSource> (this IEnumerable<TSource> self, IEnumerable<TSource> list, IComparer<TSource> comparer)
+		{
+			Check.Self (self);
+			Check.List (list);
+			Check.Comparer (comparer);
+
+			using (var se = self.GetEnumerator ())
+			using (var le = list.GetEnumerator ()) {
+				bool hs = se.MoveNext (), hl = le.MoveNext ();
+				for ( ; hs && hl; hs = se.MoveNext (), hl = le.MoveNext ()) {
+					int c = comparer.Compare (se.Current, le.Current);
+					if (c != 0)
+						return c;
+				}
+				if (hs)
+					return -1;
+				if (hl)
+					return 1;
+				return 0;
+			}
+		}
+
 		// Haskell: zipWith
 		public static IEnumerable<TResult> 
 			SelectFromEach<TFirstSource, TSecondSource, TResult> (
