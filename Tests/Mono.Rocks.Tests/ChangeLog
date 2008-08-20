@@ -1,5 +1,10 @@
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>
 
+	* LambdaTest.cs: Fix RecFunc_P4_FuncNull() -- it was testing the wrong
+	  Lambda.RecFunc() overload.
+
+2008-08-19  Jonathan Pryor  <jpryor@novell.com>
+
 	* CurryTest.cs: *Actually* add the file.
 
 2008-08-19  Jonathan Pryor  <jpryor@novell.com>

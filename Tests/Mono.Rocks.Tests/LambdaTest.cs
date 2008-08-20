@@ -78,7 +78,7 @@ namespace Mono.Rocks.Tests {
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void RecFunc_P4_FuncNull ()
 		{
-			Lambda.RecFunc<int, int, int, int> (null);
+			Lambda.RecFunc<int, int, int, int, int> (null);
 		}
 
 		[Test]
