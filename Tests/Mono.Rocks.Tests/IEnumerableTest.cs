@@ -491,6 +491,7 @@ namespace Mono.Rocks.Tests {
 		{
 			// how do you adequately test randomness?
 			IEnumerable<int> r = new[]{1,2,3,4,5}.Shuffle ();
+			Assert.AreEqual (5, r.Count());
 			Assert.IsTrue (r.Contains (1));
 			Assert.IsTrue (r.Contains (2));
 			Assert.IsTrue (r.Contains (3));
