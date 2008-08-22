@@ -340,6 +340,41 @@ namespace Mono.Rocks {
 			}
 		}
 
+		public static IEnumerable<TSource> Shuffle<TSource> (this IEnumerable<TSource> self)
+		{
+			return Shuffle (self, new Random ());
+		}
+
+		public static IEnumerable<TSource> Shuffle<TSource> (this IEnumerable<TSource> self, Random random)
+		{
+			Check.Self (self);
+			Check.Random (random);
+
+			return CreateShuffleIterator (self, random);
+		}
+
+		private static IEnumerable<TSource> CreateShuffleIterator<TSource> (IEnumerable<TSource> self, Random random)
+		{
+			IList<TSource> values = GetList (self);
+
+			int[] indices = new int [values.Count];
+			for (int i = 0; i < indices.Length; ++i)
+				indices [i] = i;
+
+			for (int i = indices.Length-1; i > 0; i--)
+				Swap (ref indices [i], ref indices [random.Next (i+1)]);
+
+			foreach (int i in indices)
+				yield return values [i];
+		}
+
+		static void Swap<T> (ref T a, ref T b)
+		{
+			T t = a;
+			a = b;
+			b = t;
+		}
+
 		// Haskell: zipWith
 		public static IEnumerable<TResult> 
 			SelectFromEach<TFirstSource, TSecondSource, TResult> (

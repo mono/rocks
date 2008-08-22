@@ -1,3 +1,9 @@
+2008-08-22  Jonathan Pryor  <jpryor@novell.com>
+
+	* Check.cs: Add Check.Random().
+	* IEnumerable.cs: Add .Shuffle().  Thanks to Kim Johansson and 
+	  Bojan Rajkovic for the idea and helping with the implementation.
+
 2008-08-20  Jonathan Pryor  <jpryor@novell.com>
 
 	* Check.cs: Add Check.Comparer(), Check.List().

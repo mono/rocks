@@ -44,6 +44,12 @@ namespace Mono.Rocks {
 				throw new ArgumentNullException ("list");
 		}
 
+		public static void Random (object random)
+		{
+			if (random == null)
+				throw new ArgumentNullException ("random");
+		}
+
 		public static void Self (object self)
 		{
 			if (self == null)

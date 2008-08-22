@@ -472,6 +472,35 @@ namespace Mono.Rocks.Tests {
 					new[]{1}.SequenceCompare (new[]{1, 2}));
 		}
 
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Shuffle_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.Shuffle ();
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Shuffle_RandomNull ()
+		{
+			IEnumerable<int> s = new[]{1};
+			s.Shuffle (null);
+		}
+
+		[Test]
+		public void Shuffle ()
+		{
+			// how do you adequately test randomness?
+			IEnumerable<int> r = new[]{1,2,3,4,5}.Shuffle ();
+			Assert.IsTrue (r.Contains (1));
+			Assert.IsTrue (r.Contains (2));
+			Assert.IsTrue (r.Contains (3));
+			Assert.IsTrue (r.Contains (4));
+			Assert.IsTrue (r.Contains (5));
+
+			Assert.IsFalse (r.Contains (0));
+			Assert.IsFalse (r.Contains (6));
+		}
+
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void SelectFromEach2_Source1Null ()
