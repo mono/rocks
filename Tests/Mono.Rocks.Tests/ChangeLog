@@ -1,3 +1,7 @@
+2008-08-26  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerableTest.cs: Remove test for removed .Implode() overloads.
+
 2008-08-22  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerableTest.cs: Add tests for .Shuffle().

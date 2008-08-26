@@ -50,6 +50,12 @@ namespace Mono.Rocks {
 				throw new ArgumentNullException ("random");
 		}
 
+		public static void Selector (object selector)
+		{
+			if (selector == null)
+				throw new ArgumentNullException ("selector");
+		}
+
 		public static void Self (object self)
 		{
 			if (self == null)

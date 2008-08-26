@@ -41,7 +41,7 @@ namespace Mono.Rocks {
 
 		public static string Implode<TSource> (this IEnumerable<TSource> self, string separator)
 		{
-			return Implode (self, separator, (b, e) => {b.Append (e.ToString ());});
+			return Implode (self, separator, e => e.ToString ());
 		}
 
 		public static string Implode<TSource> (this IEnumerable<TSource> self)
@@ -49,35 +49,22 @@ namespace Mono.Rocks {
 			return Implode (self, null);
 		}
 
-		public static string Implode<TSource, TResult> (this IEnumerable<TSource> self, string separator, Func<TSource, TResult> selector)
-		{
-			if (selector == null)
-				throw new ArgumentNullException ("selector");
-			return Implode (self, separator, (b, e) => {b.Append (selector (e).ToString ());});
-		}
-
-		public static string Implode<TSource> (this IEnumerable<TSource> self, string separator, Action<StringBuilder, TSource> appender)
+		public static string Implode<TSource> (this IEnumerable<TSource> self, string separator, Func<TSource, string> selector)
 		{
 			Check.Self (self);
-			if (appender == null)
-				throw new ArgumentNullException ("appender");
+			Check.Selector (selector);
 
-			var coll = self as ICollection<TSource>;
-			if (coll != null && coll.Count == 0)
-				return string.Empty;
-
-			bool needSep = false;
-			var s = new StringBuilder ();
-
-			foreach (var element in self) {
-				if (needSep && separator != null)
-					s.Append (separator);
-
-				appender (s, element);
-				needSep = true;
+			var c = self as ICollection<TSource>;
+			string[] values = new string [c != null ? c.Count : 10];
+			int i = 0;
+			foreach (var e in self) {
+				if (values.Length == i)
+					Array.Resize (ref values, i*2);
+				values [i++] = selector (e);
 			}
-
-			return s.ToString ();
+			if (i < values.Length)
+				Array.Resize (ref values, i);
+			return string.Join (separator, values);
 		}
 
 		public static IEnumerable<TSource> Repeat<TSource> (this IEnumerable<TSource> self, int number)

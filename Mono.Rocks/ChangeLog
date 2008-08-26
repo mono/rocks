@@ -1,3 +1,14 @@
+2008-08-27  Jonathan Pryor  <jpryor@novell.com>
+
+	* Check.cs: Add Check.Selector().
+	* IEnumerable.cs: Profiling/testing showed that (incredibly?) using
+	  string.Join() was faster than using StringBuilder, so do that.  
+	  The Array.Resize() usage is required because some iterators can only be
+	  iterated over once (e.g. see the Sequence.Iterate() tests (?!)), so we
+	  can't use the .Count() extension method to get the proper array size.
+	  Testing also showed this to be faster than using List<string>.
+	  Remove .Implode<T>(IEnumerable<T>, string, Action<StringBuilder,T>).
+
 2008-08-26  Jonathan Pryor  <jpryor@novell.com>
 
 	* Lambdas.cs: Flush (adds inline XML documentation; changes some method

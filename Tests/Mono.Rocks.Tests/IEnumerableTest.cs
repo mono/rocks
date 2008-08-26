@@ -59,15 +59,6 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test]
-		[ExpectedException (typeof (ArgumentNullException))]
-		public void Implode_AppenderNull ()
-		{
-			IEnumerable<int>            e = new int[0];
-			Action<StringBuilder, int>  a = null;
-			e.Implode (null, a);
-		}
-
-		[Test]
 		public void Implode ()
 		{
 			var data = new [] { 0, 1, 2, 3, 4, 5 };
@@ -75,9 +66,7 @@ namespace Mono.Rocks.Tests {
 
 			Assert.AreEqual ("", new string[]{}.Implode (", "));
 			Assert.AreEqual (result, data.Implode (", "));
-			Assert.AreEqual (
-					"'foo', 'bar'",
-					new[]{"foo", "bar"}.Implode (", ", (b, e) => {b.Append ("'").Append (e).Append ("'");}));
+			Assert.AreEqual ("012345", data.Implode ());
 			Assert.AreEqual (
 					"'foo', 'bar'",
 					new[]{"foo", "bar"}.Implode (", ", e => "'" + e + "'"));
