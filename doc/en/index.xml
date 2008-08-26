@@ -45,10 +45,14 @@
   <Copyright>To be added.</Copyright>
   <Types>
     <Namespace Name="Mono.Rocks">
+      <Type Name="CurryRocks" Kind="Class" />
       <Type Name="ICustomAttributeProviderRocks" Kind="Class" />
       <Type Name="IEnumerableRocks" Kind="Class" />
+      <Type Name="Int16Rocks" Kind="Class" />
       <Type Name="Int32Rocks" Kind="Class" />
+      <Type Name="Int64Rocks" Kind="Class" />
       <Type Name="KeyValuePairRocks" Kind="Class" />
+      <Type Name="Lambda" Kind="Class" />
       <Type Name="NaturalStringComparer" Kind="Class" />
       <Type Name="Sequence" Kind="Class" />
       <Type Name="StreamRocks" Kind="Class" />
@@ -60,10 +64,1293 @@
       <Type Name="Tuple`3" DisplayName="Tuple&lt;T1,T2,T3&gt;" Kind="Class" />
       <Type Name="Tuple`4" DisplayName="Tuple&lt;T1,T2,T3,T4&gt;" Kind="Class" />
       <Type Name="TupleRocks" Kind="Class" />
+      <Type Name="UInt16Rocks" Kind="Class" />
+      <Type Name="UInt32Rocks" Kind="Class" />
+      <Type Name="UInt64Rocks" Kind="Class" />
     </Namespace>
   </Types>
   <Title>Mono.Rocks</Title>
   <ExtensionMethods>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`1" />
+      </Targets>
+      <Member MemberName="Curry&lt;T&gt;">
+        <MemberSignature Language="C#" Value="public static Action Curry&lt;T&gt; (this Action&lt;T&gt; self, T value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T&gt;" RefType="this" />
+          <Parameter Name="value" Type="T" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``1(System.Action{``0},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`1" />
+      </Targets>
+      <Member MemberName="Curry&lt;T&gt;">
+        <MemberSignature Language="C#" Value="public static Action Curry&lt;T&gt; (this Action&lt;T&gt; self, Mono.Rocks.Tuple&lt;T&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``1(System.Action{``0},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`2" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T2&gt; Curry&lt;T1,T2&gt; (this Action&lt;T1,T2&gt; self, T1 value1);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T2&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`2" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2&gt;">
+        <MemberSignature Language="C#" Value="public static Action Curry&lt;T1,T2&gt; (this Action&lt;T1,T2&gt; self, T1 value1, T2 value2);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},``0,``1)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`2" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2&gt;">
+        <MemberSignature Language="C#" Value="public static Action Curry&lt;T1,T2&gt; (this Action&lt;T1,T2&gt; self, Mono.Rocks.Tuple&lt;T1,T2&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},Mono.Rocks.Tuple{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`2" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T2&gt; Curry&lt;T1,T2&gt; (this Action&lt;T1,T2&gt; self, Mono.Rocks.Tuple&lt;T1&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T2&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`2" />
+      </Targets>
+      <Member MemberName="Curry&lt;T,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; Curry&lt;T,TResult&gt; (this Func&lt;T,TResult&gt; self, T value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T,TResult&gt;" RefType="this" />
+          <Parameter Name="value" Type="T" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Func{``0,``1},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`2" />
+      </Targets>
+      <Member MemberName="Curry&lt;T,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; Curry&lt;T,TResult&gt; (this Func&lt;T,TResult&gt; self, Mono.Rocks.Tuple&lt;T&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T,TResult&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Func{``0,``1},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T2,T3&gt; Curry&lt;T1,T2,T3&gt; (this Action&lt;T1,T2,T3&gt; self, T1 value1);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T2,T3&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T3&gt; Curry&lt;T1,T2,T3&gt; (this Action&lt;T1,T2,T3&gt; self, T1 value1, T2 value2);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T3&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},``0,``1)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3&gt;">
+        <MemberSignature Language="C#" Value="public static Action Curry&lt;T1,T2,T3&gt; (this Action&lt;T1,T2,T3&gt; self, T1 value1, T2 value2, T3 value3);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+          <Parameter Name="value3" Type="T3" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <param name="value3">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},``0,``1,``2)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3&gt;">
+        <MemberSignature Language="C#" Value="public static Action Curry&lt;T1,T2,T3&gt; (this Action&lt;T1,T2,T3&gt; self, Mono.Rocks.Tuple&lt;T1,T2,T3&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0,``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T3&gt; Curry&lt;T1,T2,T3&gt; (this Action&lt;T1,T2,T3&gt; self, Mono.Rocks.Tuple&lt;T1,T2&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T3&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T2,T3&gt; Curry&lt;T1,T2,T3&gt; (this Action&lt;T1,T2,T3&gt; self, Mono.Rocks.Tuple&lt;T1&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T2,T3&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T2,TResult&gt; Curry&lt;T1,T2,TResult&gt; (this Func&lt;T1,T2,TResult&gt; self, T1 value1);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T2,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,TResult&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; Curry&lt;T1,T2,TResult&gt; (this Func&lt;T1,T2,TResult&gt; self, T1 value1, T2 value2);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,TResult&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},``0,``1)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; Curry&lt;T1,T2,TResult&gt; (this Func&lt;T1,T2,TResult&gt; self, Mono.Rocks.Tuple&lt;T1,T2&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,TResult&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},Mono.Rocks.Tuple{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T2,TResult&gt; Curry&lt;T1,T2,TResult&gt; (this Func&lt;T1,T2,TResult&gt; self, Mono.Rocks.Tuple&lt;T1&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T2,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,TResult&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T2,T3,T4&gt; Curry&lt;T1,T2,T3,T4&gt; (this Action&lt;T1,T2,T3,T4&gt; self, T1 value1);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T2,T3,T4&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3,T4&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T3,T4&gt; Curry&lt;T1,T2,T3,T4&gt; (this Action&lt;T1,T2,T3,T4&gt; self, T1 value1, T2 value2);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T3,T4&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3,T4&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T4&gt; Curry&lt;T1,T2,T3,T4&gt; (this Action&lt;T1,T2,T3,T4&gt; self, T1 value1, T2 value2, T3 value3);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T4&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3,T4&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+          <Parameter Name="value3" Type="T3" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <param name="value3">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1,``2)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Action Curry&lt;T1,T2,T3,T4&gt; (this Action&lt;T1,T2,T3,T4&gt; self, T1 value1, T2 value2, T3 value3, T4 value4);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3,T4&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+          <Parameter Name="value3" Type="T3" />
+          <Parameter Name="value4" Type="T4" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <param name="value3">To be added.</param>
+          <param name="value4">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1,``2,``3)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Action Curry&lt;T1,T2,T3,T4&gt; (this Action&lt;T1,T2,T3,T4&gt; self, Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3,T4&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2,``3})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T4&gt; Curry&lt;T1,T2,T3,T4&gt; (this Action&lt;T1,T2,T3,T4&gt; self, Mono.Rocks.Tuple&lt;T1,T2,T3&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T4&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3,T4&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T3,T4&gt; Curry&lt;T1,T2,T3,T4&gt; (this Action&lt;T1,T2,T3,T4&gt; self, Mono.Rocks.Tuple&lt;T1,T2&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T3,T4&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3,T4&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T2,T3,T4&gt; Curry&lt;T1,T2,T3,T4&gt; (this Action&lt;T1,T2,T3,T4&gt; self, Mono.Rocks.Tuple&lt;T1&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T2,T3,T4&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3,T4&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T2,T3,TResult&gt; Curry&lt;T1,T2,T3,TResult&gt; (this Func&lt;T1,T2,T3,TResult&gt; self, T1 value1);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T2,T3,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,TResult&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T3,TResult&gt; Curry&lt;T1,T2,T3,TResult&gt; (this Func&lt;T1,T2,T3,TResult&gt; self, T1 value1, T2 value2);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T3,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,TResult&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},``0,``1)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; Curry&lt;T1,T2,T3,TResult&gt; (this Func&lt;T1,T2,T3,TResult&gt; self, T1 value1, T2 value2, T3 value3);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,TResult&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+          <Parameter Name="value3" Type="T3" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <param name="value3">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},``0,``1,``2)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; Curry&lt;T1,T2,T3,TResult&gt; (this Func&lt;T1,T2,T3,TResult&gt; self, Mono.Rocks.Tuple&lt;T1,T2,T3&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,TResult&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T3,TResult&gt; Curry&lt;T1,T2,T3,TResult&gt; (this Func&lt;T1,T2,T3,TResult&gt; self, Mono.Rocks.Tuple&lt;T1,T2&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T3,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,TResult&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T2,T3,TResult&gt; Curry&lt;T1,T2,T3,TResult&gt; (this Func&lt;T1,T2,T3,TResult&gt; self, Mono.Rocks.Tuple&lt;T1&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T2,T3,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,TResult&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`5" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T2,T3,T4,TResult&gt; Curry&lt;T1,T2,T3,T4,TResult&gt; (this Func&lt;T1,T2,T3,T4,TResult&gt; self, T1 value1);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T2,T3,T4,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,T4,TResult&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`5" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T3,T4,TResult&gt; Curry&lt;T1,T2,T3,T4,TResult&gt; (this Func&lt;T1,T2,T3,T4,TResult&gt; self, T1 value1, T2 value2);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T3,T4,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,T4,TResult&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`5" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T4,TResult&gt; Curry&lt;T1,T2,T3,T4,TResult&gt; (this Func&lt;T1,T2,T3,T4,TResult&gt; self, T1 value1, T2 value2, T3 value3);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T4,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,T4,TResult&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+          <Parameter Name="value3" Type="T3" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <param name="value3">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1,``2)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`5" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; Curry&lt;T1,T2,T3,T4,TResult&gt; (this Func&lt;T1,T2,T3,T4,TResult&gt; self, T1 value1, T2 value2, T3 value3, T4 value4);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,T4,TResult&gt;" RefType="this" />
+          <Parameter Name="value1" Type="T1" />
+          <Parameter Name="value2" Type="T2" />
+          <Parameter Name="value3" Type="T3" />
+          <Parameter Name="value4" Type="T4" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value1">To be added.</param>
+          <param name="value2">To be added.</param>
+          <param name="value3">To be added.</param>
+          <param name="value4">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1,``2,``3)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`5" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; Curry&lt;T1,T2,T3,T4,TResult&gt; (this Func&lt;T1,T2,T3,T4,TResult&gt; self, Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,T4,TResult&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1,``2,``3})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`5" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T4,TResult&gt; Curry&lt;T1,T2,T3,T4,TResult&gt; (this Func&lt;T1,T2,T3,T4,TResult&gt; self, Mono.Rocks.Tuple&lt;T1,T2,T3&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T4,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,T4,TResult&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`5" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T3,T4,TResult&gt; Curry&lt;T1,T2,T3,T4,TResult&gt; (this Func&lt;T1,T2,T3,T4,TResult&gt; self, Mono.Rocks.Tuple&lt;T1,T2&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T3,T4,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,T4,TResult&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`5" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T2,T3,T4,TResult&gt; Curry&lt;T1,T2,T3,T4,TResult&gt; (this Func&lt;T1,T2,T3,T4,TResult&gt; self, Mono.Rocks.Tuple&lt;T1&gt; values);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T2,T3,T4,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,T4,TResult&gt;" RefType="this" />
+          <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">To be added.</typeparam>
+          <typeparam name="T2">To be added.</typeparam>
+          <typeparam name="T3">To be added.</typeparam>
+          <typeparam name="T4">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="values">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
         <Target Type="T:System.Reflection.ICustomAttributeProvider" />
@@ -85,16 +1372,9 @@
           <Parameter Name="self" Type="System.Reflection.ICustomAttributeProvider" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TAttribute">The type of the custom attribute to return.</typeparam>
-          <param name="self">
-          A <see cref="T:System.Reflection.ICustomAttributeProvider" />
-          from which to retrieve a custom attribute of type 
-          <typeparamref name="TAttribute" />.
-        </param>
-          <summary>
-          Retrieves a custom attribute of type 
-          <typeparamref name="TAttribute" />.
-        </summary>
+          <typeparam name="TAttribute">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
         </Docs>
         <Link Type="Mono.Rocks.ICustomAttributeProviderRocks" Member="M:Mono.Rocks.ICustomAttributeProviderRocks.GetCustomAttribute``1(System.Reflection.ICustomAttributeProvider)" />
       </Member>
@@ -120,16 +1400,9 @@
           <Parameter Name="self" Type="System.Reflection.ICustomAttributeProvider" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TAttribute">The type of the custom attribute to return.</typeparam>
-          <param name="self">
-          A <see cref="T:System.Reflection.ICustomAttributeProvider" />
-          from which to retrieve custom attributes of type 
-          <typeparamref name="TAttribute" />.
-        </param>
-          <summary>
-          Retrieves all custom attributes of type 
-          <typeparamref name="TAttribute" />.
-        </summary>
+          <typeparam name="TAttribute">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
         </Docs>
         <Link Type="Mono.Rocks.ICustomAttributeProviderRocks" Member="M:Mono.Rocks.ICustomAttributeProviderRocks.GetCustomAttributes``1(System.Reflection.ICustomAttributeProvider)" />
       </Member>
@@ -1656,6 +2929,110 @@
       <Targets>
         <Target Type="T:System.Collections.Generic.IEnumerable`1" />
       </Targets>
+      <Member MemberName="SequenceCompare&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static int SequenceCompare&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; list);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="list" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="list">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SequenceCompare``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="SequenceCompare&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static int SequenceCompare&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; list, System.Collections.Generic.IComparer&lt;TSource&gt; comparer);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="list" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" />
+          <Parameter Name="comparer" Type="System.Collections.Generic.IComparer&lt;TSource&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="list">To be added.</param>
+          <param name="comparer">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SequenceCompare``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IComparer{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Shuffle&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Shuffle&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Shuffle``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="Shuffle&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; Shuffle&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Random random);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="random" Type="System.Random" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="random">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Shuffle``1(System.Collections.Generic.IEnumerable{``0},System.Random)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
       <Member MemberName="SkipPrefix&lt;TSource&gt;">
         <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TSource&gt; SkipPrefix&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, System.Collections.Generic.IEnumerable&lt;TSource&gt; prefix);" />
         <MemberType>ExtensionMethod</MemberType>
@@ -2104,6 +3481,46 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
+        <Target Type="T:System.Int16" />
+      </Targets>
+      <Member MemberName="IsEven">
+        <MemberSignature Language="C#" Value="public static bool IsEven (this short value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.Int16" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.Int16Rocks" Member="M:Mono.Rocks.Int16Rocks.IsEven(System.Int16)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Int16" />
+      </Targets>
+      <Member MemberName="IsOdd">
+        <MemberSignature Language="C#" Value="public static bool IsOdd (this short value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.Int16" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.Int16Rocks" Member="M:Mono.Rocks.Int16Rocks.IsOdd(System.Int16)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
         <Target Type="T:System.Int32" />
       </Targets>
       <Member MemberName="DownTo">
@@ -2122,6 +3539,46 @@
           <summary>To be added.</summary>
         </Docs>
         <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.DownTo(System.Int32,System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Int32" />
+      </Targets>
+      <Member MemberName="IsEven">
+        <MemberSignature Language="C#" Value="public static bool IsEven (this int value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.Int32" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.IsEven(System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Int32" />
+      </Targets>
+      <Member MemberName="IsOdd">
+        <MemberSignature Language="C#" Value="public static bool IsOdd (this int value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.Int32" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.IsOdd(System.Int32)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -2192,6 +3649,46 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
+        <Target Type="T:System.Int64" />
+      </Targets>
+      <Member MemberName="IsEven">
+        <MemberSignature Language="C#" Value="public static bool IsEven (this long value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.Int64" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.Int64Rocks" Member="M:Mono.Rocks.Int64Rocks.IsEven(System.Int64)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Int64" />
+      </Targets>
+      <Member MemberName="IsOdd">
+        <MemberSignature Language="C#" Value="public static bool IsOdd (this long value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.Int64" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.Int64Rocks" Member="M:Mono.Rocks.Int64Rocks.IsOdd(System.Int64)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
         <Target Type="T:System.Collections.Generic.KeyValuePair`2" />
       </Targets>
       <Member MemberName="Aggregate&lt;TKey,TValue,TResult&gt;">
@@ -2210,26 +3707,12 @@
           <Parameter Name="func" Type="System.Func&lt;TKey,TValue,TResult&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="TKey">The type of the key.</typeparam>
-          <typeparam name="TValue">Type type of the value.</typeparam>
-          <typeparam name="TResult">The type to accumulator value.</typeparam>
-          <param name="self">
-          A <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
-          instance to convert into a <typeparamref name="TResult" />.
-        </param>
-          <param name="func">
-          A <see cref="T:System.Func{TKey,TValue,TResult}" /> which is invoked
-          to convert the 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />
-          into a <typeparamref name="TResult" />.
-        </param>
-          <summary>
-          Applies an accumulator to a 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />,
-          converting the 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />
-          into a different value.
-        </summary>
+          <typeparam name="TKey">To be added.</typeparam>
+          <typeparam name="TValue">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="func">To be added.</param>
+          <summary>To be added.</summary>
         </Docs>
         <Link Type="Mono.Rocks.KeyValuePairRocks" Member="M:Mono.Rocks.KeyValuePairRocks.Aggregate``3(System.Collections.Generic.KeyValuePair{``0,``1},System.Func{``0,``1,``2})" />
       </Member>
@@ -2252,20 +3735,10 @@
           <Parameter Name="self" Type="System.Collections.Generic.KeyValuePair&lt;TKey,TValue&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TKey">The type of the key.</typeparam>
-          <typeparam name="TValue">The type of the value.</typeparam>
-          <param name="self">
-          A 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
-          to convert into a
-          <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" />.
-        </param>
-          <summary>
-          Converts a 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />
-          into a
-          <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" />.
-        </summary>
+          <typeparam name="TKey">To be added.</typeparam>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
         </Docs>
         <Link Type="Mono.Rocks.KeyValuePairRocks" Member="M:Mono.Rocks.KeyValuePairRocks.ToTuple``2(System.Collections.Generic.KeyValuePair{``0,``1})" />
       </Member>
@@ -2274,20 +3747,654 @@
       <Targets>
         <Target Type="T:System.IO.Stream" />
       </Targets>
-      <Member MemberName="AsEnumerable">
-        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;byte&gt; AsEnumerable (this System.IO.Stream self);" />
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, out bool value);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
-          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Byte&gt;</ReturnType>
+          <ReturnType>System.IO.Stream</ReturnType>
         </ReturnValue>
         <Parameters>
           <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Boolean&amp;" RefType="out" />
         </Parameters>
         <Docs>
           <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
           <summary>To be added.</summary>
         </Docs>
-        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.AsEnumerable(System.IO.Stream)" />
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.Boolean@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, out char value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Char&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.Char@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, out double value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Double&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.Double@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, out short value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Int16&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.Int16@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, int size, System.Text.Encoding encoding, out string value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="size" Type="System.Int32" />
+          <Parameter Name="encoding" Type="System.Text.Encoding" />
+          <Parameter Name="value" Type="System.String&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="size">To be added.</param>
+          <param name="encoding">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.Int32,System.Text.Encoding,System.String@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, out int value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Int32&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.Int32@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, out long value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Int64&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.Int64@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, out float value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Single&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.Single@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, out ushort value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.UInt16&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.UInt16@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, out uint value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.UInt32&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.UInt32@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read (this System.IO.Stream self, out ulong value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.UInt64&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read(System.IO.Stream,System.UInt64@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Read&lt;TValue&gt;">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Read&lt;TValue&gt; (this System.IO.Stream self, out TValue value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="TValue&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Read``1(System.IO.Stream,``0@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, bool value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Boolean" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.Boolean)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, byte value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Byte" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.Byte)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, byte[] value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Byte[]" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.Byte[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, char value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Char" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.Char)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, double value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Double" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.Double)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, short value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Int16" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.Int16)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, int value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Int32" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.Int32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, long value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Int64" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.Int64)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, float value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.Single" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.Single)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, ushort value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.UInt16" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.UInt16)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, uint value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.UInt32" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.UInt32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write (this System.IO.Stream self, ulong value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="System.UInt64" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write(System.IO.Stream,System.UInt64)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="Write&lt;TValue&gt;">
+        <MemberSignature Language="C#" Value="public static System.IO.Stream Write&lt;TValue&gt; (this System.IO.Stream self, TValue value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.IO.Stream</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="value" Type="TValue" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.Write``1(System.IO.Stream,``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="CaptureNamedGroups">
+        <MemberSignature Language="C#" Value="public static System.Linq.ILookup&lt;string,string&gt; CaptureNamedGroups (this string self, string regex);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Linq.ILookup&lt;System.String,System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+          <Parameter Name="regex" Type="System.String" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="regex">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.CaptureNamedGroups(System.String,System.String)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="CaptureNamedGroups">
+        <MemberSignature Language="C#" Value="public static System.Linq.ILookup&lt;string,string&gt; CaptureNamedGroups (this string self, string regex, System.Text.RegularExpressions.RegexOptions options);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Linq.ILookup&lt;System.String,System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+          <Parameter Name="regex" Type="System.String" />
+          <Parameter Name="options" Type="System.Text.RegularExpressions.RegexOptions" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="regex">To be added.</param>
+          <param name="options">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.CaptureNamedGroups(System.String,System.String,System.Text.RegularExpressions.RegexOptions)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="Captures">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Captures (this string self, string regex);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+          <Parameter Name="regex" Type="System.String" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="regex">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Captures(System.String,System.String)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="Captures">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Captures (this string self, string regex, System.Text.RegularExpressions.RegexOptions options);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+          <Parameter Name="regex" Type="System.String" />
+          <Parameter Name="options" Type="System.Text.RegularExpressions.RegexOptions" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="regex">To be added.</param>
+          <param name="options">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Captures(System.String,System.String,System.Text.RegularExpressions.RegexOptions)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -2308,6 +4415,98 @@
           <summary>To be added.</summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Lines(System.String)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="Matches">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Text.RegularExpressions.Match&gt; Matches (this string self, string regex);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Text.RegularExpressions.Match&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+          <Parameter Name="regex" Type="System.String" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="regex">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Matches(System.String,System.String)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="Matches">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Text.RegularExpressions.Match&gt; Matches (this string self, string regex, System.Text.RegularExpressions.RegexOptions options);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Text.RegularExpressions.Match&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+          <Parameter Name="regex" Type="System.String" />
+          <Parameter Name="options" Type="System.Text.RegularExpressions.RegexOptions" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="regex">To be added.</param>
+          <param name="options">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="MatchValues">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; MatchValues (this string self, string regex);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+          <Parameter Name="regex" Type="System.String" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="regex">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.MatchValues(System.String,System.String)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
+      <Member MemberName="MatchValues">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; MatchValues (this string self, string regex, System.Text.RegularExpressions.RegexOptions options);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+          <Parameter Name="regex" Type="System.String" />
+          <Parameter Name="options" Type="System.Text.RegularExpressions.RegexOptions" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="regex">To be added.</param>
+          <param name="options">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.MatchValues(System.String,System.String,System.Text.RegularExpressions.RegexOptions)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -2436,18 +4635,132 @@
           <Parameter Name="self" Type="Mono.Rocks.Tuple&lt;TKey,TValue&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TKey">The type of the key.</typeparam>
-          <typeparam name="TValue">The type of the value.</typeparam>
-          <param name="self">
-          A <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> to convert into a 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
-        </param>
-          <summary>
-          Converts a <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> into a 
-          <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
-        </summary>
+          <typeparam name="TKey">To be added.</typeparam>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
         </Docs>
         <Link Type="Mono.Rocks.TupleRocks" Member="M:Mono.Rocks.TupleRocks.ToKeyValuePair``2(Mono.Rocks.Tuple{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.UInt16" />
+      </Targets>
+      <Member MemberName="IsEven">
+        <MemberSignature Language="C#" Value="public static bool IsEven (this ushort value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.UInt16" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.UInt16Rocks" Member="M:Mono.Rocks.UInt16Rocks.IsEven(System.UInt16)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.UInt16" />
+      </Targets>
+      <Member MemberName="IsOdd">
+        <MemberSignature Language="C#" Value="public static bool IsOdd (this ushort value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.UInt16" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.UInt16Rocks" Member="M:Mono.Rocks.UInt16Rocks.IsOdd(System.UInt16)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.UInt32" />
+      </Targets>
+      <Member MemberName="IsEven">
+        <MemberSignature Language="C#" Value="public static bool IsEven (this uint value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.UInt32" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.UInt32Rocks" Member="M:Mono.Rocks.UInt32Rocks.IsEven(System.UInt32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.UInt32" />
+      </Targets>
+      <Member MemberName="IsOdd">
+        <MemberSignature Language="C#" Value="public static bool IsOdd (this uint value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.UInt32" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.UInt32Rocks" Member="M:Mono.Rocks.UInt32Rocks.IsOdd(System.UInt32)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.UInt64" />
+      </Targets>
+      <Member MemberName="IsEven">
+        <MemberSignature Language="C#" Value="public static bool IsEven (this ulong value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.UInt64" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.UInt64Rocks" Member="M:Mono.Rocks.UInt64Rocks.IsEven(System.UInt64)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.UInt64" />
+      </Targets>
+      <Member MemberName="IsOdd">
+        <MemberSignature Language="C#" Value="public static bool IsOdd (this ulong value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="value" Type="System.UInt64" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.UInt64Rocks" Member="M:Mono.Rocks.UInt64Rocks.IsOdd(System.UInt64)" />
       </Member>
     </ExtensionMethod>
   </ExtensionMethods>

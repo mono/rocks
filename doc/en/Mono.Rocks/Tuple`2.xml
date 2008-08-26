@@ -132,7 +132,7 @@
       </Docs>
     </Member>
     <Member MemberName="Equals">
-      <MemberSignature Language="C#" Value="public bool Equals (Mono.Rocks.Tuple&lt;T1,T2&gt; o);" />
+      <MemberSignature Language="C#" Value="public bool Equals (Mono.Rocks.Tuple&lt;T1,T2&gt; obj);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -141,17 +141,17 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="o" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
+        <Parameter Name="obj" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
       </Parameters>
       <Docs>
-        <param name="o">To be added.</param>
+        <param name="obj">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Equals">
-      <MemberSignature Language="C#" Value="public override bool Equals (object o);" />
+      <MemberSignature Language="C#" Value="public override bool Equals (object obj);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -160,10 +160,10 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="o" Type="System.Object" />
+        <Parameter Name="obj" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="o">To be added.</param>
+        <param name="obj">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>

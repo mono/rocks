@@ -1,3 +1,8 @@
+2008-08-26  Jonathan Pryor  <jpryor@novell.com>
+
+	* Lambdas.cs: Flush (adds inline XML documentation; changes some method
+	  parameter names for consistency/easier code/doc generation).
+
 2008-08-22  Jonathan Pryor  <jpryor@novell.com>
 
 	* Check.cs: Add Check.Random().

@@ -6,7 +6,7 @@ PACKAGE = mono-rocks
 VERSION = 0.1.0
 
 Mono.Rocks.dll: Mono.Rocks.dll.sources $(shell cat Mono.Rocks.dll.sources)
-	$(MCS) -debug+ -t:library -r:System.Core -out:$@ $(MCS_FLAGS) @$@.sources
+	$(MCS) -doc:doc/mono-rocks.xml -debug+ -t:library -r:System.Core -out:$@ $(MCS_FLAGS) @$@.sources
 
 all: Mono.Rocks.dll
 

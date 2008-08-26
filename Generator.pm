@@ -24,20 +24,32 @@ sub MaxSystemFuncs {
 sub Action {
 	my ($self, $n) = @_;
 
+	return $self->Write (GetAction ($n));
+}
+
+sub GetAction {
+	my ($n) = @_;
+
 	if ($n <= $num_system_funcs) {
-		$self->Write ("Action");
+		return "Action";
 	} else {
-		$self->Write ("RocksAction");
+		return "RocksAction";
 	}
 }
 
 sub Func {
 	my ($self, $n) = @_;
 
+	return $self->Write (GetFunc ($n));
+}
+
+sub GetFunc {
+	my ($n) = @_;
+
 	if ($n <= $num_system_funcs) {
-		$self->Write ("Func");
+		return "Func";
 	} else {
-		$self->Write ("RocksFunc");
+		return "RocksFunc";
 	}
 }
 
@@ -160,13 +172,17 @@ sub Method {
 
 sub TypeParameter {
 	my ($self, $max, $i) = @_;
+
+	return $self->Write (GetTypeParameter ($max, $i));
+}
+
+sub GetTypeParameter {
+	my ($max, $i) = @_;
+
 	if ($max == 1) {
-		$self->Write ("T");
+		return "T";
 	}
-	else {
-		$self->Write ("T$i");
-	}
-	return $self;
+	return "T$i";
 }
 
 sub TypeParameterList {
@@ -233,6 +249,83 @@ sub MethodParameterList {
 		$self->MethodParameter ($max, $i);
 	}
 	return $self;
+}
+
+sub GetDocAction {
+	my ($n, $gen_prefix) = @_;
+
+	my $t = ($n <= $num_system_funcs) ? "System." : "Mono.Rocks.";
+	$t .= GetAction ($n);
+	if ($n == 0) {
+		return $t;
+	}
+	$t .= "{${gen_prefix}0";
+	for (my $i = 1; $i < $n; ++$i) {
+		$t .= ",$gen_prefix$i";
+	}
+	$t .= "}";
+	return $t;
+}
+
+sub GetDocFunc {
+	my ($n, $gen_prefix) = @_;
+
+	my $t = ($n <= $num_system_funcs) ? "System." : "Mono.Rocks.";
+	$t .= GetFunc ($n);
+	$t .= "{";
+	my $i = 0;
+	for ($i = 0; $i < $n; ++$i) {
+		$t .= "$gen_prefix$i,";
+	}
+	$t .= "$gen_prefix$i}";
+	return $t;
+}
+
+sub XmlDoc {
+	my ($self, $start_element, $end_element, $content) = @_;
+
+	$self->Write ("/// <$start_element>\n");
+	my @lines = split /\n/, $content;
+	foreach my $line (@lines) {
+		$self->Write ("///   $line\n");
+	}
+	return $self->Write ("/// </$end_element>\n");
+}
+
+sub XmlException {
+	my ($self, $type, $content) = @_;
+
+	return $self->XmlDoc ("exception cref=\"T:$type\"", "exception", $content);
+}
+
+sub XmlParam {
+	my ($self, $param, $content) = @_;
+
+	return $self->XmlDoc ("param name=\"$param\"", "param", $content);
+}
+
+sub XmlRemarks {
+	my ($self, $content) = @_;
+
+	return $self->XmlDoc ("remarks", "remarks", $content);
+}
+
+sub XmlReturns {
+	my ($self, $content) = @_;
+
+	return $self->XmlDoc ("returns", "returns", $content);
+}
+
+sub XmlSummary {
+	my ($self, $content) = @_;
+
+	return $self->XmlDoc ("summary", "summary", $content);
+}
+
+sub XmlTypeparam {
+	my ($self, $param, $content) = @_;
+
+	return $self->XmlDoc ("typeparam name=\"$param\"", "typeparam", $content);
 }
 
 1;

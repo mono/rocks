@@ -31,118 +31,524 @@ using System.Linq.Expressions;
 
 namespace Mono.Rocks {
 
+	/// <summary>
+	///   Provides static utility methods to generate anonymous delegates 
+	///   or expression trees of pre-determined types.
+	/// </summary>
+	/// <remarks>
+	///   <para>
+	///    C# lambda methods and anonymous delegates are a curious 
+	///    1.5-class citizen: They are implicitly convertable to any
+	///    delegate type, but have no type by themselves.  Thus,
+	///    the following code fails to compile:
+	///   </para>
+	///   <code lang="C#">
+	///   ((int x) => Console.WriteLine (x))(5);</code>
+	///   <para>It would instead need:</para>
+	///   <code lang="C#">
+	///   // either:
+	///   Action&lt;int&gt; a = x => Console.WriteLine (x);
+	///   a (5);
+	///   //
+	///   // or
+	///   //
+	///   ((Action&lt;int&gt;) (x => Console.WriteLine (x)))(5);</code>
+	///   <para>
+	///    So you'd either need to assign the lambda to an actual
+	///    delegate type, or insert a cast.
+	///   </para>
+	///   <para>
+	///    <see cref="M:Mono.Rocks.Lambda.Func" /> allows you to
+	///    provide a lambda body for a builtin delegate type such as
+	///    <see cref="T:System.Action"/> or <see cref="T:System.Func{TResult}"/>,
+	///    thus removing the need for a cast or an extra variable:
+	///   </para>
+	///   <code lang="C#">
+	///   Lambda.Func ((int x) => Console.WriteLine (x)) (5);</code>
+	///   <para>
+	///    <see cref="T:Mono.Rocks.Lambda"/> provides the following sets of
+	///    functionality:
+	///   </para>
+	///   <list type="bullet">
+	///    <item><term>Delegate creation methods, which return 
+	///     <see cref="T:System.Action"/>-like delegates:
+	///     <see cref="M:Mono.Rocks.Lambda.Func(System.Action)"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Func``1(System.Action{``0})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Func``2(System.Action{``0,``1})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Func``3(System.Action{``0,``1,``2})"/>, and
+	///     <see cref="M:Mono.Rocks.Lambda.Func``4(System.Action{``0,``1,``2,``3})"/>.
+	///    </term></item>
+	///    <item><term>Delegate creation methods which return 
+	///     return <see cref="T:System.Func{TResult}"/>-like delegates
+	///     <see cref="M:Mono.Rocks.Lambda.Func``1(System.Func{``0})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Func``2(System.Func{``0,``1})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Func``3(System.Func{``0,``1,``2})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Func``4(System.Func{``0,``1,``2,``3})"/>, and
+	///     <see cref="M:Mono.Rocks.Lambda.Func``5(System.Func{``0,``1,``2,``3,``4})"/>.
+	///    </term></item>
+	///    <item><term><see cref="T:System.Linq.Expressions.Expression"/>-creating methods:
+	///     <see cref="M:Mono.Rocks.Lambda.Expression(System.Linq.Expressions.Expression{System.Action})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Expression``1(System.Linq.Expressions.Expression{System.Func{``0}})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Expression``1(System.Linq.Expressions.Expression{System.Action{``0}})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Expression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Expression``2(System.Linq.Expressions.Expression{System.Action{``0,``1}})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Expression``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Expression``3(System.Linq.Expressions.Expression{System.Action{``0,``1,``2}})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Expression``4(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.Expression``4(System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}})"/>, and
+	///     <see cref="M:Mono.Rocks.Lambda.Expression``5(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}})"/>.
+	///    </term></item>
+	///    <item><term>Y-Combinators, which permit writing recursive lambdas:
+	///     <see cref="M:Mono.Rocks.Lambda.RecFunc``2(System.Func{System.Func{``0,``1},System.Func{``0,``1}})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.RecFunc``3(System.Func{System.Func{``0,``1,``2},System.Func{``0,``1,``2}})"/>,
+	///     <see cref="M:Mono.Rocks.Lambda.RecFunc``4(System.Func{System.Func{``0,``1,``2,``3},System.Func{``0,``1,``2,``3}})"/>, and
+	///     <see cref="M:Mono.Rocks.Lambda.RecFunc``5(System.Func{System.Func{``0,``1,``2,``3,``4},System.Func{``0,``1,``2,``3,``4}})"/>.
+	///    </term></item>
+	///   </list>
+	/// </remarks>
+
 	public static partial class Lambda {
 
-		public static Action Func (Action action)
+		/// <param name="lambda">
+		///   The <see cref="T:System.Action"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Action"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="lambda"/>.
+		/// </returns>
+		public static Action Func (Action lambda)
 		{
-			return action;
+			return lambda;
 		}
 
-		public static Func<TResult> Func<TResult> (Func<TResult> func)
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{``0}"/> return type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Func{``0}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{``0}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="lambda"/>.
+		/// </returns>
+		public static Func<TResult> Func<TResult> (Func<TResult> lambda)
 		{
-			return func;
+			return lambda;
 		}
 
+		/// <param name="expr">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action}"/> expression tree.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="expr"/>.
+		/// </returns>
 		public static Expression<Action> Expression (Expression<Action> expr)
 		{
 			return expr;
 		}
 
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}"/> return type.
+		/// </typeparam>
+		/// <param name="expr">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}"/> expression tree.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="expr"/>.
+		/// </returns>
 		public static Expression<Func<TResult>> Expression<TResult> (Expression<Func<TResult>> expr)
 		{
 			return expr;
 		}
 
+		/// <typeparam name="T">
+		///   A <see cref="T:System.Action{``0}"/> parameter type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Action{``0}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Action{``0}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="lambda"/>.
+		/// </returns>
 		public static Action<T>
-			Func<T> (Action<T> action)
+			Func<T> (Action<T> lambda)
 		{
-			return action;
+			return lambda;
 		}
 
+		/// <typeparam name="T">
+		///   A <see cref="T:System.Func{``0,``1}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{``0,``1}"/> return type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Func{``0,``1}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{``0,``1}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="lambda"/>.
+		/// </returns>
 		public static Func<T, TResult>
-			Func<T, TResult> (Func<T, TResult> func)
+			Func<T, TResult> (Func<T, TResult> lambda)
 		{
-			return func;
+			return lambda;
 		}
 
+		/// <typeparam name="T">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}"/> parameter type.
+		/// </typeparam>
+		/// <param name="expr">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}"/> expression tree.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="expr"/>.
+		/// </returns>
 		public static Expression<Action<T>>
 			Expression<T> (Expression<Action<T>> expr)
 		{
 			return expr;
 		}
 
+		/// <typeparam name="T">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}"/> return type.
+		/// </typeparam>
+		/// <param name="expr">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}"/> expression tree.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="expr"/>.
+		/// </returns>
 		public static Expression<Func<T, TResult>>
 			Expression<T, TResult> (Expression<Func<T, TResult>> expr)
 		{
 			return expr;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Action{``0,``1}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Action{``0,``1}"/> parameter type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Action{``0,``1}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Action{``0,``1}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="lambda"/>.
+		/// </returns>
 		public static Action<T1, T2>
-			Func<T1, T2> (Action<T1, T2> action)
+			Func<T1, T2> (Action<T1, T2> lambda)
 		{
-			return action;
+			return lambda;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{``0,``1,``2}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{``0,``1,``2}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{``0,``1,``2}"/> return type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Func{``0,``1,``2}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{``0,``1,``2}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="lambda"/>.
+		/// </returns>
 		public static Func<T1, T2, TResult>
-			Func<T1, T2, TResult> (Func<T1, T2, TResult> func)
+			Func<T1, T2, TResult> (Func<T1, T2, TResult> lambda)
 		{
-			return func;
+			return lambda;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}"/> parameter type.
+		/// </typeparam>
+		/// <param name="expr">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}"/> expression tree.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="expr"/>.
+		/// </returns>
 		public static Expression<Action<T1, T2>>
 			Expression<T1, T2> (Expression<Action<T1, T2>> expr)
 		{
 			return expr;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}"/> return type.
+		/// </typeparam>
+		/// <param name="expr">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}"/> expression tree.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="expr"/>.
+		/// </returns>
 		public static Expression<Func<T1, T2, TResult>>
 			Expression<T1, T2, TResult> (Expression<Func<T1, T2, TResult>> expr)
 		{
 			return expr;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Action{``0,``1,``2}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Action{``0,``1,``2}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Action{``0,``1,``2}"/> parameter type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Action{``0,``1,``2}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Action{``0,``1,``2}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="lambda"/>.
+		/// </returns>
 		public static Action<T1, T2, T3>
-			Func<T1, T2, T3> (Action<T1, T2, T3> action)
+			Func<T1, T2, T3> (Action<T1, T2, T3> lambda)
 		{
-			return action;
+			return lambda;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{``0,``1,``2,``3}"/> return type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Func{``0,``1,``2,``3}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{``0,``1,``2,``3}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="lambda"/>.
+		/// </returns>
 		public static Func<T1, T2, T3, TResult>
-			Func<T1, T2, T3, TResult> (Func<T1, T2, T3, TResult> func)
+			Func<T1, T2, T3, TResult> (Func<T1, T2, T3, TResult> lambda)
 		{
-			return func;
+			return lambda;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}"/> parameter type.
+		/// </typeparam>
+		/// <param name="expr">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}"/> expression tree.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="expr"/>.
+		/// </returns>
 		public static Expression<Action<T1, T2, T3>>
 			Expression<T1, T2, T3> (Expression<Action<T1, T2, T3>> expr)
 		{
 			return expr;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> return type.
+		/// </typeparam>
+		/// <param name="expr">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> expression tree.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="expr"/>.
+		/// </returns>
 		public static Expression<Func<T1, T2, T3, TResult>>
 			Expression<T1, T2, T3, TResult> (Expression<Func<T1, T2, T3, TResult>> expr)
 		{
 			return expr;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Action{``0,``1,``2,``3}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Action{``0,``1,``2,``3}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Action{``0,``1,``2,``3}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   A <see cref="T:System.Action{``0,``1,``2,``3}"/> parameter type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Action{``0,``1,``2,``3}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Action{``0,``1,``2,``3}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="lambda"/>.
+		/// </returns>
 		public static Action<T1, T2, T3, T4>
-			Func<T1, T2, T3, T4> (Action<T1, T2, T3, T4> action)
+			Func<T1, T2, T3, T4> (Action<T1, T2, T3, T4> lambda)
 		{
-			return action;
+			return lambda;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> return type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="lambda"/>.
+		/// </returns>
 		public static Func<T1, T2, T3, T4, TResult>
-			Func<T1, T2, T3, T4, TResult> (Func<T1, T2, T3, T4, TResult> func)
+			Func<T1, T2, T3, T4, TResult> (Func<T1, T2, T3, T4, TResult> lambda)
 		{
-			return func;
+			return lambda;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> parameter type.
+		/// </typeparam>
+		/// <param name="expr">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> expression tree.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="expr"/>.
+		/// </returns>
 		public static Expression<Action<T1, T2, T3, T4>>
 			Expression<T1, T2, T3, T4> (Expression<Action<T1, T2, T3, T4>> expr)
 		{
 			return expr;
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> return type.
+		/// </typeparam>
+		/// <param name="expr">
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> to return.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> expression tree.
+		/// </summary>
+		/// <returns>
+		///   Returns <paramref name="expr"/>.
+		/// </returns>
 		public static Expression<Func<T1, T2, T3, T4, TResult>>
 			Expression<T1, T2, T3, T4, TResult> (Expression<Func<T1, T2, T3, T4, TResult>> expr)
 		{
@@ -154,40 +560,170 @@ namespace Mono.Rocks {
 		// http://blogs.msdn.com/madst/archive/2007/05/11/recursive-lambda-expressions.aspx
 		//
 
+		/// <typeparam name="T">
+		///   A <see cref="T:System.Func{``0,``1}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{``0,``1}"/> return type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Func{System.Func{``0,``1},System.Func{``0,``1}}"/> to use.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{``0,``1}"/> delegate, which may be recursive.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Func{``0,``1}"/> which (eventually) invokes
+		///   <paramref name="lambda"/>.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   if <paramref name="lambda"/> is <see langword="null"/>.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    The following example makes use of a recursive lambda:
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int, int&gt; factorial = Lambda.RecFunc&lt;int, int&gt; (
+		///       fac => x => x == 0 ? 1 : x * fac (x-1));
+		///   Console.WriteLine (factorial (5));  // prints "120"</code>
+		/// </remarks>
 		public static Func<T, TResult>
-			RecFunc<T, TResult> (Func<Func<T, TResult>, Func<T, TResult>> func)
+			RecFunc<T, TResult> (Func<Func<T, TResult>, Func<T, TResult>> lambda)
 		{
-			if (func == null)
-				throw new ArgumentNullException ("func");
+			if (lambda == null)
+				throw new ArgumentNullException ("lambda");
 
-			return (value) => func (RecFunc (func))(value);
+			return (value) => lambda (RecFunc (lambda))(value);
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{``0,``1,``2}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{``0,``1,``2}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{``0,``1,``2}"/> return type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Func{System.Func{``0,``1,``2},System.Func{``0,``1,``2}}"/> to use.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{``0,``1,``2}"/> delegate, which may be recursive.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Func{``0,``1,``2}"/> which (eventually) invokes
+		///   <paramref name="lambda"/>.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   if <paramref name="lambda"/> is <see langword="null"/>.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    The following example makes use of a recursive lambda:
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int, int&gt; factorial = Lambda.RecFunc&lt;int, int&gt; (
+		///       fac => x => x == 0 ? 1 : x * fac (x-1));
+		///   Console.WriteLine (factorial (5));  // prints "120"</code>
+		/// </remarks>
 		public static Func<T1, T2, TResult>
-			RecFunc<T1, T2, TResult> (Func<Func<T1, T2, TResult>, Func<T1, T2, TResult>> func)
+			RecFunc<T1, T2, TResult> (Func<Func<T1, T2, TResult>, Func<T1, T2, TResult>> lambda)
 		{
-			if (func == null)
-				throw new ArgumentNullException ("func");
+			if (lambda == null)
+				throw new ArgumentNullException ("lambda");
 
-			return (value1, value2) => func (RecFunc (func))(value1, value2);
+			return (value1, value2) => lambda (RecFunc (lambda))(value1, value2);
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{``0,``1,``2,``3}"/> return type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Func{System.Func{``0,``1,``2,``3},System.Func{``0,``1,``2,``3}}"/> to use.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{``0,``1,``2,``3}"/> delegate, which may be recursive.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Func{``0,``1,``2,``3}"/> which (eventually) invokes
+		///   <paramref name="lambda"/>.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   if <paramref name="lambda"/> is <see langword="null"/>.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    The following example makes use of a recursive lambda:
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int, int&gt; factorial = Lambda.RecFunc&lt;int, int&gt; (
+		///       fac => x => x == 0 ? 1 : x * fac (x-1));
+		///   Console.WriteLine (factorial (5));  // prints "120"</code>
+		/// </remarks>
 		public static Func<T1, T2, T3, TResult>
-			RecFunc<T1, T2, T3, TResult> (Func<Func<T1, T2, T3, TResult>, Func<T1, T2, T3, TResult>> func)
+			RecFunc<T1, T2, T3, TResult> (Func<Func<T1, T2, T3, TResult>, Func<T1, T2, T3, TResult>> lambda)
 		{
-			if (func == null)
-				throw new ArgumentNullException ("func");
+			if (lambda == null)
+				throw new ArgumentNullException ("lambda");
 
-			return (value1, value2, value3) => func (RecFunc (func))(value1, value2, value3);
+			return (value1, value2, value3) => lambda (RecFunc (lambda))(value1, value2, value3);
 		}
 
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> return type.
+		/// </typeparam>
+		/// <param name="lambda">
+		///   The <see cref="T:System.Func{System.Func{``0,``1,``2,``3,``4},System.Func{``0,``1,``2,``3,``4}}"/> to use.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> delegate, which may be recursive.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> which (eventually) invokes
+		///   <paramref name="lambda"/>.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   if <paramref name="lambda"/> is <see langword="null"/>.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    The following example makes use of a recursive lambda:
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int, int&gt; factorial = Lambda.RecFunc&lt;int, int&gt; (
+		///       fac => x => x == 0 ? 1 : x * fac (x-1));
+		///   Console.WriteLine (factorial (5));  // prints "120"</code>
+		/// </remarks>
 		public static Func<T1, T2, T3, T4, TResult>
-			RecFunc<T1, T2, T3, T4, TResult> (Func<Func<T1, T2, T3, T4, TResult>, Func<T1, T2, T3, T4, TResult>> func)
+			RecFunc<T1, T2, T3, T4, TResult> (Func<Func<T1, T2, T3, T4, TResult>, Func<T1, T2, T3, T4, TResult>> lambda)
 		{
-			if (func == null)
-				throw new ArgumentNullException ("func");
+			if (lambda == null)
+				throw new ArgumentNullException ("lambda");
 
-			return (value1, value2, value3, value4) => func (RecFunc (func))(value1, value2, value3, value4);
+			return (value1, value2, value3, value4) => lambda (RecFunc (lambda))(value1, value2, value3, value4);
 		}
 	}
 }

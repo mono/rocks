@@ -46,7 +46,7 @@ doc/mono-rocks-docs.zip doc/mono-rocks-docs.tree: $(DOCUMENTATION)
 
 update: $(addprefix $(srcdir)/, $(ASSEMBLIES)) $(DOC_EXAMPLES_SRC) $(DOC_EXAMPLES_OUTPUT)
 	for a in $(ASSEMBLIES) ; do \
-		$(UPDATER) -assembly:$(srcdir)/$$a ; \
+		$(UPDATER) -importslashdoc:$(srcdir)/doc/mono-rocks.xml -assembly:$(srcdir)/$$a ; \
 	done
 
 update-delete: $(addprefix lib/ndesk-options/, $(ASSEMBLIES)) $(srcdir)/doc/en/examples/*.cs $(DOC_EXAMPLES_OUTPUT)
