@@ -1,5 +1,10 @@
 2008-08-26  Jonathan Pryor  <jpryor@novell.com>
 
+	* Mono.Rocks.csproj: Reset the <TargetFrameworkVersion/> to 3.5 so that
+	  Mono.Rocks builds properly in VS.NET.
+
+2008-08-26  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/index.xml: Flush.
 
 2008-08-26  Jonathan Pryor  <jpryor@novell.com>
