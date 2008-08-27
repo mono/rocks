@@ -889,40 +889,6 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Implode&lt;TSource,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static string Implode&lt;TSource,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator, Func&lt;TSource,TResult&gt; selector);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <Attributes>
-        <Attribute>
-          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
-        </Attribute>
-      </Attributes>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="TSource" />
-        <TypeParameter Name="TResult" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
-        <Parameter Name="separator" Type="System.String" />
-        <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="TSource">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="separator">To be added.</param>
-        <param name="selector">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
     <Member MemberName="Implode&lt;TSource&gt;">
       <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
       <MemberType>Method</MemberType>
@@ -982,7 +948,7 @@
       </Docs>
     </Member>
     <Member MemberName="Implode&lt;TSource&gt;">
-      <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator, Action&lt;System.Text.StringBuilder,TSource&gt; appender);" />
+      <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator, Func&lt;TSource,string&gt; selector);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -1001,13 +967,13 @@
       <Parameters>
         <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
         <Parameter Name="separator" Type="System.String" />
-        <Parameter Name="appender" Type="System.Action&lt;System.Text.StringBuilder,TSource&gt;" />
+        <Parameter Name="selector" Type="System.Func&lt;TSource,System.String&gt;" />
       </Parameters>
       <Docs>
         <typeparam name="TSource">To be added.</typeparam>
         <param name="self">To be added.</param>
         <param name="separator">To be added.</param>
-        <param name="appender">To be added.</param>
+        <param name="selector">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>

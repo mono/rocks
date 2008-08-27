@@ -2244,7 +2244,7 @@
         <Target Type="T:System.Collections.Generic.IEnumerable`1" />
       </Targets>
       <Member MemberName="Implode&lt;TSource&gt;">
-        <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator, Action&lt;System.Text.StringBuilder,TSource&gt; appender);" />
+        <MemberSignature Language="C#" Value="public static string Implode&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator, Func&lt;TSource,string&gt; selector);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>System.String</ReturnType>
@@ -2255,46 +2255,16 @@
         <Parameters>
           <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
           <Parameter Name="separator" Type="System.String" />
-          <Parameter Name="appender" Type="System.Action&lt;System.Text.StringBuilder,TSource&gt;" />
+          <Parameter Name="selector" Type="System.Func&lt;TSource,System.String&gt;" />
         </Parameters>
         <Docs>
           <typeparam name="TSource">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="separator">To be added.</param>
-          <param name="appender">To be added.</param>
-          <summary>To be added.</summary>
-        </Docs>
-        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Implode``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Action{System.Text.StringBuilder,``0})" />
-      </Member>
-    </ExtensionMethod>
-    <ExtensionMethod>
-      <Targets>
-        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
-      </Targets>
-      <Member MemberName="Implode&lt;TSource,TResult&gt;">
-        <MemberSignature Language="C#" Value="public static string Implode&lt;TSource,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, string separator, Func&lt;TSource,TResult&gt; selector);" />
-        <MemberType>ExtensionMethod</MemberType>
-        <ReturnValue>
-          <ReturnType>System.String</ReturnType>
-        </ReturnValue>
-        <TypeParameters>
-          <TypeParameter Name="TSource" />
-          <TypeParameter Name="TResult" />
-        </TypeParameters>
-        <Parameters>
-          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
-          <Parameter Name="separator" Type="System.String" />
-          <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
-        </Parameters>
-        <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
           <param name="self">To be added.</param>
           <param name="separator">To be added.</param>
           <param name="selector">To be added.</param>
           <summary>To be added.</summary>
         </Docs>
-        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Implode``2(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{``0,``1})" />
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Implode``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{``0,System.String})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
