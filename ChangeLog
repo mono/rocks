@@ -1,5 +1,13 @@
 2008-08-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add
+	  Mono.Rocks/StreamConverter.cs to the build.
+	* Mono.Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Add
+	  Tests/Mono.Rocks.Tests/StreamConverterTest.cs to the build.
+	* doc/en/**: Flush.
+
+2008-08-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/index.xml, doc/en/Mono.Rocks/IEnumerableRocks.xml: Flush; removes
 	  IEnumerableRocks.Implode<T>(IEnumerable<T>,string,Action<StringBuilder,T>).
 

@@ -51,6 +51,7 @@
     <Compile Include="Mono.Rocks\NaturalStringComparer.cs" />
     <Compile Include="Mono.Rocks\Sequence.cs" />
     <Compile Include="Mono.Rocks\Stream.cs" />
+    <Compile Include="Mono.Rocks\StreamConverter.cs" />
     <Compile Include="Mono.Rocks\String.cs" />
     <Compile Include="Mono.Rocks\TextReader.cs" />
     <Compile Include="Mono.Rocks\Tuple.cs" />

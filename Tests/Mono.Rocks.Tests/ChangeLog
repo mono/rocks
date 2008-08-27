@@ -1,3 +1,9 @@
+2008-08-27  Jonathan Pryor  <jpryor@novell.com>
+
+	* StreamConverterTest.cs: Added; tests StreamConverter.
+	* StreamTest.cs: Move existing Read/Write tests into StreamConverterTest.cs;
+	  add tests for .WithSystemConverter().
+
 2008-08-26  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerableTest.cs: Remove test for removed .Implode() overloads.

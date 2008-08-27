@@ -1,5 +1,21 @@
 2008-08-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* StreamConverter.cs: Added; move the StreamRocks.Read() and
+	  StreamRocks.Write() methods into StreamConverter and
+	  SystemStreamConverter.  This (unfortunately) means that "external"
+	  extension methods need to be on StreamConverter and not Stream, but it
+	  allows conversion to be *much* faster.  On a cursory test, just removing
+	  the constant array creation required by StreamRocks.Read() sped things up,
+	  and going the current abstract class approach gets execution to less than
+	  half the original execution time (for that test).
+	* Stream.cs: Move .Read()/.Write() into StreamConverter; add a
+	  .WithSystemConverter() extension method which returns a StreamConverter
+	  for a given stream.  This allows the previous "cute" chaining to continue,
+	  while only requiring an additional (extension) method call, e.g.
+	  stream.WithSystemConverter().Read(out a).Read(out b)....
+
+2008-08-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* Check.cs: Add Check.Selector().
 	* IEnumerable.cs: Profiling/testing showed that (incredibly?) using
 	  string.Join() was faster than using StringBuilder, so do that.  

@@ -12,6 +12,7 @@
 ./Mono.Rocks/NaturalStringComparer.cs
 ./Mono.Rocks/Sequence.cs
 ./Mono.Rocks/Stream.cs
+./Mono.Rocks/StreamConverter.cs
 ./Mono.Rocks/String.cs
 ./Mono.Rocks/TextReader.cs
 ./Mono.Rocks/Tuple.cs
