@@ -138,6 +138,7 @@ sub create_type {
 			$g->Write ("\n");
 
 			for (my $i = 1; $i <= $n; ++$i) {
+				$g->Write ("[CLSCompliant (false)]\n");
 				$g->Write ("public ")->TypeParameter ($n, $i)
 					->Write (" _$i {get{return ")->Value ($n, $i)->Write (";}}\n");
 			}

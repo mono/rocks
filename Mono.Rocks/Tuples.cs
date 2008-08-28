@@ -73,6 +73,7 @@ namespace Mono.Rocks {
 			this.value = value;
 		}
 
+		[CLSCompliant (false)]
 		public T _1 {get{return value;}}
 
 		public override int Count {
@@ -132,7 +133,9 @@ namespace Mono.Rocks {
 			this.value2 = value2;
 		}
 
+		[CLSCompliant (false)]
 		public T1 _1 {get{return value1;}}
+		[CLSCompliant (false)]
 		public T2 _2 {get{return value2;}}
 
 		public override int Count {
@@ -199,8 +202,11 @@ namespace Mono.Rocks {
 			this.value3 = value3;
 		}
 
+		[CLSCompliant (false)]
 		public T1 _1 {get{return value1;}}
+		[CLSCompliant (false)]
 		public T2 _2 {get{return value2;}}
+		[CLSCompliant (false)]
 		public T3 _3 {get{return value3;}}
 
 		public override int Count {
@@ -274,9 +280,13 @@ namespace Mono.Rocks {
 			this.value4 = value4;
 		}
 
+		[CLSCompliant (false)]
 		public T1 _1 {get{return value1;}}
+		[CLSCompliant (false)]
 		public T2 _2 {get{return value2;}}
+		[CLSCompliant (false)]
 		public T3 _3 {get{return value3;}}
+		[CLSCompliant (false)]
 		public T4 _4 {get{return value4;}}
 
 		public override int Count {

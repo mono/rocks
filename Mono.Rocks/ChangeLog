@@ -1,5 +1,13 @@
 2008-08-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* AssemblyInfo.cs: Enable CLS Compliance checking.
+	* Tuples.cs: Flush (adds [CLSCompliant(false)] to _N members).
+	* StreamConverter.cs, UInt16.cs, UInt32.cs, UInt64.cs: Mark these types 
+	  as [CLSCompliant(false)].
+	* Stream.cs: Disable CLS compliance on StreamConverter-using members.
+
+2008-08-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* StreamConverter.cs: Added; move the StreamRocks.Read() and
 	  StreamRocks.Write() methods into StreamConverter and
 	  SystemStreamConverter.  This (unfortunately) means that "external"

@@ -32,6 +32,7 @@ using System;
 
 namespace Mono.Rocks
 {
+	[CLSCompliant (false)]
 	public static class UInt16Rocks
 	{
 		public static bool IsEven (this ushort value)

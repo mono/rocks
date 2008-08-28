@@ -34,6 +34,7 @@ using System.Collections.Generic;
 
 namespace Mono.Rocks {
 
+	[CLSCompliant (false)]
 	public static class UInt32Rocks {
 
 		public static bool IsEven (this uint value)

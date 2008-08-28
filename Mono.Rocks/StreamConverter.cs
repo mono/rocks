@@ -34,6 +34,7 @@ using System.Text;
 
 namespace Mono.Rocks {
 
+	[CLSCompliant (false)]
 	public abstract class StreamConverter {
 
 		protected StreamConverter (Stream stream)
