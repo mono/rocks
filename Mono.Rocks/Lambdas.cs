@@ -106,7 +106,6 @@ namespace Mono.Rocks {
 	///    </term></item>
 	///   </list>
 	/// </remarks>
-
 	public static partial class Lambda {
 
 		/// <param name="lambda">
@@ -118,7 +117,7 @@ namespace Mono.Rocks {
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
 		/// </returns>
-		public static Action Func (Action lambda)
+		public static Action A (Action lambda)
 		{
 			return lambda;
 		}
@@ -135,7 +134,7 @@ namespace Mono.Rocks {
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
 		/// </returns>
-		public static Func<TResult> Func<TResult> (Func<TResult> lambda)
+		public static Func<TResult> F<TResult> (Func<TResult> lambda)
 		{
 			return lambda;
 		}
@@ -149,7 +148,7 @@ namespace Mono.Rocks {
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
 		/// </returns>
-		public static Expression<Action> Expression (Expression<Action> expr)
+		public static Expression<Action> XA (Expression<Action> expr)
 		{
 			return expr;
 		}
@@ -166,7 +165,7 @@ namespace Mono.Rocks {
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
 		/// </returns>
-		public static Expression<Func<TResult>> Expression<TResult> (Expression<Func<TResult>> expr)
+		public static Expression<Func<TResult>> XF<TResult> (Expression<Func<TResult>> expr)
 		{
 			return expr;
 		}
@@ -184,7 +183,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="lambda"/>.
 		/// </returns>
 		public static Action<T>
-			Func<T> (Action<T> lambda)
+			A<T> (Action<T> lambda)
 		{
 			return lambda;
 		}
@@ -205,7 +204,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="lambda"/>.
 		/// </returns>
 		public static Func<T, TResult>
-			Func<T, TResult> (Func<T, TResult> lambda)
+			F<T, TResult> (Func<T, TResult> lambda)
 		{
 			return lambda;
 		}
@@ -223,7 +222,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="expr"/>.
 		/// </returns>
 		public static Expression<Action<T>>
-			Expression<T> (Expression<Action<T>> expr)
+			XA<T> (Expression<Action<T>> expr)
 		{
 			return expr;
 		}
@@ -244,7 +243,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="expr"/>.
 		/// </returns>
 		public static Expression<Func<T, TResult>>
-			Expression<T, TResult> (Expression<Func<T, TResult>> expr)
+			XF<T, TResult> (Expression<Func<T, TResult>> expr)
 		{
 			return expr;
 		}
@@ -265,7 +264,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="lambda"/>.
 		/// </returns>
 		public static Action<T1, T2>
-			Func<T1, T2> (Action<T1, T2> lambda)
+			A<T1, T2> (Action<T1, T2> lambda)
 		{
 			return lambda;
 		}
@@ -289,7 +288,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="lambda"/>.
 		/// </returns>
 		public static Func<T1, T2, TResult>
-			Func<T1, T2, TResult> (Func<T1, T2, TResult> lambda)
+			F<T1, T2, TResult> (Func<T1, T2, TResult> lambda)
 		{
 			return lambda;
 		}
@@ -310,7 +309,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="expr"/>.
 		/// </returns>
 		public static Expression<Action<T1, T2>>
-			Expression<T1, T2> (Expression<Action<T1, T2>> expr)
+			XA<T1, T2> (Expression<Action<T1, T2>> expr)
 		{
 			return expr;
 		}
@@ -334,7 +333,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="expr"/>.
 		/// </returns>
 		public static Expression<Func<T1, T2, TResult>>
-			Expression<T1, T2, TResult> (Expression<Func<T1, T2, TResult>> expr)
+			XF<T1, T2, TResult> (Expression<Func<T1, T2, TResult>> expr)
 		{
 			return expr;
 		}
@@ -358,7 +357,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="lambda"/>.
 		/// </returns>
 		public static Action<T1, T2, T3>
-			Func<T1, T2, T3> (Action<T1, T2, T3> lambda)
+			A<T1, T2, T3> (Action<T1, T2, T3> lambda)
 		{
 			return lambda;
 		}
@@ -385,7 +384,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="lambda"/>.
 		/// </returns>
 		public static Func<T1, T2, T3, TResult>
-			Func<T1, T2, T3, TResult> (Func<T1, T2, T3, TResult> lambda)
+			F<T1, T2, T3, TResult> (Func<T1, T2, T3, TResult> lambda)
 		{
 			return lambda;
 		}
@@ -409,7 +408,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="expr"/>.
 		/// </returns>
 		public static Expression<Action<T1, T2, T3>>
-			Expression<T1, T2, T3> (Expression<Action<T1, T2, T3>> expr)
+			XA<T1, T2, T3> (Expression<Action<T1, T2, T3>> expr)
 		{
 			return expr;
 		}
@@ -436,7 +435,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="expr"/>.
 		/// </returns>
 		public static Expression<Func<T1, T2, T3, TResult>>
-			Expression<T1, T2, T3, TResult> (Expression<Func<T1, T2, T3, TResult>> expr)
+			XF<T1, T2, T3, TResult> (Expression<Func<T1, T2, T3, TResult>> expr)
 		{
 			return expr;
 		}
@@ -463,7 +462,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="lambda"/>.
 		/// </returns>
 		public static Action<T1, T2, T3, T4>
-			Func<T1, T2, T3, T4> (Action<T1, T2, T3, T4> lambda)
+			A<T1, T2, T3, T4> (Action<T1, T2, T3, T4> lambda)
 		{
 			return lambda;
 		}
@@ -493,7 +492,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="lambda"/>.
 		/// </returns>
 		public static Func<T1, T2, T3, T4, TResult>
-			Func<T1, T2, T3, T4, TResult> (Func<T1, T2, T3, T4, TResult> lambda)
+			F<T1, T2, T3, T4, TResult> (Func<T1, T2, T3, T4, TResult> lambda)
 		{
 			return lambda;
 		}
@@ -520,7 +519,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="expr"/>.
 		/// </returns>
 		public static Expression<Action<T1, T2, T3, T4>>
-			Expression<T1, T2, T3, T4> (Expression<Action<T1, T2, T3, T4>> expr)
+			XA<T1, T2, T3, T4> (Expression<Action<T1, T2, T3, T4>> expr)
 		{
 			return expr;
 		}
@@ -550,7 +549,7 @@ namespace Mono.Rocks {
 		///   Returns <paramref name="expr"/>.
 		/// </returns>
 		public static Expression<Func<T1, T2, T3, T4, TResult>>
-			Expression<T1, T2, T3, T4, TResult> (Expression<Func<T1, T2, T3, T4, TResult>> expr)
+			XF<T1, T2, T3, T4, TResult> (Expression<Func<T1, T2, T3, T4, TResult>> expr)
 		{
 			return expr;
 		}

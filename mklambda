@@ -132,30 +132,30 @@ Lambda.Func ((int x) => Console.WriteLine (x)) (5);</code>
  </term></item>
 </list>
 ));
-	$g->Type ("\npublic static partial class Lambda", sub {
+	$g->Type ("public static partial class Lambda", sub {
 
 		$g->Write ("\n");
 		create_func_doc ($g, 0, Generator::GetDocAction (0, "``"));
 		$g->Method (
-			"public static Action ", "Func", "Action lambda", "return lambda;\n"
+			"public static Action ", "A", "Action lambda", "return lambda;\n"
 		);
 
 		$g->Write ("\n");
 		create_func_doc ($g, 0, Generator::GetDocFunc (0, "``"));
 		$g->Method (
-			"public static Func<TResult> ", "Func<TResult>", "Func<TResult> lambda", "return lambda;\n"
+			"public static Func<TResult> ", "F<TResult>", "Func<TResult> lambda", "return lambda;\n"
 		);
 
 		$g->Write ("\n");
 		create_expr_doc ($g, 0, Generator::GetDocAction (0, "``"));
 		$g->Method (
-			"public static Expression<Action> ", "Expression", "Expression<Action> expr", "return expr;\n"
+			"public static Expression<Action> ", "XA", "Expression<Action> expr", "return expr;\n"
 		);
 
 		$g->Write ("\n");
 		create_expr_doc ($g, 0, Generator::GetDocFunc (0, "``"));
 		$g->Method (
-			"public static Expression<Func<TResult>> ", "Expression<TResult>", "Expression<Func<TResult>> expr", "return expr;\n"
+			"public static Expression<Func<TResult>> ", "XF<TResult>", "Expression<Func<TResult>> expr", "return expr;\n"
 		);
 		for (my $i = 1; $i <= $n; ++$i) {
 			$g->Write ("\n");
@@ -165,7 +165,7 @@ Lambda.Func ((int x) => Console.WriteLine (x)) (5);</code>
 					$g->Write ("public static ")->Action ($i)
 						->Write ("<")->TypeParameterList ($i)->Write (">");
 				},
-				sub { $g->Write ("\n\tFunc<")->TypeParameterList ($i)->Write (">"); },
+				sub { $g->Write ("\n\tA<")->TypeParameterList ($i)->Write (">"); },
 				sub { $g->Action ($i)->Write ("<")->TypeParameterList ($i)->Write ("> lambda"); },
 				"return lambda;\n"
 			);
@@ -177,7 +177,7 @@ Lambda.Func ((int x) => Console.WriteLine (x)) (5);</code>
 					$g->Write ("public static ")->Func ($i)
 						->Write ("<")->TypeParameterList ($i)->Write (", TResult>");
 				},
-				sub { $g->Write ("\n\tFunc<")->TypeParameterList ($i)->Write (", TResult>"); },
+				sub { $g->Write ("\n\tF<")->TypeParameterList ($i)->Write (", TResult>"); },
 				sub { $g->Func ($i)->Write ("<")->TypeParameterList ($i)->Write (", TResult> lambda"); },
 				"return lambda;\n"
 			);
@@ -189,7 +189,7 @@ Lambda.Func ((int x) => Console.WriteLine (x)) (5);</code>
 					$g->Write ("public static Expression<")->Action ($i)
 						->Write ("<")->TypeParameterList ($i)->Write (">>");
 				},
-				sub { $g->Write ("\n\tExpression<")->TypeParameterList ($i)->Write (">"); },
+				sub { $g->Write ("\n\tXA<")->TypeParameterList ($i)->Write (">"); },
 				sub { $g->Write ("Expression<")->Action ($i)->Write ("<")->TypeParameterList ($i)->Write (">> expr"); },
 				"return expr;\n"
 			);
@@ -201,7 +201,7 @@ Lambda.Func ((int x) => Console.WriteLine (x)) (5);</code>
 					$g->Write ("public static Expression<")->Func ($i)
 						->Write ("<")->TypeParameterList ($i)->Write (", TResult>>");
 				},
-				sub { $g->Write ("\n\tExpression<")->TypeParameterList ($i)->Write (", TResult>"); },
+				sub { $g->Write ("\n\tXF<")->TypeParameterList ($i)->Write (", TResult>"); },
 				sub { $g->Write ("Expression<")->Func ($i)->Write ("<")->TypeParameterList ($i)->Write (", TResult>> expr"); },
 				"return expr;\n"
 			);

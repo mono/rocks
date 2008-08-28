@@ -1,3 +1,7 @@
+2008-08-28  Jonathan Pryor  <jpryor@novell.com>
+
+	* Lambdas.cs: Flush (changes method names; see mklambda description).
+
 2008-08-27  Jonathan Pryor  <jpryor@novell.com>
 
 	* AssemblyInfo.cs: Enable CLS Compliance checking.

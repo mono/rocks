@@ -95,376 +95,8 @@
     </remarks>
   </Docs>
   <Members>
-    <Member MemberName="Expression">
-      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Action&gt; Expression (System.Linq.Expressions.Expression&lt;Action&gt; expr);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Linq.Expressions.Expression&lt;System.Action&gt;</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Action&gt;" />
-      </Parameters>
-      <Docs>
-        <param name="expr">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Action}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action}" /> expression tree.
-            </summary>
-        <returns>
-            Returns <paramref name="expr" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Expression&lt;T,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Func&lt;T,TResult&gt;&gt; Expression&lt;T,TResult&gt; (System.Linq.Expressions.Expression&lt;Func&lt;T,TResult&gt;&gt; expr);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Linq.Expressions.Expression&lt;System.Func&lt;T,TResult&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T" />
-        <TypeParameter Name="TResult" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;T,TResult&gt;&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}" /> parameter type.
-            </typeparam>
-        <typeparam name="TResult">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}" /> return type.
-            </typeparam>
-        <param name="expr">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}" /> expression tree.
-            </summary>
-        <returns>
-            Returns <paramref name="expr" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Expression&lt;T&gt;">
-      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Action&lt;T&gt;&gt; Expression&lt;T&gt; (System.Linq.Expressions.Expression&lt;Action&lt;T&gt;&gt; expr);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Linq.Expressions.Expression&lt;System.Action&lt;T&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Action&lt;T&gt;&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}" /> parameter type.
-            </typeparam>
-        <param name="expr">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}" /> expression tree.
-            </summary>
-        <returns>
-            Returns <paramref name="expr" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Expression&lt;T1,T2,T3,T4,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,T3,T4,TResult&gt;&gt; Expression&lt;T1,T2,T3,T4,TResult&gt; (System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,T3,T4,TResult&gt;&gt; expr);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,T3,T4,TResult&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-        <TypeParameter Name="T3" />
-        <TypeParameter Name="T4" />
-        <TypeParameter Name="TResult" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,T3,T4,TResult&gt;&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T2">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T3">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T4">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> parameter type.
-            </typeparam>
-        <typeparam name="TResult">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> return type.
-            </typeparam>
-        <param name="expr">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> expression tree.
-            </summary>
-        <returns>
-            Returns <paramref name="expr" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Expression&lt;T1,T2,T3,T4&gt;">
-      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Action&lt;T1,T2,T3,T4&gt;&gt; Expression&lt;T1,T2,T3,T4&gt; (System.Linq.Expressions.Expression&lt;Action&lt;T1,T2,T3,T4&gt;&gt; expr);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2,T3,T4&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-        <TypeParameter Name="T3" />
-        <TypeParameter Name="T4" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2,T3,T4&gt;&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T2">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T3">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T4">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> parameter type.
-            </typeparam>
-        <param name="expr">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> expression tree.
-            </summary>
-        <returns>
-            Returns <paramref name="expr" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Expression&lt;T1,T2,T3,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,T3,TResult&gt;&gt; Expression&lt;T1,T2,T3,TResult&gt; (System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,T3,TResult&gt;&gt; expr);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,T3,TResult&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-        <TypeParameter Name="T3" />
-        <TypeParameter Name="TResult" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,T3,TResult&gt;&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T2">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T3">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> parameter type.
-            </typeparam>
-        <typeparam name="TResult">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> return type.
-            </typeparam>
-        <param name="expr">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> expression tree.
-            </summary>
-        <returns>
-            Returns <paramref name="expr" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Expression&lt;T1,T2,T3&gt;">
-      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Action&lt;T1,T2,T3&gt;&gt; Expression&lt;T1,T2,T3&gt; (System.Linq.Expressions.Expression&lt;Action&lt;T1,T2,T3&gt;&gt; expr);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2,T3&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-        <TypeParameter Name="T3" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2,T3&gt;&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T2">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T3">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}" /> parameter type.
-            </typeparam>
-        <param name="expr">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}" /> expression tree.
-            </summary>
-        <returns>
-            Returns <paramref name="expr" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Expression&lt;T1,T2,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,TResult&gt;&gt; Expression&lt;T1,T2,TResult&gt; (System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,TResult&gt;&gt; expr);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,TResult&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-        <TypeParameter Name="TResult" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,TResult&gt;&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T2">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}" /> parameter type.
-            </typeparam>
-        <typeparam name="TResult">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}" /> return type.
-            </typeparam>
-        <param name="expr">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}" /> expression tree.
-            </summary>
-        <returns>
-            Returns <paramref name="expr" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Expression&lt;T1,T2&gt;">
-      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Action&lt;T1,T2&gt;&gt; Expression&lt;T1,T2&gt; (System.Linq.Expressions.Expression&lt;Action&lt;T1,T2&gt;&gt; expr);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2&gt;&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}" /> parameter type.
-            </typeparam>
-        <typeparam name="T2">
-            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}" /> parameter type.
-            </typeparam>
-        <param name="expr">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}" /> expression tree.
-            </summary>
-        <returns>
-            Returns <paramref name="expr" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Expression&lt;TResult&gt;">
-      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Func&lt;TResult&gt;&gt; Expression&lt;TResult&gt; (System.Linq.Expressions.Expression&lt;Func&lt;TResult&gt;&gt; expr);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Linq.Expressions.Expression&lt;System.Func&lt;TResult&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="TResult" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TResult&gt;&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="TResult">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}" /> return type.
-            </typeparam>
-        <param name="expr">
-            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}" /> expression tree.
-            </summary>
-        <returns>
-            Returns <paramref name="expr" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Func">
-      <MemberSignature Language="C#" Value="public static Action Func (Action lambda);" />
+    <Member MemberName="A">
+      <MemberSignature Language="C#" Value="public static Action A (Action lambda);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -488,8 +120,156 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Func&lt;T,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static Func&lt;T,TResult&gt; Func&lt;T,TResult&gt; (Func&lt;T,TResult&gt; lambda);" />
+    <Member MemberName="A&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static Action&lt;T&gt; A&lt;T&gt; (Action&lt;T&gt; lambda);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Action&lt;T&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="lambda" Type="System.Action&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">
+            A <see cref="T:System.Action{``0}" /> parameter type.
+            </typeparam>
+        <param name="lambda">
+            The <see cref="T:System.Action{``0}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{``0}" /> delegate.
+            </summary>
+        <returns>
+            Returns <paramref name="lambda" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="A&lt;T1,T2,T3,T4&gt;">
+      <MemberSignature Language="C#" Value="public static Action&lt;T1,T2,T3,T4&gt; A&lt;T1,T2,T3,T4&gt; (Action&lt;T1,T2,T3,T4&gt; lambda);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Action&lt;T1,T2,T3,T4&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+        <TypeParameter Name="T4" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="lambda" Type="System.Action&lt;T1,T2,T3,T4&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{``0,``1,``2,``3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{``0,``1,``2,``3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{``0,``1,``2,``3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Action{``0,``1,``2,``3}" /> parameter type.
+            </typeparam>
+        <param name="lambda">
+            The <see cref="T:System.Action{``0,``1,``2,``3}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{``0,``1,``2,``3}" /> delegate.
+            </summary>
+        <returns>
+            Returns <paramref name="lambda" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="A&lt;T1,T2,T3&gt;">
+      <MemberSignature Language="C#" Value="public static Action&lt;T1,T2,T3&gt; A&lt;T1,T2,T3&gt; (Action&lt;T1,T2,T3&gt; lambda);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Action&lt;T1,T2,T3&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="lambda" Type="System.Action&lt;T1,T2,T3&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{``0,``1,``2}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{``0,``1,``2}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{``0,``1,``2}" /> parameter type.
+            </typeparam>
+        <param name="lambda">
+            The <see cref="T:System.Action{``0,``1,``2}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{``0,``1,``2}" /> delegate.
+            </summary>
+        <returns>
+            Returns <paramref name="lambda" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="A&lt;T1,T2&gt;">
+      <MemberSignature Language="C#" Value="public static Action&lt;T1,T2&gt; A&lt;T1,T2&gt; (Action&lt;T1,T2&gt; lambda);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Action&lt;T1,T2&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="lambda" Type="System.Action&lt;T1,T2&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{``0,``1}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{``0,``1}" /> parameter type.
+            </typeparam>
+        <param name="lambda">
+            The <see cref="T:System.Action{``0,``1}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{``0,``1}" /> delegate.
+            </summary>
+        <returns>
+            Returns <paramref name="lambda" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="F&lt;T,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static Func&lt;T,TResult&gt; F&lt;T,TResult&gt; (Func&lt;T,TResult&gt; lambda);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -523,39 +303,8 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Func&lt;T&gt;">
-      <MemberSignature Language="C#" Value="public static Action&lt;T&gt; Func&lt;T&gt; (Action&lt;T&gt; lambda);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Action&lt;T&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="lambda" Type="System.Action&lt;T&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T">
-            A <see cref="T:System.Action{``0}" /> parameter type.
-            </typeparam>
-        <param name="lambda">
-            The <see cref="T:System.Action{``0}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Action{``0}" /> delegate.
-            </summary>
-        <returns>
-            Returns <paramref name="lambda" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Func&lt;T1,T2,T3,T4,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static Func&lt;T1,T2,T3,T4,TResult&gt; Func&lt;T1,T2,T3,T4,TResult&gt; (Func&lt;T1,T2,T3,T4,TResult&gt; lambda);" />
+    <Member MemberName="F&lt;T1,T2,T3,T4,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static Func&lt;T1,T2,T3,T4,TResult&gt; F&lt;T1,T2,T3,T4,TResult&gt; (Func&lt;T1,T2,T3,T4,TResult&gt; lambda);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -601,51 +350,8 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Func&lt;T1,T2,T3,T4&gt;">
-      <MemberSignature Language="C#" Value="public static Action&lt;T1,T2,T3,T4&gt; Func&lt;T1,T2,T3,T4&gt; (Action&lt;T1,T2,T3,T4&gt; lambda);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Action&lt;T1,T2,T3,T4&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-        <TypeParameter Name="T3" />
-        <TypeParameter Name="T4" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="lambda" Type="System.Action&lt;T1,T2,T3,T4&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            A <see cref="T:System.Action{``0,``1,``2,``3}" /> parameter type.
-            </typeparam>
-        <typeparam name="T2">
-            A <see cref="T:System.Action{``0,``1,``2,``3}" /> parameter type.
-            </typeparam>
-        <typeparam name="T3">
-            A <see cref="T:System.Action{``0,``1,``2,``3}" /> parameter type.
-            </typeparam>
-        <typeparam name="T4">
-            A <see cref="T:System.Action{``0,``1,``2,``3}" /> parameter type.
-            </typeparam>
-        <param name="lambda">
-            The <see cref="T:System.Action{``0,``1,``2,``3}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Action{``0,``1,``2,``3}" /> delegate.
-            </summary>
-        <returns>
-            Returns <paramref name="lambda" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Func&lt;T1,T2,T3,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static Func&lt;T1,T2,T3,TResult&gt; Func&lt;T1,T2,T3,TResult&gt; (Func&lt;T1,T2,T3,TResult&gt; lambda);" />
+    <Member MemberName="F&lt;T1,T2,T3,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static Func&lt;T1,T2,T3,TResult&gt; F&lt;T1,T2,T3,TResult&gt; (Func&lt;T1,T2,T3,TResult&gt; lambda);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -687,47 +393,8 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Func&lt;T1,T2,T3&gt;">
-      <MemberSignature Language="C#" Value="public static Action&lt;T1,T2,T3&gt; Func&lt;T1,T2,T3&gt; (Action&lt;T1,T2,T3&gt; lambda);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Action&lt;T1,T2,T3&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-        <TypeParameter Name="T3" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="lambda" Type="System.Action&lt;T1,T2,T3&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            A <see cref="T:System.Action{``0,``1,``2}" /> parameter type.
-            </typeparam>
-        <typeparam name="T2">
-            A <see cref="T:System.Action{``0,``1,``2}" /> parameter type.
-            </typeparam>
-        <typeparam name="T3">
-            A <see cref="T:System.Action{``0,``1,``2}" /> parameter type.
-            </typeparam>
-        <param name="lambda">
-            The <see cref="T:System.Action{``0,``1,``2}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Action{``0,``1,``2}" /> delegate.
-            </summary>
-        <returns>
-            Returns <paramref name="lambda" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Func&lt;T1,T2,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static Func&lt;T1,T2,TResult&gt; Func&lt;T1,T2,TResult&gt; (Func&lt;T1,T2,TResult&gt; lambda);" />
+    <Member MemberName="F&lt;T1,T2,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static Func&lt;T1,T2,TResult&gt; F&lt;T1,T2,TResult&gt; (Func&lt;T1,T2,TResult&gt; lambda);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -765,43 +432,8 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Func&lt;T1,T2&gt;">
-      <MemberSignature Language="C#" Value="public static Action&lt;T1,T2&gt; Func&lt;T1,T2&gt; (Action&lt;T1,T2&gt; lambda);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Action&lt;T1,T2&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="lambda" Type="System.Action&lt;T1,T2&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            A <see cref="T:System.Action{``0,``1}" /> parameter type.
-            </typeparam>
-        <typeparam name="T2">
-            A <see cref="T:System.Action{``0,``1}" /> parameter type.
-            </typeparam>
-        <param name="lambda">
-            The <see cref="T:System.Action{``0,``1}" /> to return.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Action{``0,``1}" /> delegate.
-            </summary>
-        <returns>
-            Returns <paramref name="lambda" />.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="Func&lt;TResult&gt;">
-      <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; Func&lt;TResult&gt; (Func&lt;TResult&gt; lambda);" />
+    <Member MemberName="F&lt;TResult&gt;">
+      <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; F&lt;TResult&gt; (Func&lt;TResult&gt; lambda);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -873,27 +505,7 @@
             fac =&gt; x =&gt; x == 0 ? 1 : x * fac (x-1));
             Console.WriteLine (factorial (5));  // prints "120"</code>
         </remarks>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
+        <exception cref="T:System.ArgumentNullException" />
       </Docs>
     </Member>
     <Member MemberName="RecFunc&lt;T1,T2,T3,T4,TResult&gt;">
@@ -950,27 +562,7 @@
             fac =&gt; x =&gt; x == 0 ? 1 : x * fac (x-1));
             Console.WriteLine (factorial (5));  // prints "120"</code>
         </remarks>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
+        <exception cref="T:System.ArgumentNullException" />
       </Docs>
     </Member>
     <Member MemberName="RecFunc&lt;T1,T2,T3,TResult&gt;">
@@ -1023,27 +615,7 @@
             fac =&gt; x =&gt; x == 0 ? 1 : x * fac (x-1));
             Console.WriteLine (factorial (5));  // prints "120"</code>
         </remarks>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
+        <exception cref="T:System.ArgumentNullException" />
       </Docs>
     </Member>
     <Member MemberName="RecFunc&lt;T1,T2,TResult&gt;">
@@ -1092,27 +664,375 @@
             fac =&gt; x =&gt; x == 0 ? 1 : x * fac (x-1));
             Console.WriteLine (factorial (5));  // prints "120"</code>
         </remarks>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
-        <exception cref="T:System.ArgumentNullException">
-            if <paramref name="lambda" /> is <see langword="null" />.
-            </exception>
+        <exception cref="T:System.ArgumentNullException" />
+      </Docs>
+    </Member>
+    <Member MemberName="XA">
+      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Action&gt; XA (System.Linq.Expressions.Expression&lt;Action&gt; expr);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression&lt;System.Action&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Action&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="expr">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Action}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action}" /> expression tree.
+            </summary>
+        <returns>
+            Returns <paramref name="expr" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="XA&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Action&lt;T&gt;&gt; XA&lt;T&gt; (System.Linq.Expressions.Expression&lt;Action&lt;T&gt;&gt; expr);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression&lt;System.Action&lt;T&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Action&lt;T&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}" /> parameter type.
+            </typeparam>
+        <param name="expr">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}" /> expression tree.
+            </summary>
+        <returns>
+            Returns <paramref name="expr" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="XA&lt;T1,T2,T3,T4&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Action&lt;T1,T2,T3,T4&gt;&gt; XA&lt;T1,T2,T3,T4&gt; (System.Linq.Expressions.Expression&lt;Action&lt;T1,T2,T3,T4&gt;&gt; expr);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2,T3,T4&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+        <TypeParameter Name="T4" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2,T3,T4&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> parameter type.
+            </typeparam>
+        <param name="expr">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}" /> expression tree.
+            </summary>
+        <returns>
+            Returns <paramref name="expr" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="XA&lt;T1,T2,T3&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Action&lt;T1,T2,T3&gt;&gt; XA&lt;T1,T2,T3&gt; (System.Linq.Expressions.Expression&lt;Action&lt;T1,T2,T3&gt;&gt; expr);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2,T3&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2,T3&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}" /> parameter type.
+            </typeparam>
+        <param name="expr">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}" /> expression tree.
+            </summary>
+        <returns>
+            Returns <paramref name="expr" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="XA&lt;T1,T2&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Action&lt;T1,T2&gt;&gt; XA&lt;T1,T2&gt; (System.Linq.Expressions.Expression&lt;Action&lt;T1,T2&gt;&gt; expr);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Action&lt;T1,T2&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}" /> parameter type.
+            </typeparam>
+        <param name="expr">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}" /> expression tree.
+            </summary>
+        <returns>
+            Returns <paramref name="expr" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="XF&lt;T,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Func&lt;T,TResult&gt;&gt; XF&lt;T,TResult&gt; (System.Linq.Expressions.Expression&lt;Func&lt;T,TResult&gt;&gt; expr);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression&lt;System.Func&lt;T,TResult&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;T,TResult&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}" /> return type.
+            </typeparam>
+        <param name="expr">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}" /> expression tree.
+            </summary>
+        <returns>
+            Returns <paramref name="expr" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="XF&lt;T1,T2,T3,T4,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,T3,T4,TResult&gt;&gt; XF&lt;T1,T2,T3,T4,TResult&gt; (System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,T3,T4,TResult&gt;&gt; expr);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,T3,T4,TResult&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+        <TypeParameter Name="T4" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,T3,T4,TResult&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> return type.
+            </typeparam>
+        <param name="expr">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}" /> expression tree.
+            </summary>
+        <returns>
+            Returns <paramref name="expr" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="XF&lt;T1,T2,T3,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,T3,TResult&gt;&gt; XF&lt;T1,T2,T3,TResult&gt; (System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,T3,TResult&gt;&gt; expr);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,T3,TResult&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,T3,TResult&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> return type.
+            </typeparam>
+        <param name="expr">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}" /> expression tree.
+            </summary>
+        <returns>
+            Returns <paramref name="expr" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="XF&lt;T1,T2,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,TResult&gt;&gt; XF&lt;T1,T2,TResult&gt; (System.Linq.Expressions.Expression&lt;Func&lt;T1,T2,TResult&gt;&gt; expr);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,TResult&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T1" />
+        <TypeParameter Name="T2" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;T1,T2,TResult&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T1">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}" /> return type.
+            </typeparam>
+        <param name="expr">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}" /> expression tree.
+            </summary>
+        <returns>
+            Returns <paramref name="expr" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="XF&lt;TResult&gt;">
+      <MemberSignature Language="C#" Value="public static System.Linq.Expressions.Expression&lt;Func&lt;TResult&gt;&gt; XF&lt;TResult&gt; (System.Linq.Expressions.Expression&lt;Func&lt;TResult&gt;&gt; expr);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Linq.Expressions.Expression&lt;System.Func&lt;TResult&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="expr" Type="System.Linq.Expressions.Expression&lt;System.Func&lt;TResult&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TResult">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}" /> return type.
+            </typeparam>
+        <param name="expr">
+            The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}" /> to return.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}" /> expression tree.
+            </summary>
+        <returns>
+            Returns <paramref name="expr" />.
+            </returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
   </Members>

@@ -1,5 +1,21 @@
 2008-08-28  Jonathan Pryor  <jpryor@novell.com>
 
+	* mklambda: Change method names: s/Func/A/g or s/Func/F/g for
+	  Action vs. Func, and s/Expression/XA/g or s/Expression/XF/g for
+	  Expression<Action> vs. Expression<Func>, respectively.
+	  This is done because Func/Expression could be ambiguous --
+	  Lambda.Func<int>(Console.WriteLine) (for Console.WriteLine(int)) was
+	  ambiguous between Lambda.Func<int>(Action<int>) and
+	  Lambda.Func<int,int>(Func<int,int>); FAIL.  Thus, we need different method
+	  names for Action vs. Func (and then different methods for 
+	  Expression<T>-accepting methods as well).  Use A instead of Action, etc.,
+	  because this is shorter, makes for a reasonably short Expression method
+	  name (ExpressionAction vs. ExpressionFunc would be annoyingly long), and
+	  people I asked about this thought it would be fine. :-)
+	* doc/en/**: Flush method name changes.
+
+2008-08-28  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/**: Flush (adds CLSCompliance attributes).
 	* doc/doc-template.xsl: The information panel should provide Mono.Rocks
 	  information, not NDesk.Options.
