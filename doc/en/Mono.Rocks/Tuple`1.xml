@@ -55,6 +55,11 @@
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
     </Member>
     <Member MemberName="Aggregate&lt;TResult&gt;">
       <MemberSignature Language="C#" Value="public TResult Aggregate&lt;TResult&gt; (Func&lt;T,TResult&gt; func);" />

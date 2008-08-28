@@ -12,6 +12,9 @@
     <Attribute>
       <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
     </Attribute>
+    <Attribute>
+      <AttributeName>System.CLSCompliant(false)</AttributeName>
+    </Attribute>
   </Attributes>
   <Docs>
     <summary>To be added.</summary>

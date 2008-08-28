@@ -1,3 +1,9 @@
+2008-08-28  Jonathan Pryor  <jpryor@novell.com>
+
+	* doc/en/**: Flush (adds CLSCompliance attributes).
+	* doc/doc-template.xsl: The information panel should provide Mono.Rocks
+	  information, not NDesk.Options.
+
 2008-08-27  Jonathan Pryor  <jpryor@novell.com>
 
 	* mktuples: Disable CLS Compliance checking on the _N members.

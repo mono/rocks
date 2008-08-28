@@ -36,9 +36,9 @@
         <xsl:call-template name="create-default-collection-title" />
         <xsl:call-template name="create-index" />
         <div class="information">
-          <p><a href="/Options">NDesk.Options</a></p>
-          <p><a href="http://git.ndesk.org/?p=ndesk-options;a=summary"
-            >GIT Repository</a></p>
+          <p><a href="http://mono-project.com/Rocks">Mono.Rocks</a></p>
+          <p><a href="http://anonsvn.mono-project.com/source/branches/rocks-playground/"
+            >Subversion Repository</a></p>
         </div>
         <xsl:call-template name="create-default-title" />
         <xsl:call-template name="create-default-summary" />

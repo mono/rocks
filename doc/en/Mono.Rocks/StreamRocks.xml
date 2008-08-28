@@ -28,6 +28,9 @@
         <Attribute>
           <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
         </Attribute>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
       </Attributes>
       <ReturnValue>
         <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
