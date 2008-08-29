@@ -1,5 +1,9 @@
 2008-08-28  Jonathan Pryor  <jpryor@novell.com>
 
+	* mklambda, doc/en/**: Update Mono.Rocks.Lambda docs (oops).
+
+2008-08-28  Jonathan Pryor  <jpryor@novell.com>
+
 	* mklambda: Change method names: s/Func/A/g or s/Func/F/g for
 	  Action vs. Func, and s/Expression/XA/g or s/Expression/XF/g for
 	  Expression<Action> vs. Expression<Func>, respectively.
