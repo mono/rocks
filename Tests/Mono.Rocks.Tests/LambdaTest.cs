@@ -43,18 +43,18 @@ namespace Mono.Rocks.Tests {
 		public void Expressions ()
 		{
 			Assert.AreEqual (typeof(Expression<Action<int, int>>),
-				Lambda.Expression ((int a, int b) => Console.WriteLine (a+b) ).GetType());
+				Lambda.XA ((int a, int b) => Console.WriteLine (a+b) ).GetType());
 			Assert.AreEqual (typeof(Expression<Func<int, int, int>>),
-				Lambda.Expression ((int a, int b) => a+b ).GetType());
+				Lambda.XF ((int a, int b) => a+b ).GetType());
 		}
 
 		[Test]
 		public void Funcs ()
 		{
 			Assert.AreEqual (typeof(Action<int, int>),
-				Lambda.Func ((int a, int b) => {} ).GetType());
+				Lambda.A ((int a, int b) => {} ).GetType());
 			Assert.AreEqual (typeof(Func<int, int, int>),
-				Lambda.Func ((int a, int b) => a+b ).GetType());
+				Lambda.F ((int a, int b) => a+b ).GetType());
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]

@@ -1,3 +1,7 @@
+2008-08-28  Jonathan Pryor  <jpryor@novell.com>
+
+	* LambdaTest.cs: Update method names (oops).
+
 2008-08-27  Jonathan Pryor  <jpryor@novell.com>
 
 	* StreamConverterTest.cs: Added; tests StreamConverter.
