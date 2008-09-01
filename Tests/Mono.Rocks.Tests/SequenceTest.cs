@@ -67,18 +67,17 @@ namespace Mono.Rocks.Tests {
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void GenerateReverse_FuncNull ()
 		{
-			Func<int, Tuple<int,int>> f = null;
+			Func<int, Tuple<int,int>?> f = null;
 			Sequence.GenerateReverse (0, f);
 		}
 
 		[Test]
 		public void GenerateReverse ()
 		{
-			// not entirely sure how you sanely test an infinite list...
 			Assert.AreEqual ("10,9,8,7,6,5,4,3,2,1",
 				Sequence.GenerateReverse (10, b => b == 0 
 						? null 
-						: Tuple.Create (b, b-1))
+						: Tuple.CreateNullable (b, b-1))
 				.Implode (","));
 		}
 	}

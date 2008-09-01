@@ -32,6 +32,9 @@ using NUnit.Framework;
 
 using Mono.Rocks;
 
+// "The variable `r' is assigned but it's value is never used."
+// It's value isn't supposed to be used; it's purpose is as a manual check the
+// the generated .Curry() methods generate the correct return type.
 #pragma warning disable 0219
 
 namespace Mono.Rocks.Tests {
@@ -42,301 +45,141 @@ namespace Mono.Rocks.Tests {
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A1_P1_SelfNull ()
 		{
-			Action<int> a = null;
-			Action b = a.Curry (1);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_A1_T1_ValuesNull ()
-		{
-			Action<int> a = x => {};
-			Tuple<int>  v = null;
-			Action b = a.Curry (v);
+			Action<byte>  a = null;
+			Action        r = a.Curry ((byte) 1);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_F1_P1_SelfNull ()
 		{
-			Func<int, int> a = null;
-			Func<int> b = a.Curry (1);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_F1_T1_ValuesNull ()
-		{
-			Func<int, int> a = x => x;
-			Tuple<int>     v = null;
-			Func<int> b = a.Curry (v);
+			Func<byte, char>  a = null;
+			Func<char>        r = a.Curry ((byte) 1);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A2_P1_SelfNull ()
 		{
-			Action<int, int> a = null;
-			Action<int> b = a.Curry (1);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_A2_T1_ValuesNull ()
-		{
-			Action<int, int> a = (x,y) => {};
-			Tuple<int>       v = null;
-			Action<int> b = a.Curry (v);
+			Action<byte, char>  a = null;
+			Action<char>        r = a.Curry ((byte) 1);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A2_P2_SelfNull ()
 		{
-			Action<int, int> a = null;
-			Action b = a.Curry (1, 2);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_A2_T2_ValuesNull ()
-		{
-			Action<int, int> a = (x, y) => {};
-			Tuple<int, int>  v = null;
-			Action b = a.Curry (v);
+			Action<byte, char>  a = null;
+			Action              r = a.Curry ((byte) 1, '2');
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_F2_P1_SelfNull ()
 		{
-			Func<int, int, int> a = null;
-			Func<int, int> b = a.Curry (1);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_F2_T1_ValuesNull ()
-		{
-			Func<int, int, int> a = (x,y) => x;
-			Tuple<int>          v = null;
-			Func<int, int> b = a.Curry (v);
+			Func<byte, char, short> a = null;
+			Func<char, short>       r = a.Curry ((byte) 1);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_F2_P2_SelfNull ()
 		{
-			Func<int, int, int> a = null;
-			Func<int> b = a.Curry (1, 2);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_F2_T2_ValuesNull ()
-		{
-			Func<int, int, int> a = (x, y) => x;
-			Tuple<int, int>     v = null;
-			Func<int> b = a.Curry (v);
+			Func<byte, char, short> a = null;
+			Func<short>             r = a.Curry ((byte) 1, '2');
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A3_P1_SelfNull ()
 		{
-			Action<int, int, int> a = null;
-			Action<int, int> b = a.Curry (1);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_A3_T1_ValuesNull ()
-		{
-			Action<int, int, int> a = (x,y,z) => {};
-			Tuple<int>            v = null;
-			Action<int, int> b = a.Curry (v);
+			Action<byte, char, short> a = null;
+			Action<char, short>       r = a.Curry ((byte) 1);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A3_P2_SelfNull ()
 		{
-			Action<int, int, int> a = null;
-			Action<int> b = a.Curry (1, 2);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_A3_T2_ValuesNull ()
-		{
-			Action<int, int, int> a = (x, y, z) => {};
-			Tuple<int, int>       v = null;
-			Action<int> b = a.Curry (v);
+			Action<byte, char, short> a = null;
+			Action<short>             r = a.Curry ((byte) 1, '2');
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A3_P3_SelfNull ()
 		{
-			Action<int, int, int> a = null;
-			Action b = a.Curry (1, 2, 3);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_A3_T3_ValuesNull ()
-		{
-			Action<int, int, int> a = (x, y, z) => {};
-			Tuple<int, int, int>  v = null;
-			Action b = a.Curry (v);
+			Action<byte, char, short> a = null;
+			Action                    r = a.Curry ((byte) 1, '2', (short) 3);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_F3_P1_SelfNull ()
 		{
-			Func<int, int, int, int> a = null;
-			Func<int, int, int> b = a.Curry (1);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_F3_T1_ValuesNull ()
-		{
-			Func<int, int, int, int> a = (x, y, z) => x;
-			Tuple<int>               v = null;
-			Func<int, int, int> b = a.Curry (v);
+			Func<byte, char, short, int>  a = null;
+			Func<char, short, int>        r = a.Curry ((byte) 1);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_F3_P2_SelfNull ()
 		{
-			Func<int, int, int, int> a = null;
-			Func<int, int> b = a.Curry (1, 2);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_F3_T2_ValuesNull ()
-		{
-			Func<int, int, int, int> a = (x, y, z) => x;
-			Tuple<int, int>          v = null;
-			Func<int, int> b = a.Curry (v);
+			Func<byte, char, short, int>  a = null;
+			Func<short, int>              r = a.Curry ((byte) 1, '2');
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_F3_P3_SelfNull ()
 		{
-			Func<int, int, int, int> a = null;
-			Func<int> b = a.Curry (1, 2, 3);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_F3_T3_ValuesNull ()
-		{
-			Func<int, int, int, int> a = (x, y, z) => x;
-			Tuple<int, int, int>     v = null;
-			Func<int> b = a.Curry (v);
+			Func<byte, char, short, int>  a = null;
+			Func<int>                     r = a.Curry ((byte) 1, '2', (short) 3);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A4_P1_SelfNull ()
 		{
-			Action<int, int, int, int> a = null;
-			Action<int, int, int> b = a.Curry (1);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_A4_T1_ValuesNull ()
-		{
-			Action<int, int, int, int> a = (w, x, y, z) => {};
-			Tuple<int>                 v = null;
-			Action<int, int, int> b = a.Curry (v);
+			Action<byte, char, short, int>  a = null;
+			Action<char, short, int>        r = a.Curry ((byte) 1);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A4_P2_SelfNull ()
 		{
-			Action<int, int, int, int> a = null;
-			Action<int, int> b = a.Curry (1, 2);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_A4_T2_ValuesNull ()
-		{
-			Action<int, int, int, int> a = (w, x, y, z) => {};
-			Tuple<int, int>            v = null;
-			Action<int, int> b = a.Curry (v);
+			Action<byte, char, short, int>  a = null;
+			Action<short, int>              r = a.Curry ((byte) 1, '2');
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A4_P3_SelfNull ()
 		{
-			Action<int, int, int, int> a = null;
-			Action<int> b = a.Curry (1, 2, 3);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_A4_T3_ValuesNull ()
-		{
-			Action<int, int, int, int> a = (w, x, y, z) => {};
-			Tuple<int, int, int>       v = null;
-			Action<int> b = a.Curry (v);
+			Action<byte, char, short, int>  a = null;
+			Action<int>                     r = a.Curry ((byte) 1, '2', (short) 3);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A4_P4_SelfNull ()
 		{
-			Action<int, int, int, int> a = null;
-			Action b = a.Curry (1, 2, 3, 4);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_A4_T4_ValuesNull ()
-		{
-			Action<int, int, int, int> a = (w, x, y, z) => {};
-			Tuple<int, int, int, int>  v = null;
-			Action b = a.Curry (v);
+			Action<byte, char, short, int>  a = null;
+			Action                          r = a.Curry ((byte) 1, '2', (short) 3, 4);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_F4_P1_SelfNull ()
 		{
-			Func<int, int, int, int, int> a = null;
-			Func<int, int, int, int> b = a.Curry (1);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_F4_T1_ValuesNull ()
-		{
-			Func<int, int, int, int, int> a = (w, x, y, z) => w;
-			Tuple<int>                    v = null;
-			Func<int, int, int, int> b = a.Curry (v);
+			Func<byte, char, short, int, long>  a = null;
+			Func<char, short, int, long>        r = a.Curry ((byte) 1);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_F4_P2_SelfNull ()
 		{
-			Func<int, int, int, int, int> a = null;
-			Func<int, int, int> b = a.Curry (1, 2);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_F4_T2_ValuesNull ()
-		{
-			Func<int, int, int, int, int> a = (w, x, y, z) => w;
-			Tuple<int, int>               v = null;
-			Func<int, int, int> b = a.Curry (v);
+			Func<byte, char, short, int, long>  a = null;
+			Func<short, int, long>              r = a.Curry ((byte) 1, '2');
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_F4_P3_SelfNull ()
 		{
-			Func<int, int, int, int, int> a = null;
-			Func<int, int> b = a.Curry (1, 2, 3);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_F4_T3_ValuesNull ()
-		{
-			Func<int, int, int, int, int> a = (w, x, y, z) => w;
-			Tuple<int, int, int>          v = null;
-			Func<int, int> b = a.Curry (v);
+			Func<byte, char, short, int, long>  a = null;
+			Func<int, long>                     r = a.Curry ((byte) 1, '2', (short) 3);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_F4_P4_SelfNull ()
 		{
-			Func<int, int, int, int, int> a = null;
-			Func<int> b = a.Curry (1, 2, 3, 4);
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Curry_F4_T4_ValuesNull ()
-		{
-			Func<int, int, int, int, int> a = (w, x, y, z) => w;
-			Tuple<int, int, int, int>     v = null;
-			Func<int> b = a.Curry (v);
+			Func<byte, char, short, int, long>  a = null;
+			Func<long>                          r = a.Curry ((byte) 1, '2', (short) 3, 4);
 		}
 	}
 }

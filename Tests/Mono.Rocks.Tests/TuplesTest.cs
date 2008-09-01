@@ -65,14 +65,6 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test]
-		[ExpectedException (typeof (ArgumentNullException))]
-		public void ToKeyValuePair_TupleNull ()
-		{
-			Tuple<int, string> t = null;
-			t.ToKeyValuePair ();
-		}
-
-		[Test]
 		public void ToKeyValuePair ()
 		{
 			var t = Tuple.Create (42, "42");

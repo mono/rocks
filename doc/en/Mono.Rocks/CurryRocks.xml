@@ -14,8 +14,38 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>
+            Provides extension methods on <see cref="T:System.Action{T}" />,
+            <see cref="T:System.Func{T,TResult}" />, and related delegates to
+            curry delegate arguments.
+            </summary>
+    <remarks>
+      <para>
+            Currying is a way to easily transform functions which accept N
+            arguments into functions which accept N-1 arguments, by "fixing"
+            arguments with a value.
+            </para>
+      <para>
+            Since C# functions aren't first class, but
+            <see cref="T:System.Delegate" />s are, we can provide curring on
+            delegate types instead on functions, which provides something quite
+            similar.  The <see cref="M:Mono.Rocks.CurryRocks.Curry" /> methods
+            allow "fixing" one or more delegate parameters with values,
+            returning a new delegate which, when invoke, will pass the fixed
+            parameters to the original delegate.
+            </para>
+      <code lang="C#">
+            Func&lt;int,int,int,int&gt; function = Lambda.F ((int a, int b, int c) =&gt; a + b + c);
+            Func&lt;int,int,int&gt;     f_3      = function.Curry (3);
+            Func&lt;int&gt;             f_321    = function.Curry (3, 2, 1);
+            Console.WriteLine (f_3 (2, 1));  // prints (3 + 2 + 1) == "6"
+            Console.WriteLine (f_321 ());    // prints (3 + 2 + 1) == "6"</code>
+      <para>
+            All possible argument and return delegate permutations are provided
+            for the <see cref="T:System.Action{T}" />,
+            <see cref="T:System.Func{T,TResult}" />, and related types.
+            </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName="Curry&lt;T,TResult&gt;">
@@ -41,12 +71,25 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T">
+            A <see cref="T:System.Func{T,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T,TResult}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -73,12 +116,25 @@
         <Parameter Name="value" Type="T" />
       </Parameters>
       <Docs>
-        <typeparam name="T">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T">
+            A <see cref="T:System.Func{T,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T,TResult}" /> to curry.
+            </param>
+        <param name="value">
+            A value of type <typeparamref name="T" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -104,11 +160,22 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T">
+            A <see cref="T:System.Action{T}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -134,11 +201,22 @@
         <Parameter Name="value" Type="T" />
       </Parameters>
       <Docs>
-        <typeparam name="T">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T">
+            A <see cref="T:System.Action{T}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T}" /> to curry.
+            </param>
+        <param name="value">
+            A value of type <typeparamref name="T" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -168,15 +246,34 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -206,15 +303,34 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T4, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T4, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -244,15 +360,34 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T3, T4, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T3, T4, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -282,15 +417,34 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T2, T3, T4, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T2, T3, T4, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -320,15 +474,34 @@
         <Parameter Name="value1" Type="T1" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T2, T3, T4, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T2, T3, T4, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -359,16 +532,37 @@
         <Parameter Name="value2" Type="T2" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T3, T4, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T3, T4, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -400,17 +594,40 @@
         <Parameter Name="value3" Type="T3" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <param name="value3">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T4, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T4, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -443,18 +660,43 @@
         <Parameter Name="value4" Type="T4" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <param name="value3">To be added.</param>
-        <param name="value4">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+        <param name="value4">
+            A value of type <typeparamref name="T4" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -483,14 +725,31 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -519,14 +778,31 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T4}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T4}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -555,14 +831,31 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T3, T4}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T3, T4}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -591,14 +884,31 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T2, T3, T4}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T2, T3, T4}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -627,14 +937,31 @@
         <Parameter Name="value1" Type="T1" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T2, T3, T4}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T2, T3, T4}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -664,15 +991,34 @@
         <Parameter Name="value2" Type="T2" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T3, T4}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T3, T4}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -703,16 +1049,37 @@
         <Parameter Name="value3" Type="T3" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <param name="value3">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T4}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T4}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -744,17 +1111,40 @@
         <Parameter Name="value4" Type="T4" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <param name="value3">To be added.</param>
-        <param name="value4">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+        <param name="value4">
+            A value of type <typeparamref name="T4" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -783,14 +1173,31 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -819,14 +1226,31 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T3, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T3, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -855,14 +1279,31 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T2, T3, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T2, T3, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -891,14 +1332,31 @@
         <Parameter Name="value1" Type="T1" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T2, T3, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T2, T3, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -928,15 +1386,34 @@
         <Parameter Name="value2" Type="T2" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T3, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T3, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -967,16 +1444,37 @@
         <Parameter Name="value3" Type="T3" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <param name="value3">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1004,13 +1502,28 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1038,13 +1551,28 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T3}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T3}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1072,13 +1600,28 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T2, T3}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T2, T3}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1106,13 +1649,28 @@
         <Parameter Name="value1" Type="T1" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T2, T3}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T2, T3}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1141,14 +1699,31 @@
         <Parameter Name="value2" Type="T2" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T3}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T3}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1178,15 +1753,34 @@
         <Parameter Name="value3" Type="T3" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <param name="value3">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1214,13 +1808,28 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1248,13 +1857,28 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T2, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T2, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1282,13 +1906,28 @@
         <Parameter Name="value1" Type="T1" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{T2, TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{T2, TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1317,14 +1956,31 @@
         <Parameter Name="value2" Type="T2" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+        <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> return type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Func{TResult}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1351,12 +2007,25 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1383,12 +2052,25 @@
         <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="values">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2}" /> to curry.
+            </param>
+        <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T2}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T2}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1415,12 +2097,25 @@
         <Parameter Name="value1" Type="T1" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action{T2}" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action{T2}" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1448,13 +2143,28 @@
         <Parameter Name="value2" Type="T2" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="value1">To be added.</param>
-        <param name="value2">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+        <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+        <param name="self">
+            The <see cref="T:System.Action{T1,T2}" /> to curry.
+            </param>
+        <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+        <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+        <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
+        <returns>
+            Returns a <see cref="T:System.Action" /> which, when invoked, will
+            invoke <paramref name="self" /> along with the provided fixed parameters.
+            </returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

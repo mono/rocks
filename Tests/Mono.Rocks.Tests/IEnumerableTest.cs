@@ -416,7 +416,7 @@ namespace Mono.Rocks.Tests {
 		public void ToTuple ()
 		{
 			IEnumerable<object> s = new object[]{1, '2', 3L, "4"};
-			Tuple t = s.ToTuple ();
+			IList<object> t = (IList<object>) s.ToTuple ();
 			Assert.AreEqual (typeof(Tuple<int, char, long, string>), t.GetType());
 			Assert.AreEqual (4, t.Count);
 			Assert.AreEqual (1,   t [0]);

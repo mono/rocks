@@ -53,19 +53,20 @@ namespace Mono.Rocks {
 				yield return value;
 		}
 
-		public static IEnumerable<TResult> GenerateReverse<TSource, TResult> (TSource value, Func<TSource, Tuple<TResult, TSource>> func)
+		public static IEnumerable<TResult> GenerateReverse<TSource, TResult> (TSource value, Func<TSource, Tuple<TResult, TSource>?> func)
 		{
 			Check.Func (func);
 
 			return CreateGenerateReverseIterator (value, func);
 		}
 
-		private static IEnumerable<TResult> CreateGenerateReverseIterator<TSource, TResult> (TSource value, Func<TSource, Tuple<TResult, TSource>> func)
+		private static IEnumerable<TResult> CreateGenerateReverseIterator<TSource, TResult> (TSource value, Func<TSource, Tuple<TResult, TSource>?> func)
 		{
-			Tuple<TResult, TSource> r;
-			while ((r = func (value)) != null) {
-				yield return r._1;
-				value = r._2;
+			Tuple<TResult, TSource>? r;
+			while ((r = func (value)).HasValue) {
+				Tuple<TResult, TSource> v = r.Value;
+				yield return v._1;
+				value = v._2;
 			}
 		}
 	}

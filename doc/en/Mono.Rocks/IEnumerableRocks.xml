@@ -2064,7 +2064,7 @@
       </Docs>
     </Member>
     <Member MemberName="ToTuple&lt;T&gt;">
-      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple ToTuple&lt;T&gt; (this System.Collections.Generic.IEnumerable&lt;T&gt; self);" />
+      <MemberSignature Language="C#" Value="public static object ToTuple&lt;T&gt; (this System.Collections.Generic.IEnumerable&lt;T&gt; self);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -2075,7 +2075,7 @@
         </Attribute>
       </Attributes>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.Tuple</ReturnType>
+        <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <TypeParameters>
         <TypeParameter Name="T" />

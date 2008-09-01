@@ -1,3 +1,13 @@
+2008-08-31  Jonathan Pryor  <jpryor@novell.com>
+
+	* CurryTests.cs: Instead of using `int' for all type parameters, use a
+	  variety of types to ensure that currying curries the correct values (in
+	  left-to-right order), and remove Tuple null checks (as Tuple is a struct).
+	* IEnumerableTest.cs: Cope with .ToTuple() return type change.
+	* SequenceTest.cs: Cope with Sequence.GenerateReverse() changes.
+	* TuplesTest.cs: Remove ToKeyValuePair_TupleNull(), as Tuples are now
+	  structs and thus can't be null.
+
 2008-08-28  Jonathan Pryor  <jpryor@novell.com>
 
 	* LambdaTest.cs: Update method names (oops).

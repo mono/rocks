@@ -125,13 +125,13 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Func{``0}"/> return type.
+		///   The <see cref="T:System.Func{TResult}"/> return type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Func{``0}"/> to return.
+		///   The <see cref="T:System.Func{TResult}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Func{``0}"/> delegate.
+		///   Creates a <see cref="T:System.Func{TResult}"/> delegate.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
@@ -156,13 +156,13 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}"/> return type.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{TResult}}"/> return type.
 		/// </typeparam>
 		/// <param name="expr">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}"/> to return.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{TResult}}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0}}"/> expression tree.
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{TResult}}"/> expression tree.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
@@ -173,13 +173,13 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T">
-		///   A <see cref="T:System.Action{``0}"/> parameter type.
+		///   A <see cref="T:System.Action{T}"/> parameter type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Action{``0}"/> to return.
+		///   The <see cref="T:System.Action{T}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Action{``0}"/> delegate.
+		///   Creates a <see cref="T:System.Action{T}"/> delegate.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
@@ -191,16 +191,16 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T">
-		///   A <see cref="T:System.Func{``0,``1}"/> parameter type.
+		///   A <see cref="T:System.Func{T,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Func{``0,``1}"/> return type.
+		///   The <see cref="T:System.Func{T,TResult}"/> return type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Func{``0,``1}"/> to return.
+		///   The <see cref="T:System.Func{T,TResult}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Func{``0,``1}"/> delegate.
+		///   Creates a <see cref="T:System.Func{T,TResult}"/> delegate.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
@@ -212,13 +212,13 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{T}}"/> parameter type.
 		/// </typeparam>
 		/// <param name="expr">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}"/> to return.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{T}}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0}}"/> expression tree.
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{T}}"/> expression tree.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
@@ -230,16 +230,16 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{T,TResult}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}"/> return type.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{T,TResult}}"/> return type.
 		/// </typeparam>
 		/// <param name="expr">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}"/> to return.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{T,TResult}}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1}}"/> expression tree.
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{T,TResult}}"/> expression tree.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
@@ -251,16 +251,16 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Action{``0,``1}"/> parameter type.
+		///   A <see cref="T:System.Action{T1,T2}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Action{``0,``1}"/> parameter type.
+		///   A <see cref="T:System.Action{T1,T2}"/> parameter type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Action{``0,``1}"/> to return.
+		///   The <see cref="T:System.Action{T1,T2}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Action{``0,``1}"/> delegate.
+		///   Creates a <see cref="T:System.Action{T1,T2}"/> delegate.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
@@ -272,19 +272,19 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Func{``0,``1,``2}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Func{``0,``1,``2}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Func{``0,``1,``2}"/> return type.
+		///   The <see cref="T:System.Func{T1,T2,TResult}"/> return type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Func{``0,``1,``2}"/> to return.
+		///   The <see cref="T:System.Func{T1,T2,TResult}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Func{``0,``1,``2}"/> delegate.
+		///   Creates a <see cref="T:System.Func{T1,T2,TResult}"/> delegate.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
@@ -296,16 +296,16 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2}}"/> parameter type.
 		/// </typeparam>
 		/// <param name="expr">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}"/> to return.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2}}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1}}"/> expression tree.
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2}}"/> expression tree.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
@@ -317,19 +317,19 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,TResult}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,TResult}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}"/> return type.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,TResult}}"/> return type.
 		/// </typeparam>
 		/// <param name="expr">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}"/> to return.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,TResult}}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2}}"/> expression tree.
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,TResult}}"/> expression tree.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
@@ -341,19 +341,19 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Action{``0,``1,``2}"/> parameter type.
+		///   A <see cref="T:System.Action{T1,T2,T3}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Action{``0,``1,``2}"/> parameter type.
+		///   A <see cref="T:System.Action{T1,T2,T3}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T3">
-		///   A <see cref="T:System.Action{``0,``1,``2}"/> parameter type.
+		///   A <see cref="T:System.Action{T1,T2,T3}"/> parameter type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Action{``0,``1,``2}"/> to return.
+		///   The <see cref="T:System.Action{T1,T2,T3}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Action{``0,``1,``2}"/> delegate.
+		///   Creates a <see cref="T:System.Action{T1,T2,T3}"/> delegate.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
@@ -365,22 +365,22 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T3">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Func{``0,``1,``2,``3}"/> return type.
+		///   The <see cref="T:System.Func{T1,T2,T3,TResult}"/> return type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Func{``0,``1,``2,``3}"/> to return.
+		///   The <see cref="T:System.Func{T1,T2,T3,TResult}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Func{``0,``1,``2,``3}"/> delegate.
+		///   Creates a <see cref="T:System.Func{T1,T2,T3,TResult}"/> delegate.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
@@ -392,19 +392,19 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T3">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3}}"/> parameter type.
 		/// </typeparam>
 		/// <param name="expr">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}"/> to return.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3}}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2}}"/> expression tree.
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3}}"/> expression tree.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
@@ -416,22 +416,22 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,TResult}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,TResult}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T3">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,TResult}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> return type.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,TResult}}"/> return type.
 		/// </typeparam>
 		/// <param name="expr">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> to return.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,TResult}}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}}"/> expression tree.
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,TResult}}"/> expression tree.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
@@ -443,22 +443,22 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Action{``0,``1,``2,``3}"/> parameter type.
+		///   A <see cref="T:System.Action{T1,T2,T3,T4}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Action{``0,``1,``2,``3}"/> parameter type.
+		///   A <see cref="T:System.Action{T1,T2,T3,T4}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T3">
-		///   A <see cref="T:System.Action{``0,``1,``2,``3}"/> parameter type.
+		///   A <see cref="T:System.Action{T1,T2,T3,T4}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T4">
-		///   A <see cref="T:System.Action{``0,``1,``2,``3}"/> parameter type.
+		///   A <see cref="T:System.Action{T1,T2,T3,T4}"/> parameter type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Action{``0,``1,``2,``3}"/> to return.
+		///   The <see cref="T:System.Action{T1,T2,T3,T4}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Action{``0,``1,``2,``3}"/> delegate.
+		///   Creates a <see cref="T:System.Action{T1,T2,T3,T4}"/> delegate.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
@@ -470,25 +470,25 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T3">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T4">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> return type.
+		///   The <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> return type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> to return.
+		///   The <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> delegate.
+		///   Creates a <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> delegate.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="lambda"/>.
@@ -500,22 +500,22 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3,T4}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3,T4}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T3">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3,T4}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T4">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3,T4}}"/> parameter type.
 		/// </typeparam>
 		/// <param name="expr">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> to return.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3,T4}}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{``0,``1,``2,``3}}"/> expression tree.
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Action{T1,T2,T3,T4}}"/> expression tree.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
@@ -527,25 +527,25 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,T4,TResult}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,T4,TResult}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T3">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,T4,TResult}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T4">
-		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> parameter type.
+		///   A <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,T4,TResult}}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> return type.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,T4,TResult}}"/> return type.
 		/// </typeparam>
 		/// <param name="expr">
-		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> to return.
+		///   The <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,T4,TResult}}"/> to return.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}}"/> expression tree.
+		///   Creates a <see cref="T:System.Linq.Expressions.Expression{System.Func{T1,T2,T3,T4,TResult}}"/> expression tree.
 		/// </summary>
 		/// <returns>
 		///   Returns <paramref name="expr"/>.
@@ -562,19 +562,19 @@ namespace Mono.Rocks {
 		//
 
 		/// <typeparam name="T">
-		///   A <see cref="T:System.Func{``0,``1}"/> parameter type.
+		///   A <see cref="T:System.Func{T,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Func{``0,``1}"/> return type.
+		///   The <see cref="T:System.Func{T,TResult}"/> return type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Func{System.Func{``0,``1},System.Func{``0,``1}}"/> to use.
+		///   The <see cref="T:System.Func{System.Func{T,TResult},System.Func{T,TResult}}"/> to use.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Func{``0,``1}"/> delegate, which may be recursive.
+		///   Creates a <see cref="T:System.Func{T,TResult}"/> delegate, which may be recursive.
 		/// </summary>
 		/// <returns>
-		///   Returns a <see cref="T:System.Func{``0,``1}"/> which (eventually) invokes
+		///   Returns a <see cref="T:System.Func{T,TResult}"/> which (eventually) invokes
 		///   <paramref name="lambda"/>.
 		/// </returns>
 		/// <exception cref="T:System.ArgumentNullException">
@@ -599,22 +599,22 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Func{``0,``1,``2}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Func{``0,``1,``2}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Func{``0,``1,``2}"/> return type.
+		///   The <see cref="T:System.Func{T1,T2,TResult}"/> return type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Func{System.Func{``0,``1,``2},System.Func{``0,``1,``2}}"/> to use.
+		///   The <see cref="T:System.Func{System.Func{T1,T2,TResult},System.Func{T1,T2,TResult}}"/> to use.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Func{``0,``1,``2}"/> delegate, which may be recursive.
+		///   Creates a <see cref="T:System.Func{T1,T2,TResult}"/> delegate, which may be recursive.
 		/// </summary>
 		/// <returns>
-		///   Returns a <see cref="T:System.Func{``0,``1,``2}"/> which (eventually) invokes
+		///   Returns a <see cref="T:System.Func{T1,T2,TResult}"/> which (eventually) invokes
 		///   <paramref name="lambda"/>.
 		/// </returns>
 		/// <exception cref="T:System.ArgumentNullException">
@@ -639,25 +639,25 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T3">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Func{``0,``1,``2,``3}"/> return type.
+		///   The <see cref="T:System.Func{T1,T2,T3,TResult}"/> return type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Func{System.Func{``0,``1,``2,``3},System.Func{``0,``1,``2,``3}}"/> to use.
+		///   The <see cref="T:System.Func{System.Func{T1,T2,T3,TResult},System.Func{T1,T2,T3,TResult}}"/> to use.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Func{``0,``1,``2,``3}"/> delegate, which may be recursive.
+		///   Creates a <see cref="T:System.Func{T1,T2,T3,TResult}"/> delegate, which may be recursive.
 		/// </summary>
 		/// <returns>
-		///   Returns a <see cref="T:System.Func{``0,``1,``2,``3}"/> which (eventually) invokes
+		///   Returns a <see cref="T:System.Func{T1,T2,T3,TResult}"/> which (eventually) invokes
 		///   <paramref name="lambda"/>.
 		/// </returns>
 		/// <exception cref="T:System.ArgumentNullException">
@@ -682,28 +682,28 @@ namespace Mono.Rocks {
 		}
 
 		/// <typeparam name="T1">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T2">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T3">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="T4">
-		///   A <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> parameter type.
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> parameter type.
 		/// </typeparam>
 		/// <typeparam name="TResult">
-		///   The <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> return type.
+		///   The <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> return type.
 		/// </typeparam>
 		/// <param name="lambda">
-		///   The <see cref="T:System.Func{System.Func{``0,``1,``2,``3,``4},System.Func{``0,``1,``2,``3,``4}}"/> to use.
+		///   The <see cref="T:System.Func{System.Func{T1,T2,T3,T4,TResult},System.Func{T1,T2,T3,T4,TResult}}"/> to use.
 		/// </param>
 		/// <summary>
-		///   Creates a <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> delegate, which may be recursive.
+		///   Creates a <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> delegate, which may be recursive.
 		/// </summary>
 		/// <returns>
-		///   Returns a <see cref="T:System.Func{``0,``1,``2,``3,``4}"/> which (eventually) invokes
+		///   Returns a <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> which (eventually) invokes
 		///   <paramref name="lambda"/>.
 		/// </returns>
 		/// <exception cref="T:System.ArgumentNullException">

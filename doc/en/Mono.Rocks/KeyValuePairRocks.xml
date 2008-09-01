@@ -87,7 +87,7 @@ string entries = dict
     .Select( 
         e =&gt; /* e is a KeyValuePair&lt;int,int&gt; */ 
             e.Aggregate( (k, v) =&gt; string.Format("({0},{1})", k, v) ) )
-    .Implode(",");
+    .Implode("|");
 // entries contains "(1,1)|(2,4)|(3,9)"
           </code>
         </remarks>
@@ -130,7 +130,7 @@ string entries = dict
           <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" />.
         </summary>
         <returns>
-          A <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> class.
+          A <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> struct.
         </returns>
         <remarks>
           <para>

@@ -270,7 +270,7 @@ namespace Mono.Rocks {
 			return Sort (self, NaturalStringComparer.Default);
 		}
 
-		public static Tuple ToTuple<T> (this IEnumerable<T> self)
+		public static object ToTuple<T> (this IEnumerable<T> self)
 		{
 			Check.Self (self);
 
@@ -297,7 +297,7 @@ namespace Mono.Rocks {
 				throw new NotSupportedException (
 						string.Format ("Tuples with {0} values are not supported.", types.Count));
 			tuple = tuple.MakeGenericType (types.ToArray ());
-			return (Tuple) Activator.CreateInstance (tuple, args.ToArray ());
+			return Activator.CreateInstance (tuple, args.ToArray ());
 		}
 
 		public static int SequenceCompare<TSource> (this IEnumerable<TSource> self, IEnumerable<TSource> list)

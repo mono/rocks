@@ -14,7 +14,7 @@
   </Docs>
   <Members>
     <Member MemberName="GenerateReverse&lt;TSource,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; GenerateReverse&lt;TSource,TResult&gt; (TSource value, Func&lt;TSource,Mono.Rocks.Tuple&lt;TResult,TSource&gt;&gt; func);" />
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; GenerateReverse&lt;TSource,TResult&gt; (TSource value, Func&lt;TSource,Nullable&lt;Mono.Rocks.Tuple&lt;TResult,TSource&gt;&gt;&gt; func);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -28,7 +28,7 @@
       </TypeParameters>
       <Parameters>
         <Parameter Name="value" Type="TSource" />
-        <Parameter Name="func" Type="System.Func&lt;TSource,Mono.Rocks.Tuple&lt;TResult,TSource&gt;&gt;" />
+        <Parameter Name="func" Type="System.Func&lt;TSource,System.Nullable&lt;Mono.Rocks.Tuple&lt;TResult,TSource&gt;&gt;&gt;" />
       </Parameters>
       <Docs>
         <typeparam name="TSource">To be added.</typeparam>

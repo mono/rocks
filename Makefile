@@ -1,5 +1,6 @@
 MCS = gmcs
-MCS_FLAGS = 
+# warning CS1591: Missing XML comment for publicly visible type or member...
+MCS_FLAGS = -nowarn:1591
 MONODOCER = monodocer
 srcdir=.
 PACKAGE = mono-rocks
@@ -11,6 +12,8 @@ Mono.Rocks.dll: Mono.Rocks.dll.sources $(shell cat Mono.Rocks.dll.sources)
 all: Mono.Rocks.dll
 
 include doc/Makefile.include
+
+mkcurry mklambda mktuples : Generator.pm
 
 Mono.Rocks/Tuples.cs : mktuples Makefile
 	./mktuples -n 4 > $@

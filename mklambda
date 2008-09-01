@@ -137,31 +137,31 @@ Lambda.F ((int x) => Console.WriteLine (x)) (5);</code>
 	$g->Type ("public static partial class Lambda", sub {
 
 		$g->Write ("\n");
-		create_func_doc ($g, 0, Generator::GetDocAction (0, "``"));
+		create_func_doc ($g, 0, Generator::GetDocAction (0));
 		$g->Method (
 			"public static Action ", "A", "Action lambda", "return lambda;\n"
 		);
 
 		$g->Write ("\n");
-		create_func_doc ($g, 0, Generator::GetDocFunc (0, "``"));
+		create_func_doc ($g, 0, Generator::GetDocFunc (0));
 		$g->Method (
 			"public static Func<TResult> ", "F<TResult>", "Func<TResult> lambda", "return lambda;\n"
 		);
 
 		$g->Write ("\n");
-		create_expr_doc ($g, 0, Generator::GetDocAction (0, "``"));
+		create_expr_doc ($g, 0, Generator::GetDocAction (0));
 		$g->Method (
 			"public static Expression<Action> ", "XA", "Expression<Action> expr", "return expr;\n"
 		);
 
 		$g->Write ("\n");
-		create_expr_doc ($g, 0, Generator::GetDocFunc (0, "``"));
+		create_expr_doc ($g, 0, Generator::GetDocFunc (0));
 		$g->Method (
 			"public static Expression<Func<TResult>> ", "XF<TResult>", "Expression<Func<TResult>> expr", "return expr;\n"
 		);
 		for (my $i = 1; $i <= $n; ++$i) {
 			$g->Write ("\n");
-			create_func_doc ($g, $i, Generator::GetDocAction ($i, "``"));
+			create_func_doc ($g, $i, Generator::GetDocAction ($i));
 			$g->Method (
 				sub {
 					$g->Write ("public static ")->Action ($i)
@@ -173,7 +173,7 @@ Lambda.F ((int x) => Console.WriteLine (x)) (5);</code>
 			);
 
 			$g->Write ("\n");
-			create_func_doc ($g, $i, Generator::GetDocFunc ($i, "``"));
+			create_func_doc ($g, $i, Generator::GetDocFunc ($i));
 			$g->Method (
 				sub {
 					$g->Write ("public static ")->Func ($i)
@@ -185,7 +185,7 @@ Lambda.F ((int x) => Console.WriteLine (x)) (5);</code>
 			);
 
 			$g->Write ("\n");
-			create_expr_doc ($g, $i, Generator::GetDocAction ($i, "``"));
+			create_expr_doc ($g, $i, Generator::GetDocAction ($i));
 			$g->Method (
 				sub {
 					$g->Write ("public static Expression<")->Action ($i)
@@ -197,7 +197,7 @@ Lambda.F ((int x) => Console.WriteLine (x)) (5);</code>
 			);
 
 			$g->Write ("\n");
-			create_expr_doc ($g, $i, Generator::GetDocFunc ($i, "``"));
+			create_expr_doc ($g, $i, Generator::GetDocFunc ($i));
 			$g->Method (
 				sub {
 					$g->Write ("public static Expression<")->Func ($i)
@@ -214,7 +214,7 @@ Lambda.F ((int x) => Console.WriteLine (x)) (5);</code>
 		$g->Write ("//\n");
 		for (my $i = 1; $i <= $n; ++$i) {
 			$g->Write ("\n");
-			create_recfunc_doc ($g, $i, Generator::GetDocFunc ($i, "``"));
+			create_recfunc_doc ($g, $i, Generator::GetDocFunc ($i));
 			$g->Method (
 				sub {
 					$g->Write ("public static ")->Func ($i)

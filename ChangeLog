@@ -1,3 +1,31 @@
+2008-08-31  Jonathan Pryor  <jpryor@novell.com>
+
+	* gendarme.ignore: Update ignored members.
+	* Generator.pm: Add GetTypeParameterList(), GetValue(), GetDocActionType(),
+	  GetDocFuncType(), XmlValue(), Nth(); alter GetDocFunc() and GetDocAction()
+	  to generate nicer-looking cref-able strings (e.g. Action{T1,T2} instead of
+	  Action{``0, ``1}).
+	* Makefile: Don't warn on CS1591, and add additional dependency checks so
+	  that when Generator.pm changes we rebuild all generated source.
+	* mkcurry: Generate XML documentation; remove Tuple null checks.
+	* mktuples.cs: Major changes: make Tuples structs instead of classes.  This
+	  means that, in order to continue supporting the collection interfaces,
+	  each Tuple type needs to fully implement them instead of sharing
+	  implementation in a base Tuple type (as was done before).  Generate XML
+	  documentation for all of these members.  The reason for this change is
+	  performance and semantics; value types were deemed as more logical and
+	  faster (due to less GC pressure).
+	* doc/Makefile.include: Rename `update*' targets to `doc-update*'; run a
+	  short sed script on doc/mono-rocks.xml before importing.
+	* doc/en/**: Flush (lots of imported docs from mkcurry and mktuples, plus
+	  "manual" docs for TupleRocks.xml and KeyValuePairRocks.xml).
+	* doc/fixup.sed: Due to a gmcs bug bnc421815, the XML documentation
+	  //member/@name for explicitly implemented interface members is wrong (or
+	  at minimum completely different from CSC's output), so this sed script
+	  corrects the doc/mono-rocks.xml file so that monodocer can properly import
+	  the inline XML documentation for explicitly implemented members.
+	  This file, in short, is a hack.
+
 2008-08-28  Jonathan Pryor  <jpryor@novell.com>
 
 	* mklambda, doc/en/**: Update Mono.Rocks.Lambda docs (oops).

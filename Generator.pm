@@ -198,14 +198,32 @@ sub TypeParameterList {
 	return $self;
 }
 
+sub GetTypeParameterList {
+	my ($max, $start, $end) = @_;
+	$start ||= 1;
+	$end   ||= $max;
+
+	my $list = GetTypeParameter ($max, $start);
+	for (my $i = $start + 1; $i <= $end; ++$i) {
+		$list .= ", ";
+		$list .= GetTypeParameter ($max, $i);
+	}
+	return $list;
+}
+
+sub GetValue {
+	my ($max, $i) = @_;
+
+	if ($max == 1) {
+		return "value";
+	}
+	return "value$i";
+}
+
 sub Value {
 	my ($self, $max, $i) = @_;
-	if ($max == 1) {
-		$self->Write ("value");
-	}
-	else {
-		$self->Write ("value$i");
-	}
+
+	$self->Write (GetValue ($max, $i));
 	return $self;
 }
 
@@ -251,33 +269,49 @@ sub MethodParameterList {
 	return $self;
 }
 
-sub GetDocAction {
-	my ($n, $gen_prefix) = @_;
+sub GetDocActionType {
+	my ($n) = @_;
 
-	my $t = ($n <= $num_system_funcs) ? "System." : "Mono.Rocks.";
-	$t .= GetAction ($n);
-	if ($n == 0) {
+	return (($n <= $num_system_funcs) ? "System." : "Mono.Rocks.") 
+		. GetAction ($n);
+}
+
+sub GetDocAction {
+	my ($max, $start, $end) = @_;
+	$start ||= 1;
+	$end   ||= $max;
+
+	my $t = GetDocActionType ($max);
+
+	if ($max == 0) {
 		return $t;
 	}
-	$t .= "{${gen_prefix}0";
-	for (my $i = 1; $i < $n; ++$i) {
-		$t .= ",$gen_prefix$i";
+	$t .= "{" . GetTypeParameter ($max, $start);
+	for (my $i = $start+1; $i <= $end; ++$i) {
+		$t .= "," . GetTypeParameter ($max, $i);
 	}
 	$t .= "}";
 	return $t;
 }
 
-sub GetDocFunc {
-	my ($n, $gen_prefix) = @_;
+sub GetDocFuncType {
+	my ($n) = @_;
 
-	my $t = ($n <= $num_system_funcs) ? "System." : "Mono.Rocks.";
-	$t .= GetFunc ($n);
+	return (($n <= $num_system_funcs) ? "System." : "Mono.Rocks.") 
+		. GetFunc ($n);
+}
+
+sub GetDocFunc {
+	my ($max, $start, $end) = @_;
+	$start ||= 1;
+	$end   ||= $max;
+
+	my $t = GetDocFuncType ($max);
 	$t .= "{";
-	my $i = 0;
-	for ($i = 0; $i < $n; ++$i) {
-		$t .= "$gen_prefix$i,";
+	for (my $i = $start; $i <= $end; ++$i) {
+		$t .= GetTypeParameter ($max, $i) . ",";
 	}
-	$t .= "$gen_prefix$i}";
+	$t .= "TResult}";
 	return $t;
 }
 
@@ -326,6 +360,22 @@ sub XmlTypeparam {
 	my ($self, $param, $content) = @_;
 
 	return $self->XmlDoc ("typeparam name=\"$param\"", "typeparam", $content);
+}
+
+sub XmlValue {
+	my ($self, $content) = @_;
+
+	return $self->XmlDoc ("value", "value", $content);
+}
+
+sub Nth {
+	my ($n) = @_;
+
+	return "first"  if $n == 1;
+	return "second" if $n == 2;
+	return "third"  if $n == 3;
+	return "fourth" if $n == 4;
+	return "unknown";
 }
 
 1;

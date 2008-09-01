@@ -63,10 +63,10 @@
       <Type Name="StringRocks" Kind="Class" />
       <Type Name="TextReaderRocks" Kind="Class" />
       <Type Name="Tuple" Kind="Class" />
-      <Type Name="Tuple`1" DisplayName="Tuple&lt;T&gt;" Kind="Class" />
-      <Type Name="Tuple`2" DisplayName="Tuple&lt;T1,T2&gt;" Kind="Class" />
-      <Type Name="Tuple`3" DisplayName="Tuple&lt;T1,T2,T3&gt;" Kind="Class" />
-      <Type Name="Tuple`4" DisplayName="Tuple&lt;T1,T2,T3,T4&gt;" Kind="Class" />
+      <Type Name="Tuple`1" DisplayName="Tuple&lt;T&gt;" Kind="Structure" />
+      <Type Name="Tuple`2" DisplayName="Tuple&lt;T1,T2&gt;" Kind="Structure" />
+      <Type Name="Tuple`3" DisplayName="Tuple&lt;T1,T2,T3&gt;" Kind="Structure" />
+      <Type Name="Tuple`4" DisplayName="Tuple&lt;T1,T2,T3,T4&gt;" Kind="Structure" />
       <Type Name="TupleRocks" Kind="Class" />
       <Type Name="UInt16Rocks" Kind="Class" />
       <Type Name="UInt32Rocks" Kind="Class" />
@@ -93,10 +93,18 @@
           <Parameter Name="value" Type="T" />
         </Parameters>
         <Docs>
-          <typeparam name="T">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T">
+            A <see cref="T:System.Action{T}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T}" /> to curry.
+            </param>
+          <param name="value">
+            A value of type <typeparamref name="T" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``1(System.Action{``0},``0)" />
       </Member>
@@ -119,10 +127,18 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T">
+            A <see cref="T:System.Action{T}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``1(System.Action{``0},Mono.Rocks.Tuple{``0})" />
       </Member>
@@ -146,11 +162,21 @@
           <Parameter Name="value1" Type="T1" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T2}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},``0)" />
       </Member>
@@ -175,12 +201,24 @@
           <Parameter Name="value2" Type="T2" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},``0,``1)" />
       </Member>
@@ -204,11 +242,21 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
@@ -232,11 +280,21 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T2}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},Mono.Rocks.Tuple{``0})" />
       </Member>
@@ -260,11 +318,21 @@
           <Parameter Name="value" Type="T" />
         </Parameters>
         <Docs>
-          <typeparam name="T">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T">
+            A <see cref="T:System.Func{T,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T,TResult}" /> to curry.
+            </param>
+          <param name="value">
+            A value of type <typeparamref name="T" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Func{``0,``1},``0)" />
       </Member>
@@ -288,11 +356,21 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T">
+            A <see cref="T:System.Func{T,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T,TResult}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Func{``0,``1},Mono.Rocks.Tuple{``0})" />
       </Member>
@@ -317,12 +395,24 @@
           <Parameter Name="value1" Type="T1" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T2, T3}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},``0)" />
       </Member>
@@ -348,13 +438,27 @@
           <Parameter Name="value2" Type="T2" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T3}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},``0,``1)" />
       </Member>
@@ -381,14 +485,30 @@
           <Parameter Name="value3" Type="T3" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <param name="value3">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},``0,``1,``2)" />
       </Member>
@@ -413,12 +533,24 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0,``1,``2})" />
       </Member>
@@ -443,12 +575,24 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T3}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
@@ -473,12 +617,24 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T2, T3}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0})" />
       </Member>
@@ -503,12 +659,24 @@
           <Parameter Name="value1" Type="T1" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T2, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},``0)" />
       </Member>
@@ -534,13 +702,27 @@
           <Parameter Name="value2" Type="T2" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},``0,``1)" />
       </Member>
@@ -565,12 +747,24 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
@@ -595,12 +789,24 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T2, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},Mono.Rocks.Tuple{``0})" />
       </Member>
@@ -626,13 +832,27 @@
           <Parameter Name="value1" Type="T1" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T2, T3, T4}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0)" />
       </Member>
@@ -659,14 +879,30 @@
           <Parameter Name="value2" Type="T2" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T3, T4}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1)" />
       </Member>
@@ -694,15 +930,33 @@
           <Parameter Name="value3" Type="T3" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <param name="value3">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T4}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1,``2)" />
       </Member>
@@ -731,16 +985,36 @@
           <Parameter Name="value4" Type="T4" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <param name="value3">To be added.</param>
-          <param name="value4">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+          <param name="value4">
+            A value of type <typeparamref name="T4" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1,``2,``3)" />
       </Member>
@@ -766,13 +1040,27 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2,``3})" />
       </Member>
@@ -798,13 +1086,27 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T4}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2})" />
       </Member>
@@ -830,13 +1132,27 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T3, T4}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
@@ -862,13 +1178,27 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T2, T3, T4}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0})" />
       </Member>
@@ -894,13 +1224,27 @@
           <Parameter Name="value1" Type="T1" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T2, T3, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},``0)" />
       </Member>
@@ -927,14 +1271,30 @@
           <Parameter Name="value2" Type="T2" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T3, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},``0,``1)" />
       </Member>
@@ -962,15 +1322,33 @@
           <Parameter Name="value3" Type="T3" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <param name="value3">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},``0,``1,``2)" />
       </Member>
@@ -996,13 +1374,27 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2})" />
       </Member>
@@ -1028,13 +1420,27 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T3, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
@@ -1060,13 +1466,27 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T2, T3, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0})" />
       </Member>
@@ -1093,14 +1513,30 @@
           <Parameter Name="value1" Type="T1" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T2, T3, T4, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0)" />
       </Member>
@@ -1128,15 +1564,33 @@
           <Parameter Name="value2" Type="T2" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T3, T4, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1)" />
       </Member>
@@ -1165,16 +1619,36 @@
           <Parameter Name="value3" Type="T3" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <param name="value3">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T4, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1,``2)" />
       </Member>
@@ -1204,17 +1678,39 @@
           <Parameter Name="value4" Type="T4" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <param name="value3">To be added.</param>
-          <param name="value4">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+          <param name="value1">
+            A value of type <typeparamref name="T1" /> to fix.
+            </param>
+          <param name="value2">
+            A value of type <typeparamref name="T2" /> to fix.
+            </param>
+          <param name="value3">
+            A value of type <typeparamref name="T3" /> to fix.
+            </param>
+          <param name="value4">
+            A value of type <typeparamref name="T4" /> to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1,``2,``3)" />
       </Member>
@@ -1241,14 +1737,30 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1,``2,``3})" />
       </Member>
@@ -1275,14 +1787,30 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2,T3&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T4, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1,``2})" />
       </Member>
@@ -1309,14 +1837,30 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1,T2&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T3, T4, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
@@ -1343,14 +1887,30 @@
           <Parameter Name="values" Type="Mono.Rocks.Tuple&lt;T1&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="values">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+          <param name="values">
+            A value of type <see cref="T:Mono.Rocks.Tuple{T1}" /> which contains the values to fix.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T2, T3, T4, TResult}" /> delegate.
+            </summary>
         </Docs>
         <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0})" />
       </Member>
@@ -3220,10 +3780,10 @@
         <Target Type="T:System.Collections.Generic.IEnumerable`1" />
       </Targets>
       <Member MemberName="ToTuple&lt;T&gt;">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple ToTuple&lt;T&gt; (this System.Collections.Generic.IEnumerable&lt;T&gt; self);" />
+        <MemberSignature Language="C#" Value="public static object ToTuple&lt;T&gt; (this System.Collections.Generic.IEnumerable&lt;T&gt; self);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
-          <ReturnType>Mono.Rocks.Tuple</ReturnType>
+          <ReturnType>System.Object</ReturnType>
         </ReturnValue>
         <TypeParameters>
           <TypeParameter Name="T" />
@@ -4108,11 +4668,15 @@
           <typeparam name="TKey">The type of the key.</typeparam>
           <typeparam name="TValue">The type of the value.</typeparam>
           <param name="self">
-          A <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> to convert into a 
+          A 
+          <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" />
+          to convert into a
           <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
         </param>
           <summary>
-          Converts a <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" /> into a 
+          Converts a 
+          <see cref="T:Mono.Rocks.Tuple{TKey,TValue}" />
+          into a
           <see cref="T:System.Collections.Generic.KeyValuePair{TKey,TValue}" />.
         </summary>
         </Docs>

@@ -1,3 +1,14 @@
+2008-08-31  Jonathan Pryor  <jpryor@novell.com>
+
+	* Curry.cs: Add XML documentation; remove Tuple null checks.
+	* IEnumerable.cs: .ToTuple() now returns object, not Tuple.
+	* Lambdas.cs: Flush doc changes.
+	* Sequence.cs (GenerateReverse): Use Func<S,Tuple<R,S>?> instead of
+	  Func<S,Tuple<R,S>> as Tuple is a struct now.
+	* Tuple.cs: Major changes: Tuples are now structs, not classes; remove
+	  interface member implementations.
+	* Tuples.cs: Flush (major alterations; see mktuples description).
+
 2008-08-28  Jonathan Pryor  <jpryor@novell.com>
 
 	* Lambdas.cs: Flush doc updates.
