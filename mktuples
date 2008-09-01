@@ -75,8 +75,7 @@ sub create_tuple {
 	$g->XmlSummary ("Utility methods to create Tuple instances.");
 	$g->XmlRemarks (
 qq(<para>
- Provides a set of <see cref="M:Mono.Rocks.Tuple.Create"/> and 
- <see cref="M:Mono.Rocks.Tuple.CreateNullable"/> methods so that
+ Provides a set of <see cref="M:Mono.Rocks.Tuple.Create"/> methods so that
  C# type inferencing can easily be used with tuples.  For example,
  instead of:
 </para>
@@ -87,13 +86,6 @@ Tuple&lt;int, long&gt; a = new Tuple&lt;int, long&gt; (1, 2L);</code>
 Tuple&lt;int, long&gt; b = Tuple.Create (1, 2L);
 // or
 var              c = Tuple.Create (1, 2L);</code>
-<para>
- The <see cref="M:Mono.Rocks.Tuple.CreateNullable"/> methods are just like 
- the <see cref="M:Mono.Rocks.Tuple.Create"/> methods except they return a
- <see cref="T:System.Nullable{Mono.Rocks.Tuple{T}}"/>, which is useful
- when using 
- <see cref="M:Mono.Rocks.Sequence.GenerateReverse``2(``0,System.Func{``0,System.Nullable{Mono.Rocks.Tuple{``1,``0}}})"/>.
-</para>
 ));
 	$g->Type ( "public static partial class Tuple", sub {
 		$g->Write ("\n");
@@ -124,14 +116,7 @@ qq(<para>
 		for (my $i = 2; $i <= $n; ++$i) {
 			create_tuple_method ($g, $i);
 		}
-
-		create_tuple_method ($g, 1, 1);
-
-		for (my $i = 2; $i <= $n; ++$i) {
-			create_tuple_method ($g, $i, 1);
-		}
 	});
-
 }
 
 sub create_funcs {
@@ -149,12 +134,11 @@ sub create_funcs {
 }
 
 sub create_tuple_method {
-	my ($g, $n, $nullable) = @_;
+	my ($g, $n) = @_;
 
 	$g->Write ("\n");
 
 	my $t = "Mono.Rocks.Tuple{" . Generator::GetTypeParameterList ($n) . "}";
-	my $rt = $nullable ? "System.Nullable{$t}" : $t;
 	for (my $i = 1; $i <= $n; ++$i) {
 		$g->XmlTypeparam (Generator::GetTypeParameter ($n, $i), 
 			"The " . Generator::Nth ($i) . " <see cref=\"T:$t\"/> value type.");
@@ -163,16 +147,14 @@ sub create_tuple_method {
 		$g->XmlParam (Generator::GetValue ($n, $i), 
 			"The " . Generator::Nth ($i) . " <see cref=\"T:$t\"/> value.");
 	}
-	$g->XmlSummary ("Creates a <see cref=\"T:$rt\"/>.");
-	$g->XmlReturns ("A <see cref=\"T:$rt\"/> initialized with the parameter values.");
+	$g->XmlSummary ("Creates a <see cref=\"T:$t\"/>.");
+	$g->XmlReturns ("A <see cref=\"T:$t\"/> initialized with the parameter values.");
 	$g->Method (
 		sub {
 			$g->Write ("public static Tuple<")->TypeParameterList ($n)->Write (">"); 
-			$g->Write ("?") if defined $nullable;
 		},
 		sub {
 			$g->Write ("\n\tCreate");
-			$g->Write ("Nullable") if defined $nullable;
 			$g->Write ("<")->TypeParameterList ($n)->Write (">");
 		},
 		sub { $g->MethodParameterList ($n); },

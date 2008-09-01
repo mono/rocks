@@ -49,6 +49,7 @@
     <Compile Include="Mono.Rocks\Lambda.cs" />
     <Compile Include="Mono.Rocks\Lambdas.cs" />
     <Compile Include="Mono.Rocks\NaturalStringComparer.cs" />
+    <Compile Include="Mono.Rocks\Nullable.cs" />
     <Compile Include="Mono.Rocks\Sequence.cs" />
     <Compile Include="Mono.Rocks\Stream.cs" />
     <Compile Include="Mono.Rocks\StreamConverter.cs" />

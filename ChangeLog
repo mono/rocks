@@ -1,3 +1,14 @@
+2008-09-01  Jonathan Pryor  <jpryor@novell.com>
+
+	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add Mono.Rocks/Nullable.cs 
+	  to the build.
+	* Mono.Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Add 
+	  Tests/Mono.Rocks.Tests/NullableTest.cs to the tests.
+	* mktuples.cs: Don't generate the Tuple.CreateNullable() methods anymore, as
+	  NullableRocks.ToNullable() serves the same purpose (easily converting a
+	  value type into a nullable value type).
+	* doc/en/**: Flush; remove Tuple.CreateNullable(), add Nullable.xml.
+
 2008-08-31  Jonathan Pryor  <jpryor@novell.com>
 
 	* gendarme.ignore: Update ignored members.

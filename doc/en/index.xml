@@ -57,6 +57,7 @@
       <Type Name="KeyValuePairRocks" Kind="Class" />
       <Type Name="Lambda" Kind="Class" />
       <Type Name="NaturalStringComparer" Kind="Class" />
+      <Type Name="NullableRocks" Kind="Class" />
       <Type Name="Sequence" Kind="Class" />
       <Type Name="StreamConverter" Kind="Class" />
       <Type Name="StreamRocks" Kind="Class" />
@@ -3777,26 +3778,22 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
-        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+        <Target Type="T:System.Collections.IEnumerable" />
       </Targets>
-      <Member MemberName="ToTuple&lt;T&gt;">
-        <MemberSignature Language="C#" Value="public static object ToTuple&lt;T&gt; (this System.Collections.Generic.IEnumerable&lt;T&gt; self);" />
+      <Member MemberName="ToTuple">
+        <MemberSignature Language="C#" Value="public static object ToTuple (this System.Collections.IEnumerable self);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>System.Object</ReturnType>
         </ReturnValue>
-        <TypeParameters>
-          <TypeParameter Name="T" />
-        </TypeParameters>
         <Parameters>
-          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T&gt;" RefType="this" />
+          <Parameter Name="self" Type="System.Collections.IEnumerable" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="T">To be added.</typeparam>
           <param name="self">To be added.</param>
           <summary>To be added.</summary>
         </Docs>
-        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ToTuple``1(System.Collections.Generic.IEnumerable{``0})" />
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ToTuple(System.Collections.IEnumerable)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -4313,6 +4310,66 @@
         </summary>
         </Docs>
         <Link Type="Mono.Rocks.KeyValuePairRocks" Member="M:Mono.Rocks.KeyValuePairRocks.ToTuple``2(System.Collections.Generic.KeyValuePair{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Nullable`1" />
+      </Targets>
+      <Member MemberName="Select&lt;TSource,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static TResult Select&lt;TSource,TResult&gt; (this Nullable&lt;TSource&gt; self, Func&lt;TSource,TResult&gt; selector) where TSource : struct;" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>TResult</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource">
+            <Constraints>
+              <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
+            </Constraints>
+          </TypeParameter>
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Nullable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="selector">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.Select``2(System.Nullable{``0},System.Func{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="System.Object" />
+      </Targets>
+      <Member MemberName="ToNullable&lt;TValue&gt;">
+        <MemberSignature Language="C#" Value="public static Nullable&lt;TValue&gt; ToNullable&lt;TValue&gt; (this TValue self) where TValue : struct;" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Nullable&lt;TValue&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TValue">
+            <Constraints>
+              <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
+            </Constraints>
+          </TypeParameter>
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="TValue" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.ToNullable``1(``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>

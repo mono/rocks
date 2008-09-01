@@ -2063,8 +2063,8 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="ToTuple&lt;T&gt;">
-      <MemberSignature Language="C#" Value="public static object ToTuple&lt;T&gt; (this System.Collections.Generic.IEnumerable&lt;T&gt; self);" />
+    <Member MemberName="ToTuple">
+      <MemberSignature Language="C#" Value="public static object ToTuple (this System.Collections.IEnumerable self);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -2077,14 +2077,10 @@
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T" />
-      </TypeParameters>
       <Parameters>
-        <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T&gt;" RefType="this" />
+        <Parameter Name="self" Type="System.Collections.IEnumerable" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="T">To be added.</typeparam>
         <param name="self">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>

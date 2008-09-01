@@ -1,3 +1,11 @@
+2008-09-01  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerable.cs: .ToTuple() should take an IEnumerable, not an
+	  IEnumerable<T>, as the type parameter really isn't needed.
+	* Nullable.cs: Added; Extension methods for manipulating nullable values.
+	* Tuples.cs: Remove the CreateNullable() methods, as we can use
+	  Tuple.Create(...).ToNullable() now for the same result.
+
 2008-08-31  Jonathan Pryor  <jpryor@novell.com>
 
 	* Curry.cs: Add XML documentation; remove Tuple null checks.

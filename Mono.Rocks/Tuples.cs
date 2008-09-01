@@ -39,8 +39,7 @@ namespace Mono.Rocks {
 	/// </summary>
 	/// <remarks>
 	///   <para>
-	///    Provides a set of <see cref="M:Mono.Rocks.Tuple.Create"/> and 
-	///    <see cref="M:Mono.Rocks.Tuple.CreateNullable"/> methods so that
+	///    Provides a set of <see cref="M:Mono.Rocks.Tuple.Create"/> methods so that
 	///    C# type inferencing can easily be used with tuples.  For example,
 	///    instead of:
 	///   </para>
@@ -51,13 +50,6 @@ namespace Mono.Rocks {
 	///   Tuple&lt;int, long&gt; b = Tuple.Create (1, 2L);
 	///   // or
 	///   var              c = Tuple.Create (1, 2L);</code>
-	///   <para>
-	///    The <see cref="M:Mono.Rocks.Tuple.CreateNullable"/> methods are just like 
-	///    the <see cref="M:Mono.Rocks.Tuple.Create"/> methods except they return a
-	///    <see cref="T:System.Nullable{Mono.Rocks.Tuple{T}}"/>, which is useful
-	///    when using 
-	///    <see cref="M:Mono.Rocks.Sequence.GenerateReverse``2(``0,System.Func{``0,System.Nullable{Mono.Rocks.Tuple{``1,``0}}})"/>.
-	///   </para>
 	/// </remarks>
 	public static partial class Tuple {
 
@@ -191,114 +183,6 @@ namespace Mono.Rocks {
 		/// </returns>
 		public static Tuple<T1, T2, T3, T4>
 			Create<T1, T2, T3, T4> (T1 value1, T2 value2, T3 value3, T4 value4)
-		{
-			return new Tuple<T1, T2, T3, T4> (value1, value2, value3, value4);
-		}
-
-		/// <typeparam name="T">
-		///   The first <see cref="T:Mono.Rocks.Tuple{T}"/> value type.
-		/// </typeparam>
-		/// <param name="value">
-		///   The first <see cref="T:Mono.Rocks.Tuple{T}"/> value.
-		/// </param>
-		/// <summary>
-		///   Creates a <see cref="T:System.Nullable{Mono.Rocks.Tuple{T}}"/>.
-		/// </summary>
-		/// <returns>
-		///   A <see cref="T:System.Nullable{Mono.Rocks.Tuple{T}}"/> initialized with the parameter values.
-		/// </returns>
-		public static Tuple<T>?
-			CreateNullable<T> (T value)
-		{
-			return new Tuple<T> (value);
-		}
-
-		/// <typeparam name="T1">
-		///   The first <see cref="T:Mono.Rocks.Tuple{T1, T2}"/> value type.
-		/// </typeparam>
-		/// <typeparam name="T2">
-		///   The second <see cref="T:Mono.Rocks.Tuple{T1, T2}"/> value type.
-		/// </typeparam>
-		/// <param name="value1">
-		///   The first <see cref="T:Mono.Rocks.Tuple{T1, T2}"/> value.
-		/// </param>
-		/// <param name="value2">
-		///   The second <see cref="T:Mono.Rocks.Tuple{T1, T2}"/> value.
-		/// </param>
-		/// <summary>
-		///   Creates a <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2}}"/>.
-		/// </summary>
-		/// <returns>
-		///   A <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2}}"/> initialized with the parameter values.
-		/// </returns>
-		public static Tuple<T1, T2>?
-			CreateNullable<T1, T2> (T1 value1, T2 value2)
-		{
-			return new Tuple<T1, T2> (value1, value2);
-		}
-
-		/// <typeparam name="T1">
-		///   The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}"/> value type.
-		/// </typeparam>
-		/// <typeparam name="T2">
-		///   The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}"/> value type.
-		/// </typeparam>
-		/// <typeparam name="T3">
-		///   The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}"/> value type.
-		/// </typeparam>
-		/// <param name="value1">
-		///   The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}"/> value.
-		/// </param>
-		/// <param name="value2">
-		///   The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}"/> value.
-		/// </param>
-		/// <param name="value3">
-		///   The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}"/> value.
-		/// </param>
-		/// <summary>
-		///   Creates a <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2, T3}}"/>.
-		/// </summary>
-		/// <returns>
-		///   A <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2, T3}}"/> initialized with the parameter values.
-		/// </returns>
-		public static Tuple<T1, T2, T3>?
-			CreateNullable<T1, T2, T3> (T1 value1, T2 value2, T3 value3)
-		{
-			return new Tuple<T1, T2, T3> (value1, value2, value3);
-		}
-
-		/// <typeparam name="T1">
-		///   The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}"/> value type.
-		/// </typeparam>
-		/// <typeparam name="T2">
-		///   The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}"/> value type.
-		/// </typeparam>
-		/// <typeparam name="T3">
-		///   The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}"/> value type.
-		/// </typeparam>
-		/// <typeparam name="T4">
-		///   The fourth <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}"/> value type.
-		/// </typeparam>
-		/// <param name="value1">
-		///   The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}"/> value.
-		/// </param>
-		/// <param name="value2">
-		///   The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}"/> value.
-		/// </param>
-		/// <param name="value3">
-		///   The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}"/> value.
-		/// </param>
-		/// <param name="value4">
-		///   The fourth <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}"/> value.
-		/// </param>
-		/// <summary>
-		///   Creates a <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2, T3, T4}}"/>.
-		/// </summary>
-		/// <returns>
-		///   A <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2, T3, T4}}"/> initialized with the parameter values.
-		/// </returns>
-		public static Tuple<T1, T2, T3, T4>?
-			CreateNullable<T1, T2, T3, T4> (T1 value1, T2 value2, T3 value3, T4 value4)
 		{
 			return new Tuple<T1, T2, T3, T4> (value1, value2, value3, value4);
 		}

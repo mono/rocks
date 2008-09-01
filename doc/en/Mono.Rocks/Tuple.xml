@@ -14,8 +14,7 @@
             </summary>
     <remarks>
       <para>
-            Provides a set of <see cref="M:Mono.Rocks.Tuple.Create" /> and
-            <see cref="M:Mono.Rocks.Tuple.CreateNullable" /> methods so that
+            Provides a set of <see cref="M:Mono.Rocks.Tuple.Create" /> methods so that
             C# type inferencing can easily be used with tuples.  For example,
             instead of:
             </para>
@@ -26,13 +25,6 @@
             Tuple&lt;int, long&gt; b = Tuple.Create (1, 2L);
             // or
             var              c = Tuple.Create (1, 2L);</code>
-      <para>
-            The <see cref="M:Mono.Rocks.Tuple.CreateNullable" /> methods are just like
-            the <see cref="M:Mono.Rocks.Tuple.Create" /> methods except they return a
-            <see cref="T:System.Nullable{Mono.Rocks.Tuple{T}}" />, which is useful
-            when using
-            <see cref="M:Mono.Rocks.Sequence.GenerateReverse``2(``0,System.Func{``0,System.Nullable{Mono.Rocks.Tuple{``1,``0}}})" />.
-            </para>
     </remarks>
   </Docs>
   <Members>
@@ -204,178 +196,6 @@
             </summary>
         <returns>
             A <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> initialized with the parameter values.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="CreateNullable&lt;T&gt;">
-      <MemberSignature Language="C#" Value="public static Nullable&lt;Mono.Rocks.Tuple&lt;T&gt;&gt; CreateNullable&lt;T&gt; (T value);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Nullable&lt;Mono.Rocks.Tuple&lt;T&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="value" Type="T" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T">
-            The first <see cref="T:Mono.Rocks.Tuple{T}" /> value type.
-            </typeparam>
-        <param name="value">
-            The first <see cref="T:Mono.Rocks.Tuple{T}" /> value.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Nullable{Mono.Rocks.Tuple{T}}" />.
-            </summary>
-        <returns>
-            A <see cref="T:System.Nullable{Mono.Rocks.Tuple{T}}" /> initialized with the parameter values.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="CreateNullable&lt;T1,T2,T3,T4&gt;">
-      <MemberSignature Language="C#" Value="public static Nullable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt; CreateNullable&lt;T1,T2,T3,T4&gt; (T1 value1, T2 value2, T3 value3, T4 value4);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Nullable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-        <TypeParameter Name="T3" />
-        <TypeParameter Name="T4" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="value1" Type="T1" />
-        <Parameter Name="value2" Type="T2" />
-        <Parameter Name="value3" Type="T3" />
-        <Parameter Name="value4" Type="T4" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
-            </typeparam>
-        <typeparam name="T2">
-            The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
-            </typeparam>
-        <typeparam name="T3">
-            The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
-            </typeparam>
-        <typeparam name="T4">
-            The fourth <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
-            </typeparam>
-        <param name="value1">
-            The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
-            </param>
-        <param name="value2">
-            The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
-            </param>
-        <param name="value3">
-            The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
-            </param>
-        <param name="value4">
-            The fourth <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2, T3, T4}}" />.
-            </summary>
-        <returns>
-            A <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2, T3, T4}}" /> initialized with the parameter values.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="CreateNullable&lt;T1,T2,T3&gt;">
-      <MemberSignature Language="C#" Value="public static Nullable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt; CreateNullable&lt;T1,T2,T3&gt; (T1 value1, T2 value2, T3 value3);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Nullable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-        <TypeParameter Name="T3" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="value1" Type="T1" />
-        <Parameter Name="value2" Type="T2" />
-        <Parameter Name="value3" Type="T3" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> value type.
-            </typeparam>
-        <typeparam name="T2">
-            The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> value type.
-            </typeparam>
-        <typeparam name="T3">
-            The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> value type.
-            </typeparam>
-        <param name="value1">
-            The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> value.
-            </param>
-        <param name="value2">
-            The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> value.
-            </param>
-        <param name="value3">
-            The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> value.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2, T3}}" />.
-            </summary>
-        <returns>
-            A <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2, T3}}" /> initialized with the parameter values.
-            </returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="CreateNullable&lt;T1,T2&gt;">
-      <MemberSignature Language="C#" Value="public static Nullable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt; CreateNullable&lt;T1,T2&gt; (T1 value1, T2 value2);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Nullable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt;</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="T1" />
-        <TypeParameter Name="T2" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="value1" Type="T1" />
-        <Parameter Name="value2" Type="T2" />
-      </Parameters>
-      <Docs>
-        <typeparam name="T1">
-            The first <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value type.
-            </typeparam>
-        <typeparam name="T2">
-            The second <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value type.
-            </typeparam>
-        <param name="value1">
-            The first <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value.
-            </param>
-        <param name="value2">
-            The second <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value.
-            </param>
-        <summary>
-            Creates a <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2}}" />.
-            </summary>
-        <returns>
-            A <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1, T2}}" /> initialized with the parameter values.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>

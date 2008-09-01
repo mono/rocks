@@ -1,3 +1,9 @@
+2008-09-01  Jonathan Pryor  <jpryor@novell.com>
+
+	* NullableTest.cs: Add NullableTest.cs.
+	* SequenceTest.cs: Use Tuple.Create(...).ToNullable() instead of
+	  Tuple.CreateNullable().
+
 2008-08-31  Jonathan Pryor  <jpryor@novell.com>
 
 	* CurryTests.cs: Instead of using `int' for all type parameters, use a

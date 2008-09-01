@@ -1,8 +1,8 @@
 //
-// SequenceTest.cs
+// NullableTest.cs
 //
 // Author:
-//   Jonathan Pryor  <jpryor@novell.com>
+//   Jonathan Pryor
 //
 // Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
@@ -27,8 +27,6 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 using NUnit.Framework;
 
@@ -37,48 +35,32 @@ using Mono.Rocks;
 namespace Mono.Rocks.Tests {
 
 	[TestFixture]
-	public class SequenceTest : BaseRocksFixture {
+	public class NullableTest : BaseRocksFixture {
 
-		[Test]
-		[ExpectedException (typeof (ArgumentNullException))]
-		public void Iterate_FuncNull ()
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Select_SelectorNull ()
 		{
-			Func<int, int> f = null;
-			Sequence.Iterate (0, f);
+			int? v = null;
+			Func<int, string> s = null;
+			v.Select (s);
 		}
 
 		[Test]
-		public void Iterate ()
+		public void Select ()
 		{
-			// not entirely sure how you sanely test an infinite list...
-			Assert.AreEqual ("16,8,4,2,1",
-					Sequence.Iterate (16, v => v / 2).Take (5).Implode (","));
+			int? v = null;
+			Assert.AreEqual (null,
+				v.Select (e => e.ToString ()));
+			Assert.AreEqual (null,
+				v.Select (e => Convert.ToChar (e).ToNullable ()));
+			Assert.AreEqual ("42",
+				((int?) 42).Select (e => e.ToString ()));
 		}
 
 		[Test]
-		public void Repeat ()
+		public void ToNullable ()
 		{
-			// not entirely sure how you sanely test an infinite list...
-			Assert.AreEqual ("1,1,1,1,1",
-					Sequence.Repeat (1).Take (5).Implode (","));
-		}
-
-		[Test]
-		[ExpectedException (typeof (ArgumentNullException))]
-		public void GenerateReverse_FuncNull ()
-		{
-			Func<int, Tuple<int,int>?> f = null;
-			Sequence.GenerateReverse (0, f);
-		}
-
-		[Test]
-		public void GenerateReverse ()
-		{
-			Assert.AreEqual ("10,9,8,7,6,5,4,3,2,1",
-				Sequence.GenerateReverse (10, b => b == 0 
-						? null 
-						: Tuple.Create (b, b-1).ToNullable ())
-				.Implode (","));
+			Assert.AreEqual (42, 42.ToNullable ());
 		}
 	}
 }

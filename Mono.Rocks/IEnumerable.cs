@@ -28,6 +28,7 @@
 //
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -270,13 +271,13 @@ namespace Mono.Rocks {
 			return Sort (self, NaturalStringComparer.Default);
 		}
 
-		public static object ToTuple<T> (this IEnumerable<T> self)
+		public static object ToTuple (this IEnumerable self)
 		{
 			Check.Self (self);
 
 			List<Type> types;
 			List<object> args;
-			ICollection<T> c = self as ICollection<T>;
+			ICollection c = self as ICollection;
 			if (c != null) {
 				types = new List<Type> (c.Count);
 				args  = new List<object> (c.Count);
@@ -285,7 +286,7 @@ namespace Mono.Rocks {
 				types = new List<Type> ();
 				args  = new List<object> ();
 			}
-			foreach (T val in self) {
+			foreach (var val in self) {
 				types.Add (val.GetType ());
 				args.Add (val);
 			}
