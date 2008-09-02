@@ -1,3 +1,7 @@
+2008-09-02  Jonathan Pryor  <jpryor@novell.com>
+
+	* NullableTest.cs: Remove .Select() tests.
+
 2008-09-01  Jonathan Pryor  <jpryor@novell.com>
 
 	* NullableTest.cs: Add NullableTest.cs.

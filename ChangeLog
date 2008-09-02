@@ -1,3 +1,7 @@
+2008-09-02  Jonathan Pryor  <jpryor@novell.com>
+
+	* doc/en/**: Flush.
+
 2008-09-01  Jonathan Pryor  <jpryor@novell.com>
 
 	* doc/doc.mdproj: Add additional XML documentation files.

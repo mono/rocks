@@ -4038,8 +4038,12 @@
           <Parameter Name="value" Type="System.Int16" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.Int16" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an even number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.Int16Rocks" Member="M:Mono.Rocks.Int16Rocks.IsEven(System.Int16)" />
       </Member>
@@ -4058,8 +4062,12 @@
           <Parameter Name="value" Type="System.Int16" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.Int16" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an odd number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.Int16Rocks" Member="M:Mono.Rocks.Int16Rocks.IsOdd(System.Int16)" />
       </Member>
@@ -4100,8 +4108,12 @@
           <Parameter Name="value" Type="System.Int32" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.Int32" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an even number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.IsEven(System.Int32)" />
       </Member>
@@ -4120,8 +4132,12 @@
           <Parameter Name="value" Type="System.Int32" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.Int32" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an odd number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.IsOdd(System.Int32)" />
       </Member>
@@ -4206,8 +4222,12 @@
           <Parameter Name="value" Type="System.Int64" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.Int64" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an even number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.Int64Rocks" Member="M:Mono.Rocks.Int64Rocks.IsEven(System.Int64)" />
       </Member>
@@ -4226,8 +4246,12 @@
           <Parameter Name="value" Type="System.Int64" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.Int64" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an odd number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.Int64Rocks" Member="M:Mono.Rocks.Int64Rocks.IsOdd(System.Int64)" />
       </Member>
@@ -4314,38 +4338,6 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
-        <Target Type="T:System.Nullable`1" />
-      </Targets>
-      <Member MemberName="Select&lt;TSource,TResult&gt;">
-        <MemberSignature Language="C#" Value="public static TResult Select&lt;TSource,TResult&gt; (this Nullable&lt;TSource&gt; self, Func&lt;TSource,TResult&gt; selector) where TSource : struct;" />
-        <MemberType>ExtensionMethod</MemberType>
-        <ReturnValue>
-          <ReturnType>TResult</ReturnType>
-        </ReturnValue>
-        <TypeParameters>
-          <TypeParameter Name="TSource">
-            <Constraints>
-              <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
-            </Constraints>
-          </TypeParameter>
-          <TypeParameter Name="TResult" />
-        </TypeParameters>
-        <Parameters>
-          <Parameter Name="self" Type="System.Nullable&lt;TSource&gt;" RefType="this" />
-          <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
-        </Parameters>
-        <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="selector">To be added.</param>
-          <summary>To be added.</summary>
-        </Docs>
-        <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.Select``2(System.Nullable{``0},System.Func{``0,``1})" />
-      </Member>
-    </ExtensionMethod>
-    <ExtensionMethod>
-      <Targets>
         <Target Type="System.Object" />
       </Targets>
       <Member MemberName="ToNullable&lt;TValue&gt;">
@@ -4365,9 +4357,18 @@
           <Parameter Name="self" Type="TValue" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TValue">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TValue">
+         A <see langword="struct" /> to convert into a
+         <see cref="T:System.Nullable{TValue}" />.
+        </typeparam>
+          <param name="self">
+         A <typeparamref name="TValue" /> which is the value to convert
+         into a <see cref="T:System.Nullable{TValue}" />.
+        </param>
+          <summary>
+         Converts the value type value <paramref name="self" /> into a
+         Nullable value <see cref="T:System.Nullable{TValue}" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.ToNullable``1(``0)" />
       </Member>
@@ -4754,8 +4755,12 @@
           <Parameter Name="value" Type="System.UInt16" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.UInt16" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an even number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.UInt16Rocks" Member="M:Mono.Rocks.UInt16Rocks.IsEven(System.UInt16)" />
       </Member>
@@ -4774,8 +4779,12 @@
           <Parameter Name="value" Type="System.UInt16" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.UInt16" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an odd number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.UInt16Rocks" Member="M:Mono.Rocks.UInt16Rocks.IsOdd(System.UInt16)" />
       </Member>
@@ -4794,8 +4803,12 @@
           <Parameter Name="value" Type="System.UInt32" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.UInt32" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an even number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.UInt32Rocks" Member="M:Mono.Rocks.UInt32Rocks.IsEven(System.UInt32)" />
       </Member>
@@ -4814,8 +4827,12 @@
           <Parameter Name="value" Type="System.UInt32" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.UInt32" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an odd number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.UInt32Rocks" Member="M:Mono.Rocks.UInt32Rocks.IsOdd(System.UInt32)" />
       </Member>
@@ -4834,8 +4851,12 @@
           <Parameter Name="value" Type="System.UInt64" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.UInt64" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an even number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.UInt64Rocks" Member="M:Mono.Rocks.UInt64Rocks.IsEven(System.UInt64)" />
       </Member>
@@ -4854,8 +4875,12 @@
           <Parameter Name="value" Type="System.UInt64" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="value">
+          A <see cref="T:System.UInt64" /> containing the value to check.
+        </param>
+          <summary>
+          Gets a value indicating whether <paramref name="value" /> is an odd number.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.UInt64Rocks" Member="M:Mono.Rocks.UInt64Rocks.IsOdd(System.UInt64)" />
       </Member>

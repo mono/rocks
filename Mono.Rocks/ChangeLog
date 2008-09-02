@@ -1,3 +1,7 @@
+2008-09-02  Jonathan Pryor  <jpryor@novell.com>
+
+	* Nullable.cs: Remove .Select().
+
 2008-09-01  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerable.cs: .ToTuple() should take an IEnumerable, not an

@@ -31,16 +31,6 @@ namespace Mono.Rocks {
 
 	public static class NullableRocks {
 
-		public static TResult Select<TSource, TResult> (this TSource? self, Func<TSource, TResult> selector)
-			where TSource : struct
-		{
-			Check.Selector (selector);
-
-			if (self.HasValue)
-				return selector (self.Value);
-			return default (TResult);
-		}
-
 		public static TValue? ToNullable<TValue> (this TValue self)
 			where TValue : struct
 		{

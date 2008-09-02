@@ -15,48 +15,12 @@
   </Attributes>
   <Docs>
     <summary>
-      Extension and utility methods for <see cref="T:System.Nullable{T}"/>.
+      Extension and utility methods for <see cref="T:System.Nullable{T}" />.
     </summary>
     <remarks>
     </remarks>
   </Docs>
   <Members>
-    <Member MemberName="Select&lt;TSource,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static TResult Select&lt;TSource,TResult&gt; (this Nullable&lt;TSource&gt; self, Func&lt;TSource,TResult&gt; selector) where TSource : struct;" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <Attributes>
-        <Attribute>
-          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
-        </Attribute>
-      </Attributes>
-      <ReturnValue>
-        <ReturnType>TResult</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="TSource">
-          <Constraints>
-            <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
-          </Constraints>
-        </TypeParameter>
-        <TypeParameter Name="TResult" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="self" Type="System.Nullable&lt;TSource&gt;" RefType="this" />
-        <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
-      </Parameters>
-      <Docs>
-        <typeparam name="TSource">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="selector">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
     <Member MemberName="ToNullable&lt;TValue&gt;">
       <MemberSignature Language="C#" Value="public static Nullable&lt;TValue&gt; ToNullable&lt;TValue&gt; (this TValue self) where TValue : struct;" />
       <MemberType>Method</MemberType>
@@ -83,36 +47,36 @@
       </Parameters>
       <Docs>
         <typeparam name="TValue">
-         A <see langword="struct"/> to convert into a
-         <see cref="T:System.Nullable{TValue}"/>.
+         A <see langword="struct" /> to convert into a
+         <see cref="T:System.Nullable{TValue}" />.
         </typeparam>
         <param name="self">
-         A <typeparamref name="TValue"/> which is the value to convert
-         into a <see cref="T:System.Nullable{TValue}"/>.
+         A <typeparamref name="TValue" /> which is the value to convert
+         into a <see cref="T:System.Nullable{TValue}" />.
         </param>
         <summary>
-         Converts the value type value <paramref name="self"/> into a
-         Nullable value <see cref="T:System.Nullable{TValue}"/>.
+         Converts the value type value <paramref name="self" /> into a
+         Nullable value <see cref="T:System.Nullable{TValue}" />.
         </summary>
         <returns>
-         Returns <paramref name="self"/> as a
-         <see cref="T:System.Nullable{TValue}"/>.
+         Returns <paramref name="self" /> as a
+         <see cref="T:System.Nullable{TValue}" />.
         </returns>
         <remarks>
           <para>
             This is particularly handy in creating a 
-            <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1,T2}}"/>
+            <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1,T2}}" />
             for use from 
-            <see cref="M:Mono.Rocks.Sequence.GenerateReverse``2(``0,System.Func{``0,System.Nullable{Mono.Rocks.Tuple{``1,``0}}})"/>:
+            <see cref="M:Mono.Rocks.Sequence.GenerateReverse``2(``0,System.Func{``0,System.Nullable{Mono.Rocks.Tuple{``1,``0}}})" />:
           </para>
           <code lang="C#">
-var ints = Sequence.GenerateReverse (10, b => b == 0
+var ints = Sequence.GenerateReverse (10, b =&gt; b == 0
     ? null
     : Tuple.Create (b, b - 1).ToNullable ());
 foreach (int n in ints)
   Console.WriteLine (n);  // writes 10, 9, ..., 2, 1</code>
         </remarks>
-        <altmember cref="M:Mono.Rocks.Sequence.GenerateReverse``2(``0,System.Func{``0,System.Nullable{Mono.Rocks.Tuple{``1,``0}}})"/>
+        <altmember cref="M:Mono.Rocks.Sequence.GenerateReverse``2(``0,System.Func{``0,System.Nullable{Mono.Rocks.Tuple{``1,``0}}})" />
       </Docs>
     </Member>
   </Members>

@@ -64,14 +64,14 @@
       </Parameters>
       <Docs>
         <param name="value">
-          A <see cref="T:System.Int32"/> containing the value to check.
+          A <see cref="T:System.Int32" /> containing the value to check.
         </param>
         <summary>
-          Gets a value indicating whether <paramref name="value"/> is an even number.
+          Gets a value indicating whether <paramref name="value" /> is an even number.
         </summary>
         <returns>
-          <see langword="true"/> if <paramref name="value"/> is an even number;
-          otherwise, <see langword="false"/>.
+          <see langword="true" /> if <paramref name="value" /> is an even number;
+          otherwise, <see langword="false" />.
         </returns>
         <remarks>
           <para>
@@ -80,7 +80,7 @@
             are odd.
           </para>
         </remarks>
-        <altmember cref="M:Mono.Rocks.Int32Rocks.IsOdd(System.Int32)"/>
+        <altmember cref="M:Mono.Rocks.Int32Rocks.IsOdd(System.Int32)" />
       </Docs>
     </Member>
     <Member MemberName="IsOdd">
@@ -102,14 +102,14 @@
       </Parameters>
       <Docs>
         <param name="value">
-          A <see cref="T:System.Int32"/> containing the value to check.
+          A <see cref="T:System.Int32" /> containing the value to check.
         </param>
         <summary>
-          Gets a value indicating whether <paramref name="value"/> is an odd number.
+          Gets a value indicating whether <paramref name="value" /> is an odd number.
         </summary>
         <returns>
-          <see langword="true"/> if <paramref name="value"/> is an odd number;
-          otherwise, <see langword="false"/>.
+          <see langword="true" /> if <paramref name="value" /> is an odd number;
+          otherwise, <see langword="false" />.
         </returns>
         <remarks>
           <para>
@@ -118,7 +118,7 @@
             are odd.
           </para>
         </remarks>
-        <altmember cref="M:Mono.Rocks.Int32Rocks.IsEven(System.Int32)"/>
+        <altmember cref="M:Mono.Rocks.Int32Rocks.IsEven(System.Int32)" />
       </Docs>
     </Member>
     <Member MemberName="Step">

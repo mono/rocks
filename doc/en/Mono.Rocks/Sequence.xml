@@ -39,14 +39,14 @@
         <returns>To be added.</returns>
         <remarks>
           <code lang="C#">
-var ints = Sequence.GenerateReverse (10, b => b == 0
+var ints = Sequence.GenerateReverse (10, b =&gt; b == 0
     ? null
     : Tuple.Create (b, b - 1).ToNullable ());
 foreach (int n in ints)
   Console.WriteLine (n);  // writes 10, 9, ..., 2, 1</code>
         </remarks>
-        <altmember cref="T:Mono.Rocks.Tuple{TResult,TSource}"/>
-        <altmember cref="M:Mono.Rocks.NullableRocks.ToNullable``1(``0)"/>
+        <altmember cref="T:Mono.Rocks.Tuple{TResult,TSource}" />
+        <altmember cref="M:Mono.Rocks.NullableRocks.ToNullable``1(``0)" />
       </Docs>
     </Member>
     <Member MemberName="Iterate&lt;TSource&gt;">

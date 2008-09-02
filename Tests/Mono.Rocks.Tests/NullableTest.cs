@@ -37,26 +37,6 @@ namespace Mono.Rocks.Tests {
 	[TestFixture]
 	public class NullableTest : BaseRocksFixture {
 
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Select_SelectorNull ()
-		{
-			int? v = null;
-			Func<int, string> s = null;
-			v.Select (s);
-		}
-
-		[Test]
-		public void Select ()
-		{
-			int? v = null;
-			Assert.AreEqual (null,
-				v.Select (e => e.ToString ()));
-			Assert.AreEqual (null,
-				v.Select (e => Convert.ToChar (e).ToNullable ()));
-			Assert.AreEqual ("42",
-				((int?) 42).Select (e => e.ToString ()));
-		}
-
 		[Test]
 		public void ToNullable ()
 		{
