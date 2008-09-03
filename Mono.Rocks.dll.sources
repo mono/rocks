@@ -11,6 +11,7 @@
 ./Mono.Rocks/Lambdas.cs
 ./Mono.Rocks/NaturalStringComparer.cs
 ./Mono.Rocks/Nullable.cs
+./Mono.Rocks/Object.cs
 ./Mono.Rocks/Sequence.cs
 ./Mono.Rocks/Stream.cs
 ./Mono.Rocks/StreamConverter.cs

@@ -1,5 +1,12 @@
 2008-09-02  Jonathan Pryor  <jpryor@novell.com>
 
+	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add Mono.Rocks/Object.cs 
+	  to the build.
+	* Mono.Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Add 
+	  Tests/Mono.Rocks.Tests/ObjectTest.cs to the tests.
+
+2008-09-02  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/**: Flush.
 
 2008-09-01  Jonathan Pryor  <jpryor@novell.com>

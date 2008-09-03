@@ -1,5 +1,9 @@
 2008-09-02  Jonathan Pryor  <jpryor@novell.com>
 
+	* ObjectTest.cs: Added; tests for .Let().
+
+2008-09-02  Jonathan Pryor  <jpryor@novell.com>
+
 	* NullableTest.cs: Remove .Select() tests.
 
 2008-09-01  Jonathan Pryor  <jpryor@novell.com>

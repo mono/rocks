@@ -1,5 +1,9 @@
 2008-09-02  Jonathan Pryor  <jpryor@novell.com>
 
+	* Object.cs: Added; adds .Let() extension method.
+
+2008-09-02  Jonathan Pryor  <jpryor@novell.com>
+
 	* Nullable.cs: Remove .Select().
 
 2008-09-01  Jonathan Pryor  <jpryor@novell.com>
