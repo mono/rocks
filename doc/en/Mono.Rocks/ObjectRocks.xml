@@ -42,7 +42,7 @@
         <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="TSource">The type operate on.</typeparam>
+        <typeparam name="TSource">The type to operate on.</typeparam>
         <typeparam name="TResult">The type to return.</typeparam>
         <param name="self">
           A <typeparamref name="TSource" /> containing the value to manipulate.
@@ -64,7 +64,7 @@
           <para>
             <c>With</c> is useful for easily using an intermediate value within
             an expression "chain" without requiring an explicit variable
-            declaration (which is useful minimizing in-scope variables, as no
+            declaration (which is useful for reducing in-scope variables, as no
             variable is explicitly declared).
           </para>
           <code lang="C#">
