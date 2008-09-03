@@ -58,6 +58,7 @@
       <Type Name="Lambda" Kind="Class" />
       <Type Name="NaturalStringComparer" Kind="Class" />
       <Type Name="NullableRocks" Kind="Class" />
+      <Type Name="ObjectRocks" Kind="Class" />
       <Type Name="Sequence" Kind="Class" />
       <Type Name="StreamConverter" Kind="Class" />
       <Type Name="StreamRocks" Kind="Class" />
@@ -4371,6 +4372,43 @@
         </summary>
         </Docs>
         <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.ToNullable``1(``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="System.Object" />
+      </Targets>
+      <Member MemberName="With&lt;TSource,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static TResult With&lt;TSource,TResult&gt; (this TSource self, Func&lt;TSource,TResult&gt; selector);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>TResult</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="TSource" RefType="this" />
+          <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">The type operate on.</typeparam>
+          <typeparam name="TResult">The type to return.</typeparam>
+          <param name="self">
+          A <typeparamref name="TSource" /> containing the value to manipulate.
+          This value may be <see langword="null" /> (unlike most other
+          extension methods).
+        </param>
+          <param name="selector">
+          A <see cref="T:System.Func{TSource,TResult}" /> which will be
+          invoked with <paramref name="self" /> as a parameter.
+        </param>
+          <summary>
+          Supports chaining otherwise temporary values.
+        </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.ObjectRocks" Member="M:Mono.Rocks.ObjectRocks.With``2(``0,System.Func{``0,``1})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>

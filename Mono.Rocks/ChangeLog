@@ -1,3 +1,7 @@
+2008-09-03  Jonathan Pryor  <jpryor@novell.com>
+
+	* Object.cs: Rename .Let() to .With().
+
 2008-09-02  Jonathan Pryor  <jpryor@novell.com>
 
 	* Object.cs: Added; adds .Let() extension method.

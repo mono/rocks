@@ -39,18 +39,18 @@ namespace Mono.Rocks.Tests {
 	public class ObjectTest : BaseRocksFixture {
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Let_SelectorNull ()
+		public void With_SelectorNull ()
 		{
 			string                s = "foo";
 			Func<string, string>  f = null;
-			s.Let (f);
+			s.With (f);
 		}
 
 		[Test]
-		public void Let ()
+		public void With ()
 		{
 			Assert.AreEqual (3,
-				new[]{5, 4, 3, 2, 1}.Sort ().Let (c => c.ElementAt (c.Count()/2)));
+				new[]{5, 4, 3, 2, 1}.Sort ().With (c => c.ElementAt (c.Count()/2)));
 		}
 	}
 }

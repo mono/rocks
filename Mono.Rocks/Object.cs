@@ -32,7 +32,7 @@ namespace Mono.Rocks {
 
 	public static class ObjectRocks {
 
-		public static TResult Let<TSource, TResult> (this TSource self, Func<TSource, TResult> selector)
+		public static TResult With<TSource, TResult> (this TSource self, Func<TSource, TResult> selector)
 		{
 			// Permit self to be null
 			Check.Selector (selector);

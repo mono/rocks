@@ -1,0 +1,82 @@
+<Type Name="ObjectRocks" FullName="Mono.Rocks.ObjectRocks">
+  <TypeSignature Language="C#" Value="public static class ObjectRocks" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Rocks</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>Extension methods on <see cref="T:System.Object" />.</summary>
+    <remarks>
+    </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="With&lt;TSource,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static TResult With&lt;TSource,TResult&gt; (this TSource self, Func&lt;TSource,TResult&gt; selector);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>TResult</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="TSource" RefType="this" />
+        <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">The type operate on.</typeparam>
+        <typeparam name="TResult">The type to return.</typeparam>
+        <param name="self">
+          A <typeparamref name="TSource" /> containing the value to manipulate.
+          This value may be <see langword="null" /> (unlike most other
+          extension methods).
+        </param>
+        <param name="selector">
+          A <see cref="T:System.Func{TSource,TResult}" /> which will be
+          invoked with <paramref name="self" /> as a parameter.
+        </param>
+        <summary>
+          Supports chaining otherwise temporary values.
+        </summary>
+        <returns>
+          The value of type <typeparamref name="TResult" /> returned by
+          <paramref name="selector" />.
+        </returns>
+        <remarks>
+          <para>
+            <c>With</c> is useful for easily using an intermediate value within
+            an expression "chain" without requiring an explicit variable
+            declaration (which is useful minimizing in-scope variables, as no
+            variable is explicitly declared).
+          </para>
+          <code lang="C#">
+// sorts the array, then returns the 
+// element in the middle of the array.
+int medianValue = new[]{1, 3, 5, 2, 4}
+    .Sort ().With (c =&gt; c.ElementAt (c.Count()/2));</code>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="selector" /> is <see langword="null" />.
+        </exception>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
