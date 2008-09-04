@@ -4088,9 +4088,18 @@
           <Parameter Name="limit" Type="System.Int32" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="limit">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          An <see cref="T:System.Int32" /> containing the upper starting value.
+        </param>
+          <param name="limit">
+          An <see cref="T:System.Int32" /> containing the lower ending value.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Int32}" />
+          which will return the values from <paramref name="self" /> down to
+          <paramref name="limit" />, inclusive.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.DownTo(System.Int32,System.Int32)" />
       </Member>
@@ -4159,10 +4168,23 @@
           <Parameter Name="step" Type="System.Int32" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="limit">To be added.</param>
-          <param name="step">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          An <see cref="T:System.Int32" /> containing the lower starting value.
+        </param>
+          <param name="limit">
+          An <see cref="T:System.Int32" /> containing the upper ending value.
+        </param>
+          <param name="step">
+          An <see cref="T:System.In32" /> containing the value to increment
+          by.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Int32}" />
+          which will return the values from <paramref name="self" /> up to
+          <paramref name="limit" />, inclusive, incrementing by 
+          <paramref name="step" /> between each value.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.Step(System.Int32,System.Int32,System.Int32)" />
       </Member>
@@ -4181,8 +4203,15 @@
           <Parameter Name="self" Type="System.Int32" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          An <see cref="T:System.Int32" /> containing the positive upper limit.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Int32}" />
+          which will return the values between <c>0</c> and 
+          <paramref name="self" />, exclusive.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.Times(System.Int32)" />
       </Member>
@@ -4202,9 +4231,18 @@
           <Parameter Name="limit" Type="System.Int32" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="limit">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          An <see cref="T:System.Int32" /> containing the lower starting value.
+        </param>
+          <param name="limit">
+          An <see cref="T:System.Int32" /> containing the upper ending value.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Int32}" />
+          which will return the values from <paramref name="self" /> up to
+          <paramref name="limit" />, inclusive.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.Int32Rocks" Member="M:Mono.Rocks.Int32Rocks.UpTo(System.Int32,System.Int32)" />
       </Member>
@@ -4393,7 +4431,7 @@
           <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="TSource">The type operate on.</typeparam>
+          <typeparam name="TSource">The type to operate on.</typeparam>
           <typeparam name="TResult">The type to return.</typeparam>
           <param name="self">
           A <typeparamref name="TSource" /> containing the value to manipulate.

@@ -1,5 +1,9 @@
 2008-09-03  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/**: Flush documentation for Int32Rocks.
+
+2008-09-03  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/**: Flush documentation for .With().
 
 2008-09-02  Jonathan Pryor  <jpryor@novell.com>
