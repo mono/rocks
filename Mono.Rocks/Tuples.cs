@@ -69,7 +69,7 @@ namespace Mono.Rocks {
 		///    <see cref="P:Mono.Rocks.Tuple.MaxValues" /> is the maximum number of
 		///    values that the Tuple types support.  If you need to support
 		///    more values, then you need to either live with potential boxing
-		///    and use a e.g. <see cref="T:System.Collections.Generic.List{System.Object}}" />
+		///    and use a e.g. <see cref="T:System.Collections.Generic.List{System.Object}" />
 		///    or nest Tuple instantiations, e.g. 
 		///    <c>Tuple&lt;int, Tuple&lt;int, Tuple&lt;int, Tuple&lt;int, int>>>></c>.
 		///    The problem with such nesting is that it becomes "unnatural" to access 
