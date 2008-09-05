@@ -44,8 +44,13 @@
       </Attributes>
     </Assembly>
   </Assemblies>
-  <Remarks>To be added.</Remarks>
-  <Copyright>To be added.</Copyright>
+  <Remarks>
+    <see cref="N:Mono.Rocks" /> is a collection of types and extension methods
+    to make your life easier.
+  </Remarks>
+  <Copyright>
+    2008 Novell, Inc. and contributors.
+  </Copyright>
   <Types>
     <Namespace Name="Mono.Rocks">
       <Type Name="DelegateRocks" Kind="Class" />
@@ -4943,8 +4948,14 @@
           <Parameter Name="self" Type="System.String" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> to read lines from.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all lines of text from <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Lines(System.String)" />
       </Member>
@@ -5103,8 +5114,14 @@
           <Parameter Name="self" Type="System.String" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> to extract words from.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Words(System.String)" />
       </Member>
@@ -5123,8 +5140,14 @@
           <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to read lines from.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all lines of text from <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Lines(System.IO.TextReader)" />
       </Member>
@@ -5143,8 +5166,14 @@
           <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to extract words from.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader)" />
       </Member>

@@ -1,5 +1,9 @@
 2008-09-04  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/**: Flush TextReaderRocks & some StringRocks docs.
+
+2008-09-04  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/**: Flush.
 	* Generator.pm: Fix GetDocAction(), GetDocFunc() to pass the correct number
 	  of types to GetDoc*Type(); allow GetDocFunc() to accept the return type

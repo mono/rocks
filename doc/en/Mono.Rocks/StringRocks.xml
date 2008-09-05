@@ -144,10 +144,29 @@
         <Parameter Name="self" Type="System.String" RefType="this" />
       </Parameters>
       <Docs>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="self">
+          A <see cref="T:System.String" /> to read lines from.
+        </param>
+        <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all lines of text from <paramref name="self" />.
+        </summary>
+        <returns>
+          An
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all lines of text from <paramref name="self" />.
+        </returns>
+        <remarks>
+          <para>
+            This method is implemented by using deferred execution.
+          </para>
+          <block subset="none" type="note">
+            A "line of text" is the same as that used by 
+            <see cref="M:Mono.Rocks.TextReaderRocks.Lines(System.IO.TextReader)" />.
+          </block>
+        </remarks>
+        <altmember cref="M:Mono.Rocks.TextReaderRocks.Lines(System.IO.TextReader)" />
       </Docs>
     </Member>
     <Member MemberName="Matches">
@@ -332,10 +351,30 @@
         <Parameter Name="self" Type="System.String" RefType="this" />
       </Parameters>
       <Docs>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="self">
+          A <see cref="T:System.String" /> to extract words from.
+        </param>
+        <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />.
+        </summary>
+        <returns>
+          An
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />.
+        </returns>
+        <remarks>
+          <para>
+            This method is implemented by using deferred execution.
+          </para>
+          <block subset="none" type="note">
+            A "word" any contiguous series of characters for which
+            <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
+            returns <see langword="false" />.
+          </block>
+        </remarks>
+        <altmember cref="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader)" />
       </Docs>
     </Member>
   </Members>
