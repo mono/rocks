@@ -1,3 +1,18 @@
+2008-09-04  Jonathan Pryor  <jpryor@novell.com>
+
+	* doc/en/**: Flush.
+	* Generator.pm: Fix GetDocAction(), GetDocFunc() to pass the correct number
+	  of types to GetDoc*Type(); allow GetDocFunc() to accept the return type
+	  name (needed for .Compose() documentation).
+	* Makefile: Rename mkcurry to mkdelegates.
+	* mkcurry: Rename to mkdelegates.
+	* mkdelegates: Add .Compose() extension methods.
+	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Rename Mono.Rocks/Curry.cs 
+	  to Mono.Rocks/Delegates.cs.
+	* Mono.Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Rename
+	  Tests/Mono.Rocks.Tests/CurryTest.cs to 
+	  Tests/Mono.Rocks.Tests/DelegateTest.cs.
+
 2008-09-03  Jonathan Pryor  <jpryor@novell.com>
 
 	* mktuples, doc/en/**: Fix doc typo.

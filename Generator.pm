@@ -281,7 +281,7 @@ sub GetDocAction {
 	$start ||= 1;
 	$end   ||= $max;
 
-	my $t = GetDocActionType ($max);
+	my $t = GetDocActionType ($end - $start);
 
 	if ($max == 0) {
 		return $t;
@@ -302,16 +302,17 @@ sub GetDocFuncType {
 }
 
 sub GetDocFunc {
-	my ($max, $start, $end) = @_;
+	my ($max, $start, $end, $rtype) = @_;
 	$start ||= 1;
 	$end   ||= $max;
+	$rtype ||= "TResult";
 
-	my $t = GetDocFuncType ($max);
+	my $t = GetDocFuncType ($end - $start);
 	$t .= "{";
 	for (my $i = $start; $i <= $end; ++$i) {
 		$t .= GetTypeParameter ($max, $i) . ",";
 	}
-	$t .= "TResult}";
+	$t .= "$rtype}";
 	return $t;
 }
 

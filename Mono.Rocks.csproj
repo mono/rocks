@@ -39,7 +39,7 @@
   <ItemGroup>
     <Compile Include="Mono.Rocks\AssemblyInfo.cs" />
     <Compile Include="Mono.Rocks\Check.cs" />
-    <Compile Include="Mono.Rocks\Curry.cs" />
+    <Compile Include="Mono.Rocks\Delegates.cs" />
     <Compile Include="Mono.Rocks\ICustomAttributeProvider.cs" />
     <Compile Include="Mono.Rocks\IEnumerable.cs" />
     <Compile Include="Mono.Rocks\Int16.cs" />

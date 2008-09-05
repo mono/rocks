@@ -1,5 +1,5 @@
 //
-// CurryTest.cs
+// DelegateTest.cs
 //
 // Author:
 //   Jonathan Pryor
@@ -40,7 +40,7 @@ using Mono.Rocks;
 namespace Mono.Rocks.Tests {
 
 	[TestFixture]
-	public class CurryTest : BaseRocksFixture {
+	public class DelegateTest : BaseRocksFixture {
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Curry_A1_P1_SelfNull ()
@@ -180,6 +180,143 @@ namespace Mono.Rocks.Tests {
 		{
 			Func<byte, char, short, int, long>  a = null;
 			Func<long>                          r = a.Curry ((byte) 1, '2', (short) 3, 4);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_A1_SelfNull ()
+		{
+			Action<char>      s = null;
+			Func<byte, char>  x = a => (char) a;
+			Action<byte>      r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_A1_ComposerNull ()
+		{
+			Action<char>      s = a => {};
+			Func<byte, char>  x = null;
+			Action<byte>      r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_F1_SelfNull ()
+		{
+			Func<char, short>   s = null;
+			Func<byte, char>    x = a => (char) a;
+			Func<byte, short>   r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_F1_ComposerNull ()
+		{
+			Func<char, short>   s = a => (short) a;
+			Func<byte, char>    x = null;
+			Func<byte, short>   r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_A2_SelfNull ()
+		{
+			Action<short>           s = null;
+			Func<byte, char, short> x = (a, b) => a;
+			Action<byte, char>      r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_A2_ComposerNull ()
+		{
+			Action<short>           s = a => {};
+			Func<byte, char, short> x = null;
+			Action<byte, char>      r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_F2_SelfNull ()
+		{
+			Func<short, int>        s = null;
+			Func<byte, char, short> x = (a, b) => a;
+			Func<byte, char, int>   r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_F2_ComposerNull ()
+		{
+			Func<short, int>        s = a => a;
+			Func<byte, char, short> x = null;
+			Func<byte, char, int>   r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_A3_SelfNull ()
+		{
+			Action<int>                   s = null;
+			Func<byte, char, short, int>  x = (a, b, c) => c;
+			Action<byte, char, short>     r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_A3_ComposerNull ()
+		{
+			Action<int>                   s = a => {};
+			Func<byte, char, short, int>  x = null;
+			Action<byte, char, short>     r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_F3_SelfNull ()
+		{
+			Func<int, long>               s = null;
+			Func<byte, char, short, int>  x = (a, b, c) => c;
+			Func<byte, char, short, long> r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_F3_ComposerNull ()
+		{
+			Func<int, long>               s = a => a;
+			Func<byte, char, short, int>  x = null;
+			Func<byte, char, short, long> r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_A4_SelfNull ()
+		{
+			Action<long>                        s = null;
+			Func<byte, char, short, int, long>  x = (a, b, c, d) => d;
+			Action<byte, char, short, int>      r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_A4_ComposerNull ()
+		{
+			Action<long>                        s = a => {};
+			Func<byte, char, short, int, long>  x = null;
+			Action<byte, char, short, int>      r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_F4_SelfNull ()
+		{
+			Func<long, double>                    s = null;
+			Func<byte, char, short, int, long>    x = (a, b, c, d) => d;
+			Func<byte, char, short, int, double>  r = s.Compose(x);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Compose_F4_ComposerNull ()
+		{
+			Func<long, double>                    s = a => a;
+			Func<byte, char, short, int, long>    x = null;
+			Func<byte, char, short, int, double>  r = s.Compose(x);
+		}
+
+		[Test]
+		public void Compose ()
+		{
+			var              tostring = Lambda.F ((int n) => n.ToString ());
+			var               doubler = Lambda.F ((int n) => n * 2);
+			var  double_then_tostring = tostring.Compose (doubler);
+			Assert.AreEqual ("10", double_then_tostring (5));
 		}
 	}
 }

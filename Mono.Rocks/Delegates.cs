@@ -1,9 +1,9 @@
 //
-// Curry.cs: C# Action and Func Currying Helpers
+// Delegates.cs: Extension methods for various delegate types.
 // 
 // GENERATED CODE: DO NOT EDIT.
 //
-// To regenerate this code, execute: ./mkcurry -n 4 -o Curry.cs
+// To regenerate this code, execute: ./mkdelegates -n 4 -o Delegates.cs
 //
 // Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
@@ -33,10 +33,20 @@ namespace Mono.Rocks {
 
 	/// <summary>
 	///   Provides extension methods on <see cref="T:System.Action{T}"/>,
-	///   <see cref="T:System.Func{T,TResult}"/>, and related delegates to 
-	///   curry delegate arguments.
+	///   <see cref="T:System.Func{T,TResult}"/>, and related delegates.
 	/// </summary>
 	/// <remarks>
+	///   <para>
+	///    <see cref="T:Mono.Rocks.DelegateRocks" /> provides methods methods for:
+	///   </para>
+	///   <list type="bullet">
+	///    <item><term>
+	///     Delegate currying (<see cref="M:Mono.Rocks.DelegateRocks.Curry" />)
+	///    </term></item>
+	///    <item><term>
+	///     Delegate composition (<see cref="M:Mono.Rocks.DelegateRocks.Compose" />)
+	///    </term></item>
+	///   </list>
 	///   <para>
 	///    Currying is a way to easily transform functions which accept N 
 	///    arguments into functions which accept N-1 arguments, by "fixing"
@@ -62,8 +72,19 @@ namespace Mono.Rocks {
 	///    for the <see cref="T:System.Action{T}"/>, 
 	///    <see cref="T:System.Func{T,TResult}"/>, and related types.
 	///   </para>
+	///   <para>
+	///    Composition is a way to easy chain (or pipe) together multiple delegates
+	///    so that the return value of a "composer" delegate is used as the input 
+	///    parameter for the chained delegate:
+	///   </para>
+	///   <code lang="C#">
+	///   var              tostring = Lambda.F ((int n) => n.ToString ());
+	///   var               doubler = Lambda.F ((int n) => n * 2);
+	///   var  double_then_tostring = tostring.Compose (doubler);
+	///   Console.WriteLine (double_then_tostring (5));
+	///   	// Prints "10";</code>
 	/// </remarks>
-	public static class CurryRocks  {
+	public static partial class DelegateRocks  {
 
 		/// <typeparam name="T">
 		///   A <see cref="T:System.Action{T}"/> parameter type.
@@ -1363,6 +1384,414 @@ namespace Mono.Rocks {
 		{
 			Check.Self (self);
 			return (value2, value3, value4) => self (values._1, value2, value3, value4);
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   The <see cref="T:System.Func{T1,T2}" /> return type, and <see cref="T:System.Action{T2}" /> argument type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Action{T2}" /> to compose.
+		/// </param>
+		/// <param name="composer">
+		///   The <see cref="T:System.Func{T1,T2}" /> to compose with <paramref name="self" />.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Action{T1}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Action{T1}" /> which, when invoked, will
+		///   invoke <paramref name="composer" /> and pass the return value of
+		///   <paramref name="composer" /> to <paramref name="self" />.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> or <paramref name="composer" /> is <see langword="null" />.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    Composition is useful for chaining delegates together, so that the 
+		///    return value of <paramref name="composer" /> is automatically used as 
+		///    the input parameter for <paramref name="self" />.
+		///   </para>
+		///   <code lang="C#">
+		///   var              tostring = Lambda.F ((int n) => n.ToString ());
+		///   var               doubler = Lambda.F ((int n) => n * 2);
+		///   var  double_then_tostring = tostring.Compose (doubler);
+		///   Console.WriteLine (double_then_tostring (5));
+		///   	// Prints "10";</code>
+		/// </remarks>
+		public static Action<T1>
+			Compose<T1, T2> (this Action<T2> self, Func<T1, T2> composer)
+		{
+			Check.Self (self);
+			Check.Composer (composer);
+
+			return (value) => self (composer (value));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   The <see cref="T:System.Func{T1,T2}" /> return type, and <see cref="T:System.Func{T2,TResult}" /> argument type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{T2,TResult}"/> return type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Func{T2,TResult}" /> to compose.
+		/// </param>
+		/// <param name="composer">
+		///   The <see cref="T:System.Func{T1,T2}" /> to compose with <paramref name="self" />.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T1,TResult}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Func{T1,TResult}" /> which, when invoked, will
+		///   invoke <paramref name="composer" /> and pass the return value of
+		///   <paramref name="composer" /> to <paramref name="self" />.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> or <paramref name="composer" /> is <see langword="null" />.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    Composition is useful for chaining delegates together, so that the 
+		///    return value of <paramref name="composer" /> is automatically used as 
+		///    the input parameter for <paramref name="self" />.
+		///   </para>
+		///   <code lang="C#">
+		///   var              tostring = Lambda.F ((int n) => n.ToString ());
+		///   var               doubler = Lambda.F ((int n) => n * 2);
+		///   var  double_then_tostring = tostring.Compose (doubler);
+		///   Console.WriteLine (double_then_tostring (5));
+		///   	// Prints "10";</code>
+		/// </remarks>
+		public static Func<T1, TResult>
+			Compose<T1, T2, TResult> (this Func<T2, TResult> self, Func<T1, T2> composer)
+		{
+			Check.Self (self);
+			Check.Composer (composer);
+
+			return (value) => self (composer (value));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2,T3}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{T1,T2,T3}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   The <see cref="T:System.Func{T1,T2,T3}" /> return type, and <see cref="T:System.Action{T3}" /> argument type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Action{T3}" /> to compose.
+		/// </param>
+		/// <param name="composer">
+		///   The <see cref="T:System.Func{T1,T2,T3}" /> to compose with <paramref name="self" />.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Action{T1,T2}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Action{T1,T2}" /> which, when invoked, will
+		///   invoke <paramref name="composer" /> and pass the return value of
+		///   <paramref name="composer" /> to <paramref name="self" />.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> or <paramref name="composer" /> is <see langword="null" />.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    Composition is useful for chaining delegates together, so that the 
+		///    return value of <paramref name="composer" /> is automatically used as 
+		///    the input parameter for <paramref name="self" />.
+		///   </para>
+		///   <code lang="C#">
+		///   var              tostring = Lambda.F ((int n) => n.ToString ());
+		///   var               doubler = Lambda.F ((int n) => n * 2);
+		///   var  double_then_tostring = tostring.Compose (doubler);
+		///   Console.WriteLine (double_then_tostring (5));
+		///   	// Prints "10";</code>
+		/// </remarks>
+		public static Action<T1, T2>
+			Compose<T1, T2, T3> (this Action<T3> self, Func<T1, T2, T3> composer)
+		{
+			Check.Self (self);
+			Check.Composer (composer);
+
+			return (value1, value2) => self (composer (value1, value2));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2,T3}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{T1,T2,T3}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   The <see cref="T:System.Func{T1,T2,T3}" /> return type, and <see cref="T:System.Func{T3,TResult}" /> argument type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{T3,TResult}"/> return type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Func{T3,TResult}" /> to compose.
+		/// </param>
+		/// <param name="composer">
+		///   The <see cref="T:System.Func{T1,T2,T3}" /> to compose with <paramref name="self" />.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T1,T2,TResult}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Func{T1,T2,TResult}" /> which, when invoked, will
+		///   invoke <paramref name="composer" /> and pass the return value of
+		///   <paramref name="composer" /> to <paramref name="self" />.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> or <paramref name="composer" /> is <see langword="null" />.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    Composition is useful for chaining delegates together, so that the 
+		///    return value of <paramref name="composer" /> is automatically used as 
+		///    the input parameter for <paramref name="self" />.
+		///   </para>
+		///   <code lang="C#">
+		///   var              tostring = Lambda.F ((int n) => n.ToString ());
+		///   var               doubler = Lambda.F ((int n) => n * 2);
+		///   var  double_then_tostring = tostring.Compose (doubler);
+		///   Console.WriteLine (double_then_tostring (5));
+		///   	// Prints "10";</code>
+		/// </remarks>
+		public static Func<T1, T2, TResult>
+			Compose<T1, T2, T3, TResult> (this Func<T3, TResult> self, Func<T1, T2, T3> composer)
+		{
+			Check.Self (self);
+			Check.Composer (composer);
+
+			return (value1, value2) => self (composer (value1, value2));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   The <see cref="T:System.Func{T1,T2,T3,T4}" /> return type, and <see cref="T:System.Action{T4}" /> argument type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Action{T4}" /> to compose.
+		/// </param>
+		/// <param name="composer">
+		///   The <see cref="T:System.Func{T1,T2,T3,T4}" /> to compose with <paramref name="self" />.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Action{T1,T2,T3}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Action{T1,T2,T3}" /> which, when invoked, will
+		///   invoke <paramref name="composer" /> and pass the return value of
+		///   <paramref name="composer" /> to <paramref name="self" />.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> or <paramref name="composer" /> is <see langword="null" />.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    Composition is useful for chaining delegates together, so that the 
+		///    return value of <paramref name="composer" /> is automatically used as 
+		///    the input parameter for <paramref name="self" />.
+		///   </para>
+		///   <code lang="C#">
+		///   var              tostring = Lambda.F ((int n) => n.ToString ());
+		///   var               doubler = Lambda.F ((int n) => n * 2);
+		///   var  double_then_tostring = tostring.Compose (doubler);
+		///   Console.WriteLine (double_then_tostring (5));
+		///   	// Prints "10";</code>
+		/// </remarks>
+		public static Action<T1, T2, T3>
+			Compose<T1, T2, T3, T4> (this Action<T4> self, Func<T1, T2, T3, T4> composer)
+		{
+			Check.Self (self);
+			Check.Composer (composer);
+
+			return (value1, value2, value3) => self (composer (value1, value2, value3));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   The <see cref="T:System.Func{T1,T2,T3,T4}" /> return type, and <see cref="T:System.Func{T4,TResult}" /> argument type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{T4,TResult}"/> return type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Func{T4,TResult}" /> to compose.
+		/// </param>
+		/// <param name="composer">
+		///   The <see cref="T:System.Func{T1,T2,T3,T4}" /> to compose with <paramref name="self" />.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T1,T2,T3,TResult}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Func{T1,T2,T3,TResult}" /> which, when invoked, will
+		///   invoke <paramref name="composer" /> and pass the return value of
+		///   <paramref name="composer" /> to <paramref name="self" />.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> or <paramref name="composer" /> is <see langword="null" />.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    Composition is useful for chaining delegates together, so that the 
+		///    return value of <paramref name="composer" /> is automatically used as 
+		///    the input parameter for <paramref name="self" />.
+		///   </para>
+		///   <code lang="C#">
+		///   var              tostring = Lambda.F ((int n) => n.ToString ());
+		///   var               doubler = Lambda.F ((int n) => n * 2);
+		///   var  double_then_tostring = tostring.Compose (doubler);
+		///   Console.WriteLine (double_then_tostring (5));
+		///   	// Prints "10";</code>
+		/// </remarks>
+		public static Func<T1, T2, T3, TResult>
+			Compose<T1, T2, T3, T4, TResult> (this Func<T4, TResult> self, Func<T1, T2, T3, T4> composer)
+		{
+			Check.Self (self);
+			Check.Composer (composer);
+
+			return (value1, value2, value3) => self (composer (value1, value2, value3));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T5">
+		///   The <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> return type, and <see cref="T:System.Action{T5}" /> argument type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Action{T5}" /> to compose.
+		/// </param>
+		/// <param name="composer">
+		///   The <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> to compose with <paramref name="self" />.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Action{T1,T2,T3,T4}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Action{T1,T2,T3,T4}" /> which, when invoked, will
+		///   invoke <paramref name="composer" /> and pass the return value of
+		///   <paramref name="composer" /> to <paramref name="self" />.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> or <paramref name="composer" /> is <see langword="null" />.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    Composition is useful for chaining delegates together, so that the 
+		///    return value of <paramref name="composer" /> is automatically used as 
+		///    the input parameter for <paramref name="self" />.
+		///   </para>
+		///   <code lang="C#">
+		///   var              tostring = Lambda.F ((int n) => n.ToString ());
+		///   var               doubler = Lambda.F ((int n) => n * 2);
+		///   var  double_then_tostring = tostring.Compose (doubler);
+		///   Console.WriteLine (double_then_tostring (5));
+		///   	// Prints "10";</code>
+		/// </remarks>
+		public static Action<T1, T2, T3, T4>
+			Compose<T1, T2, T3, T4, T5> (this Action<T5> self, Func<T1, T2, T3, T4, T5> composer)
+		{
+			Check.Self (self);
+			Check.Composer (composer);
+
+			return (value1, value2, value3, value4) => self (composer (value1, value2, value3, value4));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T5">
+		///   The <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> return type, and <see cref="T:System.Func{T5,TResult}" /> argument type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{T5,TResult}"/> return type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Func{T5,TResult}" /> to compose.
+		/// </param>
+		/// <param name="composer">
+		///   The <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> to compose with <paramref name="self" />.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> delegate.
+		/// </summary>
+		/// <returns>
+		///   Returns a <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> which, when invoked, will
+		///   invoke <paramref name="composer" /> and pass the return value of
+		///   <paramref name="composer" /> to <paramref name="self" />.
+		/// </returns>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> or <paramref name="composer" /> is <see langword="null" />.
+		/// </exception>
+		/// <remarks>
+		///   <para>
+		///    Composition is useful for chaining delegates together, so that the 
+		///    return value of <paramref name="composer" /> is automatically used as 
+		///    the input parameter for <paramref name="self" />.
+		///   </para>
+		///   <code lang="C#">
+		///   var              tostring = Lambda.F ((int n) => n.ToString ());
+		///   var               doubler = Lambda.F ((int n) => n * 2);
+		///   var  double_then_tostring = tostring.Compose (doubler);
+		///   Console.WriteLine (double_then_tostring (5));
+		///   	// Prints "10";</code>
+		/// </remarks>
+		public static Func<T1, T2, T3, T4, TResult>
+			Compose<T1, T2, T3, T4, T5, TResult> (this Func<T5, TResult> self, Func<T1, T2, T3, T4, T5> composer)
+		{
+			Check.Self (self);
+			Check.Composer (composer);
+
+			return (value1, value2, value3, value4) => self (composer (value1, value2, value3, value4));
 		}
 	}
 }

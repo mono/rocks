@@ -38,6 +38,12 @@ namespace Mono.Rocks {
 				throw new ArgumentNullException ("comparer");
 		}
 
+		public static void Composer (object composer)
+		{
+			if (composer == null)
+				throw new ArgumentNullException ("composer");
+		}
+
 		public static void List (object list)
 		{
 			if (list == null)

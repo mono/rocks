@@ -1,3 +1,9 @@
+2008-09-04  Jonathan Pryor  <jpryor@novell.com>
+
+	* Check.cs: Add Check.Composer() method.
+	* Curry.cs: Rename to Delegates.cs.
+	* Delegates.cs: Add .Compose() extension methods.
+
 2008-09-03  Jonathan Pryor  <jpryor@novell.com>
 
 	* Tuples.cs: Fix doc typo.

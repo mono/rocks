@@ -48,7 +48,7 @@
   <Copyright>To be added.</Copyright>
   <Types>
     <Namespace Name="Mono.Rocks">
-      <Type Name="CurryRocks" Kind="Class" />
+      <Type Name="DelegateRocks" Kind="Class" />
       <Type Name="ICustomAttributeProviderRocks" Kind="Class" />
       <Type Name="IEnumerableRocks" Kind="Class" />
       <Type Name="Int16Rocks" Kind="Class" />
@@ -81,6 +81,374 @@
       <Targets>
         <Target Type="T:System.Action`1" />
       </Targets>
+      <Member MemberName="Compose&lt;T1,T2&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T1&gt; Compose&lt;T1,T2&gt; (this Action&lt;T2&gt; self, Func&lt;T1,T2&gt; composer);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T1&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T2&gt;" RefType="this" />
+          <Parameter Name="composer" Type="System.Func&lt;T1,T2&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            The <see cref="T:System.Func{T1,T2}" /> return type, and <see cref="T:System.Action{T2}" /> argument type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T2}" /> to compose.
+            </param>
+          <param name="composer">
+            The <see cref="T:System.Func{T1,T2}" /> to compose with <paramref name="self" />.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T1}" /> delegate.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Compose``2(System.Action{``1},System.Func{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`1" />
+      </Targets>
+      <Member MemberName="Compose&lt;T1,T2,T3&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T1,T2&gt; Compose&lt;T1,T2,T3&gt; (this Action&lt;T3&gt; self, Func&lt;T1,T2,T3&gt; composer);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T1,T2&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T3&gt;" RefType="this" />
+          <Parameter Name="composer" Type="System.Func&lt;T1,T2,T3&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            The <see cref="T:System.Func{T1,T2,T3}" /> return type, and <see cref="T:System.Action{T3}" /> argument type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T3}" /> to compose.
+            </param>
+          <param name="composer">
+            The <see cref="T:System.Func{T1,T2,T3}" /> to compose with <paramref name="self" />.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T1,T2}" /> delegate.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Compose``3(System.Action{``2},System.Func{``0,``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`2" />
+      </Targets>
+      <Member MemberName="Compose&lt;T1,T2,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T1,TResult&gt; Compose&lt;T1,T2,TResult&gt; (this Func&lt;T2,TResult&gt; self, Func&lt;T1,T2&gt; composer);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T1,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T2,TResult&gt;" RefType="this" />
+          <Parameter Name="composer" Type="System.Func&lt;T1,T2&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            The <see cref="T:System.Func{T1,T2}" /> return type, and <see cref="T:System.Func{T2,TResult}" /> argument type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T2,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T2,TResult}" /> to compose.
+            </param>
+          <param name="composer">
+            The <see cref="T:System.Func{T1,T2}" /> to compose with <paramref name="self" />.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T1,TResult}" /> delegate.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Compose``3(System.Func{``1,``2},System.Func{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`1" />
+      </Targets>
+      <Member MemberName="Compose&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T1,T2,T3&gt; Compose&lt;T1,T2,T3,T4&gt; (this Action&lt;T4&gt; self, Func&lt;T1,T2,T3,T4&gt; composer);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T1,T2,T3&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T4&gt;" RefType="this" />
+          <Parameter Name="composer" Type="System.Func&lt;T1,T2,T3,T4&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            The <see cref="T:System.Func{T1,T2,T3,T4}" /> return type, and <see cref="T:System.Action{T4}" /> argument type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T4}" /> to compose.
+            </param>
+          <param name="composer">
+            The <see cref="T:System.Func{T1,T2,T3,T4}" /> to compose with <paramref name="self" />.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T1,T2,T3}" /> delegate.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Compose``4(System.Action{``3},System.Func{``0,``1,``2,``3})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`2" />
+      </Targets>
+      <Member MemberName="Compose&lt;T1,T2,T3,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T1,T2,TResult&gt; Compose&lt;T1,T2,T3,TResult&gt; (this Func&lt;T3,TResult&gt; self, Func&lt;T1,T2,T3&gt; composer);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T1,T2,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T3,TResult&gt;" RefType="this" />
+          <Parameter Name="composer" Type="System.Func&lt;T1,T2,T3&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            The <see cref="T:System.Func{T1,T2,T3}" /> return type, and <see cref="T:System.Func{T3,TResult}" /> argument type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T3,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T3,TResult}" /> to compose.
+            </param>
+          <param name="composer">
+            The <see cref="T:System.Func{T1,T2,T3}" /> to compose with <paramref name="self" />.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T1,T2,TResult}" /> delegate.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Compose``4(System.Func{``2,``3},System.Func{``0,``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`1" />
+      </Targets>
+      <Member MemberName="Compose&lt;T1,T2,T3,T4,T5&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T1,T2,T3,T4&gt; Compose&lt;T1,T2,T3,T4,T5&gt; (this Action&lt;T5&gt; self, Func&lt;T1,T2,T3,T4,T5&gt; composer);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T1,T2,T3,T4&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="T5" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T5&gt;" RefType="this" />
+          <Parameter Name="composer" Type="System.Func&lt;T1,T2,T3,T4,T5&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+            </typeparam>
+          <typeparam name="T5">
+            The <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> return type, and <see cref="T:System.Action{T5}" /> argument type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T5}" /> to compose.
+            </param>
+          <param name="composer">
+            The <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> to compose with <paramref name="self" />.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T1,T2,T3,T4}" /> delegate.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Compose``5(System.Action{``4},System.Func{``0,``1,``2,``3,``4})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`2" />
+      </Targets>
+      <Member MemberName="Compose&lt;T1,T2,T3,T4,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T1,T2,T3,TResult&gt; Compose&lt;T1,T2,T3,T4,TResult&gt; (this Func&lt;T4,TResult&gt; self, Func&lt;T1,T2,T3,T4&gt; composer);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T1,T2,T3,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T4,TResult&gt;" RefType="this" />
+          <Parameter Name="composer" Type="System.Func&lt;T1,T2,T3,T4&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            The <see cref="T:System.Func{T1,T2,T3,T4}" /> return type, and <see cref="T:System.Func{T4,TResult}" /> argument type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T4,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T4,TResult}" /> to compose.
+            </param>
+          <param name="composer">
+            The <see cref="T:System.Func{T1,T2,T3,T4}" /> to compose with <paramref name="self" />.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T1,T2,T3,TResult}" /> delegate.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Compose``5(System.Func{``3,``4},System.Func{``0,``1,``2,``3})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`2" />
+      </Targets>
+      <Member MemberName="Compose&lt;T1,T2,T3,T4,T5,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T1,T2,T3,T4,TResult&gt; Compose&lt;T1,T2,T3,T4,T5,TResult&gt; (this Func&lt;T5,TResult&gt; self, Func&lt;T1,T2,T3,T4,T5&gt; composer);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T1,T2,T3,T4,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="T5" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T5,TResult&gt;" RefType="this" />
+          <Parameter Name="composer" Type="System.Func&lt;T1,T2,T3,T4,T5&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> parameter type.
+            </typeparam>
+          <typeparam name="T5">
+            The <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> return type, and <see cref="T:System.Func{T5,TResult}" /> argument type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T5,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T5,TResult}" /> to compose.
+            </param>
+          <param name="composer">
+            The <see cref="T:System.Func{T1,T2,T3,T4,T5}" /> to compose with <paramref name="self" />.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> delegate.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Compose``6(System.Func{``4,``5},System.Func{``0,``1,``2,``3,``4})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`1" />
+      </Targets>
       <Member MemberName="Curry&lt;T&gt;">
         <MemberSignature Language="C#" Value="public static Action Curry&lt;T&gt; (this Action&lt;T&gt; self, T value);" />
         <MemberType>ExtensionMethod</MemberType>
@@ -108,7 +476,7 @@
             Creates a <see cref="T:System.Action" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``1(System.Action{``0},``0)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``1(System.Action{``0},``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -142,7 +510,7 @@
             Creates a <see cref="T:System.Action" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``1(System.Action{``0},Mono.Rocks.Tuple{``0})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``1(System.Action{``0},Mono.Rocks.Tuple{``0})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -180,7 +548,7 @@
             Creates a <see cref="T:System.Action{T2}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},``0)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``2(System.Action{``0,``1},``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -222,7 +590,7 @@
             Creates a <see cref="T:System.Action" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},``0,``1)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``2(System.Action{``0,``1},``0,``1)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -260,7 +628,7 @@
             Creates a <see cref="T:System.Action" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},Mono.Rocks.Tuple{``0,``1})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``2(System.Action{``0,``1},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -298,7 +666,7 @@
             Creates a <see cref="T:System.Action{T2}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Action{``0,``1},Mono.Rocks.Tuple{``0})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``2(System.Action{``0,``1},Mono.Rocks.Tuple{``0})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -336,7 +704,7 @@
             Creates a <see cref="T:System.Func{TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Func{``0,``1},``0)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``2(System.Func{``0,``1},``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -374,7 +742,7 @@
             Creates a <see cref="T:System.Func{TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``2(System.Func{``0,``1},Mono.Rocks.Tuple{``0})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``2(System.Func{``0,``1},Mono.Rocks.Tuple{``0})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -416,7 +784,7 @@
             Creates a <see cref="T:System.Action{T2, T3}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},``0)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Action{``0,``1,``2},``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -462,7 +830,7 @@
             Creates a <see cref="T:System.Action{T3}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},``0,``1)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Action{``0,``1,``2},``0,``1)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -512,7 +880,7 @@
             Creates a <see cref="T:System.Action" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},``0,``1,``2)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Action{``0,``1,``2},``0,``1,``2)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -554,7 +922,7 @@
             Creates a <see cref="T:System.Action" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0,``1,``2})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0,``1,``2})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -596,7 +964,7 @@
             Creates a <see cref="T:System.Action{T3}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0,``1})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -638,7 +1006,7 @@
             Creates a <see cref="T:System.Action{T2, T3}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Action{``0,``1,``2},Mono.Rocks.Tuple{``0})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -680,7 +1048,7 @@
             Creates a <see cref="T:System.Func{T2, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},``0)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Func{``0,``1,``2},``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -726,7 +1094,7 @@
             Creates a <see cref="T:System.Func{TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},``0,``1)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Func{``0,``1,``2},``0,``1)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -768,7 +1136,7 @@
             Creates a <see cref="T:System.Func{TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},Mono.Rocks.Tuple{``0,``1})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Func{``0,``1,``2},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -810,7 +1178,7 @@
             Creates a <see cref="T:System.Func{T2, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``3(System.Func{``0,``1,``2},Mono.Rocks.Tuple{``0})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Func{``0,``1,``2},Mono.Rocks.Tuple{``0})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -856,7 +1224,7 @@
             Creates a <see cref="T:System.Action{T2, T3, T4}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Action{``0,``1,``2,``3},``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -906,7 +1274,7 @@
             Creates a <see cref="T:System.Action{T3, T4}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -960,7 +1328,7 @@
             Creates a <see cref="T:System.Action{T4}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1,``2)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1,``2)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1018,7 +1386,7 @@
             Creates a <see cref="T:System.Action" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1,``2,``3)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Action{``0,``1,``2,``3},``0,``1,``2,``3)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1064,7 +1432,7 @@
             Creates a <see cref="T:System.Action" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2,``3})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2,``3})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1110,7 +1478,7 @@
             Creates a <see cref="T:System.Action{T4}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1156,7 +1524,7 @@
             Creates a <see cref="T:System.Action{T3, T4}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1202,7 +1570,7 @@
             Creates a <see cref="T:System.Action{T2, T3, T4}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Action{``0,``1,``2,``3},Mono.Rocks.Tuple{``0})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1248,7 +1616,7 @@
             Creates a <see cref="T:System.Func{T2, T3, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},``0)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Func{``0,``1,``2,``3},``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1298,7 +1666,7 @@
             Creates a <see cref="T:System.Func{T3, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},``0,``1)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Func{``0,``1,``2,``3},``0,``1)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1352,7 +1720,7 @@
             Creates a <see cref="T:System.Func{TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},``0,``1,``2)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Func{``0,``1,``2,``3},``0,``1,``2)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1398,7 +1766,7 @@
             Creates a <see cref="T:System.Func{TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1,``2})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1444,7 +1812,7 @@
             Creates a <see cref="T:System.Func{T3, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1490,7 +1858,7 @@
             Creates a <see cref="T:System.Func{T2, T3, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1540,7 +1908,7 @@
             Creates a <see cref="T:System.Func{T2, T3, T4, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1594,7 +1962,7 @@
             Creates a <see cref="T:System.Func{T3, T4, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1652,7 +2020,7 @@
             Creates a <see cref="T:System.Func{T4, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1,``2)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1,``2)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1714,7 +2082,7 @@
             Creates a <see cref="T:System.Func{TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1,``2,``3)" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},``0,``1,``2,``3)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1764,7 +2132,7 @@
             Creates a <see cref="T:System.Func{TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1,``2,``3})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1,``2,``3})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1814,7 +2182,7 @@
             Creates a <see cref="T:System.Func{T4, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1,``2})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1,``2})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1864,7 +2232,7 @@
             Creates a <see cref="T:System.Func{T3, T4, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0,``1})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1914,7 +2282,7 @@
             Creates a <see cref="T:System.Func{T2, T3, T4, TResult}" /> delegate.
             </summary>
         </Docs>
-        <Link Type="Mono.Rocks.CurryRocks" Member="M:Mono.Rocks.CurryRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0})" />
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``5(System.Func{``0,``1,``2,``3,``4},Mono.Rocks.Tuple{``0})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
