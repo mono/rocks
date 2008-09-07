@@ -326,8 +326,14 @@
         <Parameter Name="self" Type="System.String" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="TEnum">To be added.</typeparam>
-        <param name="self">To be added.</param>
+        <typeparam name="TEnum">
+          An enumeration type containing the member stored in 
+          <paramref name="self" />.
+        </typeparam>
+        <param name="self">
+          A <see cref="T:System.String" /> containing an enumeration value to
+          convert into that enumeration value.
+        </param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>

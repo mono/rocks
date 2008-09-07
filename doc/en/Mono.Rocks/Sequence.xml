@@ -14,7 +14,7 @@
   </Docs>
   <Members>
     <Member MemberName="GenerateReverse&lt;TSource,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; GenerateReverse&lt;TSource,TResult&gt; (TSource value, Func&lt;TSource,Nullable&lt;Mono.Rocks.Tuple&lt;TResult,TSource&gt;&gt;&gt; func);" />
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; GenerateReverse&lt;TSource,TResult&gt; (TSource value, Func&lt;TSource,Mono.Rocks.Maybe&lt;Mono.Rocks.Tuple&lt;TResult,TSource&gt;&gt;&gt; selector);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -28,25 +28,25 @@
       </TypeParameters>
       <Parameters>
         <Parameter Name="value" Type="TSource" />
-        <Parameter Name="func" Type="System.Func&lt;TSource,System.Nullable&lt;Mono.Rocks.Tuple&lt;TResult,TSource&gt;&gt;&gt;" />
+        <Parameter Name="selector" Type="System.Func&lt;TSource,Mono.Rocks.Maybe&lt;Mono.Rocks.Tuple&lt;TResult,TSource&gt;&gt;&gt;" />
       </Parameters>
       <Docs>
         <typeparam name="TSource">To be added.</typeparam>
         <typeparam name="TResult">To be added.</typeparam>
         <param name="value">To be added.</param>
-        <param name="func">To be added.</param>
+        <param name="selector">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>
           <code lang="C#">
-var ints = Sequence.GenerateReverse (10, b =&gt; b == 0
-    ? null
-    : Tuple.Create (b, b - 1).ToNullable ());
+var ints = Sequence.GenerateReverse (10, 
+    b =&gt; Maybe.When (b > 0, Tuple.Create (b, b-1)))
 foreach (int n in ints)
   Console.WriteLine (n);  // writes 10, 9, ..., 2, 1</code>
         </remarks>
         <altmember cref="T:Mono.Rocks.Tuple{TResult,TSource}" />
-        <altmember cref="M:Mono.Rocks.NullableRocks.ToNullable``1(``0)" />
+        <altmember cref="M:Mono.Rocks.Maybe.When``1(System.Boolean,``0)" />
+        <altmember cref="M:Mono.Rocks.Maybe.When``1(System.Boolean,System.Func{``0})" />
       </Docs>
     </Member>
     <Member MemberName="Iterate&lt;TSource&gt;">

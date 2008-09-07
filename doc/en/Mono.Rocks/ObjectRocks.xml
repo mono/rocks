@@ -19,6 +19,72 @@
     </remarks>
   </Docs>
   <Members>
+    <Member MemberName="Match&lt;TSource,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static TResult Match&lt;TSource,TResult&gt; (this TSource self, Func&lt;TSource,Mono.Rocks.Maybe&lt;TResult&gt;&gt;[] matchers);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>TResult</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="TSource" RefType="this" />
+        <Parameter Name="matchers" Type="System.Func&lt;TSource,Mono.Rocks.Maybe&lt;TResult&gt;&gt;[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="matchers">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToMaybe&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; ToMaybe&lt;T&gt; (this T self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="T" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="With&lt;TSource,TResult&gt;">
       <MemberSignature Language="C#" Value="public static TResult With&lt;TSource,TResult&gt; (this TSource self, Func&lt;TSource,TResult&gt; selector);" />
       <MemberType>Method</MemberType>

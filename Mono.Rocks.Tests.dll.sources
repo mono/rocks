@@ -1,5 +1,6 @@
 ./Tests/Mono.Rocks.Tests/AssemblyInfo.cs
 ./Tests/Mono.Rocks.Tests/DelegateTest.cs
+./Tests/Mono.Rocks.Tests/ConsTest.cs
 ./Tests/Mono.Rocks.Tests/Int16Test.cs
 ./Tests/Mono.Rocks.Tests/Int32Test.cs
 ./Tests/Mono.Rocks.Tests/Int64Test.cs

@@ -1,5 +1,6 @@
 ./Mono.Rocks/AssemblyInfo.cs
 ./Mono.Rocks/Check.cs
+./Mono.Rocks/Cons.cs
 ./Mono.Rocks/Delegates.cs
 ./Mono.Rocks/ICustomAttributeProvider.cs
 ./Mono.Rocks/IEnumerable.cs

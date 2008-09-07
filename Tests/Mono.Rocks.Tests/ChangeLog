@@ -1,5 +1,12 @@
 2008-09-07  Jonathan Pryor  <jpryor@novell.com>
 
+	* ConsTest.cs: Added; Tests for Cons<T>.
+	* IEnumerableTest.cs: Add tests for .ToCons().
+	* MaybeTest.cs: Remove some warnings.
+	* SequenceTest.cs: Update naming.
+
+2008-09-07  Jonathan Pryor  <jpryor@novell.com>
+
 	* ObjectTest.cs: Add tests for .Match().
 
 2008-09-06  Jonathan Pryor  <jpryor@novell.com>

@@ -406,6 +406,26 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void ToCons_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			Cons<int>        c = s.ToCons ();
+		}
+
+		[Test]
+		public void ToCons ()
+		{
+			Cons<int> c = new[]{1, 2, 3, 4}.ToCons ();
+
+			Assert.AreEqual ("1,2,3,4", c.Implode (","));
+			Assert.AreEqual (4, c.Count());
+			Assert.AreEqual (1, c.ElementAt (0));
+			Assert.AreEqual (2, c.ElementAt (1));
+			Assert.AreEqual (3, c.ElementAt (2));
+			Assert.AreEqual (4, c.ElementAt (3));
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void ToTuple_SelfNull ()
 		{
 			IEnumerable<object> s = null;

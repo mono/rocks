@@ -1,4 +1,10 @@
-2008-09-06  Jonathan Pryor  <jpryor@novell.com>
+2008-09-07  Jonathan Pryor  <jpryor@novell.com>
+
+	* Cons.cs: Added; an immutable singly-linked list.
+	* IEnumerable.cs: Add .ToCons().
+	* Sequence.cs: Rename GenerateReverse()'s `func' parameter to `selector'.
+
+2008-09-07  Jonathan Pryor  <jpryor@novell.com>
 
 	* Object.cs: Add .Match(), an expression-oriented replacement for a sequence
 	  of `if' statements.

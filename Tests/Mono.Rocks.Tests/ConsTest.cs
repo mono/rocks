@@ -1,5 +1,5 @@
 //
-// Sequence.cs
+// ConsTest.cs
 //
 // Author:
 //   Jonathan Pryor  <jpryor@novell.com>
@@ -28,47 +28,60 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace Mono.Rocks {
+using NUnit.Framework;
 
-	public static class Sequence {
+using Mono.Rocks;
 
-		public static IEnumerable<TSource> Iterate<TSource> (TSource value, Func<TSource, TSource> func)
+namespace Mono.Rocks.Tests {
+
+	[TestFixture]
+	public class ConsTest : BaseRocksFixture {
+
+		[Test]
+		public void Append ()
 		{
-			Check.Func (func);
-
-			return CreateIterateIterator (value, func);
+			var list = new Cons<int> (1).Append (2).Append (3).Append (4);
+			Assert.AreEqual (4, list.Count());
+			Assert.AreEqual ("1,2,3,4", list.Implode (","));
 		}
 
-		private static IEnumerable<TSource> CreateIterateIterator<TSource> (TSource value, Func<TSource, TSource> func)
+		[Test]
+		public void Prepend ()
 		{
-			yield return value;
-			while (true)
-				yield return (value = func (value));
+			var list = new Cons<int> (1).Prepend (2).Prepend (3).Prepend (4);
+			Assert.AreEqual (4, list.Count());
+			Assert.AreEqual ("4,3,2,1", list.Implode (","));
 		}
 
-		public static IEnumerable<TSource> Repeat<TSource> (TSource value)
+		[Test, ExpectedException (typeof (ArgumentOutOfRangeException))]
+		public void ElementAt_NegativeIndex ()
 		{
-			while (true)
-				yield return value;
+			Cons<int> c = new Cons<int> (42);
+			c.ElementAt (-1);
 		}
 
-		public static IEnumerable<TResult> GenerateReverse<TSource, TResult> (TSource value, Func<TSource, Maybe<Tuple<TResult, TSource>>> selector)
+		[Test]
+		public void ElementAt ()
 		{
-			Check.Selector (selector);
+			var a = new Cons<int> (1);
+			var b = new Cons<int> (2, a);
+			var c = new Cons<int> (3, b);
+			var d = new Cons<int> (4, c);
 
-			return CreateGenerateReverseIterator (value, selector);
+			Assert.AreEqual (4, d.Count());
+			Assert.AreEqual (4, d.ElementAt (0));
+			Assert.AreEqual (3, d.ElementAt (1));
+			Assert.AreEqual (2, d.ElementAt (2));
+			Assert.AreEqual (1, d.ElementAt (3));
 		}
 
-		private static IEnumerable<TResult> CreateGenerateReverseIterator<TSource, TResult> (TSource value, Func<TSource, Maybe<Tuple<TResult, TSource>>> selector)
+		[Test]
+		public void Reverse ()
 		{
-			Maybe<Tuple<TResult, TSource>> r;
-			while ((r = selector (value)).HasValue) {
-				Tuple<TResult, TSource> v = r.Value;
-				yield return v._1;
-				value = v._2;
-			}
+			Assert.AreEqual ("4,3,2,1",
+					new[]{1, 2, 3, 4}.ToCons ().Reverse ().Implode (","));
 		}
 	}
 }
-

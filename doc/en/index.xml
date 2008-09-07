@@ -53,6 +53,7 @@
   </Copyright>
   <Types>
     <Namespace Name="Mono.Rocks">
+      <Type Name="Cons`1" DisplayName="Cons&lt;T&gt;" Kind="Class" />
       <Type Name="DelegateRocks" Kind="Class" />
       <Type Name="ICustomAttributeProviderRocks" Kind="Class" />
       <Type Name="IEnumerableRocks" Kind="Class" />
@@ -61,6 +62,9 @@
       <Type Name="Int64Rocks" Kind="Class" />
       <Type Name="KeyValuePairRocks" Kind="Class" />
       <Type Name="Lambda" Kind="Class" />
+      <Type Name="Maybe" Kind="Class" />
+      <Type Name="Maybe`1" DisplayName="Maybe&lt;T&gt;" Kind="Structure" />
+      <Type Name="MaybeRocks" Kind="Class" />
       <Type Name="NaturalStringComparer" Kind="Class" />
       <Type Name="NullableRocks" Kind="Class" />
       <Type Name="ObjectRocks" Kind="Class" />
@@ -4130,6 +4134,30 @@
       <Targets>
         <Target Type="T:System.Collections.Generic.IEnumerable`1" />
       </Targets>
+      <Member MemberName="ToCons&lt;T&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Cons&lt;T&gt; ToCons&lt;T&gt; (this System.Collections.Generic.IEnumerable&lt;T&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Cons&lt;T&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;T&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ToCons``1(System.Collections.Generic.IEnumerable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
       <Member MemberName="ToList&lt;TSource&gt;">
         <MemberSignature Language="C#" Value="public static System.Collections.Generic.List&lt;System.Collections.Generic.List&lt;TSource&gt;&gt; ToList&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; self);" />
         <MemberType>ExtensionMethod</MemberType>
@@ -4750,6 +4778,66 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
+        <Target Type="T:Mono.Rocks.Maybe`1" />
+      </Targets>
+      <Member MemberName="SelectMany&lt;TSource,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;TResult&gt; SelectMany&lt;TSource,TResult&gt; (this Mono.Rocks.Maybe&lt;TSource&gt; self, Func&lt;TSource,Mono.Rocks.Maybe&lt;TResult&gt;&gt; selector);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Maybe&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="Mono.Rocks.Maybe&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="selector" Type="System.Func&lt;TSource,Mono.Rocks.Maybe&lt;TResult&gt;&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="selector">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.MaybeRocks" Member="M:Mono.Rocks.MaybeRocks.SelectMany``2(Mono.Rocks.Maybe{``0},System.Func{``0,Mono.Rocks.Maybe{``1}})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:Mono.Rocks.Maybe`1" />
+      </Targets>
+      <Member MemberName="SelectMany&lt;TSource,TCollection,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;TResult&gt; SelectMany&lt;TSource,TCollection,TResult&gt; (this Mono.Rocks.Maybe&lt;TSource&gt; self, Func&lt;TSource,Mono.Rocks.Maybe&lt;TCollection&gt;&gt; selector, Func&lt;TSource,TCollection,TResult&gt; resultSelector);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Maybe&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TCollection" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="Mono.Rocks.Maybe&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="selector" Type="System.Func&lt;TSource,Mono.Rocks.Maybe&lt;TCollection&gt;&gt;" />
+          <Parameter Name="resultSelector" Type="System.Func&lt;TSource,TCollection,TResult&gt;" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TCollection">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="selector">To be added.</param>
+          <param name="resultSelector">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.MaybeRocks" Member="M:Mono.Rocks.MaybeRocks.SelectMany``3(Mono.Rocks.Maybe{``0},System.Func{``0,Mono.Rocks.Maybe{``1}},System.Func{``0,``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
         <Target Type="System.Object" />
       </Targets>
       <Member MemberName="ToNullable&lt;TValue&gt;">
@@ -4783,6 +4871,64 @@
         </summary>
         </Docs>
         <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.ToNullable``1(``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="System.Object" />
+      </Targets>
+      <Member MemberName="Match&lt;TSource,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static TResult Match&lt;TSource,TResult&gt; (this TSource self, Func&lt;TSource,Mono.Rocks.Maybe&lt;TResult&gt;&gt;[] matchers);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>TResult</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="TSource" RefType="this" />
+          <Parameter Name="matchers" Type="System.Func&lt;TSource,Mono.Rocks.Maybe&lt;TResult&gt;&gt;[]">
+            <Attributes>
+              <Attribute>
+                <AttributeName>System.ParamArray</AttributeName>
+              </Attribute>
+            </Attributes>
+          </Parameter>
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="matchers">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.ObjectRocks" Member="M:Mono.Rocks.ObjectRocks.Match``2(``0,System.Func{``0,Mono.Rocks.Maybe{``1}}[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="System.Object" />
+      </Targets>
+      <Member MemberName="ToMaybe&lt;T&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; ToMaybe&lt;T&gt; (this T self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="T" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.ObjectRocks" Member="M:Mono.Rocks.ObjectRocks.ToMaybe``1(``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -5093,8 +5239,14 @@
           <Parameter Name="self" Type="System.String" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TEnum">To be added.</typeparam>
-          <param name="self">To be added.</param>
+          <typeparam name="TEnum">
+          An enumeration type containing the member stored in 
+          <paramref name="self" />.
+        </typeparam>
+          <param name="self">
+          A <see cref="T:System.String" /> containing an enumeration value to
+          convert into that enumeration value.
+        </param>
           <summary>To be added.</summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.ToEnum``1(System.String)" />

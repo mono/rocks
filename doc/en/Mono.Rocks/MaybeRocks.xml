@@ -1,0 +1,90 @@
+<Type Name="MaybeRocks" FullName="Mono.Rocks.MaybeRocks">
+  <TypeSignature Language="C#" Value="public static class MaybeRocks" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Rocks</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="SelectMany&lt;TSource,TCollection,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;TResult&gt; SelectMany&lt;TSource,TCollection,TResult&gt; (this Mono.Rocks.Maybe&lt;TSource&gt; self, Func&lt;TSource,Mono.Rocks.Maybe&lt;TCollection&gt;&gt; selector, Func&lt;TSource,TCollection,TResult&gt; resultSelector);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Maybe&lt;TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TCollection" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="Mono.Rocks.Maybe&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="selector" Type="System.Func&lt;TSource,Mono.Rocks.Maybe&lt;TCollection&gt;&gt;" />
+        <Parameter Name="resultSelector" Type="System.Func&lt;TSource,TCollection,TResult&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TCollection">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="selector">To be added.</param>
+        <param name="resultSelector">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelectMany&lt;TSource,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;TResult&gt; SelectMany&lt;TSource,TResult&gt; (this Mono.Rocks.Maybe&lt;TSource&gt; self, Func&lt;TSource,Mono.Rocks.Maybe&lt;TResult&gt;&gt; selector);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Maybe&lt;TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="Mono.Rocks.Maybe&lt;TSource&gt;" RefType="this" />
+        <Parameter Name="selector" Type="System.Func&lt;TSource,Mono.Rocks.Maybe&lt;TResult&gt;&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <param name="selector">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

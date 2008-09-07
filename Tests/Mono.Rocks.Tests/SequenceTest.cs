@@ -65,7 +65,7 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
-		public void GenerateReverse_FuncNull ()
+		public void GenerateReverse_SelectorNull ()
 		{
 			Func<int, Maybe<Tuple<int,int>>> f = null;
 			Sequence.GenerateReverse (0, f);
