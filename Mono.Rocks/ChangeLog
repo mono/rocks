@@ -1,5 +1,10 @@
 2008-09-06  Jonathan Pryor  <jpryor@novell.com>
 
+	* Object.cs: Add .Match(), an expression-oriented replacement for a sequence
+	  of `if' statements.
+
+2008-09-06  Jonathan Pryor  <jpryor@novell.com>
+
 	* Check.cs: Add Check.ResultSelector().
 	* Maybe.cs: Added.
 	* Object.cs: Add .ToMaybe().

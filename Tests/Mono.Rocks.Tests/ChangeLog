@@ -1,3 +1,7 @@
+2008-09-07  Jonathan Pryor  <jpryor@novell.com>
+
+	* ObjectTest.cs: Add tests for .Match().
+
 2008-09-06  Jonathan Pryor  <jpryor@novell.com>
 
 	* MaybeTest.cs: Added; tests for Maybe, Maybe<T>, and MaybeRocks.

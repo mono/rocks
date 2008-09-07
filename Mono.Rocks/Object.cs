@@ -32,17 +32,34 @@ namespace Mono.Rocks {
 
 	public static class ObjectRocks {
 
+		// Match based in part on:
+		// http://blogs.msdn.com/lucabol/archive/2008/07/15/a-c-library-to-write-functional-code-part-v-the-match-operator.aspx
+		// I just think this is more readable, useful, and extensible (i.e. not
+		// limited to just 2 match arguments).
+		public static TResult Match<TSource, TResult> (this TSource self, params Func<TSource, Maybe<TResult>>[] matchers)
+		{
+			if (matchers == null)
+				throw new ArgumentNullException ("matchers");
+
+			foreach (var m in matchers) {
+				var r = m (self);
+				if (r.HasValue)
+					return r.Value;
+			}
+			throw new InvalidOperationException ("no match");
+		}
+
+		public static Maybe<T> ToMaybe<T> (this T self)
+		{
+			return new Maybe<T> (self);
+		}
+
 		public static TResult With<TSource, TResult> (this TSource self, Func<TSource, TResult> selector)
 		{
 			// Permit self to be null
 			Check.Selector (selector);
 
 			return selector (self);
-		}
-
-		public static Maybe<T> ToMaybe<T> (this T self)
-		{
-			return new Maybe<T> (self);
 		}
 	}
 }

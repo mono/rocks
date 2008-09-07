@@ -39,6 +39,54 @@ namespace Mono.Rocks.Tests {
 	public class ObjectTest : BaseRocksFixture {
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Match_MatchersNull ()
+		{
+			Func<string, Maybe<int>>[] m = null;
+			"foo".Match (m);
+		}
+
+		[Test, ExpectedException (typeof (InvalidOperationException))]
+		public void Match_NoMatch ()
+		{
+			var m = new Func<string, Maybe<int>>[] {
+				v => Maybe.When (v == "bar", 42),
+				v => Maybe.When (v.Length == 5, 54),
+			};
+			"foo".Match (m);
+		}
+
+		[Test]
+		public void Match ()
+		{
+#if BNC_423791
+			Assert.AreEqual ("foo",
+				"foo".Match (
+					s => Maybe.When (s.Length != 3, "bar!"),
+					s => Maybe.Create (s)));
+			Assert.AreEqual ("bar!",
+				5.Match (
+					v => Maybe.When (v != 3, "bar!"),
+					v => Maybe.Create (v.ToString ())));
+#endif
+			var m = new Func<string, Maybe<int>>[] {
+				v => Maybe.When (v == "bar",    1),
+				v => Maybe.When (v.Length == 5, 2),
+				v => Maybe.Create (-1),
+			};
+			Assert.AreEqual (1, "bar".Match (m));
+			Assert.AreEqual (2, "12345".Match (m));
+			Assert.AreEqual (-1, "*default*".Match (m));
+		}
+
+		[Test]
+		public void ToMaybe ()
+		{
+			Maybe<int> r = 42.ToMaybe ();
+			Assert.IsTrue (r.HasValue);
+			Assert.AreEqual (42, r.Value);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void With_SelectorNull ()
 		{
 			string                s = "foo";
@@ -51,14 +99,6 @@ namespace Mono.Rocks.Tests {
 		{
 			Assert.AreEqual (3,
 				new[]{5, 4, 3, 2, 1}.Sort ().With (c => c.ElementAt (c.Count()/2)));
-		}
-
-		[Test]
-		public void ToMaybe ()
-		{
-			Maybe<int> r = 42.ToMaybe ();
-			Assert.IsTrue (r.HasValue);
-			Assert.AreEqual (42, r.Value);
 		}
 	}
 }
