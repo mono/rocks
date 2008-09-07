@@ -61,7 +61,7 @@ namespace Mono.Rocks {
 		}
 	}
 
-	public static MaybeRocks {
+	public static class MaybeRocks {
 #region BNC_424064 - Should be Maybe<T> instance members
 		public static Maybe<TResult> SelectMany<TSource, TResult>(this Maybe<TSource> self, Func<TSource, Maybe<TResult>> selector)
 		{
