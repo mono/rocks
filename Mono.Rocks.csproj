@@ -48,6 +48,7 @@
     <Compile Include="Mono.Rocks\KeyValuePair.cs" />
     <Compile Include="Mono.Rocks\Lambda.cs" />
     <Compile Include="Mono.Rocks\Lambdas.cs" />
+    <Compile Include="Mono.Rocks\Maybe.cs" />
     <Compile Include="Mono.Rocks\NaturalStringComparer.cs" />
     <Compile Include="Mono.Rocks\Nullable.cs" />
     <Compile Include="Mono.Rocks\Object.cs" />

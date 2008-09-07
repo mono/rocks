@@ -52,5 +52,13 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (3,
 				new[]{5, 4, 3, 2, 1}.Sort ().With (c => c.ElementAt (c.Count()/2)));
 		}
+
+		[Test]
+		public void ToMaybe ()
+		{
+			Maybe<int> r = 42.ToMaybe ();
+			Assert.IsTrue (r.HasValue);
+			Assert.AreEqual (42, r.Value);
+		}
 	}
 }

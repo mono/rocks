@@ -1,3 +1,12 @@
+2008-09-06  Jonathan Pryor  <jpryor@novell.com>
+
+	* Check.cs: Add Check.ResultSelector().
+	* Maybe.cs: Added.
+	* Object.cs: Add .ToMaybe().
+	* Sequence.cs: Change Sequence.GenerateReverse() to use Maybe<Tuple<...>> 
+	  instead of Nullable<Tuple<...>>, as using Maybe.When() is shorter than
+	  using Tuple.Create(...).ToNullable().
+
 2008-09-04  Jonathan Pryor  <jpryor@novell.com>
 
 	* Check.cs: Add Check.Composer() method.

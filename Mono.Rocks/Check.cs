@@ -56,6 +56,12 @@ namespace Mono.Rocks {
 				throw new ArgumentNullException ("random");
 		}
 
+		public static void ResultSelector (object resultSelector)
+		{
+			if (resultSelector == null)
+				throw new ArgumentNullException ("resultSelector");
+		}
+
 		public static void Selector (object selector)
 		{
 			if (selector == null)

@@ -9,6 +9,7 @@
 ./Mono.Rocks/KeyValuePair.cs
 ./Mono.Rocks/Lambda.cs
 ./Mono.Rocks/Lambdas.cs
+./Mono.Rocks/Maybe.cs
 ./Mono.Rocks/NaturalStringComparer.cs
 ./Mono.Rocks/Nullable.cs
 ./Mono.Rocks/Object.cs

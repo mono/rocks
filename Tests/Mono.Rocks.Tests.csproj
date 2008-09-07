@@ -51,6 +51,7 @@
     <Compile Include="Mono.Rocks.Tests\Int64Test.cs" />
     <Compile Include="Mono.Rocks.Tests\KeyValuePairTest.cs" />
     <Compile Include="Mono.Rocks.Tests\LambdaTest.cs" />
+    <Compile Include="Mono.Rocks.Tests\MaybeTest.cs" />
     <Compile Include="Mono.Rocks.Tests\NaturalStringComparerTest.cs" />
     <Compile Include="Mono.Rocks.Tests\NullableTest.cs" />
     <Compile Include="Mono.Rocks.Tests\ObjectTest.cs" />

@@ -1,3 +1,9 @@
+2008-09-06  Jonathan Pryor  <jpryor@novell.com>
+
+	* MaybeTest.cs: Added; tests for Maybe, Maybe<T>, and MaybeRocks.
+	* ObjectTest.cs: Add test for .ToMaybe().
+	* SequenceTest.cs: Update to use new prototype.
+
 2008-09-04  Jonathan Pryor  <jpryor@novell.com>
 
 	* CurryTest.cs: Rename to DelegateTest.cs.

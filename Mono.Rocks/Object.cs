@@ -39,6 +39,11 @@ namespace Mono.Rocks {
 
 			return selector (self);
 		}
+
+		public static Maybe<T> ToMaybe<T> (this T self)
+		{
+			return new Maybe<T> (self);
+		}
 	}
 }
 
