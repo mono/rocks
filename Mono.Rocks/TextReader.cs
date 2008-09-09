@@ -33,20 +33,39 @@ using System.Text;
 
 namespace Mono.Rocks {
 
+	[Flags]
+	public enum TextReaderLineOptions {
+		None          = 0,
+		CloseReader   = 1,
+	}
+
 	public static class TextReaderRocks {
 
 		public static IEnumerable<string> Lines (this TextReader self)
 		{
-			Check.Self (self);
-
-			return CreateLineIterator (self);
+			return Lines (self, TextReaderLineOptions.None);
 		}
 
-		private static IEnumerable<string> CreateLineIterator (TextReader self)
+		public static IEnumerable<string> Lines (this TextReader self, TextReaderLineOptions options)
 		{
-			string line;
-			while ((line = self.ReadLine ()) != null)
-				yield return line;
+			Check.Self (self);
+			if (options != TextReaderLineOptions.None && options != TextReaderLineOptions.CloseReader)
+				throw new ArgumentException ("options", "Invalid `options' value.");
+
+			return CreateLineIterator (self, options);
+		}
+
+		private static IEnumerable<string> CreateLineIterator (TextReader self, TextReaderLineOptions options)
+		{
+			try {
+				string line;
+				while ((line = self.ReadLine ()) != null)
+					yield return line;
+			} finally {
+				if ((options & TextReaderLineOptions.CloseReader) != 0) {
+					self.Close ();
+				}
+			}
 		}
 
 		public static IEnumerable<string> Words (this TextReader self)

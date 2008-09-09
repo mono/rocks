@@ -1,3 +1,9 @@
+2008-09-08  Jonathan Pryor  <jpryor@novell.com>
+
+	* TextReader.cs: Add a .Lines(TextReaderLineOptions) overload, to control
+	  whether the TextReader is disposed at the end of iteration.  See:
+	  http://blogs.msdn.com/ericlippert/archive/2008/09/08/high-maintenance.aspx
+
 2008-09-07  Jonathan Pryor  <jpryor@novell.com>
 
 	* Cons.cs: Added; an immutable singly-linked list.

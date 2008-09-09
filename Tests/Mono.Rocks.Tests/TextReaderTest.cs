@@ -48,11 +48,34 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test]
+		[ExpectedException (typeof (ArgumentException))]
+		public void Lines_OptionsInvalid()
+		{
+			TextReader s = new StringReader ("");
+			s.Lines ((TextReaderLineOptions) (-1));
+		}
+
+		class MyStringReader : StringReader {
+			public bool WasDisposed;
+
+			public MyStringReader (string s)
+				: base (s)
+			{
+			}
+
+			protected override void Dispose (bool disposing)
+			{
+				if (disposing)
+					WasDisposed = true;
+			}
+		}
+
+		[Test]
 		public void Lines ()
 		{
-			string[] lines = 
-							new StringReader ("hello\nout\rthere\r\nin\nTV\nland!")
-							.Lines ().ToArray ();
+			MyStringReader r = new MyStringReader ("hello\nout\rthere\r\nin\nTV\nland!");
+			string[] lines = r.Lines ().ToArray ();
+			Assert.IsFalse (r.WasDisposed);
 			Assert.AreEqual (6, lines.Length);
 			Assert.AreEqual ("hello", lines [0]);
 			Assert.AreEqual ("out",   lines [1]);
@@ -60,6 +83,15 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("in",    lines [3]);
 			Assert.AreEqual ("TV",    lines [4]);
 			Assert.AreEqual ("land!", lines [5]);
+
+			r = new MyStringReader ("\nhello\n\nworld!");
+			lines = r.Lines (TextReaderLineOptions.CloseReader).ToArray ();
+			Assert.IsTrue (r.WasDisposed);
+			Assert.AreEqual (4, lines.Length);
+			Assert.AreEqual ("",        lines [0]);
+			Assert.AreEqual ("hello",   lines [1]);
+			Assert.AreEqual ("",        lines [2]);
+			Assert.AreEqual ("world!",  lines [3]);
 		}
 
 		[Test]

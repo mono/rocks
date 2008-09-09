@@ -1,3 +1,8 @@
+2008-09-08  Jonathan Pryor  <jpryor@novell.com>
+
+	* TextReaderRocks.cs: Add tests for new .Lines(TextReaderLineOptions)
+	  overload.
+
 2008-09-07  Jonathan Pryor  <jpryor@novell.com>
 
 	* ConsTest.cs: Added; Tests for Cons<T>.
