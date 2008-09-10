@@ -52,7 +52,7 @@ namespace Mono.Rocks.Tests {
 		public void Lines_OptionsInvalid()
 		{
 			TextReader s = new StringReader ("");
-			s.Lines ((TextReaderLineOptions) (-1));
+			s.Lines ((TextReaderRocksOptions) (-1));
 		}
 
 		class MyStringReader : StringReader {
@@ -85,7 +85,7 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("land!", lines [5]);
 
 			r = new MyStringReader ("\nhello\n\nworld!");
-			lines = r.Lines (TextReaderLineOptions.CloseReader).ToArray ();
+			lines = r.Lines (TextReaderRocksOptions.CloseReader).ToArray ();
 			Assert.IsTrue (r.WasDisposed);
 			Assert.AreEqual (4, lines.Length);
 			Assert.AreEqual ("",        lines [0]);
@@ -102,18 +102,31 @@ namespace Mono.Rocks.Tests {
 			s.Words ();
 		}
 
+		[Test, ExpectedException (typeof (ArgumentException))]
+		public void Words_OptionsInvalid()
+		{
+			TextReader s = new StringReader ("");
+			s.Words ((TextReaderRocksOptions) (-1));
+		}
+
 		[Test]
 		public void Words ()
 		{
-			string[] words = 
-				new StringReader ("   skip  leading\r\n\tand trailing\vwhitespace   ")
-				.Words ().ToArray ();
+			MyStringReader r = new MyStringReader ("   skip  leading\r\n\tand trailing\vwhitespace   ");
+			string[] words = r.Words ().ToArray ();
+			Assert.IsFalse (r.WasDisposed);
 			Assert.AreEqual (5, words.Length);
 			Assert.AreEqual ("skip",        words [0]);
 			Assert.AreEqual ("leading",     words [1]);
 			Assert.AreEqual ("and",         words [2]);
 			Assert.AreEqual ("trailing",    words [3]);
 			Assert.AreEqual ("whitespace",  words [4]);
+
+			r = new MyStringReader ("notext");
+			words = r.Words (TextReaderRocksOptions.CloseReader).ToArray ();
+			Assert.IsTrue (r.WasDisposed);
+			Assert.AreEqual (1, words.Length);
+			Assert.AreEqual ("notext", words [0]);
 		}
 	}
 }

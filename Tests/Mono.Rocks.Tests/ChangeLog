@@ -1,5 +1,9 @@
 2008-09-09  Jonathan Pryor  <jpryor@novell.com>
 
+	* TextReaderTest.cs: Add tests for .Words(TextReaderRocksOptions).
+
+2008-09-09  Jonathan Pryor  <jpryor@novell.com>
+
 	* MaybeTest.cs: Remove Maybe.Create(); test Maybe.TryParse().
 	* NullableTest.cs: Remove .ToNullable(); test .Just(), .ToMaybe().
 	* ObjectTest.cs: Cope w/ Maybe changes; test .Just(), .ToMaybe().

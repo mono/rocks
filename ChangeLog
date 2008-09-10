@@ -1,3 +1,7 @@
+2008-09-10  Jonathan Pryor  <jpryor@novell.com>
+
+	* doc/en/**: Flush.
+
 2008-09-07  Jonathan Pryor  <jpryor@novell.com>
 
 	* gendarm.ignore: Add additional members to ignore.

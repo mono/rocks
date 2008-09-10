@@ -21,8 +21,8 @@
     </remarks>
   </Docs>
   <Members>
-    <Member MemberName="ToNullable&lt;TValue&gt;">
-      <MemberSignature Language="C#" Value="public static Nullable&lt;TValue&gt; ToNullable&lt;TValue&gt; (this TValue self) where TValue : struct;" />
+    <Member MemberName="Just&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; Just&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct;" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -33,50 +33,56 @@
         </Attribute>
       </Attributes>
       <ReturnValue>
-        <ReturnType>System.Nullable&lt;TValue&gt;</ReturnType>
+        <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
       </ReturnValue>
       <TypeParameters>
-        <TypeParameter Name="TValue">
+        <TypeParameter Name="T">
           <Constraints>
             <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
           </Constraints>
         </TypeParameter>
       </TypeParameters>
       <Parameters>
-        <Parameter Name="self" Type="TValue" RefType="this" />
+        <Parameter Name="self" Type="System.Nullable&lt;T&gt;" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="TValue">
-         A <see langword="struct" /> to convert into a
-         <see cref="T:System.Nullable{TValue}" />.
-        </typeparam>
-        <param name="self">
-         A <typeparamref name="TValue" /> which is the value to convert
-         into a <see cref="T:System.Nullable{TValue}" />.
-        </param>
-        <summary>
-         Converts the value type value <paramref name="self" /> into a
-         Nullable value <see cref="T:System.Nullable{TValue}" />.
-        </summary>
-        <returns>
-         Returns <paramref name="self" /> as a
-         <see cref="T:System.Nullable{TValue}" />.
-        </returns>
-        <remarks>
-          <para>
-            This is particularly handy in creating a 
-            <see cref="T:System.Nullable{Mono.Rocks.Tuple{T1,T2}}" />
-            for use from 
-            <see cref="M:Mono.Rocks.Sequence.GenerateReverse``2(``0,System.Func{``0,System.Nullable{Mono.Rocks.Tuple{``1,``0}}})" />:
-          </para>
-          <code lang="C#">
-var ints = Sequence.GenerateReverse (10, b =&gt; b == 0
-    ? null
-    : Tuple.Create (b, b - 1).ToNullable ());
-foreach (int n in ints)
-  Console.WriteLine (n);  // writes 10, 9, ..., 2, 1</code>
-        </remarks>
-        <altmember cref="M:Mono.Rocks.Sequence.GenerateReverse``2(``0,System.Func{``0,System.Nullable{Mono.Rocks.Tuple{``1,``0}}})" />
+        <typeparam name="T">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToMaybe&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; ToMaybe&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct;" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T">
+          <Constraints>
+            <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="self" Type="System.Nullable&lt;T&gt;" RefType="this" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="self">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
       </Docs>
     </Member>
   </Members>

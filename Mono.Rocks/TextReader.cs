@@ -34,7 +34,7 @@ using System.Text;
 namespace Mono.Rocks {
 
 	[Flags]
-	public enum TextReaderLineOptions {
+	public enum TextReaderRocksOptions {
 		None          = 0,
 		CloseReader   = 1,
 	}
@@ -43,26 +43,31 @@ namespace Mono.Rocks {
 
 		public static IEnumerable<string> Lines (this TextReader self)
 		{
-			return Lines (self, TextReaderLineOptions.None);
+			return Lines (self, TextReaderRocksOptions.None);
 		}
 
-		public static IEnumerable<string> Lines (this TextReader self, TextReaderLineOptions options)
+		public static IEnumerable<string> Lines (this TextReader self, TextReaderRocksOptions options)
 		{
 			Check.Self (self);
-			if (options != TextReaderLineOptions.None && options != TextReaderLineOptions.CloseReader)
-				throw new ArgumentException ("options", "Invalid `options' value.");
+			CheckOptions (options);
 
 			return CreateLineIterator (self, options);
 		}
 
-		private static IEnumerable<string> CreateLineIterator (TextReader self, TextReaderLineOptions options)
+		private static void CheckOptions (TextReaderRocksOptions options)
+		{
+			if (options != TextReaderRocksOptions.None && options != TextReaderRocksOptions.CloseReader)
+				throw new ArgumentException ("options", "Invalid `options' value.");
+		}
+
+		private static IEnumerable<string> CreateLineIterator (TextReader self, TextReaderRocksOptions options)
 		{
 			try {
 				string line;
 				while ((line = self.ReadLine ()) != null)
 					yield return line;
 			} finally {
-				if ((options & TextReaderLineOptions.CloseReader) != 0) {
+				if ((options & TextReaderRocksOptions.CloseReader) != 0) {
 					self.Close ();
 				}
 			}
@@ -70,31 +75,43 @@ namespace Mono.Rocks {
 
 		public static IEnumerable<string> Words (this TextReader self)
 		{
-			Check.Self (self);
-
-			return CreateWordsIterator (self);
+			return Words (self, TextReaderRocksOptions.None);
 		}
 
-		private static IEnumerable<string> CreateWordsIterator (TextReader self)
+		public static IEnumerable<string> Words (this TextReader self, TextReaderRocksOptions options)
+		{
+			Check.Self (self);
+			CheckOptions (options);
+
+			return CreateWordsIterator (self, options);
+		}
+
+		private static IEnumerable<string> CreateWordsIterator (TextReader self, TextReaderRocksOptions options)
 		{
 			StringBuilder buf = new StringBuilder ();
-			int c;
-			bool inWord = false;
-			while ((c = self.Read ()) >= 0) {
-				if (!char.IsWhiteSpace ((char) c)) {
-					inWord = true;
-					buf.Append ((char) c);
-				}
-				else {
-					if (inWord) {
-						yield return buf.ToString ();
-						buf.Length = 0;
+			try {
+				int c;
+				bool inWord = false;
+				while ((c = self.Read ()) >= 0) {
+					if (!char.IsWhiteSpace ((char) c)) {
+						inWord = true;
+						buf.Append ((char) c);
 					}
-					inWord = false;
+					else {
+						if (inWord) {
+							yield return buf.ToString ();
+							buf.Length = 0;
+						}
+						inWord = false;
+					}
+				}
+				if (buf.Length > 0)
+					yield return buf.ToString ();
+			} finally {
+				if ((options & TextReaderRocksOptions.CloseReader) != 0) {
+					self.Close ();
 				}
 			}
-			if (buf.Length > 0)
-				yield return buf.ToString ();
 		}
 	}
 }

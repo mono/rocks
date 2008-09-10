@@ -1,3 +1,8 @@
+2008-09-10  Jonathan Pryor  <jpryor@novell.com>
+
+	* TextReader.cs: Add .Words(TextReaderRocksOptions) overload, and change
+	  .Lines(TextRederLineOptions) to .Lines(TextReaderRocksOptions).
+
 2008-09-09  Jonathan Pryor  <jpryor@novell.com>
 
 	* Cons.cs: Insert a MemoryBarrier() around the double-checked locking.

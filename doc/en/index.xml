@@ -73,6 +73,7 @@
       <Type Name="StreamRocks" Kind="Class" />
       <Type Name="StringRocks" Kind="Class" />
       <Type Name="TextReaderRocks" Kind="Class" />
+      <Type Name="TextReaderRocksOptions" Kind="Enumeration" />
       <Type Name="Tuple" Kind="Class" />
       <Type Name="Tuple`1" DisplayName="Tuple&lt;T&gt;" Kind="Structure" />
       <Type Name="Tuple`2" DisplayName="Tuple&lt;T1,T2&gt;" Kind="Structure" />
@@ -4838,39 +4839,82 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
-        <Target Type="System.Object" />
+        <Target Type="T:System.Nullable`1" />
       </Targets>
-      <Member MemberName="ToNullable&lt;TValue&gt;">
-        <MemberSignature Language="C#" Value="public static Nullable&lt;TValue&gt; ToNullable&lt;TValue&gt; (this TValue self) where TValue : struct;" />
+      <Member MemberName="Just&lt;T&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; Just&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct;" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
-          <ReturnType>System.Nullable&lt;TValue&gt;</ReturnType>
+          <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
         </ReturnValue>
         <TypeParameters>
-          <TypeParameter Name="TValue">
+          <TypeParameter Name="T">
             <Constraints>
               <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
             </Constraints>
           </TypeParameter>
         </TypeParameters>
         <Parameters>
-          <Parameter Name="self" Type="TValue" RefType="this" />
+          <Parameter Name="self" Type="System.Nullable&lt;T&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TValue">
-         A <see langword="struct" /> to convert into a
-         <see cref="T:System.Nullable{TValue}" />.
-        </typeparam>
-          <param name="self">
-         A <typeparamref name="TValue" /> which is the value to convert
-         into a <see cref="T:System.Nullable{TValue}" />.
-        </param>
-          <summary>
-         Converts the value type value <paramref name="self" /> into a
-         Nullable value <see cref="T:System.Nullable{TValue}" />.
-        </summary>
+          <typeparam name="T">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
         </Docs>
-        <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.ToNullable``1(``0)" />
+        <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.Just``1(System.Nullable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Nullable`1" />
+      </Targets>
+      <Member MemberName="ToMaybe&lt;T&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; ToMaybe&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct;" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T">
+            <Constraints>
+              <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
+            </Constraints>
+          </TypeParameter>
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Nullable&lt;T&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.ToMaybe``1(System.Nullable{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="System.Object" />
+      </Targets>
+      <Member MemberName="Just&lt;T&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; Just&lt;T&gt; (this T self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="T" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.ObjectRocks" Member="M:Mono.Rocks.ObjectRocks.Just``1(``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -5298,10 +5342,34 @@
           <summary>
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
-          which will return all lines of text from <paramref name="self" />.
+          which will return all lines of text from <paramref name="self" /> 
+          without <see cref="T:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
         </summary>
         </Docs>
         <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Lines(System.IO.TextReader)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.TextReader" />
+      </Targets>
+      <Member MemberName="Lines">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Lines (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+          <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="options">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Lines(System.IO.TextReader,Mono.Rocks.TextReaderRocksOptions)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -5324,10 +5392,34 @@
           <summary>
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
-          which will return all words from <paramref name="self" />.
+          which will return all words from <paramref name="self" />
+          without <see cref="T:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
         </summary>
         </Docs>
         <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.TextReader" />
+      </Targets>
+      <Member MemberName="Words">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+          <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="options">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader,Mono.Rocks.TextReaderRocksOptions)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>

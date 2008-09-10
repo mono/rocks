@@ -45,7 +45,9 @@
         <summary>
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
-          which will return all lines of text from <paramref name="self" />.
+          which will return all lines of text from <paramref name="self" /> 
+          without <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
         </summary>
         <returns>
           An
@@ -55,6 +57,73 @@
         <remarks>
           <para>
             This method is implemented by using deferred execution.
+          </para>
+          <para>
+            <paramref name="self" /> is not disposed.  
+            <see cref="T:System.IO.TextReader" /> disposal is up to the caller.
+          </para>
+          <block subset="none" type="note">
+            A "line of text" is the same as that used by 
+            <see cref="M:System.IO.TextReader.ReadLine" />.
+          </block>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
+        <altmember cref="M:System.IO.TextReader.ReadLine" />
+      </Docs>
+    </Member>
+    <Member MemberName="Lines">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Lines (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+        <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
+      </Parameters>
+      <Docs>
+        <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to read lines from.
+        </param>
+        <param name="options">
+          A <see cref="T:Mono.Rocks.TextReaderRocksOptions" /> controlling
+          method execution.
+        </param>
+        <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all lines of text from <paramref name="self" />
+          while optionally <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
+        </summary>
+        <returns>
+          An
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all lines of text from <paramref name="self" />.
+        </returns>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
+        <remarks>
+          <para>
+            This method is implemented by using deferred execution.
+          </para>
+          <para>
+            If <paramref name="options" /> contains
+            <see cref="F:Mono.Rocks.TextReaderRocksOptions.CloseReader" />,
+            then <paramref name="self" /> will be 
+            <see cref="M:System.IO.TextReader.Close" />ed once all lines have
+            been returned.
           </para>
           <block subset="none" type="note">
             A "line of text" is the same as that used by 
@@ -88,7 +157,9 @@
         <summary>
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
-          which will return all words from <paramref name="self" />.
+          which will return all words from <paramref name="self" />
+          without <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
         </summary>
         <returns>
           An
@@ -99,12 +170,80 @@
           <para>
             This method is implemented by using deferred execution.
           </para>
+          <para>
+            <paramref name="self" /> is not disposed.  
+            <see cref="T:System.IO.TextReader" /> disposal is up to the caller.
+          </para>
           <block subset="none" type="note">
             A "word" any contiguous series of characters for which
             <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
             returns <see langword="false" />.
           </block>
         </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
+        <altmember cref="M:System.Char.IsWhiteSpace(System.Char)" />
+      </Docs>
+    </Member>
+    <Member MemberName="Words">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+        <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
+      </Parameters>
+      <Docs>
+        <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to extract words from.
+        </param>
+        <param name="options">
+          A <see cref="T:Mono.Rocks.TextReaderRocksOptions" /> controlling
+          method execution.
+        </param>
+        <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />
+          while optionally <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
+        </summary>
+        <returns>
+          An
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />.
+        </returns>
+        <remarks>
+          <para>
+            This method is implemented by using deferred execution.
+          </para>
+          <para>
+            If <paramref name="options" /> contains
+            <see cref="F:Mono.Rocks.TextReaderRocksOptions.CloseReader" />,
+            then <paramref name="self" /> will be 
+            <see cref="M:System.IO.TextReader.Close" />ed once all lines have
+            been returned.
+          </para>
+          <block subset="none" type="note">
+            A "word" any contiguous series of characters for which
+            <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
+            returns <see langword="false" />.
+          </block>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
         <altmember cref="M:System.Char.IsWhiteSpace(System.Char)" />
       </Docs>
     </Member>

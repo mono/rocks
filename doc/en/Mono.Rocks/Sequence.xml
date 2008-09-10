@@ -40,7 +40,7 @@
         <remarks>
           <code lang="C#">
 var ints = Sequence.GenerateReverse (10, 
-    b =&gt; Maybe.When (b > 0, Tuple.Create (b, b-1)))
+    b =&gt; Maybe.When (b &gt; 0, Tuple.Create (b, b-1)))
 foreach (int n in ints)
   Console.WriteLine (n);  // writes 10, 9, ..., 2, 1</code>
         </remarks>

@@ -13,8 +13,8 @@
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
-    <Member MemberName="Create&lt;T&gt;">
-      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; Create&lt;T&gt; (T value);" />
+    <Member MemberName="TryParse&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; TryParse&lt;T&gt; (string value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -26,7 +26,7 @@
         <TypeParameter Name="T" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="value" Type="T" />
+        <Parameter Name="value" Type="System.String" />
       </Parameters>
       <Docs>
         <typeparam name="T">To be added.</typeparam>
