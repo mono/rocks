@@ -1,5 +1,9 @@
 2008-09-07  Jonathan Pryor  <jpryor@novell.com>
 
+	* gendarm.ignore: Add additional members to ignore.
+
+2008-09-07  Jonathan Pryor  <jpryor@novell.com>
+
 	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add Mono.Rocks/Cons.cs 
 	  to the build.
 	* Mono.Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Add

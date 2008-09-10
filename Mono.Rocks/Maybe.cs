@@ -166,6 +166,16 @@ namespace Mono.Rocks {
 				return Value.ToString ();
 			return string.Empty;
 		}
+
+		public static bool operator== (Maybe<T> a, Maybe<T> b)
+		{
+			return a.Equals (b);
+		}
+
+		public static bool operator!= (Maybe<T> a, Maybe<T> b)
+		{
+			return !a.Equals (b);
+		}
 	}
 }
 

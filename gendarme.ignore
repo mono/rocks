@@ -1,3 +1,7 @@
+# Double-checked locking *is* safe (with some constraints); the rule is broken.
+R: Gendarme.Rules.Concurrency.DoubleCheckLockingRule
+M: Mono.Rocks.Cons`1<T> Mono.Rocks.Cons`1::get_Tail()
+
 # OK - Stylistic choice
 R: Gendarme.Rules.Design.AvoidRefAndOutParametersRule
 ## StreamRocks uses the return value for chaining
@@ -20,6 +24,23 @@ M: System.Void Mono.Rocks.IEnumerableRocks::Convert(System.Collections.Generic.I
 M: System.Void Mono.Rocks.IEnumerableRocks::Convert(System.Collections.Generic.IEnumerable`1<TSource>,TValue1&,TValue2&,TValue3&)
 M: System.Void Mono.Rocks.IEnumerableRocks::Convert(System.Collections.Generic.IEnumerable`1<TSource>,TValue1&,TValue2&,TValue3&,TValue4&)
 
+# OK: We're following System.Nullable<T>'s public interface
+R: Gendarme.Rules.Design.ConsiderConvertingMethodToPropertyRule
+M: T Mono.Rocks.Maybe`1::GetValueOrDefault()
+
+# OK: How do you specify a value that means "no flags" w/o a 0 value?
+R: Gendarme.Rules.Design.FlagsShouldNotDefineAZeroValueRule
+T: Mono.Rocks.TextReaderLineOptions
+
+# OK: Stylistic choice
+R: Gendarme.Rules.Exceptions.DontSwallowErrorsCatchingNonspecificExceptionsRule
+M: Mono.Rocks.Maybe`1<T> Mono.Rocks.Maybe::TryParse(System.String)
+
+# OK: Stylistic choice (the `IEnumerable<T> iter` member is disposed when we
+#     reach the end of the list).
+R: Gendarme.Rules.Design.TypesWithDisposableFieldsShouldBeDisposableRule
+T: Mono.Rocks.Cons`1
+
 # OK - Tuple is a special case (disables warnings on _1, etc.)
 R: Gendarme.Rules.Naming.UseCorrectCasingRule
 T: Mono.Rocks.Tuple`1
@@ -29,6 +50,7 @@ T: Mono.Rocks.Tuple`4
 
 # OK - Tuple is a special case (disables "Collection" suffix)
 R: Gendarme.Rules.Naming.UseCorrectSuffixRule
+T: Mono.Rocks.Cons`1
 T: Mono.Rocks.Tuple
 T: Mono.Rocks.Tuple`1
 T: Mono.Rocks.Tuple`2

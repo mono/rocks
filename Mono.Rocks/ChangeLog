@@ -1,5 +1,11 @@
 2008-09-09  Jonathan Pryor  <jpryor@novell.com>
 
+	* Cons.cs: Insert a MemoryBarrier() around the double-checked locking.
+	  Fix gendarme-alerted ArgumentOutOfRangeException usage.
+	* Maybe.cs: Provide operator== and operator!= on Maybe<T>.
+
+2008-09-09  Jonathan Pryor  <jpryor@novell.com>
+
 	* Maybe.cs:
 	  - Alter the semantics of Maybe<T>: Maybe<T> should not be able to 
 	    hold null values, so the constructor now throws 

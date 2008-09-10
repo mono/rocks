@@ -96,6 +96,7 @@ namespace Mono.Rocks {
 							} finally {
 								iter = null;
 							}
+							Thread.MemoryBarrier();
 						}
 					}
 				}
@@ -148,7 +149,7 @@ namespace Mono.Rocks {
 		public T ElementAt (int index)
 		{
 			if (index < 0)
-				throw new ArgumentOutOfRangeException ();
+				throw new ArgumentOutOfRangeException ("index");
 			Cons<T> c = this;
 			while (--index >= 0) {
 				c = c.Tail;
