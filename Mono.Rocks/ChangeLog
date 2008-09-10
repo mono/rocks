@@ -1,3 +1,23 @@
+2008-09-09  Jonathan Pryor  <jpryor@novell.com>
+
+	* Maybe.cs:
+	  - Alter the semantics of Maybe<T>: Maybe<T> should not be able to 
+	    hold null values, so the constructor now throws 
+	    ArgumentNullException if this is attempted, i.e.
+	    `new Maybe<string>(null)` now throws.  
+	  - Remove Maybe.Create() in lieu of the .Just() extension method (see
+	    Object.cs).
+	  - Add Maybe.TryParse(), which uses System.ComponentModel.TypeConverter
+	    to convert a string to an arbitrary type.  If it fails, then
+	    Maybe<T>.Nothing is returned instead of throwing an exception.
+	  - Maybe.When() now requires non-null values.
+	* Nullable.cs: Remove .ToNullable(), as it's primary purpose was to
+	  make Sequence.GenerateReverse() livable, but GenerateReverse() now
+	  uses Maybe<T>.  Add .Just() and .ToMaybe() for nullable types.
+	* Object.cs: Add .Just() extension method, which converts a value to a
+	  Maybe<T> but throws an ArgumentNullException if the value is null,
+	  and alter .ToMaybe() to return Maybe<T>.Nothing if value is null.
+
 2008-09-08  Jonathan Pryor  <jpryor@novell.com>
 
 	* TextReader.cs: Add a .Lines(TextReaderLineOptions) overload, to control

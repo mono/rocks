@@ -32,22 +32,29 @@
 //
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq.Expressions;
 
 namespace Mono.Rocks {
 
 	public static class Maybe {
 
-		public static Maybe<T> Create<T> (T value)
+		public static Maybe<T> TryParse<T> (string value)
 		{
-			return new Maybe<T>(value);
+			TypeConverter c = TypeDescriptor.GetConverter (typeof (T));
+			try {
+				return new Maybe<T> ((T) c.ConvertFromString (value));
+			}
+			catch {
+				return Maybe<T>.Nothing;
+			}
 		}
 
 		public static Maybe<T> When<T> (bool condition, T value)
 		{
 			if (condition)
-				return Create (value);
-			return new Maybe<T>();
+				return value.Just ();
+			return Maybe<T>.Nothing;
 		}
 
 		public static Maybe<T> When<T> (bool condition, Func<T> creator)
@@ -56,8 +63,8 @@ namespace Mono.Rocks {
 				throw new ArgumentNullException ("creator");
 
 			if (condition)
-				return Create (creator ());
-			return new Maybe<T>();
+				return creator ().Just ();
+			return Maybe<T>.Nothing;
 		}
 	}
 
@@ -84,7 +91,7 @@ namespace Mono.Rocks {
 			Maybe<TCollection> n = selector (self.Value);
 			if (!n.HasValue)
 				return Maybe<TResult>.Nothing;
-			return resultSelector(self.Value, n.Value).ToMaybe();
+			return resultSelector(self.Value, n.Value).Just ();
 		}
 #endregion
 	}
@@ -95,6 +102,9 @@ namespace Mono.Rocks {
 
 		public Maybe (T value)
 		{
+			if (value == null)
+				throw new ArgumentNullException ("value");
+
 			this.value = value;
 			has_value  = true;
 		}

@@ -1,5 +1,5 @@
 //
-// Nullable.cs: C# Lambda Expression Helpers.
+// Nullable.cs: Nullable<T> extension methods.
 //
 // Author:
 //   Jonathan Pryor  <jpryor@novell.com>
@@ -31,10 +31,20 @@ namespace Mono.Rocks {
 
 	public static class NullableRocks {
 
-		public static TValue? ToNullable<TValue> (this TValue self)
-			where TValue : struct
+		public static Maybe<T> Just<T> (this T? self)
+			where T : struct
 		{
-			return self;
+			if (!self.HasValue)
+				throw new ArgumentNullException ("self");
+			return new Maybe<T> (self.Value);
+		}
+
+		public static Maybe<T> ToMaybe<T> (this T? self)
+			where T : struct
+		{
+			if (!self.HasValue)
+				return Maybe<T>.Nothing;
+			return new Maybe<T> (self.Value);
 		}
 	}
 }

@@ -49,8 +49,15 @@ namespace Mono.Rocks {
 			throw new InvalidOperationException ("no match");
 		}
 
+		public static Maybe<T> Just<T> (this T self)
+		{
+			return new Maybe<T> (self);
+		}
+
 		public static Maybe<T> ToMaybe<T> (this T self)
 		{
+			if (self == null)
+				return Maybe<T>.Nothing;
 			return new Maybe<T> (self);
 		}
 

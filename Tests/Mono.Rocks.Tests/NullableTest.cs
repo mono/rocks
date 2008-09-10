@@ -37,10 +37,39 @@ namespace Mono.Rocks.Tests {
 	[TestFixture]
 	public class NullableTest : BaseRocksFixture {
 
-		[Test]
-		public void ToNullable ()
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Just_SelfNull ()
 		{
-			Assert.AreEqual (42, 42.ToNullable ());
+			int? n = null;
+			n.Just ();
+		}
+
+		[Test]
+		public void Just ()
+		{
+			Assert.AreEqual (typeof(Maybe<int>),
+					42.Just ().GetType ());
+			Assert.AreEqual ("42",
+					42.Just ().ToString ());
+			Assert.IsTrue (
+					42.Just ().HasValue);
+			Assert.AreEqual (42,
+					42.Just ().Value);
+		}
+
+		[Test]
+		public void ToMaybe ()
+		{
+			int?       n = null;
+			Maybe<int> m = n.ToMaybe ();
+			Assert.AreEqual (Maybe<int>.Nothing, m);
+			Assert.IsFalse (m.HasValue);
+
+			n = 42;
+			m = n.ToMaybe ();
+			Assert.AreEqual (42.Just (), m);
+			Assert.IsTrue (m.HasValue);
+			Assert.AreEqual (42, m.Value);
 		}
 	}
 }

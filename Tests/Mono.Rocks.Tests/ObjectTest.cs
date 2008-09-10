@@ -62,28 +62,52 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("foo",
 				"foo".Match (
 					s => Maybe.When (s.Length != 3, "bar!"),
-					s => Maybe.Create (s)));
+					s => s.Just ());
 			Assert.AreEqual ("bar!",
 				5.Match (
 					v => Maybe.When (v != 3, "bar!"),
-					v => Maybe.Create (v.ToString ())));
+					v => v.ToString ().Just()));
 #endif
 			var m = new Func<string, Maybe<int>>[] {
 				v => Maybe.When (v == "bar",    1),
 				v => Maybe.When (v.Length == 5, 2),
-				v => Maybe.Create (-1),
+				v => (-1).Just (),
 			};
 			Assert.AreEqual (1, "bar".Match (m));
 			Assert.AreEqual (2, "12345".Match (m));
 			Assert.AreEqual (-1, "*default*".Match (m));
 		}
 
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Just_SelfNull ()
+		{
+			string        s = null;
+			Maybe<string> r = s.Just ();
+		}
+
+		[Test]
+		public void Just ()
+		{
+			Maybe<string> r = "foo".Just ();
+			Assert.AreEqual (typeof(Maybe<string>), r.GetType ());
+			Assert.IsTrue (r.HasValue);
+			Assert.AreEqual ("foo", r.ToString());
+			Assert.AreEqual ("foo", r.Value);
+		}
+
 		[Test]
 		public void ToMaybe ()
 		{
-			Maybe<int> r = 42.ToMaybe ();
+			string        s = null;
+			Maybe<string> r = s.ToMaybe ();
+			Assert.AreEqual (Maybe<string>.Nothing, r);
+			Assert.IsFalse (r.HasValue);
+
+			s = "foo";
+			r = s.ToMaybe ();
+			Assert.AreEqual ("foo".Just (), r);
 			Assert.IsTrue (r.HasValue);
-			Assert.AreEqual (42, r.Value);
+			Assert.AreEqual ("foo", r.Value);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]

@@ -42,14 +42,6 @@ namespace Mono.Rocks.Tests {
 	[TestFixture]
 	public class MaybeTest : BaseRocksFixture {
 
-		[Test]
-		public void Create ()
-		{
-			Maybe<int> n = Maybe.Create (42);
-			Assert.IsTrue (n.HasValue);
-			Assert.AreEqual (42, n.Value);
-		}
-
 		[Test, ExpectedException (typeof (InvalidOperationException))]
 		public void Maybe_Nothing ()
 		{
@@ -57,6 +49,28 @@ namespace Mono.Rocks.Tests {
 			Assert.IsFalse (n.HasValue);
 			Assert.AreEqual (n, Maybe<int>.Nothing);
 			int x = n.Value;
+		}
+
+		[Test]
+		public void TryParse ()
+		{
+			Maybe<int> n;
+
+			n = Maybe.TryParse<int> (null);
+			Assert.IsFalse (n.HasValue);
+
+			n = Maybe.TryParse<int> ("");
+			Assert.IsFalse (n.HasValue);
+
+			n = Maybe.TryParse<int> ("foo");
+			Assert.IsFalse (n.HasValue);
+
+			n = Maybe.TryParse<int> ("42.01");
+			Assert.IsFalse (n.HasValue);
+
+			n = Maybe.TryParse<int> ("42");
+			Assert.IsTrue (n.HasValue);
+			Assert.AreEqual (42, n.Value);
 		}
 
 		[Test]
