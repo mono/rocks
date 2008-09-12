@@ -4858,9 +4858,18 @@
           <Parameter Name="self" Type="System.Nullable&lt;T&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="T">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T">
+          The type to convert into a <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </typeparam>
+          <param name="self">
+          A value of type <see cref="T:System.Nullable{T}" /> to convert into a 
+          <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </param>
+          <summary>
+          Create a new <see cref="T:Mono.Rocks.Maybe{T}" /> instance
+          initialized to a specified value.  The returned value will not be 
+          <see cref="F:Mono.Rocks.Maybe{T}.Nothing" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.Just``1(System.Nullable{``0})" />
       </Member>
@@ -4886,9 +4895,18 @@
           <Parameter Name="self" Type="System.Nullable&lt;T&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="T">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T">
+          The type to convert into a <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </typeparam>
+          <param name="self">
+          A value of type <see cref="T:System.Nullable{T}" /> to convert into a 
+          <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </param>
+          <summary>
+          Create a new <see cref="T:Mono.Rocks.Maybe{T}" /> instance
+          initialized to a specified value.  The returned value may be 
+          <see cref="F:Mono.Rocks.Maybe{T}.Nothing" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.NullableRocks" Member="M:Mono.Rocks.NullableRocks.ToMaybe``1(System.Nullable{``0})" />
       </Member>
@@ -4910,9 +4928,18 @@
           <Parameter Name="self" Type="T" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="T">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T">
+          The type to convert into a <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </typeparam>
+          <param name="self">
+          A value of type <typeparamref name="T" /> to convert into a 
+          <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </param>
+          <summary>
+          Create a new <see cref="T:Mono.Rocks.Maybe{T}" /> instance
+          initialized to a specified value.  The returned value will not be 
+          <see cref="F:Mono.Rocks.Maybe{T}.Nothing" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.ObjectRocks" Member="M:Mono.Rocks.ObjectRocks.Just``1(``0)" />
       </Member>
@@ -4942,11 +4969,22 @@
           </Parameter>
         </Parameters>
         <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="matchers">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TSource">The source type.</typeparam>
+          <typeparam name="TResult">The result type.</typeparam>
+          <param name="self">
+          A value of type <typeparamref name="TSource" /> to convert to 
+          <typeparamref name="TResult" />.
+        </param>
+          <param name="matchers">
+          A <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+          array containing the conversion routines to try, in order, to
+          convert <paramref name="self" /> into a 
+          <typeparamref name="TResult" />.
+        </param>
+          <summary>
+          Converts the <typeparamref name="TSource" /> instance 
+          <paramref name="self" /> into a <typeparamref name="TResult" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.ObjectRocks" Member="M:Mono.Rocks.ObjectRocks.Match``2(``0,System.Func{``0,Mono.Rocks.Maybe{``1}}[])" />
       </Member>
@@ -4968,9 +5006,18 @@
           <Parameter Name="self" Type="T" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="T">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T">
+          The type to convert into a <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </typeparam>
+          <param name="self">
+          A value of type <typeparamref name="T" /> to convert into a 
+          <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </param>
+          <summary>
+          Create a new <see cref="T:Mono.Rocks.Maybe{T}" /> instance
+          initialized to a specified value.  The returned value may be 
+          <see cref="F:Mono.Rocks.Maybe{T}.Nothing" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.ObjectRocks" Member="M:Mono.Rocks.ObjectRocks.ToMaybe``1(``0)" />
       </Member>
@@ -5343,7 +5390,7 @@
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
           which will return all lines of text from <paramref name="self" /> 
-          without <see cref="T:System.IO.TextReader.Close" />ing 
+          without <see cref="M:System.IO.TextReader.Close" />ing 
           <paramref name="self" />.
         </summary>
         </Docs>
@@ -5365,9 +5412,20 @@
           <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="options">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to read lines from.
+        </param>
+          <param name="options">
+          A <see cref="T:Mono.Rocks.TextReaderRocksOptions" /> controlling
+          method execution.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all lines of text from <paramref name="self" />
+          while optionally <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Lines(System.IO.TextReader,Mono.Rocks.TextReaderRocksOptions)" />
       </Member>
@@ -5393,7 +5451,7 @@
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
           which will return all words from <paramref name="self" />
-          without <see cref="T:System.IO.TextReader.Close" />ing 
+          without <see cref="M:System.IO.TextReader.Close" />ing 
           <paramref name="self" />.
         </summary>
         </Docs>
@@ -5415,9 +5473,20 @@
           <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="options">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to extract words from.
+        </param>
+          <param name="options">
+          A <see cref="T:Mono.Rocks.TextReaderRocksOptions" /> controlling
+          method execution.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />
+          while optionally <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader,Mono.Rocks.TextReaderRocksOptions)" />
       </Member>

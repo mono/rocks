@@ -135,9 +135,22 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>
+          Gets a valud indicating whether the current 
+          <see cref="T:Mono.Rocks.Maybe{T}" /> instance has a value.
+        </summary>
+        <value>
+          <see langword="true" /> if the current 
+          <see cref="T:Mono.Rocks.Maybe{T}" /> instance has a value;
+          otherwise, <see langword="false" />.
+        </value>
+        <remarks>
+          If the <see cref="P:Mono.Rocks.Maybe{T}.HasValue" /> property is
+          <see langword="true" />, the value of the current 
+          <see cref="T:Mono.Rocks.Maybe{T}" /> instance can be accessed via
+          the <see cref="P:Mono.Rocks.Maybe{T}.Value" /> property.
+        </remarks>
+        <altmember cref="P:Mono.Rocks.Maybe{T}.Value" />
       </Docs>
     </Member>
     <Member MemberName="Nothing">
@@ -222,9 +235,24 @@
         <ReturnType>T</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <summary>
+          Gets the value of the current 
+          <see cref="T:Mono.Rocks.Maybe{T}" /> instance.
+        </summary>
+        <value>
+          If <see cref="P:Mono.Rocks.Maybe{T}.HasValue" /> is 
+          <see langword="true" />, then the value of the current
+          <see cref="T:Mono.Rocks.Maybe{T}" /> instance; otherwise,
+          an exception is thrown.
+        </value>
+        <remarks>
+        </remarks>
+        <exception cref="T:System.InvalidOperationException">
+          <see cref="P:Mono.Rocks.Maybe{T}.HasValue" /> is
+          <see langword="false" />, and the current 
+          <see cref="T:Mono.Rocks.Maybe{T}" /> instance contains no value.
+        </exception>
+        <altmember cref="P:Mono.Rocks.Maybe{T}.HasValue" />
       </Docs>
     </Member>
   </Members>

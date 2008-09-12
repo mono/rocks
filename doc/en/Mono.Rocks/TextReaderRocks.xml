@@ -111,9 +111,6 @@
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
           which will return all lines of text from <paramref name="self" />.
         </returns>
-        <exception cref="T:System.ArgumentNullException">
-          <paramref name="self" /> is <see langword="null" />.
-        </exception>
         <remarks>
           <para>
             This method is implemented by using deferred execution.
@@ -130,6 +127,9 @@
             <see cref="M:System.IO.TextReader.ReadLine" />.
           </block>
         </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
         <altmember cref="M:System.IO.TextReader.ReadLine" />
       </Docs>
     </Member>

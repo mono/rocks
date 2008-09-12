@@ -40,11 +40,40 @@
         <Parameter Name="self" Type="T" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="T">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="T">
+          The type to convert into a <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </typeparam>
+        <param name="self">
+          A value of type <typeparamref name="T" /> to convert into a 
+          <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </param>
+        <summary>
+          Create a new <see cref="T:Mono.Rocks.Maybe{T}" /> instance
+          initialized to a specified value.  The returned value will not be 
+          <see cref="F:Mono.Rocks.Maybe{T}.Nothing" />.
+        </summary>
+        <returns>
+          <para>
+            A new <see cref="T:Mono.Rocks.Maybe{T}" /> instance
+            initialized to a specified value.
+          </para>
+          <para>
+            The returned value will not be 
+            <see cref="F:Mono.Rocks.Maybe{T}.Nothing" />.
+          </para>
+        </returns>
+        <remarks>
+          <para>
+            Use this method when you want to ensure that 
+            <see cref="T:Mono.Rocks.Maybe{T}" /> instance is created in which
+						<see cref="P:Mono.Rocks.Maybe{T}.Value" /> will not throw.
+          </para>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <typeparamref name="T" /> is a reference type and
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
+        <altmember cref="M:Mono.Rocks.ObjectRocks.ToMaybe``1(``0)" />
       </Docs>
     </Member>
     <Member MemberName="Match&lt;TSource,TResult&gt;">
@@ -76,13 +105,71 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <typeparam name="TSource">To be added.</typeparam>
-        <typeparam name="TResult">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="matchers">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="TSource">The source type.</typeparam>
+        <typeparam name="TResult">The result type.</typeparam>
+        <param name="self">
+          A value of type <typeparamref name="TSource" /> to convert to 
+          <typeparamref name="TResult" />.
+        </param>
+        <param name="matchers">
+          A <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+          array containing the conversion routines to try, in order, to
+          convert <paramref name="self" /> into a 
+          <typeparamref name="TResult" />.
+        </param>
+        <summary>
+          Converts the <typeparamref name="TSource" /> instance 
+          <paramref name="self" /> into a <typeparamref name="TResult" />.
+        </summary>
+        <returns>
+          A value of type <typeparamref name="TResult" />, as returned by one
+          of the conversion delegates in <paramref name="matchers" />.
+        </returns>
+        <remarks>
+          <block subset="none" type="behaviors">
+            <para>
+              <paramref name="self" /> is converted into a 
+              <typeparamref name="TResult" /> instance by trying each
+              <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+              within <paramref name="matchers" />.
+            </para>
+            <para>
+              This method returns the value of
+              where <see cref="P:Mono.Rocks.Maybe{TResult}.Value" /> 
+              for the first delegate to return a
+              <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+              where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+              is <see langword="true" />.
+            </para>
+            <para>
+              If no 
+              <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+              returns a 
+              <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+              where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+              is <see langword="true" />, then an
+              <see cref="T:System.InvalidOperationException" /> is thrown.
+            </para>
+          </block>
+          <code lang="C#">
+var s = 5.Match (
+    v =&gt; Maybe.When (v != 3, "bar!"),
+    v =&gt; v.ToString ().Just());
+Console.WriteLine (s);  // prints "bar!"</code>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="matchers" /> is <see langword="null" />.
+        </exception>
+        <exception cref="T:System.InvalidOperationException">
+          None of the 
+          <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+          delegates within <paramref name="matchers" /> returned a 
+          <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance where
+          <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" /> was
+          <see langword="true" />.
+        </exception>
+        <altmember cref="M:Mono.Rocks.Maybe.When``1(System.Boolean,``0)" />
+        <altmember cref="M:Mono.Rocks.Maybe.When``1(System.Boolean,System.Func{``0})" />
       </Docs>
     </Member>
     <Member MemberName="ToMaybe&lt;T&gt;">
@@ -106,11 +193,40 @@
         <Parameter Name="self" Type="T" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="T">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="T">
+          The type to convert into a <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </typeparam>
+        <param name="self">
+          A value of type <typeparamref name="T" /> to convert into a 
+          <see cref="T:Mono.Rocks.Maybe{T}" />.
+        </param>
+        <summary>
+          Create a new <see cref="T:Mono.Rocks.Maybe{T}" /> instance
+          initialized to a specified value.  The returned value may be 
+          <see cref="F:Mono.Rocks.Maybe{T}.Nothing" />.
+        </summary>
+        <returns>
+          <para>
+            A new <see cref="T:Mono.Rocks.Maybe{T}" /> instance
+            initialized to a specified value.
+          </para>
+          <block subset="none" type="note">
+            The value returned may be 
+            <see cref="F:Mono.Rocks.Maybe{T}.Nothing" />.
+          </block>
+        </returns>
+        <remarks>
+          <para>
+            Use this method when you want to ensure that a possibly invalid
+            <see cref="T:Mono.Rocks.Maybe{T}" /> instance is created.
+            If <typeparamref name="T" /> is a reference type and 
+            <paramref name="self" /> is <see langword="null" />, then
+            <see cref="F:Mono.Rocks.Maybe{T}.Nothing" /> will be returned;
+            otherwise, a new <see cref="T:Mono.Rocks.Maybe{T}" /> will be
+            created containing the value <paramref name="self" />.
+          </para>
+        </remarks>
+        <altmember cref="M:Mono.Rocks.ObjectRocks.Just``1(``0)" />
       </Docs>
     </Member>
     <Member MemberName="With&lt;TSource,TResult&gt;">
