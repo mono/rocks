@@ -1,3 +1,10 @@
+2008-09-12  Jonathan Pryor  <jpryor@novell.com>
+
+	* mktuples: Add .Match() method, which is a "nicer" version of
+	  ObjectRocks.Match() for use with tuples.
+	* doc/fixup.sed: Allow .Match() documentation to be imported.
+	* doc/en/**: Flush.
+
 2008-09-11  Jonathan Pryor  <jpryor@novell.com>
 
 	* doc/en/**: Flush.

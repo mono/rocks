@@ -1,3 +1,7 @@
+2008-09-12  Jonathan Pryor  <jpryor@novell.com>
+
+	* Tuples.cs: Flush (adds .Match() method).
+
 2008-09-10  Jonathan Pryor  <jpryor@novell.com>
 
 	* TextReader.cs: Add .Words(TextReaderRocksOptions) overload, and change

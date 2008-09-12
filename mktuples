@@ -647,6 +647,76 @@ returning the value returned by <paramref name="func"/>.));
 				}
 			);
 
+			$f = Generator::GetDocFunc ($n, 1, $n, "Mono.Rocks.Maybe{TResult}");
+			$g->Write ("\n");
+			$g->XmlTypeparam ("TResult", "The return type.");
+			$g->XmlParam ("matchers", 
+qq(A <see cref="T:$f" /> 
+array containing the conversion routines to use to convert 
+the current <see cref="T:$type" /> instance into a 
+<typeparamref name="TResult" /> value.));
+			$g->XmlSummary (qq(Converts the current <see cref="T:$type"/> instance into a <typeparamref name="TResult"/>.));
+			$g->XmlReturns (qq(The <typeparamref name="TResult"/> returned by one of the <paramref name="matchers"/>.));
+			$g->XmlRemarks (qq(<para>
+ <block subset="none" type="behaviors">
+  <para>
+   The current <see cref="T:$type" /> instance is converted into a 
+   <typeparamref name="TResult" /> instance by trying each
+   <see cref="T:$f" />
+   within <paramref name="matchers" />.
+  </para>
+  <para>
+   This method returns 
+   <see cref="P:Mono.Rocks.Maybe{TResult}.Value" /> 
+   for the first delegate to return a
+   <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+   where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+   is <see langword="true" />.
+  </para>
+  <para>
+   If no 
+   <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+   returns a 
+   <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+   where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+   is <see langword="true" />, then an
+   <see cref="T:System.InvalidOperationException" /> is thrown.
+  </para>
+ </block>
+ <code lang="C#">
+var    a = Tuple.Create (1, 2);
+string b = a.Match (
+    (t, v) =&gt; Match.When ( t + v == 3, "foo!"),
+    (t, v) =&gt; "*default*".Just ());
+Console.WriteLine (b);  // prints "foo!"</code>
+</para>));
+			$g->XmlException ("System.ArgumentNullException", 
+				qq(<paramref name="matchers"/> is <see langword="null"/>.));
+			$g->XmlException ("System.InvalidOperationException", 
+qq(None of the 
+<see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+delegates within <paramref name="matchers" /> returned a 
+<see cref="T:Mono.Rocks.Maybe{TResult}" /> instance where
+<see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" /> was
+<see langword="true" />.));
+			$g->Method ("public TResult ", "Match<TResult>", 
+				sub { 
+					$g->Write ("params ");
+					$g->Func ($n)->Write ("<")->TypeParameterList ($n)
+						->Write (", Maybe<TResult>>[] matchers");
+				},
+				sub { 
+					$g->Write ("if (matchers == null)\n")
+						->Write ("\tthrow new ArgumentNullException (\"matchers\");\n");
+					$g->Write ("foreach (var m in matchers) {\n")
+						->Write ("\tvar r = m (")->ValueList ($n)->Write (");\n")
+						->Write ("\tif (r.HasValue)\n")
+						->Write ("\t\treturn r.Value;\n")
+						->Write ("}\n");
+					$g->Write ("throw new InvalidOperationException (\"no match\");\n");
+				}
+			);
+
 			$g->Write ("\n");
 			$g->XmlSummary (qq(Returns a <see cref="T:System.String"/> representation of the value of the current instance.));
 			$g->XmlReturns (qq(A <see cref="T:System.String"/> representation of the value of the current instance.));

@@ -932,6 +932,79 @@ namespace Mono.Rocks {
 			return func (value);
 		}
 
+		/// <typeparam name="TResult">
+		///   The return type.
+		/// </typeparam>
+		/// <param name="matchers">
+		///   A <see cref="T:System.Func{T,Mono.Rocks.Maybe{TResult}}" /> 
+		///   array containing the conversion routines to use to convert 
+		///   the current <see cref="T:Mono.Rocks.Tuple{T}" /> instance into a 
+		///   <typeparamref name="TResult" /> value.
+		/// </param>
+		/// <summary>
+		///   Converts the current <see cref="T:Mono.Rocks.Tuple{T}"/> instance into a <typeparamref name="TResult"/>.
+		/// </summary>
+		/// <returns>
+		///   The <typeparamref name="TResult"/> returned by one of the <paramref name="matchers"/>.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    <block subset="none" type="behaviors">
+		///     <para>
+		///      The current <see cref="T:Mono.Rocks.Tuple{T}" /> instance is converted into a 
+		///      <typeparamref name="TResult" /> instance by trying each
+		///      <see cref="T:System.Func{T,Mono.Rocks.Maybe{TResult}}" />
+		///      within <paramref name="matchers" />.
+		///     </para>
+		///     <para>
+		///      This method returns 
+		///      <see cref="P:Mono.Rocks.Maybe{TResult}.Value" /> 
+		///      for the first delegate to return a
+		///      <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+		///      where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+		///      is <see langword="true" />.
+		///     </para>
+		///     <para>
+		///      If no 
+		///      <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+		///      returns a 
+		///      <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+		///      where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+		///      is <see langword="true" />, then an
+		///      <see cref="T:System.InvalidOperationException" /> is thrown.
+		///     </para>
+		///    </block>
+		///    <code lang="C#">
+		///   var    a = Tuple.Create (1, 2);
+		///   string b = a.Match (
+		///       (t, v) =&gt; Match.When ( t + v == 3, "foo!"),
+		///       (t, v) =&gt; "*default*".Just ());
+		///   Console.WriteLine (b);  // prints "foo!"</code>
+		///   </para>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="matchers"/> is <see langword="null"/>.
+		/// </exception>
+		/// <exception cref="T:System.InvalidOperationException">
+		///   None of the 
+		///   <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+		///   delegates within <paramref name="matchers" /> returned a 
+		///   <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance where
+		///   <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" /> was
+		///   <see langword="true" />.
+		/// </exception>
+		public TResult Match<TResult> (params Func<T, Maybe<TResult>>[] matchers)
+		{
+			if (matchers == null)
+				throw new ArgumentNullException ("matchers");
+			foreach (var m in matchers) {
+				var r = m (value);
+				if (r.HasValue)
+					return r.Value;
+			}
+			throw new InvalidOperationException ("no match");
+		}
+
 		/// <summary>
 		///   Returns a <see cref="T:System.String"/> representation of the value of the current instance.
 		/// </summary>
@@ -1767,6 +1840,79 @@ namespace Mono.Rocks {
 			if (func == null)
 				throw new ArgumentNullException ("func");
 			return func (value1, value2);
+		}
+
+		/// <typeparam name="TResult">
+		///   The return type.
+		/// </typeparam>
+		/// <param name="matchers">
+		///   A <see cref="T:System.Func{T1,T2,Mono.Rocks.Maybe{TResult}}" /> 
+		///   array containing the conversion routines to use to convert 
+		///   the current <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> instance into a 
+		///   <typeparamref name="TResult" /> value.
+		/// </param>
+		/// <summary>
+		///   Converts the current <see cref="T:Mono.Rocks.Tuple{T1, T2}"/> instance into a <typeparamref name="TResult"/>.
+		/// </summary>
+		/// <returns>
+		///   The <typeparamref name="TResult"/> returned by one of the <paramref name="matchers"/>.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    <block subset="none" type="behaviors">
+		///     <para>
+		///      The current <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> instance is converted into a 
+		///      <typeparamref name="TResult" /> instance by trying each
+		///      <see cref="T:System.Func{T1,T2,Mono.Rocks.Maybe{TResult}}" />
+		///      within <paramref name="matchers" />.
+		///     </para>
+		///     <para>
+		///      This method returns 
+		///      <see cref="P:Mono.Rocks.Maybe{TResult}.Value" /> 
+		///      for the first delegate to return a
+		///      <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+		///      where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+		///      is <see langword="true" />.
+		///     </para>
+		///     <para>
+		///      If no 
+		///      <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+		///      returns a 
+		///      <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+		///      where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+		///      is <see langword="true" />, then an
+		///      <see cref="T:System.InvalidOperationException" /> is thrown.
+		///     </para>
+		///    </block>
+		///    <code lang="C#">
+		///   var    a = Tuple.Create (1, 2);
+		///   string b = a.Match (
+		///       (t, v) =&gt; Match.When ( t + v == 3, "foo!"),
+		///       (t, v) =&gt; "*default*".Just ());
+		///   Console.WriteLine (b);  // prints "foo!"</code>
+		///   </para>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="matchers"/> is <see langword="null"/>.
+		/// </exception>
+		/// <exception cref="T:System.InvalidOperationException">
+		///   None of the 
+		///   <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+		///   delegates within <paramref name="matchers" /> returned a 
+		///   <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance where
+		///   <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" /> was
+		///   <see langword="true" />.
+		/// </exception>
+		public TResult Match<TResult> (params Func<T1, T2, Maybe<TResult>>[] matchers)
+		{
+			if (matchers == null)
+				throw new ArgumentNullException ("matchers");
+			foreach (var m in matchers) {
+				var r = m (value1, value2);
+				if (r.HasValue)
+					return r.Value;
+			}
+			throw new InvalidOperationException ("no match");
 		}
 
 		/// <summary>
@@ -2634,6 +2780,79 @@ namespace Mono.Rocks {
 			if (func == null)
 				throw new ArgumentNullException ("func");
 			return func (value1, value2, value3);
+		}
+
+		/// <typeparam name="TResult">
+		///   The return type.
+		/// </typeparam>
+		/// <param name="matchers">
+		///   A <see cref="T:System.Func{T1,T2,T3,Mono.Rocks.Maybe{TResult}}" /> 
+		///   array containing the conversion routines to use to convert 
+		///   the current <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> instance into a 
+		///   <typeparamref name="TResult" /> value.
+		/// </param>
+		/// <summary>
+		///   Converts the current <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}"/> instance into a <typeparamref name="TResult"/>.
+		/// </summary>
+		/// <returns>
+		///   The <typeparamref name="TResult"/> returned by one of the <paramref name="matchers"/>.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    <block subset="none" type="behaviors">
+		///     <para>
+		///      The current <see cref="T:Mono.Rocks.Tuple{T1, T2, T3}" /> instance is converted into a 
+		///      <typeparamref name="TResult" /> instance by trying each
+		///      <see cref="T:System.Func{T1,T2,T3,Mono.Rocks.Maybe{TResult}}" />
+		///      within <paramref name="matchers" />.
+		///     </para>
+		///     <para>
+		///      This method returns 
+		///      <see cref="P:Mono.Rocks.Maybe{TResult}.Value" /> 
+		///      for the first delegate to return a
+		///      <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+		///      where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+		///      is <see langword="true" />.
+		///     </para>
+		///     <para>
+		///      If no 
+		///      <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+		///      returns a 
+		///      <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+		///      where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+		///      is <see langword="true" />, then an
+		///      <see cref="T:System.InvalidOperationException" /> is thrown.
+		///     </para>
+		///    </block>
+		///    <code lang="C#">
+		///   var    a = Tuple.Create (1, 2);
+		///   string b = a.Match (
+		///       (t, v) =&gt; Match.When ( t + v == 3, "foo!"),
+		///       (t, v) =&gt; "*default*".Just ());
+		///   Console.WriteLine (b);  // prints "foo!"</code>
+		///   </para>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="matchers"/> is <see langword="null"/>.
+		/// </exception>
+		/// <exception cref="T:System.InvalidOperationException">
+		///   None of the 
+		///   <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+		///   delegates within <paramref name="matchers" /> returned a 
+		///   <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance where
+		///   <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" /> was
+		///   <see langword="true" />.
+		/// </exception>
+		public TResult Match<TResult> (params Func<T1, T2, T3, Maybe<TResult>>[] matchers)
+		{
+			if (matchers == null)
+				throw new ArgumentNullException ("matchers");
+			foreach (var m in matchers) {
+				var r = m (value1, value2, value3);
+				if (r.HasValue)
+					return r.Value;
+			}
+			throw new InvalidOperationException ("no match");
 		}
 
 		/// <summary>
@@ -3531,6 +3750,79 @@ namespace Mono.Rocks {
 			if (func == null)
 				throw new ArgumentNullException ("func");
 			return func (value1, value2, value3, value4);
+		}
+
+		/// <typeparam name="TResult">
+		///   The return type.
+		/// </typeparam>
+		/// <param name="matchers">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,Mono.Rocks.Maybe{TResult}}" /> 
+		///   array containing the conversion routines to use to convert 
+		///   the current <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> instance into a 
+		///   <typeparamref name="TResult" /> value.
+		/// </param>
+		/// <summary>
+		///   Converts the current <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}"/> instance into a <typeparamref name="TResult"/>.
+		/// </summary>
+		/// <returns>
+		///   The <typeparamref name="TResult"/> returned by one of the <paramref name="matchers"/>.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    <block subset="none" type="behaviors">
+		///     <para>
+		///      The current <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> instance is converted into a 
+		///      <typeparamref name="TResult" /> instance by trying each
+		///      <see cref="T:System.Func{T1,T2,T3,T4,Mono.Rocks.Maybe{TResult}}" />
+		///      within <paramref name="matchers" />.
+		///     </para>
+		///     <para>
+		///      This method returns 
+		///      <see cref="P:Mono.Rocks.Maybe{TResult}.Value" /> 
+		///      for the first delegate to return a
+		///      <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+		///      where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+		///      is <see langword="true" />.
+		///     </para>
+		///     <para>
+		///      If no 
+		///      <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+		///      returns a 
+		///      <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance
+		///      where <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" />
+		///      is <see langword="true" />, then an
+		///      <see cref="T:System.InvalidOperationException" /> is thrown.
+		///     </para>
+		///    </block>
+		///    <code lang="C#">
+		///   var    a = Tuple.Create (1, 2);
+		///   string b = a.Match (
+		///       (t, v) =&gt; Match.When ( t + v == 3, "foo!"),
+		///       (t, v) =&gt; "*default*".Just ());
+		///   Console.WriteLine (b);  // prints "foo!"</code>
+		///   </para>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="matchers"/> is <see langword="null"/>.
+		/// </exception>
+		/// <exception cref="T:System.InvalidOperationException">
+		///   None of the 
+		///   <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TResult}}" />
+		///   delegates within <paramref name="matchers" /> returned a 
+		///   <see cref="T:Mono.Rocks.Maybe{TResult}" /> instance where
+		///   <see cref="P:Mono.Rocks.Maybe{TResult}.HasValue" /> was
+		///   <see langword="true" />.
+		/// </exception>
+		public TResult Match<TResult> (params Func<T1, T2, T3, T4, Maybe<TResult>>[] matchers)
+		{
+			if (matchers == null)
+				throw new ArgumentNullException ("matchers");
+			foreach (var m in matchers) {
+				var r = m (value1, value2, value3, value4);
+				if (r.HasValue)
+					return r.Value;
+			}
+			throw new InvalidOperationException ("no match");
 		}
 
 		/// <summary>
