@@ -271,13 +271,6 @@ namespace Mono.Rocks {
 			return Sort (self, NaturalStringComparer.Default);
 		}
 
-		public static Cons<T> ToCons<T> (this IEnumerable<T> self)
-		{
-			Check.Self (self);
-
-			return new Cons<T> (self);
-		}
-
 		public static object ToTuple (this IEnumerable self)
 		{
 			Check.Self (self);

@@ -1,3 +1,11 @@
+2008-09-14  Jonathan Pryor  <jpryor@novell.com>
+
+	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Remove Mono.Rocks/Cons.cs 
+	  from the build.
+	* Mono.Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Remove
+	  Tests/Mono.Rocks.Tests/ConsTest.cs from the build.
+	* doc/en/**: Flush Cons<T> removal.
+
 2008-09-12  Jonathan Pryor  <jpryor@novell.com>
 
 	* mktuples: Add .Match() method, which is a "nicer" version of

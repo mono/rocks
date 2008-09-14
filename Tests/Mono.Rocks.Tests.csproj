@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Mono.Rocks.Tests\AssemblyInfo.cs" />
     <Compile Include="Mono.Rocks.Tests\BaseRocksFixture.cs" />
-    <Compile Include="Mono.Rocks.Tests\ConsTest.cs" />
     <Compile Include="Mono.Rocks.Tests\DelegateTest.cs" />
     <Compile Include="Mono.Rocks.Tests\ICustomAttributeProviderTest.cs" />
     <Compile Include="Mono.Rocks.Tests\IEnumerableTest.cs" />
