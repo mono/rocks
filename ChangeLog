@@ -1,3 +1,7 @@
+2008-09-15  Jonathan Pryor  <jpryor@novell.com>
+
+	* doc/en/**: Document StringRocks.
+
 2008-09-14  Jonathan Pryor  <jpryor@novell.com>
 
 	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Remove Mono.Rocks/Cons.cs 

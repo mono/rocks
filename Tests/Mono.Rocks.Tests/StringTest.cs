@@ -72,6 +72,11 @@ namespace Mono.Rocks.Tests {
 #endif
 
 			AssertAreSame (result, data);
+
+			#region Lines
+			Assert.IsTrue (new[]{"one", "two", "three"}
+					.SequenceEqual ("one\ntwo\nthree".Lines ()));
+			#endregion
 		}
 
 		[Test]
@@ -85,22 +90,26 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Words ()
 		{
+			#region Words
 			string[] expected = {"skip", "leading", "and", "trailing", "whitespace"};
 			string[] actual = 
 				"   skip  leading\r\n\tand trailing\vwhitespace   "
 				.Words ().ToArray ();
 			AssertAreSame (expected, actual);
+			#endregion
 		}
 
 		[Test]
 		public void Slice ()
 		{
+			#region Slice
 			var data = "0123456789";
 
-			Assert.AreEqual ("0", data.Slice (0, 1));
-			Assert.AreEqual ("89", data.Slice (8, 10));
-			Assert.AreEqual ("456789", data.Slice (4, -1));
-			Assert.AreEqual ("8", data.Slice (8, -2));
+			Assert.AreEqual ("0",       data.Slice (0, 1));
+			Assert.AreEqual ("89",      data.Slice (8, 10));
+			Assert.AreEqual ("456789",  data.Slice (4, -1));
+			Assert.AreEqual ("8",       data.Slice (8, -2));
+			#endregion
 		}
 
 		[Test]
@@ -122,6 +131,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Matches_NoOptions ()
 		{
+			#region Matches
 			string match = @"a - b
 			c - d
 			e - f";
@@ -131,6 +141,7 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("a - b", matches [0].Value);
 			Assert.AreEqual ("c - d", matches [1].Value);
 			Assert.AreEqual ("e - f", matches [2].Value);
+			#endregion
 		}
 
 		[Test]
@@ -166,6 +177,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void MatchValues_NoOptions ()
 		{
+			#region MatchValues
 			string match = @"a - b
 			c - d
 			e - f";
@@ -174,6 +186,7 @@ namespace Mono.Rocks.Tests {
 			string[] actual = match.MatchValues(@"\w+ - \w+").ToArray();
 
 			AssertAreSame (expected, actual);
+			#endregion
 		}
 
 		[Test]
@@ -198,6 +211,12 @@ namespace Mono.Rocks.Tests {
 			string[] actual = match.Captures(@"(\w+)").ToArray();
 
 			AssertAreSame (expected, actual);
+
+			#region Captures
+			Assert.IsTrue (
+					new[]{"a", "b", "c", "d"}.SequenceEqual (
+						"a - b - c - d".Captures (@"(\w+)")));
+			#endregion
 		}
 
 		[Test]
@@ -230,6 +249,15 @@ namespace Mono.Rocks.Tests {
 					returnedValues.Add (new KeyValuePair<string, string> (group.Key, s));
 
 			AssertAreSame (returnedValues, expectedValues);
+
+			#region CaptureNamedGroups
+			Assert.AreEqual ("flag=--; name=foo; value=bar",
+					"--foo=bar"
+					.CaptureNamedGroups (@"^(?<flag>--|-|/)(?<name>[^:=]+)((?<sep>[:=])(?<value>.*))?$")
+					.With (r => "flag=" + r ["flag"].Implode () + 
+						"; name=" + r ["name"].Implode () +
+						"; value=" + r ["value"].Implode ()));
+			#endregion
 		}
 
 		[Test]
@@ -262,8 +290,10 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void ToEnum ()
 		{
+			#region ToEnum
 			Assert.AreEqual (Foo.Gazonk, "Gazonk".ToEnum<Foo> ());
-			Assert.AreEqual (Foo.Bar, "Bar".ToEnum<Foo> ());
+			Assert.AreEqual (Foo.Bar,    "Bar".ToEnum<Foo> ());
+			#endregion
 		}
 
 		[Test]

@@ -1,3 +1,8 @@
+2008-09-15  Jonathan Pryor  <jpryor@novell.com>
+
+	* StringTest.cs: Add #regions and "prettify" the tests so that the tests can
+	  be included verbatim into the documentation.
+
 2008-09-14  Jonathan Pryor  <jpryor@novell.com>
 
 	* ConsTest.cs: Remove, as Cons<T> was removed.

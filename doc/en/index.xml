@@ -5069,9 +5069,18 @@
           <Parameter Name="regex" Type="System.String" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="regex">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> to apply a regular expression to.
+        </param>
+          <param name="regex">
+          A <see cref="T:System.String" /> containing the regular expression
+          to match <paramref name="self" /> against.
+        </param>
+          <summary>
+          Create a <see cref="T:System.Linq.ILookup{System.String,System.String}" />
+          containing all named groups within <paramref name="regex" /> and
+          the associated captured values within <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.CaptureNamedGroups(System.String,System.String)" />
       </Member>
@@ -5092,10 +5101,22 @@
           <Parameter Name="options" Type="System.Text.RegularExpressions.RegexOptions" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="regex">To be added.</param>
-          <param name="options">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> to apply a regular expression to.
+        </param>
+          <param name="regex">
+          A <see cref="T:System.String" /> containing the regular expression
+          to match <paramref name="self" /> against.
+        </param>
+          <param name="options">
+          A <see cref="T:System.Text.RegularExpressions.RegexOptions" />
+          containing options to control the regular expression.
+        </param>
+          <summary>
+          Create a <see cref="T:System.Linq.ILookup{System.String,System.String}" />
+          containing all named groups within <paramref name="regex" /> and
+          the associated captured values within <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.CaptureNamedGroups(System.String,System.String,System.Text.RegularExpressions.RegexOptions)" />
       </Member>
@@ -5115,9 +5136,18 @@
           <Parameter Name="regex" Type="System.String" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="regex">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> to apply a regular expression to.
+        </param>
+          <param name="regex">
+          A <see cref="T:System.String" /> containing the regular expression
+          to match <paramref name="self" /> against.
+        </param>
+          <summary>
+          Create a <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          containing all captured values within <paramref name="self" /> that 
+          match the regular expression <paramref name="regex" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Captures(System.String,System.String)" />
       </Member>
@@ -5138,10 +5168,22 @@
           <Parameter Name="options" Type="System.Text.RegularExpressions.RegexOptions" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="regex">To be added.</param>
-          <param name="options">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> to apply a regular expression to.
+        </param>
+          <param name="regex">
+          A <see cref="T:System.String" /> containing the regular expression
+          to match <paramref name="self" /> against.
+        </param>
+          <param name="options">
+          A <see cref="T:System.Text.RegularExpressions.RegexOptions" />
+          containing options to control the regular expression.
+        </param>
+          <summary>
+          Create a <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          containing all captured values within <paramref name="self" /> that 
+          match the regular expression <paramref name="regex" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Captures(System.String,System.String,System.Text.RegularExpressions.RegexOptions)" />
       </Member>
@@ -5187,9 +5229,18 @@
           <Parameter Name="regex" Type="System.String" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="regex">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> to apply a regular expression to.
+        </param>
+          <param name="regex">
+          A <see cref="T:System.String" /> containing the regular expression
+          to match <paramref name="self" /> against.
+        </param>
+          <summary>
+          Create a <see cref="T:System.Collections.Generic.IEnumerable{System.Text.RegularExpressions.Match}" />
+          containing all <see cref="T:System.Text.RegularExpressions.Match" />ed
+          text within <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Matches(System.String,System.String)" />
       </Member>
@@ -5210,10 +5261,22 @@
           <Parameter Name="options" Type="System.Text.RegularExpressions.RegexOptions" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="regex">To be added.</param>
-          <param name="options">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> to apply a regular expression to.
+        </param>
+          <param name="regex">
+          A <see cref="T:System.String" /> containing the regular expression
+          to match <paramref name="self" /> against.
+        </param>
+          <param name="options">
+          A <see cref="T:System.Text.RegularExpressions.RegexOptions" />
+          containing options to control the regular expression.
+        </param>
+          <summary>
+          Create a <see cref="T:System.Collections.Generic.IEnumerable{System.Text.RegularExpressions.Match}" />
+          containing all <see cref="T:System.Text.RegularExpressions.Match" />ed
+          text within <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)" />
       </Member>
@@ -5233,9 +5296,18 @@
           <Parameter Name="regex" Type="System.String" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="regex">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> to apply a regular expression to.
+        </param>
+          <param name="regex">
+          A <see cref="T:System.String" /> containing the regular expression
+          to match <paramref name="self" /> against.
+        </param>
+          <summary>
+          Create a <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          containing all text within <paramref name="self" /> that matches
+          <paramref name="regex" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.MatchValues(System.String,System.String)" />
       </Member>
@@ -5256,10 +5328,22 @@
           <Parameter Name="options" Type="System.Text.RegularExpressions.RegexOptions" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="regex">To be added.</param>
-          <param name="options">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> to apply a regular expression to.
+        </param>
+          <param name="regex">
+          A <see cref="T:System.String" /> containing the regular expression
+          to match <paramref name="self" /> against.
+        </param>
+          <param name="options">
+          A <see cref="T:System.Text.RegularExpressions.RegexOptions" />
+          containing options to control the regular expression.
+        </param>
+          <summary>
+          Create a <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          containing all text within <paramref name="self" /> that matches
+          <paramref name="regex" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.MatchValues(System.String,System.String,System.Text.RegularExpressions.RegexOptions)" />
       </Member>
@@ -5280,10 +5364,23 @@
           <Parameter Name="end" Type="System.Int32" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <param name="start">To be added.</param>
-          <param name="end">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.String" /> containing the string to 
+          substring.
+        </param>
+          <param name="start">
+          A <see cref="T:System.Int32" /> containing the start index of the
+          new <see cref="T:System.String" /> to create.
+        </param>
+          <param name="end">
+          A <see cref="T:System.Int32" /> containing the end index of the
+          new <see cref="T:System.String" /> to create.
+        </param>
+          <summary>
+          Creates a new <see cref="T:System.String" /> of 
+          <paramref name="self" /> using indexes of the start and end
+          position.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Slice(System.String,System.Int32,System.Int32)" />
       </Member>
@@ -5313,7 +5410,10 @@
           A <see cref="T:System.String" /> containing an enumeration value to
           convert into that enumeration value.
         </param>
-          <summary>To be added.</summary>
+          <summary>
+          Converts a <see cref="T:System.String" /> into an enumeration value
+          of type <typeparamref name="TEnum" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.ToEnum``1(System.String)" />
       </Member>
