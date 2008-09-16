@@ -51,16 +51,22 @@ namespace Mono.Rocks.Tests {
 		public void Iterate ()
 		{
 			// not entirely sure how you sanely test an infinite list...
+			#region Iterate
 			Assert.AreEqual ("16,8,4,2,1",
 					Sequence.Iterate (16, v => v / 2).Take (5).Implode (","));
+			Assert.AreEqual ("1,2,3,4,5",
+					Sequence.Iterate (1, v => v+1).Take (5).Implode (","));
+			#endregion
 		}
 
 		[Test]
 		public void Repeat ()
 		{
 			// not entirely sure how you sanely test an infinite list...
+			#region Repeat
 			Assert.AreEqual ("1,1,1,1,1",
 					Sequence.Repeat (1).Take (5).Implode (","));
+			#endregion
 		}
 
 		[Test]
@@ -74,10 +80,12 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void GenerateReverse ()
 		{
+			#region GenerateReverse
 			Assert.AreEqual ("10,9,8,7,6,5,4,3,2,1",
 				Sequence.GenerateReverse (10, 
 					b => Maybe.When (b > 0, Tuple.Create (b, b-1)))
 				.Implode (","));
+			#endregion
 		}
 	}
 }

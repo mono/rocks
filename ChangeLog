@@ -1,3 +1,7 @@
+2008-09-16  Jonathan Pryor  <jpryor@novell.com>
+
+	* doc/en/Mono.Rocks/Sequence.xml: Document Sequence.
+
 2008-09-15  Jonathan Pryor  <jpryor@novell.com>
 
 	* doc/en/**: Document StringRocks.

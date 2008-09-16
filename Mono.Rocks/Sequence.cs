@@ -33,18 +33,18 @@ namespace Mono.Rocks {
 
 	public static class Sequence {
 
-		public static IEnumerable<TSource> Iterate<TSource> (TSource value, Func<TSource, TSource> func)
+		public static IEnumerable<TSource> Iterate<TSource> (TSource value, Func<TSource, TSource> selector)
 		{
-			Check.Func (func);
+			Check.Selector (selector);
 
-			return CreateIterateIterator (value, func);
+			return CreateIterateIterator (value, selector);
 		}
 
-		private static IEnumerable<TSource> CreateIterateIterator<TSource> (TSource value, Func<TSource, TSource> func)
+		private static IEnumerable<TSource> CreateIterateIterator<TSource> (TSource value, Func<TSource, TSource> selector)
 		{
 			yield return value;
 			while (true)
-				yield return (value = func (value));
+				yield return (value = selector (value));
 		}
 
 		public static IEnumerable<TSource> Repeat<TSource> (TSource value)
