@@ -68,7 +68,7 @@ namespace Mono.Rocks {
 		{
 			return Compare (
 					x != null ? x.ToString () : "",
-					y != null ? x.ToString () : "");
+					y != null ? y.ToString () : "");
 		}
 	}
 }

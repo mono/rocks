@@ -4,6 +4,14 @@
     <AssemblyName>Mono.Rocks</AssemblyName>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
   </AssemblyInfo>
+  <ThreadingSafetyStatement>
+    This type is immutable, and is itself thread safe.  However, non-thread
+    safe types may be exposed via <see cref="P:Mono.Rocks.Maybe{T}.Value" />,
+    so even if <see cref="T:Mono.Rocks.Maybe{T}" /> is itself thread safe, it
+    may not be safe to fully use it in a thread safe fashion.  
+    (Full thread safety depends on the thread safety of 
+    <typeparamref name="T" />.)
+  </ThreadingSafetyStatement>
   <TypeParameters>
     <TypeParameter Name="T" />
   </TypeParameters>
