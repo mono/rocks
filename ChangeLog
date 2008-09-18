@@ -1,5 +1,9 @@
 2008-09-17  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/Mono.Rocks/Maybe`1.xml: Document Maybe<T>.
+
+2008-09-17  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/index.xml, doc/en/Mono.Rocks/Maybe.xml,
 	  doc/en/Mono.Rocks/MaybeRocks.xml: Document Maybe & MaybeRocks.
 

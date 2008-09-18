@@ -16,9 +16,75 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <typeparam name="T">To be added.</typeparam>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <typeparam name="T">
+      The type of the optional value.
+    </typeparam>
+    <summary>
+      Represents an optional value. An instance of 
+      <see cref="T:Mono.Rocks.Maybe{T}" /> can contain a value of type 
+      <typeparamref name="T" /> or an indication that the instance contains 
+      no value. 
+    </summary>
+    <remarks>
+      <para>
+        The <see cref="T:Mono.Rocks.Maybe{T}" /> value type represents a value 
+        of a given type <typenameref name="T" /> or an indication that the 
+        instance contains no value. Such an optional value type is useful in a 
+        variety of situations, such as denoting that a conversion couldn't be
+        performed without resorting to an exception or by-ref parameters 
+        (<see langword="out" /> or <see langword="ref" />).
+      </para>
+      <para>
+        An instance of <see cref="T:Mono.Rocks.Maybe{T}" /> has two 
+        properties, <see cref="P:Mono.Rocks.Maybe{T}.HasValue" /> and 
+        <see cref="P:Mono.Rocks.Maybe{T}.Value" />. 
+        <see cref="P:Mono.Rocks.Maybe{T}.HasValue" /> is used to determine 
+        whether the current instance currently has a value.  
+        It returns <see langword="true" /> or <see langword="false" />, and 
+        never throws an exception. 
+        <see cref="P:Mono.Rocks.Maybe{T}.Value" /> returns the current value 
+        of the instance, provided it has one 
+        (i.e., <see cref="P:Mono.Rocks.Maybe{T}.HasValue" /> is 
+        <see langword="true" />); otherwise, it throws an exception.
+      </para>
+      <para>
+        In addition to the above properties, there is a pair of methods, both 
+        overloads of <see cref="M:Mono.Rocks.Maybe{T}.GetValueOrDefault" />. 
+        The version taking no arguments returns the instance's current value, 
+        if it has one; otherwise, it returns the default value of type 
+        <typeparamref name="T" />. The version taking an argument of type 
+        <typeparamref name="T" /> returns the instance's current value, if it 
+        has one; otherwise, it returns the default value argument passed to it.
+      </para>
+      <para>
+        <see cref="T:Mono.Rocks.Maybe{T}" /> instances can be created in one
+        of four ways:
+      </para>
+      <list type="number">
+        <item><term>
+          By using the default constructor provided for all value types.  This
+          will create an instance that contains no value, and will be equal to
+          <see cref="F:Mono.Rocks.Maybe{T}.Nothing" />.
+        </term></item>
+        <item><term>
+          By explicitly using the <see cref="C:Mono.Rocks.Maybe{T}(`0)" />
+          constructor.  This will throw an 
+          <see cref="T:System.ArgumentNullException" /> if the value is
+          <see langword="null" />.
+        </term></item>
+        <item><term>
+          By using the <see cref="M:Mono.Rocks.ObjectRocks.Just``1(``0)" />
+          extension method.  This will throw an 
+          <see cref="T:System.ArgumentNullException" /> if the value is
+          <see langword="null" />.
+        </term></item>
+        <item><term>
+          By using the <see cref="M:Mono.Rocks.ObjectRocks.ToMaybe``1(``0)" />
+          extension method.  If the value is <see langword="null" />, then
+          <see cref="F:Mono.Rocks.Maybe{T}.Nothing" /> is returned.
+        </term></item>
+      </list>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -31,9 +97,29 @@
         <Parameter Name="value" Type="T" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="value">
+          A <typeparamref name="T" /> which is the value of the new instance.
+        </param>
+        <summary>
+          Constructs and initializes a new instance of 
+          <see cref="T:Mono.Rocks.Maybe{T}" /> giving it the specified initial
+          value.
+        </summary>
+        <remarks>
+          <para>
+            This constructor initializes the 
+            <see cref="P:Mono.Rocks.Maybe{T}.Value" /> property of the new
+            instance using <paramref name="value" />.
+          </para>
+          <block subset="none" type="note">
+            Once this constructor has executed, calling
+            <see cref="P:Mono.Rocks.Maybe{T}.HasValue" /> on the new instance 
+            will return <see langword="true" />.
+          </block>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="value" /> is <see langword="null" />.
+        </exception>
       </Docs>
     </Member>
     <Member MemberName="Equals">
@@ -49,10 +135,79 @@
         <Parameter Name="obj" Type="Mono.Rocks.Maybe&lt;T&gt;" />
       </Parameters>
       <Docs>
-        <param name="obj">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="obj">
+          An <see cref="T:System.Object" /> to compare the current instance
+          against.
+        </param>
+        <summary>
+          Determines whether the current instance and the specified
+          <see cref="T:System.Object" /> represent the same value.
+        </summary>
+        <returns>
+          <para>
+            The following table defines the conditions under which the return 
+            value is <see langword="true" /> or <see langword="false" />:
+          </para>
+          <list type="table">
+            <listheader>
+              <term>Returned Value</term>
+              <description>HasValue Condition</description>
+              <description>obj.HasValue Condition</description>
+            </listheader>
+            <item>
+              <term>
+                <see langword="true" />
+              </term>
+              <description>
+                <see langword="false" />
+              </description>
+              <description>
+                <see langword="false" />
+              </description>
+            </item>
+            <item>
+              <term>
+                <see langword="false" />
+              </term>
+              <description>
+                <see langword="false" />
+              </description>
+              <description>
+                <see langword="true" />
+              </description>
+            </item>
+            <item>
+              <term>
+                <see langword="false" />
+              </term>
+              <description>
+                <see langword="true" />
+              </description>
+              <description>
+                <see langword="false" />
+              </description>
+            </item>
+            <item>
+              <term>
+                <c>Value.Equals(<paramref name="obj" />.Value)</c>
+              </term>
+              <description>
+                <see langword="true" />
+              </description>
+              <description>
+                <see langword="true" />
+              </description>
+            </item>
+          </list>
+        </returns>
+        <remarks>
+          <para>
+            <block subset="none" type="note">
+              This method implements
+              <see cref="M:System.IEquatable{Mono.Rocks.Maybe{T}}.Equals(`0)" />.
+            </block>
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Equals">
@@ -68,10 +223,108 @@
         <Parameter Name="obj" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="obj">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="obj">
+          An <see cref="T:System.Object" /> to compare the current instance
+          against.
+        </param>
+        <summary>
+          Determines whether the current instance and the specified
+          <see cref="T:System.Object" /> represent the same type and value.
+        </summary>
+        <returns>
+          <para>
+            The following table defines the conditions under which the return 
+            value is <see langword="true" /> or <see langword="false" />:
+          </para>
+          <list type="table">
+            <listheader>
+              <term>Returned Value</term>
+              <description>HasValue Condition</description>
+              <description>obj.HasValue Condition</description>
+            </listheader>
+            <item>
+              <term>
+                <see langword="false" />
+              </term>
+              <description>The current instance and <paramref name="obj" /> have different types.</description>
+              <description>The current instance and <paramref name="obj" /> have different types.</description>
+            </item>
+            <item>
+              <term>
+                <see langword="true" />
+              </term>
+              <description>
+                <see langword="false" />
+              </description>
+              <description>
+                <paramref name="obj" /> is <see langword="null" />.
+              </description>
+            </item>
+            <item>
+              <term>
+                <see langword="false" />
+              </term>
+              <description>
+                <see langword="true" />
+              </description>
+              <description>
+                <paramref name="obj" /> is <see langword="null" />.
+              </description>
+            </item>
+            <item>
+              <term>
+                <see langword="true" />
+              </term>
+              <description>
+                <see langword="false" />
+              </description>
+              <description>
+                <see langword="false" />
+              </description>
+            </item>
+            <item>
+              <term>
+                <see langword="false" />
+              </term>
+              <description>
+                <see langword="false" />
+              </description>
+              <description>
+                <see langword="true" />
+              </description>
+            </item>
+            <item>
+              <term>
+                <see langword="false" />
+              </term>
+              <description>
+                <see langword="true" />
+              </description>
+              <description>
+                <see langword="false" />
+              </description>
+            </item>
+            <item>
+              <term>
+                <c>Value.Equals(<paramref name="obj" />.Value)</c>
+              </term>
+              <description>
+                <see langword="true" />
+              </description>
+              <description>
+                <see langword="true" />
+              </description>
+            </item>
+          </list>
+        </returns>
+        <remarks>
+          <para>
+            <block subset="none" type="note">
+              This method overrides 
+              <see cref="M:System.Object.Equals(System.Object)" />.
+            </block>
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetHashCode">
@@ -85,9 +338,25 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>
+          Generates a hash code for the current instance.
+        </summary>
+        <returns>
+          If <see cref="P:Mono.Rocks.Maybe{T}.HasValue" /> is 
+          <see langword="true" />, a <see cref="T:System.Int32" /> containing
+          the hash code for the value of the current instance is returned; 
+          otherwise, 0 is returned.
+        </returns>
+        <remarks>
+          <para>
+            The algorithm used to generate the hash code is unspecified.
+          </para>
+          <para>
+            <block subset="none" type="note">
+              This method overrides <see cref="M:System.Object.GetHashCode" />.
+            </block>
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetValueOrDefault">
@@ -101,9 +370,24 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>
+          Returns the value of the current instance, or if it has none, returns
+          the default value for the type <typeparamref name="T" />.
+        </summary>
+        <returns>
+          A value of type <typeparamref name="T" />, which is either the value 
+          of the current instance, or if it has none, the default value for the
+          type <typeparamref name="T" /> (i.e., all-bits-zero).
+        </returns>
+        <remarks>
+          <para>
+            <block subset="none" type="note">
+              <see cref="M:Mono.Rocks.Maybe{T}.GetValueOrDefault(`0)" />
+              allows a value other than the default value to be returned if the 
+              current instance contains no value.
+            </block>
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="GetValueOrDefault">
@@ -119,10 +403,28 @@
         <Parameter Name="defaultValue" Type="T" />
       </Parameters>
       <Docs>
-        <param name="defaultValue">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="defaultValue">
+          A value of type <typeparamref name="T" /> to return if the current
+          instance contains no value.
+        </param>
+        <summary>
+          Returns the value of the current instance, or if it has none, returns
+          <paramref name="defaultValue" />.
+        </summary>
+        <returns>
+          A value of type <typeparamref name="T" />, which is either the value 
+          of the current instance, or if it has none, the value of 
+          <paramref name="defaultValue" />.
+        </returns>
+        <remarks>
+          <para>
+            <block subset="none" type="note">
+              <see cref="M:Mono.Rocks.Maybe{T}.GetValueOrDefault" />
+              allows the default value for type <see langword="T" />  to be 
+              returned if the current instance contains no value.
+            </block>
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="HasValue">
@@ -136,7 +438,7 @@
       </ReturnValue>
       <Docs>
         <summary>
-          Gets a valud indicating whether the current 
+          Gets a value indicating whether the current 
           <see cref="T:Mono.Rocks.Maybe{T}" /> instance has a value.
         </summary>
         <value>
@@ -163,8 +465,20 @@
         <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>
+          Represents a <see cref="T:Mono.Rocks.Maybe{T}" /> containing no
+          value.
+        </summary>
+        <remarks>
+          <para>
+            This value is identical to <c>new Maybe&lt;T&gt;()</c> (i.e.
+            creating an instance using the default constructor).
+          </para>
+          <para>
+            This member is for "self-documenting" purposes, so that code can
+            explicitly mention that it's returning "nothing".
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Equality">
@@ -181,11 +495,26 @@
         <Parameter Name="b" Type="Mono.Rocks.Maybe&lt;T&gt;" />
       </Parameters>
       <Docs>
-        <param name="a">To be added.</param>
-        <param name="b">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="a">
+          The first <see cref="T:Mono.Rocks.Maybe{T}" /> to compare.
+        </param>
+        <param name="b">
+          The second <see cref="T:Mono.Rocks.Maybe{T}" /> to compare.
+        </param>
+        <summary>
+          Determines whether the specified <see cref="T:Mono.Rocks.Maybe{T}" />
+          instances are equal.
+        </summary>
+        <returns>
+          <see langword="true" /> if 
+          <c><paramref name="a" />.Equals(<paramref name="b" />)</c> 
+          returns <see langword="true" />; otherwise, <see langword="false" />.
+        </returns>
+        <remarks>
+          <block subset="none" type="note">
+            See <see cref="M:Mono.Rocks.Maybe{T}.Equals(Mono.Rocks.Maybe`1)" />.
+          </block>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Inequality">
@@ -202,11 +531,26 @@
         <Parameter Name="b" Type="Mono.Rocks.Maybe&lt;T&gt;" />
       </Parameters>
       <Docs>
-        <param name="a">To be added.</param>
-        <param name="b">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="a">
+          The first <see cref="T:Mono.Rocks.Maybe{T}" /> to compare.
+        </param>
+        <param name="b">
+          The second <see cref="T:Mono.Rocks.Maybe{T}" /> to compare.
+        </param>
+        <summary>
+          Determines whether the specified <see cref="T:Mono.Rocks.Maybe{T}" />
+          instances are not equal.
+        </summary>
+        <returns>
+          <see langword="true" /> if 
+          <c><paramref name="a" />.Equals(<paramref name="b" />)</c> 
+          returns <see langword="false" />; otherwise, <see langword="true" />.
+        </returns>
+        <remarks>
+          <block subset="none" type="note">
+            See <see cref="M:Mono.Rocks.Maybe{T}.Equals(Mono.Rocks.Maybe`1)" />.
+          </block>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="ToString">
@@ -220,9 +564,22 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <summary>
+          Returns a <see cref="T:System.String" /> representation of the 
+          value of the current instance.
+        </summary>
+        <returns>
+          If <see cref="P:Mono.Rocks.Maybe{T}.HasValue" /> is 
+          <see langword="true" />, 
+          <c><see cref="P:Mono.Rocks.Maybe{T}.Value" />.ToString()</c> is 
+          returned; otherwise, 
+          <see cref="F:System.String.Empty" /> is returned.
+        </returns>
+        <remarks>
+          <block subset="none" type="note">
+            This method overrides <see cref="M:System.Object.ToString" />.
+          </block>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Value">
