@@ -1,5 +1,10 @@
 2008-09-18  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/Makefile.include: For VS.NET users, export XML Documentation into
+	  Mono.Rocks.xml.
+
+2008-09-18  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/Mono.Rocks/NaturalStringComparer.xml: Document.
 	* doc/en/Mono.Rocks/Maybe`1.xml: Threading Safety Statement.
 

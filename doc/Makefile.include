@@ -11,7 +11,12 @@ ASSEMBLIES = Mono.Rocks.dll
 
 UPDATER = $(MONODOCER) -overrides -pretty -path:doc/en
 
-.PHONY: assemble clean edit html update update-delete
+.PHONY: assemble clean doc edit html update update-delete
+
+doc: assemble html Mono.Rocks.xml
+
+Mono.Rocks.xml:
+	mdoc-export-msxdoc -o $@ doc/en
 
 assemble: doc/mono-rocks-docs.zip doc/mono-rocks-docs.tree
 
