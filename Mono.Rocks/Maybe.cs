@@ -42,6 +42,8 @@ namespace Mono.Rocks {
 		public static Maybe<T> TryParse<T> (string value)
 		{
 			TypeConverter c = TypeDescriptor.GetConverter (typeof (T));
+			if (c == null || !c.CanConvertFrom (typeof (string)))
+				return Maybe<T>.Nothing;
 			try {
 				return new Maybe<T> ((T) c.ConvertFromString (value));
 			}
@@ -70,13 +72,13 @@ namespace Mono.Rocks {
 
 	public static class MaybeRocks {
 #region BNC_424064 - Should be Maybe<T> instance members
-		public static Maybe<TResult> SelectMany<TSource, TResult>(this Maybe<TSource> self, Func<TSource, Maybe<TResult>> selector)
+		public static Maybe<TResult> Select<TSource, TResult>(this Maybe<TSource> self, Func<TSource, TResult> selector)
 		{
 			Check.Selector (selector);
 
 			if (!self.HasValue)
 				return Maybe<TResult>.Nothing;
-			return selector (self.Value);
+			return selector (self.Value).ToMaybe ();
 		}
 
 		public static Maybe<TResult> SelectMany<TSource, TCollection, TResult>(this Maybe<TSource> self,
@@ -91,7 +93,7 @@ namespace Mono.Rocks {
 			Maybe<TCollection> n = selector (self.Value);
 			if (!n.HasValue)
 				return Maybe<TResult>.Nothing;
-			return resultSelector(self.Value, n.Value).Just ();
+			return resultSelector(self.Value, n.Value).ToMaybe ();
 		}
 #endregion
 	}

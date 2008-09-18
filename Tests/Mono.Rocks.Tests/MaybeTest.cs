@@ -54,6 +54,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void TryParse ()
 		{
+			#region TryParse
 			Maybe<int> n;
 
 			n = Maybe.TryParse<int> (null);
@@ -71,18 +72,22 @@ namespace Mono.Rocks.Tests {
 			n = Maybe.TryParse<int> ("42");
 			Assert.IsTrue (n.HasValue);
 			Assert.AreEqual (42, n.Value);
+			#endregion
 		}
 
 		[Test]
 		public void When ()
 		{
+			#region When
 			var r = Maybe.When (true, 42);
 			Assert.IsTrue (r.HasValue);
 			Assert.AreEqual (42, r.Value);
 
 			r = Maybe.When (false, 42);
 			Assert.IsFalse (r.HasValue);
+			#endregion
 
+			#region When_Creator
 			bool invoked = false;
 			r = Maybe.When (false, () => {invoked = true; return 42;});
 			Assert.IsFalse (invoked);
@@ -92,6 +97,7 @@ namespace Mono.Rocks.Tests {
 			Assert.IsTrue (invoked);
 			Assert.IsTrue (r.HasValue);
 			Assert.AreEqual (42, r.Value);
+			#endregion
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
@@ -109,14 +115,26 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void SelectMany1_SelectorNull ()
+		public void Select_SelectorNull ()
 		{
-			Func<int, Maybe<string>> f = null;
-			42.ToMaybe ().SelectMany (f);
+			Func<int, string> f = null;
+			42.Just ().Select (f);
+		}
+
+		[Test]
+		public void Select ()
+		{
+			#region Select
+			Assert.AreEqual (2.Just (),
+				1.Just ().Select (x => x + 1));
+			Assert.AreEqual (2.Just (),
+				from x in 1.Just ()
+				select x + 1);
+			#endregion
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void SelectMany2_SelectorNull ()
+		public void SelectMany_SelectorNull ()
 		{
 			Func<int, Maybe<int>>   s  = null;
 			Func<int, int, string>  rs = (x, y) => (x+y).ToString ();
@@ -124,7 +142,7 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void SelectMany2_ResultSelectorNull ()
+		public void SelectMany_ResultSelectorNull ()
 		{
 			Func<int, Maybe<int>>    s  = x => 5.ToMaybe ();
 			Func<int, int, string>   rs = null;
@@ -134,25 +152,42 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void SelectMany ()
 		{
-			// 1 argument form
-			Assert.AreEqual (2.ToMaybe (),
-					1.ToMaybe ().SelectMany (x => (x+1).ToMaybe ()));
-
-			// 2 argument form
+			#region SelectMany_QueryComprehension
 			Assert.AreEqual (Maybe<int>.Nothing,
 					from x in 5.ToMaybe ()
 					from y in Maybe<int>.Nothing
 					select x + y);
-			Assert.AreEqual (Maybe<int>.Nothing, 
-					5.ToMaybe().SelectMany(x => Maybe<int>.Nothing,
-						(x, y) => x + y));
 			Assert.AreEqual (9.ToMaybe (),
 					from x in 5.ToMaybe ()
 					from y in 4.ToMaybe ()
 					select x + y);
+			#endregion
+
+			Assert.AreEqual (Maybe<int>.Nothing, 
+					5.ToMaybe().SelectMany(x => Maybe<int>.Nothing,
+						(x, y) => x + y));
 			Assert.AreEqual (9.ToMaybe (),
 					5.ToMaybe().SelectMany(x => 4.ToMaybe(),
 						(x, y) => x + y));
+
+			#region SelectMany_TCollection
+			Assert.AreEqual (Maybe<int>.Nothing, 
+					5.Just().SelectMany(
+						x => Maybe<int>.Nothing,
+						(x, y) => x + y));
+			Assert.AreEqual (Maybe<int>.Nothing,
+					from x in 5.Just ()
+					from y in Maybe<int>.Nothing
+					select x + y);
+			Assert.AreEqual (9.Just (),
+					5.Just().SelectMany(
+						x => 4.Just (),
+						(x, y) => x + y));
+			Assert.AreEqual (9.Just (),
+					from x in 5.Just ()
+					from y in 4.Just ()
+					select x + y);
+			#endregion
 		}
 
 		[Test]

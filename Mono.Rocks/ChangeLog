@@ -1,3 +1,16 @@
+2008-09-17  Jonathan Pryor  <jpryor@novell.com>
+
+	* Maybe.cs: 
+	  - TryParse() should use .CanConvertFrom() in addition to catching the
+	    exception, as exceptions are slow.
+	  - Rename MaybeRocks.SelectMany<TSource,TResult>(...) to
+	    MaybeRocks.Select<TSource,TResult>(...), as this more closely
+	    matches the semantics and the documented pattern at:
+	    http://msdn.microsoft.com/en-us/library/bb308966.aspx
+	  - .Select() and .SelectMany() should call .ToMaybe() on their return
+	    values, not .Just(), as returning Maybe<T>.Nothing is already part
+	    of their contract, so this is more sensible.
+
 2008-09-16  Jonathan Pryor  <jpryor@novell.com>
 
 	* Sequence.cs: Update parameter names for consistency.

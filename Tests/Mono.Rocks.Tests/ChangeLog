@@ -1,3 +1,8 @@
+2008-09-17  Jonathan Pryor  <jpryor@novell.com>
+
+	* MaybeTest.cs: Add #regions for doc usage; Add/update tests due to
+	  s/SelectMany/Select/ method rename.
+
 2008-09-16  Jonathan Pryor  <jpryor@novell.com>
 
 	* SequenceTest.cs: Add #regions for use by documentation.

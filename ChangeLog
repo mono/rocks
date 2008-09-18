@@ -1,3 +1,8 @@
+2008-09-17  Jonathan Pryor  <jpryor@novell.com>
+
+	* doc/en/index.xml, doc/en/Mono.Rocks/Maybe.xml,
+	  doc/en/Mono.Rocks/MaybeRocks.xml: Document Maybe & MaybeRocks.
+
 2008-09-16  Jonathan Pryor  <jpryor@novell.com>
 
 	* doc/en/Mono.Rocks/Sequence.xml: Document Sequence.

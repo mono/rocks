@@ -4756,8 +4756,8 @@
       <Targets>
         <Target Type="T:Mono.Rocks.Maybe`1" />
       </Targets>
-      <Member MemberName="SelectMany&lt;TSource,TResult&gt;">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;TResult&gt; SelectMany&lt;TSource,TResult&gt; (this Mono.Rocks.Maybe&lt;TSource&gt; self, Func&lt;TSource,Mono.Rocks.Maybe&lt;TResult&gt;&gt; selector);" />
+      <Member MemberName="Select&lt;TSource,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;TResult&gt; Select&lt;TSource,TResult&gt; (this Mono.Rocks.Maybe&lt;TSource&gt; self, Func&lt;TSource,TResult&gt; selector);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>Mono.Rocks.Maybe&lt;TResult&gt;</ReturnType>
@@ -4768,16 +4768,30 @@
         </TypeParameters>
         <Parameters>
           <Parameter Name="self" Type="Mono.Rocks.Maybe&lt;TSource&gt;" RefType="this" />
-          <Parameter Name="selector" Type="System.Func&lt;TSource,Mono.Rocks.Maybe&lt;TResult&gt;&gt;" />
+          <Parameter Name="selector" Type="System.Func&lt;TSource,TResult&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="selector">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TSource">
+          The type of value in <paramref name="self" />.
+        </typeparam>
+          <typeparam name="TResult">
+          The type of the resulting value.
+        </typeparam>
+          <param name="self">
+          A <see cref="T:Mono.Rocks.Maybe{TSource}" /> containing a value to
+          project.
+        </param>
+          <param name="selector">
+          A <see cref="T:System.Func{TSource,TResult}" /> which is
+          used to convert <c><paramref name="self" />.Value</c> 
+          into the value returned.
+        </param>
+          <summary>
+          Projects a <see cref="T:Mono.Rocks.Maybe{TSoruce}" /> into a
+          <see cref="T:Mono.Rocks.Maybe{TResult}" />.
+        </summary>
         </Docs>
-        <Link Type="Mono.Rocks.MaybeRocks" Member="M:Mono.Rocks.MaybeRocks.SelectMany``2(Mono.Rocks.Maybe{``0},System.Func{``0,Mono.Rocks.Maybe{``1}})" />
+        <Link Type="Mono.Rocks.MaybeRocks" Member="M:Mono.Rocks.MaybeRocks.Select``2(Mono.Rocks.Maybe{``0},System.Func{``0,``1})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -4801,13 +4815,35 @@
           <Parameter Name="resultSelector" Type="System.Func&lt;TSource,TCollection,TResult&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <typeparam name="TCollection">To be added.</typeparam>
-          <typeparam name="TResult">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="selector">To be added.</param>
-          <param name="resultSelector">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TSource">
+          The type of value in <paramref name="self" />.
+        </typeparam>
+          <typeparam name="TCollection">
+          The type of the intermediate value within 
+          <paramref name="selector" />.
+        </typeparam>
+          <typeparam name="TResult">
+          The type of the resulting value.
+        </typeparam>
+          <param name="self">
+          A <see cref="T:Mono.Rocks.Maybe{TSource}" /> containing a value to
+          project.
+        </param>
+          <param name="selector">
+          A <see cref="T:System.Func{TSource,Mono.Rocks.Maybe{TCollection}}" />
+          used to generate an intermediate value.
+        </param>
+          <param name="resultSelector">
+          A <see cref="T:System.Func{TSource,TCollection,TResult}" /> which is
+          used to convert <c><paramref name="self" />.Value</c> and
+          <c><paramref name="selector" />(<paramref name="self" />).Value</c>
+          into the value returned.
+        </param>
+          <summary>
+          Projects a <see cref="T:Mono.Rocks.Maybe{TSoruce}" /> and
+          <see cref="T:Mono.Rocks.Maybe{TCollection}" /> into a 
+          <see cref="T:Mono.Rocks.Maybe{TResult}" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.MaybeRocks" Member="M:Mono.Rocks.MaybeRocks.SelectMany``3(Mono.Rocks.Maybe{``0},System.Func{``0,Mono.Rocks.Maybe{``1}},System.Func{``0,``1,``2})" />
       </Member>
