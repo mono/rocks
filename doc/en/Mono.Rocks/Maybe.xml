@@ -45,7 +45,7 @@
           an instance of type <typeparamref name="T" />.
         </param>
         <summary>
-          Converts the <see cref="T:System.String" /> <paramref name="value" />
+          Converts the <see cref="T:System.String" /><paramref name="value" />
           into an instance of type <typeparamref name="T" />.
         </summary>
         <returns>

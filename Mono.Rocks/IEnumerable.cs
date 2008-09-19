@@ -365,10 +365,10 @@ namespace Mono.Rocks {
 
 		// Haskell: zipWith
 		public static IEnumerable<TResult> 
-			SelectFromEach<TFirstSource, TSecondSource, TResult> (
-					this IEnumerable<TFirstSource> self,
-					IEnumerable<TSecondSource> source2, 
-					Func<TFirstSource, TSecondSource, TResult> selector)
+			SelectFromEach<T1, T2, TResult> (
+					this IEnumerable<T1> self,
+					IEnumerable<T2> source2, 
+					Func<T1, T2, TResult> selector)
 		{
 			Check.Self (self);
 			if (source2 == null)
@@ -380,13 +380,13 @@ namespace Mono.Rocks {
 		}
 
 		private static IEnumerable<TResult>
-			CreateSelectFromEachIterator<TFirstSource, TSecondSource, TResult> (
-					IEnumerable<TFirstSource> self, 
-					IEnumerable<TSecondSource> source2, 
-					Func<TFirstSource, TSecondSource, TResult> selector)
+			CreateSelectFromEachIterator<T1, T2, TResult> (
+					IEnumerable<T1> self, 
+					IEnumerable<T2> source2, 
+					Func<T1, T2, TResult> selector)
 		{
-			using (IEnumerator<TFirstSource>  a = self.GetEnumerator ())
-			using (IEnumerator<TSecondSource> b = source2.GetEnumerator ()) {
+			using (IEnumerator<T1>  a = self.GetEnumerator ())
+			using (IEnumerator<T2>  b = source2.GetEnumerator ()) {
 				while (a.MoveNext () && b.MoveNext ()) {
 					yield return selector (a.Current, b.Current);
 				}
@@ -395,11 +395,11 @@ namespace Mono.Rocks {
 
 		// Haskell: zipWith3
 		public static IEnumerable<TResult> 
-			SelectFromEach<TFirstSource, TSecondSource, TThirdSource, TResult> (
-					this IEnumerable<TFirstSource> self,
-					IEnumerable<TSecondSource> source2, 
-					IEnumerable<TThirdSource> source3,
-					Func<TFirstSource, TSecondSource, TThirdSource, TResult> selector)
+			SelectFromEach<T1, T2, T3, TResult> (
+					this IEnumerable<T1> self,
+					IEnumerable<T2> source2, 
+					IEnumerable<T3> source3,
+					Func<T1, T2, T3, TResult> selector)
 		{
 			Check.Self (self);
 			if (source2 == null)
@@ -413,15 +413,15 @@ namespace Mono.Rocks {
 		}
 
 		private static IEnumerable<TResult>
-			CreateSelectFromEachIterator<TFirstSource, TSecondSource, TThirdSource, TResult> (
-					IEnumerable<TFirstSource> self, 
-					IEnumerable<TSecondSource> source2, 
-					IEnumerable<TThirdSource> source3, 
-					Func<TFirstSource, TSecondSource, TThirdSource, TResult> selector)
+			CreateSelectFromEachIterator<T1, T2, T3, TResult> (
+					IEnumerable<T1> self, 
+					IEnumerable<T2> source2, 
+					IEnumerable<T3> source3, 
+					Func<T1, T2, T3, TResult> selector)
 		{
-			using (IEnumerator<TFirstSource>  a = self.GetEnumerator ())
-			using (IEnumerator<TSecondSource> b = source2.GetEnumerator ())
-			using (IEnumerator<TThirdSource>  c = source3.GetEnumerator ()) {
+			using (IEnumerator<T1>  a = self.GetEnumerator ())
+			using (IEnumerator<T2>  b = source2.GetEnumerator ())
+			using (IEnumerator<T3>  c = source3.GetEnumerator ()) {
 				while (a.MoveNext () && b.MoveNext () && c.MoveNext ()) {
 					yield return selector (a.Current, b.Current, c.Current);
 				}
@@ -430,12 +430,12 @@ namespace Mono.Rocks {
 
 		// Haskell: zipWith4
 		public static IEnumerable<TResult> 
-			SelectFromEach<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> (
-					this IEnumerable<TFirstSource> self,
-					IEnumerable<TSecondSource> source2, 
-					IEnumerable<TThirdSource> source3, 
-					IEnumerable<TFourthSource> source4, 
-					Func<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> selector)
+			SelectFromEach<T1, T2, T3, T4, TResult> (
+					this IEnumerable<T1> self,
+					IEnumerable<T2> source2, 
+					IEnumerable<T3> source3, 
+					IEnumerable<T4> source4, 
+					Func<T1, T2, T3, T4, TResult> selector)
 		{
 			if (self == null)
 				throw new ArgumentNullException ("self");
@@ -452,17 +452,17 @@ namespace Mono.Rocks {
 		}
 
 		private static IEnumerable<TResult>
-			CreateSelectFromEachIterator<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> (
-					IEnumerable<TFirstSource> self, 
-					IEnumerable<TSecondSource> source2, 
-					IEnumerable<TThirdSource> source3, 
-					IEnumerable<TFourthSource> source4, 
-					Func<TFirstSource, TSecondSource, TThirdSource, TFourthSource, TResult> selector)
+			CreateSelectFromEachIterator<T1, T2, T3, T4, TResult> (
+					IEnumerable<T1> self, 
+					IEnumerable<T2> source2, 
+					IEnumerable<T3> source3, 
+					IEnumerable<T4> source4, 
+					Func<T1, T2, T3, T4, TResult> selector)
 		{
-			using (IEnumerator<TFirstSource>  a = self.GetEnumerator ())
-			using (IEnumerator<TSecondSource> b = source2.GetEnumerator ())
-			using (IEnumerator<TThirdSource>  c = source3.GetEnumerator ())
-			using (IEnumerator<TFourthSource> d = source4.GetEnumerator ()) {
+			using (IEnumerator<T1>  a = self.GetEnumerator ())
+			using (IEnumerator<T2>  b = source2.GetEnumerator ())
+			using (IEnumerator<T3>  c = source3.GetEnumerator ())
+			using (IEnumerator<T4>  d = source4.GetEnumerator ()) {
 				while (a.MoveNext () && b.MoveNext () && c.MoveNext () && d.MoveNext ()) {
 					yield return selector (a.Current, b.Current, c.Current, d.Current);
 				}

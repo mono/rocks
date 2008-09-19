@@ -1,5 +1,11 @@
 2008-09-18  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/index.xml, doc/en/Mono.Rocks/Maybe`1.xml: Flush.
+	* doc/en/Mono.Rocks/IEnumerableRocks.xml: Document .SelectFromEach() 
+	  and .Zip().
+
+2008-09-18  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/Makefile.include: For VS.NET users, export XML Documentation into
 	  Mono.Rocks.xml.
 

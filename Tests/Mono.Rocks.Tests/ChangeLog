@@ -1,3 +1,7 @@
+2008-09-18  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerableTest.cs: Add #regions for doc usage.
+
 2008-09-17  Jonathan Pryor  <jpryor@novell.com>
 
 	* MaybeTest.cs: Add #regions for doc usage; Add/update tests due to

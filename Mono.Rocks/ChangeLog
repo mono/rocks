@@ -1,5 +1,11 @@
 2008-09-18  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerable.cs: Rename .SelectFromEach() type parameters for
+	  consistency: s/TFirstSource/T1/g, s/TSecondSource/T2/g,
+	  s/TThirdSource/T3/g, s/TFourthSource/T4/g.
+
+2008-09-18  Jonathan Pryor  <jpryor@novell.com>
+
 	* NaturalStringComparer.cs: Fix typo.
 
 2008-09-17  Jonathan Pryor  <jpryor@novell.com>

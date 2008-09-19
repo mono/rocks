@@ -69,28 +69,36 @@
         of four ways:
       </para>
       <list type="number">
-        <item><term>
+        <item>
+          <term>
           By using the default constructor provided for all value types.  This
           will create an instance that contains no value, and will be equal to
           <see cref="F:Mono.Rocks.Maybe{T}.Nothing" />.
-        </term></item>
-        <item><term>
+        </term>
+        </item>
+        <item>
+          <term>
           By explicitly using the <see cref="C:Mono.Rocks.Maybe{T}(`0)" />
           constructor.  This will throw an 
           <see cref="T:System.ArgumentNullException" /> if the value is
           <see langword="null" />.
-        </term></item>
-        <item><term>
+        </term>
+        </item>
+        <item>
+          <term>
           By using the <see cref="M:Mono.Rocks.ObjectRocks.Just``1(``0)" />
           extension method.  This will throw an 
           <see cref="T:System.ArgumentNullException" /> if the value is
           <see langword="null" />.
-        </term></item>
-        <item><term>
+        </term>
+        </item>
+        <item>
+          <term>
           By using the <see cref="M:Mono.Rocks.ObjectRocks.ToMaybe``1(``0)" />
           extension method.  If the value is <see langword="null" />, then
           <see cref="F:Mono.Rocks.Maybe{T}.Nothing" /> is returned.
-        </term></item>
+        </term>
+        </item>
       </list>
     </remarks>
   </Docs>

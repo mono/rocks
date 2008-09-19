@@ -610,6 +610,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void SelectFromEach ()
 		{
+			#region SelectFromEach2
 			List<int>  a = new List<int> {1, 2, 3, 4};
 			List<char> b = new List<char> {'a', 'b', 'c', 'd', 'e'};
 			var c = a.SelectFromEach (b, (x, y) => new { First = x, Second = y }).ToList ();
@@ -622,13 +623,18 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ('c', c [2].Second);
 			Assert.AreEqual (4,   c [3].First);
 			Assert.AreEqual ('d', c [3].Second);
+			#endregion
 
+			#region SelectFromEach3
 			Assert.AreEqual ("123",
 					new[]{1}.SelectFromEach (new[]{2}, new[]{3}, 
 						(x,y,z) => x.ToString () + y.ToString () + z.ToString ()).Implode ());
+			#endregion
+			#region SelectFromEach4
 			Assert.AreEqual ("1234",
 					new[]{1}.SelectFromEach (new[]{2}, new[]{3}, new[]{4},
 						(w,x,y,z) => w.ToString () + x.ToString () + y.ToString () + z.ToString ()).Implode ());
+			#endregion
 		}
 
 		[Test]
@@ -1726,6 +1732,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Zip ()
 		{
+			#region Zip2
 			Assert.AreEqual ("1,5|2,4|",
 					new[]{1,2}.Zip (new[]{5,4,3})
 					.Aggregate (new StringBuilder(), 
@@ -1734,6 +1741,8 @@ namespace Mono.Rocks.Tests {
 					new int[]{}.Zip (new[]{5,4,3})
 					.Aggregate (new StringBuilder(), 
 						(b, e) => b.AppendFormat ("{0},{1}|", e._1, e._2)).ToString ());
+			#endregion
+			#region Zip3
 			Assert.AreEqual ("1,3,5|2,4,6|",
 					new[]{1,2}.Zip (new[]{3,4,5,6}, new[]{5,6,7})
 					.Aggregate (new StringBuilder(), 
@@ -1742,6 +1751,8 @@ namespace Mono.Rocks.Tests {
 					new int[]{}.Zip (new[]{5,4,3}, new[]{1,2,3})
 					.Aggregate (new StringBuilder(), 
 						(b, e) => b.AppendFormat ("{0},{1},{2}|", e._1, e._2, e._3)).ToString ());
+			#endregion
+			#region Zip4
 			Assert.AreEqual ("1,3,5,7|2,4,6,8|",
 					new[]{1,2}.Zip (new[]{3,4,5,6}, new[]{5,6,7}, new[]{7,8})
 					.Aggregate (new StringBuilder(), 
@@ -1750,6 +1761,7 @@ namespace Mono.Rocks.Tests {
 					new int[]{}.Zip (new[]{3,4,5,6}, new[]{5,6,7}, new[]{7,8})
 					.Aggregate (new StringBuilder(), 
 						(b, e) => b.AppendFormat ("{0},{1},{2},{3}|", e._1, e._2, e._3, e._4)).ToString ());
+			#endregion
 		}
 
 		[Test]
