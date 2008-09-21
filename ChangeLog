@@ -1,5 +1,10 @@
 2008-09-20  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/Mono.Rocks/Cons`1.cs: Removed (should have removed along with
+	  Mono.Rocks/Cons.cs on 2008-09-14...).
+
+2008-09-20  Jonathan Pryor  <jpryor@novell.com>
+
 	* mkeithers: Added; generates Mono.Rocks/Eithers.cs.
 	* Makefile: Generate Mono.Rocks/Eithers.cs with mkeithers.
 	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add Mono.Rocks/Eithers.cs 
