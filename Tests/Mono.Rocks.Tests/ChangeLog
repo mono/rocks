@@ -1,3 +1,7 @@
+2008-09-20  Jonathan Pryor  <jpryor@novell.com>
+
+	* EitherTest.cs: Added; tests for Either<...>.
+
 2008-09-18  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerableTest.cs: Add #regions for doc usage.

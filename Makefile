@@ -13,7 +13,10 @@ all: Mono.Rocks.dll
 
 include doc/Makefile.include
 
-mkdelegates mklambda mktuples : Generator.pm
+mkdelegates mkeithers mklambda mktuples : Generator.pm
+
+Mono.Rocks/Eithers.cs : mkeithers Makefile
+	./mkeithers -n 4 > $@
 
 Mono.Rocks/Tuples.cs : mktuples Makefile
 	./mktuples -n 4 > $@

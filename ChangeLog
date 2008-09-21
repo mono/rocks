@@ -1,3 +1,12 @@
+2008-09-20  Jonathan Pryor  <jpryor@novell.com>
+
+	* mkeithers: Added; generates Mono.Rocks/Eithers.cs.
+	* Makefile: Generate Mono.Rocks/Eithers.cs with mkeithers.
+	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add Mono.Rocks/Eithers.cs 
+	  to the build.
+	* Mono.Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Add
+	  Tests/Mono.Rocks.Tests/EitherTest.cs to the build.
+
 2008-09-18  Jonathan Pryor  <jpryor@novell.com>
 
 	* doc/en/index.xml, doc/en/Mono.Rocks/Maybe`1.xml: Flush.
