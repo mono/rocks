@@ -6,12 +6,25 @@ srcdir=.
 PACKAGE = mono-rocks
 VERSION = 0.1.0
 
-Mono.Rocks.dll: Mono.Rocks.dll.sources $(shell cat Mono.Rocks.dll.sources)
-	$(MCS) -doc:doc/mono-rocks.xml -debug+ -t:library -r:System.Core -out:$@ $(MCS_FLAGS) @$@.sources
+prefix = /usr/local
+libdir = $(prefix)/lib
 
-all: Mono.Rocks.dll
+mrdir  = lib/mono-rocks
+pkdir  = lib/pkgconfig
+
+.PHONY: all check-gendarme check clean install
+
+$(mrdir)/Mono.Rocks.dll: Mono.Rocks.dll.sources $(shell cat Mono.Rocks.dll.sources)
+	$(MCS) -doc:doc/mono-rocks.xml -debug+ -t:library -r:System.Core -out:$@ $(MCS_FLAGS) @Mono.Rocks.dll.sources
+
+all: $(mrdir)/Mono.Rocks.dll
 
 include doc/Makefile.include
+
+install: doc-install
+	-mkdir -p $(libdir)/mono-rocks $(libdir)/pkgconfig
+	cp $(mrdir)/Mono.Rocks.dll* $(libdir)/mono-rocks
+	cp $(pkdir)/*.pc   $(libdir)/pkgconfig
 
 mkdelegates mkeithers mklambda mktuples : Generator.pm
 
@@ -28,15 +41,13 @@ Mono.Rocks/Delegates.cs : mkdelegates Makefile
 	./mkdelegates -n 4 > $@
 
 check-gendarme:
-	gendarme --html errors.html --ignore gendarme.ignore Mono.Rocks.dll
+	gendarme --html errors.html --ignore gendarme.ignore $(mrdir)/Mono.Rocks.dll
 
 clean: doc-clean
-	rm -f *.dll
+	rm -f $(mrdir)/*.dll*
 
-run-test:
+$(mrdir)/Mono.Rocks.Tests.dll: Mono.Rocks.Tests.dll.sources $(shell cat Mono.Rocks.Tests.dll.sources) $(mrdir)/Mono.Rocks.dll
+	$(MCS) -debug+ -r:$(mrdir)/Mono.Rocks.dll -r:System.Core -pkg:mono-nunit -t:library -out:$@ $(MCS_FLAGS) @Mono.Rocks.Tests.dll.sources
 
-Mono.Rocks.Tests.dll: Mono.Rocks.Tests.dll.sources $(shell cat Mono.Rocks.Tests.dll.sources) Mono.Rocks.dll
-	$(MCS) -debug+ -r:Mono.Rocks.dll -r:System.Core -pkg:mono-nunit -t:library -out:$@ $(MCS_FLAGS) @$@.sources
-
-run-test: Mono.Rocks.Tests.dll
-	nunit-console2 Mono.Rocks.Tests.dll
+check: $(mrdir)/Mono.Rocks.Tests.dll
+	nunit-console2 $(mrdir)/Mono.Rocks.Tests.dll

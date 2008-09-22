@@ -1,24 +1,22 @@
-SOURCESDIR=$(prefix)/lib/monodoc/sources
-TARGETS= \
-	doc/mono-rocks-docs.source \
-	doc/mono-rocks-docs.tree \
-	doc/mono-rocks-docs.zip
+sourcesdir = lib/monodoc/sources
 
-monodocdir=$(SOURCESDIR)
-monodoc_DATA=$(TARGETS)
-
-ASSEMBLIES = Mono.Rocks.dll
+ASSEMBLIES = $(mrdir)/Mono.Rocks.dll
 
 UPDATER = $(MONODOCER) -overrides -pretty -path:doc/en
 
-.PHONY: assemble clean doc edit html update update-delete
+.PHONY: assemble clean doc doc-install edit html update update-delete
 
-doc: assemble html Mono.Rocks.xml
+doc: assemble html $(mrdir)/Mono.Rocks.xml
 
-Mono.Rocks.xml:
+doc-install:
+	-mkdir -p $(libdir)/mono-rocks $(libdir)/monodoc/sources
+	cp $(sourcesdir)/mono-rocks-docs.* $(libdir)/monodoc/sources
+	cp $(mrdir)/Mono.Rocks.xml $(libdir)/mono-rocks/
+
+$(mrdir)/Mono.Rocks.xml:
 	mdoc-export-msxdoc -o $@ doc/en
 
-assemble: doc/mono-rocks-docs.zip doc/mono-rocks-docs.tree
+assemble: $(sourcesdir)/mono-rocks-docs.zip $(sourcesdir)/mono-rocks-docs.tree
 
 $(srcdir)/doc/en/examples/Mono.Rocks.dll: $(srcdir)/Mono.Rocks.dll
 	cp $^ $@
@@ -45,9 +43,8 @@ DOC_EXAMPLES_OUTPUT =
 	done ; \
 	exec 3>&-;
 
-doc/mono-rocks-docs.zip doc/mono-rocks-docs.tree: $(DOCUMENTATION)
-	-mkdir doc
-	$(MDASSEMBLER) --ecma $(srcdir)/doc/en -o doc/ndesk-options-docs
+$(sourcesdir)/mono-rocks-docs.zip $(sourcesdir)/mono-rocks-docs.tree: $(DOCUMENTATION)
+	mdoc-assemble -o $(sourcesdir)/mono-rocks-docs $(srcdir)/doc/en 
 
 doc-update: $(addprefix $(srcdir)/, $(ASSEMBLIES)) $(DOC_EXAMPLES_SRC) $(DOC_EXAMPLES_OUTPUT)
 	sed -i -f $(srcdir)/doc/fixup.sed doc/mono-rocks.xml
@@ -68,8 +65,8 @@ DOC_EXTRA_DIST = \
 	$(DOC_EXAMPLES_OUTPUT)
 
 DOC_CLEANFILES = \
-	doc/mono-rocks-docs.zip \
-	doc/mono-rocks-docs.tree \
+	$(sourcesdir)/mono-rocks-docs.zip \
+	$(sourcesdir)/mono-rocks-docs.tree \
 	doc/en/examples/Mono.Rocks.dll* \
 	doc/en/examples/*.exe \
 	$(DOC_EXAMPLES_OUTPUT)
