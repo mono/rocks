@@ -1,5 +1,9 @@
 2008-09-22  Jonathan Pryor  <jpryor@novell.com>
 
+	* lib/mono-rocks (svn:ignore): Ignore generated directories.
+
+2008-09-22  Jonathan Pryor  <jpryor@novell.com>
+
 	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add Mono.Rocks/Either.cs 
 	  to the build.
 	* Mono.Rocks.csproj, Tests/Mono.Rocks.Tests.csproj: Update output 
