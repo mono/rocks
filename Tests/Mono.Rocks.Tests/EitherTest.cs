@@ -37,6 +37,19 @@ namespace Mono.Rocks.Tests {
 	[TestFixture]
 	public class EitherTest : BaseRocksFixture {
 
+		[Test]
+		public void TryParse ()
+		{
+			var v = Either.TryParse<int> ("3.14159");
+			var e = v.Fold (i => null, i => i);
+			Assert.IsNotNull (e);
+			Assert.IsTrue (typeof(Exception).IsAssignableFrom (e.GetType()));
+
+			v = Either.TryParse<int> ("42");
+			var n = v.Fold (i => i, i => -1);
+			Assert.AreEqual (42, n);
+		}
+
 		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void Either2_A_ValueNull ()
 		{

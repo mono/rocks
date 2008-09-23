@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\lib\mono-rocks\Debug</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,7 +28,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\lib\mono-rocks\Release</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -44,7 +44,7 @@
     <Compile Include="Mono.Rocks.Tests\AssemblyInfo.cs" />
     <Compile Include="Mono.Rocks.Tests\BaseRocksFixture.cs" />
     <Compile Include="Mono.Rocks.Tests\DelegateTest.cs" />
-    <Compile Include="Mono.Rocks.Tests\EithersTest.cs" />
+    <Compile Include="Mono.Rocks.Tests\EitherTest.cs" />
     <Compile Include="Mono.Rocks.Tests\ICustomAttributeProviderTest.cs" />
     <Compile Include="Mono.Rocks.Tests\IEnumerableTest.cs" />
     <Compile Include="Mono.Rocks.Tests\Int16Test.cs" />
