@@ -1,5 +1,10 @@
 2008-09-22  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerableTest.cs: Add #region blocks for doc usage; add exception
+	  check for .SplitAt(); update tests for .ToTuple().
+
+2008-09-22  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerableTest.cs, ObjectTest.cs: Add #regions for doc usage.
 
 2008-09-22  Jonathan Pryor  <jpryor@novell.com>

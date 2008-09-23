@@ -415,14 +415,22 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void ToTuple ()
 		{
+			#region ToTuple
 			IEnumerable<object> s = new object[]{1, '2', 3L, "4"};
-			IList<object> t = (IList<object>) s.ToTuple ();
-			Assert.AreEqual (typeof(Tuple<int, char, long, string>), t.GetType());
-			Assert.AreEqual (4, t.Count);
-			Assert.AreEqual (1,   t [0]);
-			Assert.AreEqual ('2', t [1]);
-			Assert.AreEqual (3L,  t [2]);
-			Assert.AreEqual ("4", t [3]);
+			IList<object> tl = s.ToTuple ();
+			Assert.AreEqual (typeof(Tuple<int, char, long, string>), tl.GetType());
+			Assert.AreEqual (4,   tl.Count);
+			Assert.AreEqual (1,   tl [0]);
+			Assert.AreEqual ('2', tl [1]);
+			Assert.AreEqual (3L,  tl [2]);
+			Assert.AreEqual ("4", tl [3]);
+
+			var t = (Tuple<int, char, long, string>) tl;
+			Assert.AreEqual (1,   t._1);
+			Assert.AreEqual ('2', t._2);
+			Assert.AreEqual (3L,  t._3);
+			Assert.AreEqual ("4", t._4);
+			#endregion
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
@@ -703,6 +711,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Transpose ()
 		{
+			#region Transpose
 			IEnumerable<IEnumerable<int>> a = new int[][]{
 				new int[]{1, 2, 3},
 				new int[]{4, 5, 6},
@@ -719,6 +728,7 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (5, c [1][1]);
 			Assert.AreEqual (3, c [2][0]);
 			Assert.AreEqual (6, c [2][1]);
+			#endregion
 		}
 
 		[Test]
@@ -733,6 +743,7 @@ namespace Mono.Rocks.Tests {
 		public void ToList ()
 		{
 #if BNC_400716
+			#region ToList
 			int[][] a = new int[][]{
 				new int[]{1, 2, 3},
 				new int[]{4, 5, 6},
@@ -748,6 +759,7 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (a [1][0], c [1][0]);
 			Assert.AreEqual (a [1][1], c [1][1]);
 			Assert.AreEqual (a [1][2], c [1][2]);
+			#endregion
 #endif
 		}
 
@@ -1262,9 +1274,17 @@ namespace Mono.Rocks.Tests {
 			s.SplitAt (0);
 		}
 
+		[Test, ExpectedException (typeof (ArgumentOutOfRangeException))]
+		public void SplitAt_FirstLength_Negative()
+		{
+			IEnumerable<int> s = new[]{1,2,3};
+			s.SplitAt (-1);
+		}
+
 		[Test]
 		public void SplitAt ()
 		{
+			#region SplitAt
 			Assert.AreEqual ("Hello |World!",
 					"Hello World!".SplitAt (6)
 					.Aggregate ((x,y) => x.Implode () + "|" + y.Implode ()));
@@ -1283,9 +1303,7 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("|123",
 					new[]{1,2,3}.SplitAt (0)
 					.Aggregate ((x,y) => x.Implode () + "|" + y.Implode ()));
-			Assert.AreEqual ("|123",
-					new[]{1,2,3}.SplitAt (-1)
-					.Aggregate ((x,y) => x.Implode () + "|" + y.Implode ()));
+			#endregion
 		}
 
 		[Test]
@@ -1299,7 +1317,7 @@ namespace Mono.Rocks.Tests {
 
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
-		public void Span_FuncNull ()
+		public void Span_PredicateNull ()
 		{
 			IEnumerable<int> s = new[]{1};
 			Func<int, bool>  p = null;
@@ -1309,6 +1327,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Span ()
 		{
+			#region Span
 			Assert.AreEqual ("12|341234",
 					new[]{1,2,3,4,1,2,3,4}.Span (e => e < 3)
 					.Aggregate ((x, y) => x.Implode () + "|" + y.Implode ()));
@@ -1318,6 +1337,7 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("|123",
 					new[]{1,2,3}.Span (e => e < 0)
 					.Aggregate ((x, y) => x.Implode () + "|" + y.Implode ()));
+			#endregion
 		}
 
 		[Test]
@@ -1418,6 +1438,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void InitialSegments ()
 		{
+			#region InitialSegments
 			IEnumerable<IEnumerable<char>> e = "abc".InitialSegments ();
 			var l = e.ToList ();
 			Assert.AreEqual (4, l.Count);
@@ -1425,6 +1446,7 @@ namespace Mono.Rocks.Tests {
 			AssertAreSame (new[]{'a'},            l [1]);
 			AssertAreSame (new[]{'a', 'b'},       l [2]);
 			AssertAreSame (new[]{'a', 'b', 'c'},  l [3]);
+			#endregion
 		}
 
 		[Test]
@@ -1438,6 +1460,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void TrailingSegments ()
 		{
+			#region TrailingSegments
 			IEnumerable<IEnumerable<char>> e = "abc".TrailingSegments ();
 			var l = e.ToList ();
 			Assert.AreEqual (4, l.Count);
@@ -1445,6 +1468,7 @@ namespace Mono.Rocks.Tests {
 			AssertAreSame (new[]{'a', 'b'},       l [1]);
 			AssertAreSame (new[]{'a'},            l [2]);
 			AssertAreSame (new char[]{},          l [3]);
+			#endregion
 		}
 
 		[Test]

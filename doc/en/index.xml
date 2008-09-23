@@ -3399,9 +3399,19 @@
           <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TSource">
+          The type of element in the sequence <paramref name="self" />.
+        </typeparam>
+          <param name="self">
+          A <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          containing the sequence for which to return the initial segments.
+        </param>
+          <summary>
+          Creates a 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />
+          containing all leading segments of <paramref name="self" />,
+          shortest first.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.InitialSegments``1(System.Collections.Generic.IEnumerable{``0})" />
       </Member>
@@ -4162,7 +4172,7 @@
         <Target Type="T:System.Collections.Generic.IEnumerable`1" />
       </Targets>
       <Member MemberName="Span&lt;TSource&gt;">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Span&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; func);" />
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Span&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; predicate);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
@@ -4172,13 +4182,29 @@
         </TypeParameters>
         <Parameters>
           <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
-          <Parameter Name="func" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+          <Parameter Name="predicate" Type="System.Func&lt;TSource,System.Boolean&gt;" />
         </Parameters>
         <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="func">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TSource">
+          The type of element in the sequence <paramref name="self" />.
+        </typeparam>
+          <param name="self">
+          A <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          containing the sequence to create a span of.
+        </param>
+          <param name="predicate">
+          A <see cref="T:System.Func{TSource,System.Boolean}" /> which
+          controls which elements from <paramref name="self" /> are present
+          within the returned 
+          <see cref="P:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}._1" />.
+          sequence.
+        </param>
+          <summary>
+          Creates a 
+          <see cref="T:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}" />
+          of the contiguous elements at the start of <paramref name="self" /> 
+          which satisfy <paramref name="predicate" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Span``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" />
       </Member>
@@ -4201,10 +4227,21 @@
           <Parameter Name="firstLength" Type="System.Int32" />
         </Parameters>
         <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="firstLength">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TSource">
+          The type of element in the sequence <paramref name="self" />.
+        </typeparam>
+          <param name="self">
+          A <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          containing the sequence to split.
+        </param>
+          <param name="firstLength">
+          The number of elements to return in the first created sequence.
+        </param>
+          <summary>
+          Splits <paramref name="self" /> at <paramref name="firstLength" />,
+          creating a 
+          <see cref="T:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SplitAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)" />
       </Member>
@@ -4226,9 +4263,19 @@
           <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TSource">
+          The type of element in the sequence <paramref name="self" />.
+        </typeparam>
+          <param name="self">
+          A 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />
+          to convert into a 
+          <see cref="T:System.Collections.Generic.List{System.Collections.Generic.List{TSource}}" /></param>
+          <summary>
+          Creates a 
+          <see cref="T:System.Collections.Generic.List{System.Collections.Generic.List{TSource}}" />
+          with the same ordering and values as <paramref name="self" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ToList``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})" />
       </Member>
@@ -4238,17 +4285,22 @@
         <Target Type="T:System.Collections.IEnumerable" />
       </Targets>
       <Member MemberName="ToTuple">
-        <MemberSignature Language="C#" Value="public static object ToTuple (this System.Collections.IEnumerable self);" />
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IList&lt;object&gt; ToTuple (this System.Collections.IEnumerable self);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
-          <ReturnType>System.Object</ReturnType>
+          <ReturnType>System.Collections.Generic.IList&lt;System.Object&gt;</ReturnType>
         </ReturnValue>
         <Parameters>
           <Parameter Name="self" Type="System.Collections.IEnumerable" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.Collections.IEnumerable" /> containing the
+          values to insert into a Tuple.
+        </param>
+          <summary>
+          Creates a <c>Tuple</c> from a sequence.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ToTuple(System.Collections.IEnumerable)" />
       </Member>
@@ -4270,9 +4322,19 @@
           <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TSource">
+          The type of element in the sequence <paramref name="self" />.
+        </typeparam>
+          <param name="self">
+          A <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          containing the sequence for which to return the trailing segments.
+        </param>
+          <summary>
+          Creates a 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />
+          containing all final segments of <paramref name="self" />,
+          longest first.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.TrailingSegments``1(System.Collections.Generic.IEnumerable{``0})" />
       </Member>
@@ -4294,9 +4356,19 @@
           <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="TSource">
+          The type of element to return.
+        </typeparam>
+          <param name="self">
+          A
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />
+          containing rows and columns to transpose.
+        </param>
+          <summary>
+          Transposes <paramref name="self" />, so that rows become columns and
+          columns become rows in the returned 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Transpose``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})" />
       </Member>

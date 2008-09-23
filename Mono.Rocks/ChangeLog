@@ -1,5 +1,11 @@
 2008-09-22  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerable.cs: Change the return type of .ToTuple() to IList<object>;
+	  .SplitAt() should throw if firstLength is negative; rename .Span()'s
+	  Func<TSource,bool> parameter to `predicate`.
+
+2008-09-22  Jonathan Pryor  <jpryor@novell.com>
+
 	* Either.cs: Added; static `Either` utility class.
 
 2008-09-20  Jonathan Pryor  <jpryor@novell.com>

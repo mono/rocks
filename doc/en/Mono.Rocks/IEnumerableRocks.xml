@@ -1195,11 +1195,45 @@
         <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="TSource">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="TSource">
+          The type of element in the sequence <paramref name="self" />.
+        </typeparam>
+        <param name="self">
+          A <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          containing the sequence for which to return the initial segments.
+        </param>
+        <summary>
+          Creates a 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />
+          containing all leading segments of <paramref name="self" />,
+          shortest first.
+        </summary>
+        <returns>
+          A 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />
+          containing all leading segments of <paramref name="self" />,
+          shortest first.
+        </returns>
+        <remarks>
+          <para>
+            A "leading segment" is the list of <typeparamref name="TSource" />
+            values preceding the "current" index, in which the current index
+            starts at the start of <paramref name="self" /> and increments
+            until the end of <paramref name="self" />.
+          </para>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#InitialSegments">IEnumerable&lt;IEnumerable&lt;char&gt;&gt; e = "abc".InitialSegments ();
+var l = e.ToList ();
+Assert.AreEqual (4, l.Count);
+AssertAreSame (new char[]{},          l [0]);
+AssertAreSame (new[]{'a'},            l [1]);
+AssertAreSame (new[]{'a', 'b'},       l [2]);
+AssertAreSame (new[]{'a', 'b', 'c'},  l [3]);
+</code>
+        </remarks>
+        <altmember cref="M:Mono.Rocks.IEnumerableRocks.TrailingSegments``1(System.Collections.Generic.IEnumerable{``0})" />
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
       </Docs>
     </Member>
     <Member MemberName="Insert&lt;TSource&gt;">
@@ -2147,7 +2181,7 @@ Assert.AreEqual ('d', c [3].Second);
       </Docs>
     </Member>
     <Member MemberName="Span&lt;TSource&gt;">
-      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Span&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; func);" />
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;,System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Span&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, Func&lt;TSource,bool&gt; predicate);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -2165,15 +2199,56 @@ Assert.AreEqual ('d', c [3].Second);
       </TypeParameters>
       <Parameters>
         <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
-        <Parameter Name="func" Type="System.Func&lt;TSource,System.Boolean&gt;" />
+        <Parameter Name="predicate" Type="System.Func&lt;TSource,System.Boolean&gt;" />
       </Parameters>
       <Docs>
-        <typeparam name="TSource">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="func">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="TSource">
+          The type of element in the sequence <paramref name="self" />.
+        </typeparam>
+        <param name="self">
+          A <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          containing the sequence to create a span of.
+        </param>
+        <param name="predicate">
+          A <see cref="T:System.Func{TSource,System.Boolean}" /> which
+          controls which elements from <paramref name="self" /> are present
+          within the returned 
+          <see cref="P:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}._1" />.
+          sequence.
+        </param>
+        <summary>
+          Creates a 
+          <see cref="T:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}" />
+          of the contiguous elements at the start of <paramref name="self" /> 
+          which satisfy <paramref name="predicate" />.
+        </summary>
+        <returns>
+          Creates a 
+          <see cref="T:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}" />;
+          <see cref="P:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}._1" />
+          contains the (possibly empty) sequence of elements at the start of
+          <paramref name="self" /> which satisfy <paramref name="predicate" />,
+          and
+          <see cref="P:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}._2" />
+          contains all remaining elements from <paramref name="self" />.
+        </returns>
+        <remarks>
+          <para>
+            This is equivalent to: 
+            <c>Tuple.Create (self.TakeWhile (predicate), 
+            self.SkipWhile (predicate));</c>.
+          </para>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#Span">Assert.AreEqual ("12|341234",
+		new[]{1,2,3,4,1,2,3,4}.Span (e =&gt; e &lt; 3)
+		.Aggregate ((x, y) =&gt; x.Implode () + "|" + y.Implode ()));
+Assert.AreEqual ("123|",
+		new[]{1,2,3}.Span (e =&gt; e &lt; 9)
+		.Aggregate ((x, y) =&gt; x.Implode () + "|" + y.Implode ()));
+Assert.AreEqual ("|123",
+		new[]{1,2,3}.Span (e =&gt; e &lt; 0)
+		.Aggregate ((x, y) =&gt; x.Implode () + "|" + y.Implode ()));
+</code>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="SplitAt&lt;TSource&gt;">
@@ -2198,12 +2273,63 @@ Assert.AreEqual ('d', c [3].Second);
         <Parameter Name="firstLength" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <typeparam name="TSource">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <param name="firstLength">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="TSource">
+          The type of element in the sequence <paramref name="self" />.
+        </typeparam>
+        <param name="self">
+          A <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          containing the sequence to split.
+        </param>
+        <param name="firstLength">
+          The number of elements to return in the first created sequence.
+        </param>
+        <summary>
+          Splits <paramref name="self" /> at <paramref name="firstLength" />,
+          creating a 
+          <see cref="T:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}" />.
+        </summary>
+        <returns>
+          A 
+          <see cref="T:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}" />,
+          where 
+          <see cref="P:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}._1" />
+          contains the first <paramref name="firstLength" /> elements from
+          <paramref name="self" />, and 
+          <see cref="P:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{TSource},System.Collections.Generic.IEnumerable{TSource}}._2" />
+          contains the remaining elements from the sequence.
+        </returns>
+        <remarks>
+          <para>
+            This is equivalent to 
+            <c>Tuple.Create (self.Take (firstLength), 
+            self.Skip (firstLength));</c>.
+          </para>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#SplitAt">Assert.AreEqual ("Hello |World!",
+		"Hello World!".SplitAt (6)
+		.Aggregate ((x,y) =&gt; x.Implode () + "|" + y.Implode ()));
+Assert.AreEqual ("123|45",
+		new[]{1,2,3,4,5}.SplitAt (3)
+		.Aggregate ((x,y) =&gt; x.Implode () + "|" + y.Implode ()));
+Assert.AreEqual ("1|23",
+		new[]{1,2,3}.SplitAt (1)
+		.Aggregate ((x,y) =&gt; x.Implode () + "|" + y.Implode ()));
+Assert.AreEqual ("123|",
+		new[]{1,2,3}.SplitAt (3)
+		.Aggregate ((x,y) =&gt; x.Implode () + "|" + y.Implode ()));
+Assert.AreEqual ("123|",
+		new[]{1,2,3}.SplitAt (4)
+		.Aggregate ((x,y) =&gt; x.Implode () + "|" + y.Implode ()));
+Assert.AreEqual ("|123",
+		new[]{1,2,3}.SplitAt (0)
+		.Aggregate ((x,y) =&gt; x.Implode () + "|" + y.Implode ()));
+</code>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
+        <exception cref="T:System.ArgumentOutOfRangeException">
+          <paramref name="firstLength" /> is negative.
+        </exception>
       </Docs>
     </Member>
     <Member MemberName="ToList&lt;TSource&gt;">
@@ -2227,15 +2353,46 @@ Assert.AreEqual ('d', c [3].Second);
         <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="TSource">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="TSource">
+          The type of element in the sequence <paramref name="self" />.
+        </typeparam>
+        <param name="self">
+          A 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />
+          to convert into a 
+          <see cref="T:System.Collections.Generic.List{System.Collections.Generic.List{TSource}}" /></param>
+        <summary>
+          Creates a 
+          <see cref="T:System.Collections.Generic.List{System.Collections.Generic.List{TSource}}" />
+          with the same ordering and values as <paramref name="self" />.
+        </summary>
+        <returns>
+          A 
+          <see cref="T:System.Collections.Generic.List{System.Collections.Generic.List{TSource}}" />
+          with the same ordering and values as <paramref name="self" />.
+        </returns>
+        <remarks>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#ToList">int[][] a = new int[][]{
+	new int[]{1, 2, 3},
+	new int[]{4, 5, 6},
+};
+IEnumerable&lt;IEnumerable&lt;int&gt;&gt; b = a;
+List&lt;List&lt;int&gt;&gt; c = b.ToList ();
+Assert.AreEqual (a.Length, c.Count);
+Assert.AreEqual (a [0].Length, c [0].Count);
+Assert.AreEqual (a [1].Length, c [1].Count);
+Assert.AreEqual (a [0][0], c [0][0]);
+Assert.AreEqual (a [0][1], c [0][1]);
+Assert.AreEqual (a [0][2], c [0][2]);
+Assert.AreEqual (a [1][0], c [1][0]);
+Assert.AreEqual (a [1][1], c [1][1]);
+Assert.AreEqual (a [1][2], c [1][2]);
+</code>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="ToTuple">
-      <MemberSignature Language="C#" Value="public static object ToTuple (this System.Collections.IEnumerable self);" />
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IList&lt;object&gt; ToTuple (this System.Collections.IEnumerable self);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -2246,16 +2403,65 @@ Assert.AreEqual ('d', c [3].Second);
         </Attribute>
       </Attributes>
       <ReturnValue>
-        <ReturnType>System.Object</ReturnType>
+        <ReturnType>System.Collections.Generic.IList&lt;System.Object&gt;</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="self" Type="System.Collections.IEnumerable" RefType="this" />
       </Parameters>
       <Docs>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="self">
+          A <see cref="T:System.Collections.IEnumerable" /> containing the
+          values to insert into a Tuple.
+        </param>
+        <summary>
+          Creates a <c>Tuple</c> from a sequence.
+        </summary>
+        <returns>
+          <para>
+            A 
+            <see cref="T:System.Collections.Generic.IEnumerable{System.Object}" />
+            backed by a <c>Tuple</c> containing the values within the sequence 
+            <paramref name="self" />.
+          </para>
+          <para>
+            No specific tuple is returned, as it depends upon the number of
+            elements within <paramref name="self" />, thus a cast is necessary
+            to the appropriate <c>Tuple</c> type to use it as a Tuple.
+          </para>
+        </returns>
+        <remarks>
+          <para>
+            Converts a sequence into a <c>Tuple</c>.  The specific tuple
+            returned is dependent upon <paramref name="self" />.
+            <paramref name="self" /> must have between 1 and 
+            <see cref="F:Mono.Rocks.Tuple.MaxValues" /> elements, inclusive,
+            otherwise a <see cref="T:System.NotSupportedException" /> is
+            thrown.
+          </para>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#ToTuple">IEnumerable&lt;object&gt; s = new object[]{1, '2', 3L, "4"};
+IList&lt;object&gt; tl = s.ToTuple ();
+Assert.AreEqual (typeof(Tuple&lt;int, char, long, string&gt;), tl.GetType());
+Assert.AreEqual (4,   tl.Count);
+Assert.AreEqual (1,   tl [0]);
+Assert.AreEqual ('2', tl [1]);
+Assert.AreEqual (3L,  tl [2]);
+Assert.AreEqual ("4", tl [3]);
+
+var t = (Tuple&lt;int, char, long, string&gt;) tl;
+Assert.AreEqual (1,   t._1);
+Assert.AreEqual ('2', t._2);
+Assert.AreEqual (3L,  t._3);
+Assert.AreEqual ("4", t._4);
+</code>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
+        <exception cref="T:System.NotSupportedException">
+          The number of elements within <paramref name="self" /> exceeds
+          <see cref="F:Mono.Rocks.Tuple.MaxValues" />, and thus no tuple type
+          exists to contain all the elements within <paramref name="self" />.
+        </exception>
       </Docs>
     </Member>
     <Member MemberName="TrailingSegments&lt;TSource&gt;">
@@ -2279,11 +2485,45 @@ Assert.AreEqual ('d', c [3].Second);
         <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="TSource">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="TSource">
+          The type of element in the sequence <paramref name="self" />.
+        </typeparam>
+        <param name="self">
+          A <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          containing the sequence for which to return the trailing segments.
+        </param>
+        <summary>
+          Creates a 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />
+          containing all final segments of <paramref name="self" />,
+          longest first.
+        </summary>
+        <returns>
+          A 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />
+          containing all final segments of <paramref name="self" />,
+          longest first.
+        </returns>
+        <remarks>
+          <para>
+            A "final segment" is the list of <typeparamref name="TSource" />
+            values following the "current" index, in which the current index
+            starts at the start of <paramref name="self" /> and increments
+            until the end of <paramref name="self" />.
+          </para>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#TrailingSegments">IEnumerable&lt;IEnumerable&lt;char&gt;&gt; e = "abc".TrailingSegments ();
+var l = e.ToList ();
+Assert.AreEqual (4, l.Count);
+AssertAreSame (new[]{'a', 'b', 'c'},  l [0]);
+AssertAreSame (new[]{'a', 'b'},       l [1]);
+AssertAreSame (new[]{'a'},            l [2]);
+AssertAreSame (new char[]{},          l [3]);
+</code>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
+        <altmember cref="M:Mono.Rocks.IEnumerableRocks.InitialSegments``1(System.Collections.Generic.IEnumerable{``0})" />
       </Docs>
     </Member>
     <Member MemberName="Transpose&lt;TSource&gt;">
@@ -2307,11 +2547,46 @@ Assert.AreEqual ('d', c [3].Second);
         <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="TSource">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="TSource">
+          The type of element to return.
+        </typeparam>
+        <param name="self">
+          A
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />
+          containing rows and columns to transpose.
+        </param>
+        <summary>
+          Transposes <paramref name="self" />, so that rows become columns and
+          columns become rows in the returned 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />.
+        </summary>
+        <returns>
+          A 
+          <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />,
+          in which columns and rows are transposed.
+        </returns>
+        <remarks>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#Transpose">IEnumerable&lt;IEnumerable&lt;int&gt;&gt; a = new int[][]{
+	new int[]{1, 2, 3},
+	new int[]{4, 5, 6},
+};
+IEnumerable&lt;IEnumerable&lt;int&gt;&gt; b = a.Transpose ();
+List&lt;List&lt;int&gt;&gt; c = b.ToList ();
+Assert.AreEqual (3, c.Count);
+Assert.AreEqual (2, c [0].Count);
+Assert.AreEqual (2, c [1].Count);
+Assert.AreEqual (2, c [2].Count);
+Assert.AreEqual (1, c [0][0]);
+Assert.AreEqual (4, c [0][1]);
+Assert.AreEqual (2, c [1][0]);
+Assert.AreEqual (5, c [1][1]);
+Assert.AreEqual (3, c [2][0]);
+Assert.AreEqual (6, c [2][1]);
+</code>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
       </Docs>
     </Member>
     <Member MemberName="Unzip&lt;T1,T2,T3,T4&gt;">

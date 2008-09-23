@@ -12,7 +12,7 @@ libdir = $(prefix)/lib
 mrdir  = lib/mono-rocks
 pkdir  = lib/pkgconfig
 
-.PHONY: all check-gendarme check clean install
+.PHONY: all check-gendarme check clean install shell
 
 $(mrdir)/Mono.Rocks.dll: Mono.Rocks.dll.sources $(shell cat Mono.Rocks.dll.sources)
 	$(MCS) -doc:doc/mono-rocks.xml -debug+ -t:library -r:System.Core -out:$@ $(MCS_FLAGS) @Mono.Rocks.dll.sources
@@ -51,3 +51,7 @@ $(mrdir)/Mono.Rocks.Tests.dll: Mono.Rocks.Tests.dll.sources $(shell cat Mono.Roc
 
 check: $(mrdir)/Mono.Rocks.Tests.dll
 	nunit-console2 $(mrdir)/Mono.Rocks.Tests.dll
+
+shell:
+	csharp -r:$(mrdir)/Mono.Rocks.dll
+

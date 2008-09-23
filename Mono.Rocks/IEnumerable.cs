@@ -271,7 +271,7 @@ namespace Mono.Rocks {
 			return Sort (self, NaturalStringComparer.Default);
 		}
 
-		public static object ToTuple (this IEnumerable self)
+		public static IList<object> ToTuple (this IEnumerable self)
 		{
 			Check.Self (self);
 
@@ -298,7 +298,7 @@ namespace Mono.Rocks {
 				throw new NotSupportedException (
 						string.Format ("Tuples with {0} values are not supported.", types.Count));
 			tuple = tuple.MakeGenericType (types.ToArray ());
-			return Activator.CreateInstance (tuple, args.ToArray ());
+			return (IList<object>) Activator.CreateInstance (tuple, args.ToArray ());
 		}
 
 		public static int SequenceCompare<TSource> (this IEnumerable<TSource> self, IEnumerable<TSource> list)
@@ -871,17 +871,20 @@ namespace Mono.Rocks {
 		public static Tuple<IEnumerable<TSource>, IEnumerable<TSource>> SplitAt<TSource> (this IEnumerable<TSource> self, int firstLength)
 		{
 			Check.Self (self);
-			if (firstLength <= 0)
-				firstLength = 0;
+
+			if (firstLength < 0)
+				throw new ArgumentOutOfRangeException ("firstLength", "must not be negative");
+
 			return Tuple.Create (self.Take (firstLength), self.Skip (firstLength));
 		}
 
 		// Haskell: span
-		public static Tuple<IEnumerable<TSource>, IEnumerable<TSource>> Span<TSource> (this IEnumerable<TSource> self, Func<TSource, bool> func)
+		public static Tuple<IEnumerable<TSource>, IEnumerable<TSource>> Span<TSource> (this IEnumerable<TSource> self, Func<TSource, bool> predicate)
 		{
-			Check.SelfAndFunc (self, func);
+			Check.Self (self);
+			Check.Predicate (predicate);
 
-			return Tuple.Create (self.TakeWhile (func), self.SkipWhile (func));
+			return Tuple.Create (self.TakeWhile (predicate), self.SkipWhile (predicate));
 		}
 
 		// Haskell: break
