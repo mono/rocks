@@ -1,3 +1,8 @@
+2008-09-23  Jonathan Pryor  <jpryor@novell.com>
+
+	* JaggedArray.cs, RectangularArray.cs: Added; extension methods for
+	  jagged and rectangular arrays.
+
 2008-09-22  Jonathan Pryor  <jpryor@novell.com>
 
 	* IEnumerable.cs: Change the return type of .ToTuple() to IList<object>;

@@ -1,5 +1,17 @@
 2008-09-23  Jonathan Pryor  <jpryor@novell.com>
 
+	* Makefile: `check` shouldn't test NotWorking tests; add `check-all`
+	  target which tests all tests, including NotWorking tests.
+	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add
+	  Mono.Rocks/JaggedArray.cs and Mono.Rocks/RectangularArray.cs to the
+	  build.
+	* Mono.Rocks.Tests.dll.sources, Tests/Mono.Rocks.Tests.csproj: Add
+	  Tests/Mono.Rocks.Tests/JaggedArrayTest.cs and
+	  Tests/Mono.Rocks.Tests/RectangularArrayTest.cs to the build.
+	* doc/en/**: Add new types.
+
+2008-09-23  Jonathan Pryor  <jpryor@novell.com>
+
 	* Makefile: Add `shell` target, which runs `csharp -r:Mono.Rocks.dll` 
 	  for simple interactive testing.
 	* doc/en/**: Flush.

@@ -5,12 +5,14 @@
 ./Tests/Mono.Rocks.Tests/Int32Test.cs
 ./Tests/Mono.Rocks.Tests/Int64Test.cs
 ./Tests/Mono.Rocks.Tests/BaseRocksFixture.cs
+./Tests/Mono.Rocks.Tests/JaggedArrayTest.cs
 ./Tests/Mono.Rocks.Tests/KeyValuePairTest.cs
 ./Tests/Mono.Rocks.Tests/LambdaTest.cs
 ./Tests/Mono.Rocks.Tests/MaybeTest.cs
 ./Tests/Mono.Rocks.Tests/NaturalStringComparerTest.cs
 ./Tests/Mono.Rocks.Tests/NullableTest.cs
 ./Tests/Mono.Rocks.Tests/ObjectTest.cs
+./Tests/Mono.Rocks.Tests/RectangularArrayTest.cs
 ./Tests/Mono.Rocks.Tests/SequenceTest.cs
 ./Tests/Mono.Rocks.Tests/StreamConverterTest.cs
 ./Tests/Mono.Rocks.Tests/StreamTest.cs

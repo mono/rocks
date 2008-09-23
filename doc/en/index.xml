@@ -63,6 +63,7 @@
       <Type Name="Int16Rocks" Kind="Class" />
       <Type Name="Int32Rocks" Kind="Class" />
       <Type Name="Int64Rocks" Kind="Class" />
+      <Type Name="JaggedArrayRocks" Kind="Class" />
       <Type Name="KeyValuePairRocks" Kind="Class" />
       <Type Name="Lambda" Kind="Class" />
       <Type Name="Maybe" Kind="Class" />
@@ -71,6 +72,7 @@
       <Type Name="NaturalStringComparer" Kind="Class" />
       <Type Name="NullableRocks" Kind="Class" />
       <Type Name="ObjectRocks" Kind="Class" />
+      <Type Name="RectangularArrayRocks" Kind="Class" />
       <Type Name="Sequence" Kind="Class" />
       <Type Name="StreamConverter" Kind="Class" />
       <Type Name="StreamRocks" Kind="Class" />
@@ -4933,6 +4935,30 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
+        <Target Type="T:TSource[][]" />
+      </Targets>
+      <Member MemberName="Rows&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Rows&lt;TSource&gt; (this TSource[][] self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="TSource[][]" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.JaggedArrayRocks" Member="M:Mono.Rocks.JaggedArrayRocks.Rows``1(``0[][])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
         <Target Type="T:System.Collections.Generic.KeyValuePair`2" />
       </Targets>
       <Member MemberName="Aggregate&lt;TKey,TValue,TResult&gt;">
@@ -5331,6 +5357,30 @@
         </summary>
         </Docs>
         <Link Type="Mono.Rocks.ObjectRocks" Member="M:Mono.Rocks.ObjectRocks.With``2(``0,System.Func{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:TSource[,]" />
+      </Targets>
+      <Member MemberName="Rows&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; Rows&lt;TSource&gt; (this TSource[,] self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="TSource[,]" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.RectangularArrayRocks" Member="M:Mono.Rocks.RectangularArrayRocks.Rows``1(``0[,])" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>

@@ -8,6 +8,7 @@
 ./Mono.Rocks/Int16.cs
 ./Mono.Rocks/Int32.cs
 ./Mono.Rocks/Int64.cs
+./Mono.Rocks/JaggedArrayRocks.cs
 ./Mono.Rocks/KeyValuePair.cs
 ./Mono.Rocks/Lambda.cs
 ./Mono.Rocks/Lambdas.cs
@@ -15,6 +16,7 @@
 ./Mono.Rocks/NaturalStringComparer.cs
 ./Mono.Rocks/Nullable.cs
 ./Mono.Rocks/Object.cs
+./Mono.Rocks/RectangularArrayRocks.cs
 ./Mono.Rocks/Sequence.cs
 ./Mono.Rocks/Stream.cs
 ./Mono.Rocks/StreamConverter.cs

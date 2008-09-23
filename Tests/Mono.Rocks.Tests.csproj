@@ -50,12 +50,14 @@
     <Compile Include="Mono.Rocks.Tests\Int16Test.cs" />
     <Compile Include="Mono.Rocks.Tests\Int32Test.cs" />
     <Compile Include="Mono.Rocks.Tests\Int64Test.cs" />
+    <Compile Include="Mono.Rocks.Tests\JaggedArrayTest.cs" />
     <Compile Include="Mono.Rocks.Tests\KeyValuePairTest.cs" />
     <Compile Include="Mono.Rocks.Tests\LambdaTest.cs" />
     <Compile Include="Mono.Rocks.Tests\MaybeTest.cs" />
     <Compile Include="Mono.Rocks.Tests\NaturalStringComparerTest.cs" />
     <Compile Include="Mono.Rocks.Tests\NullableTest.cs" />
     <Compile Include="Mono.Rocks.Tests\ObjectTest.cs" />
+    <Compile Include="Mono.Rocks.Tests\RectangularArrayTest.cs" />
     <Compile Include="Mono.Rocks.Tests\SequenceTest.cs" />
     <Compile Include="Mono.Rocks.Tests\StreamTest.cs" />
     <Compile Include="Mono.Rocks.Tests\StreamConverterTest.cs" />
