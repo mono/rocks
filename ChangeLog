@@ -1,5 +1,10 @@
 2008-09-22  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/**: Flush.
+	* . (svn:ignore): Update ignored files list.
+
+2008-09-22  Jonathan Pryor  <jpryor@novell.com>
+
 	* lib/mono-rocks (svn:ignore): Ignore generated directories.
 
 2008-09-22  Jonathan Pryor  <jpryor@novell.com>

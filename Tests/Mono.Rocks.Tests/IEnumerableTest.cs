@@ -1791,15 +1791,21 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Unzip ()
 		{
+			#region Unzip2
 			Assert.AreEqual ("1,2|3,4",
 					new[]{1,2}.Zip (new[]{3,4,5}).Unzip ()
 					.Aggregate ((a, b) => a.Implode (",") + "|" + b.Implode (",")));
+			#endregion
+			#region Unzip3
 			Assert.AreEqual ("1,2|3,4|5,6",
 					new[]{1,2}.Zip (new[]{3,4,5}, new[]{5,6}).Unzip ()
 					.Aggregate ((a, b, c) => a.Implode (",") + "|" + b.Implode (",") + "|" + c.Implode (",")));
+			#endregion
+			#region Unzip4
 			Assert.AreEqual ("1,2|3,4|5,6|7,8",
 					new[]{1,2}.Zip (new[]{3,4,5,6}, new[]{5,6,7}, new[]{7,8}).Unzip ()
 					.Aggregate ((a, b, c, d) => a.Implode (",") + "|" + b.Implode (",") + "|" + c.Implode (",") + "|" + d.Implode (",")));
+			#endregion
 		}
 
 		[Test]

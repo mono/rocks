@@ -58,16 +58,15 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Match ()
 		{
-#if BNC_423791
+			#region Match
 			Assert.AreEqual ("foo",
 				"foo".Match (
 					s => Maybe.When (s.Length != 3, "bar!"),
-					s => s.Just ());
+					s => s.Just ()));
 			Assert.AreEqual ("bar!",
 				5.Match (
 					v => Maybe.When (v != 3, "bar!"),
 					v => v.ToString ().Just()));
-#endif
 			var m = new Func<string, Maybe<int>>[] {
 				v => Maybe.When (v == "bar",    1),
 				v => Maybe.When (v.Length == 5, 2),
@@ -76,6 +75,7 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (1, "bar".Match (m));
 			Assert.AreEqual (2, "12345".Match (m));
 			Assert.AreEqual (-1, "*default*".Match (m));
+			#endregion
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
@@ -121,8 +121,13 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void With ()
 		{
+			#region With
+			// sorts the array, then returns the 
+			// element in the middle of the array.
 			Assert.AreEqual (3,
-				new[]{5, 4, 3, 2, 1}.Sort ().With (c => c.ElementAt (c.Count()/2)));
+				new[]{5, 4, 3, 2, 1}.Sort ()
+				.With (c => c.ElementAt (c.Count()/2)));
+			#endregion
 		}
 	}
 }

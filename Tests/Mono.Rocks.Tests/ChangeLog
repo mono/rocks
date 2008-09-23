@@ -1,5 +1,9 @@
 2008-09-22  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerableTest.cs, ObjectTest.cs: Add #regions for doc usage.
+
+2008-09-22  Jonathan Pryor  <jpryor@novell.com>
+
 	* EitherTest.cs: Add test for Either.TryParse().
 
 2008-09-20  Jonathan Pryor  <jpryor@novell.com>

@@ -54,6 +54,10 @@
   <Types>
     <Namespace Name="Mono.Rocks">
       <Type Name="DelegateRocks" Kind="Class" />
+      <Type Name="Either" Kind="Class" />
+      <Type Name="Either`2" DisplayName="Either&lt;T1,T2&gt;" Kind="Class" />
+      <Type Name="Either`3" DisplayName="Either&lt;T1,T2,T3&gt;" Kind="Class" />
+      <Type Name="Either`4" DisplayName="Either&lt;T1,T2,T3,T4&gt;" Kind="Class" />
       <Type Name="ICustomAttributeProviderRocks" Kind="Class" />
       <Type Name="IEnumerableRocks" Kind="Class" />
       <Type Name="Int16Rocks" Kind="Class" />
@@ -4315,10 +4319,24 @@
           <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+          The type of the first sequence to return.
+        </typeparam>
+          <typeparam name="T2">
+          The type of the second sequence to return.
+        </typeparam>
+          <param name="self">
+          A
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2}}" />
+          to split up into separate lists.
+        </param>
+          <summary>
+          Converts an 
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2}}" />
+          into a tuple of lists, one for each 
+          <see cref="T:Mono.Rocks.Tuple{T1,T2}" />
+          element.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Unzip``2(System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{``0,``1}})" />
       </Member>
@@ -4342,11 +4360,27 @@
           <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+          The type of the first sequence to return.
+        </typeparam>
+          <typeparam name="T2">
+          The type of the second sequence to return.
+        </typeparam>
+          <typeparam name="T3">
+          The type of the third sequence to return.
+        </typeparam>
+          <param name="self">
+          A
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2,T3}}" />
+          to split up into separate lists.
+        </param>
+          <summary>
+          Converts an 
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2,T3}}" />
+          into a tuple of lists, one for each 
+          <see cref="T:Mono.Rocks.Tuple{T1,T2,T3}" />
+          element.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Unzip``3(System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{``0,``1,``2}})" />
       </Member>
@@ -4371,12 +4405,30 @@
           <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <typeparam name="T1">To be added.</typeparam>
-          <typeparam name="T2">To be added.</typeparam>
-          <typeparam name="T3">To be added.</typeparam>
-          <typeparam name="T4">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <typeparam name="T1">
+          The type of the first sequence to return.
+        </typeparam>
+          <typeparam name="T2">
+          The type of the second sequence to return.
+        </typeparam>
+          <typeparam name="T3">
+          The type of the third sequence to return.
+        </typeparam>
+          <typeparam name="T4">
+          The type of the fourth sequence to return.
+        </typeparam>
+          <param name="self">
+          A
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2,T3,T4}}" />
+          to split up into separate lists.
+        </param>
+          <summary>
+          Converts an 
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2,T3,T4}}" />
+          into a tuple of lists, one for each 
+          <see cref="T:Mono.Rocks.Tuple{T1,T2,T3,T4}" />
+          element.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Unzip``4(System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{``0,``1,``2,``3}})" />
       </Member>
@@ -4988,7 +5040,7 @@
         <Target Type="T:System.Nullable`1" />
       </Targets>
       <Member MemberName="Just&lt;T&gt;">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; Just&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct;" />
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; Just&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct, ValueType, new();" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
@@ -4996,7 +5048,9 @@
         <TypeParameters>
           <TypeParameter Name="T">
             <Constraints>
+              <ParameterAttribute>DefaultConstructorConstraint</ParameterAttribute>
               <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
+              <BaseTypeName>System.ValueType</BaseTypeName>
             </Constraints>
           </TypeParameter>
         </TypeParameters>
@@ -5025,7 +5079,7 @@
         <Target Type="T:System.Nullable`1" />
       </Targets>
       <Member MemberName="ToMaybe&lt;T&gt;">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; ToMaybe&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct;" />
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; ToMaybe&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct, ValueType, new();" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
@@ -5033,7 +5087,9 @@
         <TypeParameters>
           <TypeParameter Name="T">
             <Constraints>
+              <ParameterAttribute>DefaultConstructorConstraint</ParameterAttribute>
               <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
+              <BaseTypeName>System.ValueType</BaseTypeName>
             </Constraints>
           </TypeParameter>
         </TypeParameters>

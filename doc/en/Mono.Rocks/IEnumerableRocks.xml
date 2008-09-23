@@ -2338,14 +2338,49 @@ Assert.AreEqual ('d', c [3].Second);
         <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;&gt;" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <typeparam name="T4">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="T1">
+          The type of the first sequence to return.
+        </typeparam>
+        <typeparam name="T2">
+          The type of the second sequence to return.
+        </typeparam>
+        <typeparam name="T3">
+          The type of the third sequence to return.
+        </typeparam>
+        <typeparam name="T4">
+          The type of the fourth sequence to return.
+        </typeparam>
+        <param name="self">
+          A
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2,T3,T4}}" />
+          to split up into separate lists.
+        </param>
+        <summary>
+          Converts an 
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2,T3,T4}}" />
+          into a tuple of lists, one for each 
+          <see cref="T:Mono.Rocks.Tuple{T1,T2,T3,T4}" />
+          element.
+        </summary>
+        <returns>
+          An 
+          <see cref="T:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{T1},System.Collections.Generic.IEnumerable{T2},System.Collections.Generic.IEnumerable{T3},System.Collections.Generic.IEnumerable{T4}}" />
+          containing the appropriate elements from each 
+          <see cref="T:Mono.Rocks.Tuple{T1,T2,T3,T4}" />.
+        </returns>
+        <remarks>
+          <para>
+            This is analogous to undoing a <c>Zip</c> operation.
+          </para>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#Unzip4">Assert.AreEqual ("1,2|3,4|5,6|7,8",
+		new[]{1,2}.Zip (new[]{3,4,5,6}, new[]{5,6,7}, new[]{7,8}).Unzip ()
+		.Aggregate ((a, b, c, d) =&gt; a.Implode (",") + "|" + b.Implode (",") + "|" + c.Implode (",") + "|" + d.Implode (",")));
+</code>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
+        <altmember cref="M:Mono.Rocks.IEnumerableRocks.Zip``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2},System.Collections.Generic.IEnumerable{``3})" />
       </Docs>
     </Member>
     <Member MemberName="Unzip&lt;T1,T2,T3&gt;">
@@ -2371,13 +2406,46 @@ Assert.AreEqual ('d', c [3].Second);
         <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2,T3&gt;&gt;" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <typeparam name="T3">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="T1">
+          The type of the first sequence to return.
+        </typeparam>
+        <typeparam name="T2">
+          The type of the second sequence to return.
+        </typeparam>
+        <typeparam name="T3">
+          The type of the third sequence to return.
+        </typeparam>
+        <param name="self">
+          A
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2,T3}}" />
+          to split up into separate lists.
+        </param>
+        <summary>
+          Converts an 
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2,T3}}" />
+          into a tuple of lists, one for each 
+          <see cref="T:Mono.Rocks.Tuple{T1,T2,T3}" />
+          element.
+        </summary>
+        <returns>
+          An 
+          <see cref="T:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{T1},System.Collections.Generic.IEnumerable{T2},System.Collections.Generic.IEnumerable{T3}}" />
+          containing the appropriate elements from each 
+          <see cref="T:Mono.Rocks.Tuple{T1,T2,T3}" />.
+        </returns>
+        <remarks>
+          <para>
+            This is analogous to undoing a <c>Zip</c> operation.
+          </para>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#Unzip3">Assert.AreEqual ("1,2|3,4|5,6",
+		new[]{1,2}.Zip (new[]{3,4,5}, new[]{5,6}).Unzip ()
+		.Aggregate ((a, b, c) =&gt; a.Implode (",") + "|" + b.Implode (",") + "|" + c.Implode (",")));
+</code>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
+        <altmember cref="M:Mono.Rocks.IEnumerableRocks.Zip``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2})" />
       </Docs>
     </Member>
     <Member MemberName="Unzip&lt;T1,T2&gt;">
@@ -2402,12 +2470,43 @@ Assert.AreEqual ('d', c [3].Second);
         <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;Mono.Rocks.Tuple&lt;T1,T2&gt;&gt;" RefType="this" />
       </Parameters>
       <Docs>
-        <typeparam name="T1">To be added.</typeparam>
-        <typeparam name="T2">To be added.</typeparam>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <typeparam name="T1">
+          The type of the first sequence to return.
+        </typeparam>
+        <typeparam name="T2">
+          The type of the second sequence to return.
+        </typeparam>
+        <param name="self">
+          A
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2}}" />
+          to split up into separate lists.
+        </param>
+        <summary>
+          Converts an 
+          <see cref="T:System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{T1,T2}}" />
+          into a tuple of lists, one for each 
+          <see cref="T:Mono.Rocks.Tuple{T1,T2}" />
+          element.
+        </summary>
+        <returns>
+          An 
+          <see cref="T:Mono.Rocks.Tuple{System.Collections.Generic.IEnumerable{T1},System.Collections.Generic.IEnumerable{T2}}" />
+          containing the appropriate elements from each 
+          <see cref="T:Mono.Rocks.Tuple{T1,T2}" />.
+        </returns>
+        <remarks>
+          <para>
+            This is analogous to undoing a <c>Zip</c> operation.
+          </para>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#Unzip2">Assert.AreEqual ("1,2|3,4",
+		new[]{1,2}.Zip (new[]{3,4,5}).Unzip ()
+		.Aggregate ((a, b) =&gt; a.Implode (",") + "|" + b.Implode (",")));
+</code>
+        </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />.
+        </exception>
+        <altmember cref="M:Mono.Rocks.IEnumerableRocks.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})" />
       </Docs>
     </Member>
     <Member MemberName="Zip&lt;T1,T2,T3,T4&gt;">
@@ -2505,6 +2604,7 @@ Assert.AreEqual ("",
           is <see langword="null" />.
         </exception>
         <altmember cref="M:Mono.Rocks.IEnumerableRocks.SelectFromEach``5(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2},System.Collections.Generic.IEnumerable{``3},System.Func{``0,``1,``2,``3,``4})" />
+        <altmember cref="M:Mono.Rocks.IEnumerableRocks.Unzip``4(System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{``0,``1,``2,``3}})" />
       </Docs>
     </Member>
     <Member MemberName="Zip&lt;T1,T2,T3&gt;">
@@ -2593,6 +2693,7 @@ Assert.AreEqual ("",
           is <see langword="null" />.
         </exception>
         <altmember cref="M:Mono.Rocks.IEnumerableRocks.SelectFromEach``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Collections.Generic.IEnumerable{``2},System.Func{``0,``1,``2,``3})" />
+        <altmember cref="M:Mono.Rocks.IEnumerableRocks.Unzip``3(System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{``0,``1,``2}})" />
       </Docs>
     </Member>
     <Member MemberName="Zip&lt;T1,T2&gt;">
@@ -2671,6 +2772,7 @@ Assert.AreEqual ("",
           is <see langword="null" />.
         </exception>
         <altmember cref="M:Mono.Rocks.IEnumerableRocks.SelectFromEach``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,``2})" />
+        <altmember cref="M:Mono.Rocks.IEnumerableRocks.Unzip``2(System.Collections.Generic.IEnumerable{Mono.Rocks.Tuple{``0,``1}})" />
       </Docs>
     </Member>
   </Members>

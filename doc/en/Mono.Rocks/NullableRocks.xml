@@ -22,7 +22,7 @@
   </Docs>
   <Members>
     <Member MemberName="Just&lt;T&gt;">
-      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; Just&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct;" />
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; Just&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct, ValueType, new();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -38,7 +38,9 @@
       <TypeParameters>
         <TypeParameter Name="T">
           <Constraints>
+            <ParameterAttribute>DefaultConstructorConstraint</ParameterAttribute>
             <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
+            <BaseTypeName>System.ValueType</BaseTypeName>
           </Constraints>
         </TypeParameter>
       </TypeParameters>
@@ -83,7 +85,7 @@
       </Docs>
     </Member>
     <Member MemberName="ToMaybe&lt;T&gt;">
-      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; ToMaybe&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct;" />
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; ToMaybe&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct, ValueType, new();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -99,7 +101,9 @@
       <TypeParameters>
         <TypeParameter Name="T">
           <Constraints>
+            <ParameterAttribute>DefaultConstructorConstraint</ParameterAttribute>
             <ParameterAttribute>NotNullableValueTypeConstraint</ParameterAttribute>
+            <BaseTypeName>System.ValueType</BaseTypeName>
           </Constraints>
         </TypeParameter>
       </TypeParameters>
