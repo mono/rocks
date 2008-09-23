@@ -1,5 +1,9 @@
 2008-09-22  Jonathan Pryor  <jpryor@novell.com>
 
+	* . (svn:ignore): Ignore MonoDevelop-generated directories.
+
+2008-09-22  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/**: Flush.
 	* . (svn:ignore): Update ignored files list.
 
