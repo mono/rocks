@@ -4163,8 +4163,17 @@
           <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.String&gt;" RefType="this" />
         </Parameters>
         <Docs>
-          <param name="self">To be added.</param>
-          <summary>To be added.</summary>
+          <param name="self">
+          A <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          containing the elements to sort.
+        </param>
+          <summary>
+          Returns a new 
+          <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          which contains the elements within <paramref name="self" /> sorted 
+          using the
+          <see cref="F:Mono.Rocks.NaturalStringComparer.Default" /> comparer.
+        </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.SortNatural(System.Collections.Generic.IEnumerable{System.String})" />
       </Member>

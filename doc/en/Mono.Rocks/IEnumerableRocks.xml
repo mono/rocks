@@ -2174,10 +2174,29 @@ Assert.AreEqual ('d', c [3].Second);
         <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.String&gt;" RefType="this" />
       </Parameters>
       <Docs>
-        <param name="self">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
+        <param name="self">
+          A <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          containing the elements to sort.
+        </param>
+        <summary>
+          Returns a new 
+          <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          which contains the elements within <paramref name="self" /> sorted 
+          using the
+          <see cref="F:Mono.Rocks.NaturalStringComparer.Default" /> comparer.
+        </summary>
+        <returns>
+          A new 
+          <see cref="T:System.Collections.Generic.IEnumerable{TSource}" />
+          which contains the elements within <paramref name="self" /> sorted 
+          using the
+          <see cref="F:Mono.Rocks.NaturalStringComparer.Default" /> comparer.
+        </returns>
+        <remarks>
+          <para>
+            This method does not modify <paramref name="self" />.
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Span&lt;TSource&gt;">
@@ -2566,6 +2585,14 @@ AssertAreSame (new char[]{},          l [3]);
           in which columns and rows are transposed.
         </returns>
         <remarks>
+          <para>
+            If each row has a different number of elements, then the returned 
+            <see cref="T:System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{TSource}}" />.
+            will have as many rows as the longest number of columns within
+            <paramref name="self" />, and any rows with fewer than the
+            maximum number of input columns are "skipped" when an input column
+            index exceeds the length of that row.
+          </para>
           <code lang="C#" src="../../Tests/Mono.Rocks.Tests/IEnumerableTest.cs#Transpose">IEnumerable&lt;IEnumerable&lt;int&gt;&gt; a = new int[][]{
 	new int[]{1, 2, 3},
 	new int[]{4, 5, 6},
@@ -2582,6 +2609,17 @@ Assert.AreEqual (2, c [1][0]);
 Assert.AreEqual (5, c [1][1]);
 Assert.AreEqual (3, c [2][0]);
 Assert.AreEqual (6, c [2][1]);
+
+// Test non-"rectangular" array
+a = new int[][]{
+	new int[]{1, 2},
+	new int[]{3},
+	new int[]{4, 5},
+};
+b = a.Transpose ();
+Assert.AreEqual (2, b.Count ());
+Assert.IsTrue (new[]{1, 3, 4}.SequenceEqual (b.ElementAt (0)));
+Assert.IsTrue (new[]{2, 5}.SequenceEqual (b.ElementAt (1)));
 </code>
         </remarks>
         <exception cref="T:System.ArgumentNullException">

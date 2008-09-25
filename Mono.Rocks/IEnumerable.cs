@@ -536,21 +536,13 @@ namespace Mono.Rocks {
 			Check.Self (self);
 
 			IList<IList<TSource>> items = self as IList<IList<TSource>>;
-			int max = 0;
 			if (items == null) {
-				items = new List<IList<TSource>> ();
-				foreach (var outer in self) {
-					List<TSource> c = new List<TSource> ();
-					items.Add (c);
-					foreach (var inner in outer) {
-						c.Add (inner);
-					}
-					max = System.Math.Max (max, c.Count);
-				}
-			} else {
-				for (int i = 0; i < items.Count; ++i)
-					max = System.Math.Max (max, items [i].Count);
+				items = self.ToList().Select(x => (IList<TSource>) x).ToList();
 			}
+
+			int max = 0;
+			for (int i = 0; i < items.Count; ++i)
+				max = System.Math.Max (max, items [i].Count);
 
 			return CreateTransposeIterator (items, max);
 		}
@@ -564,9 +556,9 @@ namespace Mono.Rocks {
 		private static IEnumerable<TSource> CreateTransposeColumnIterator<TSource> (IList<IList<TSource>> items, int column)
 		{
 			for (int i = 0; i < items.Count; ++i) {
-				yield return (items [i].Count > column) 
-					? items [i][column] 
-					: default (TSource);
+				if (items [i].Count <= column)
+					continue;
+				yield return items [i][column];
 			}
 		}
 

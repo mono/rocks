@@ -728,6 +728,17 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (5, c [1][1]);
 			Assert.AreEqual (3, c [2][0]);
 			Assert.AreEqual (6, c [2][1]);
+
+			// Test non-"rectangular" array
+			a = new int[][]{
+				new int[]{1, 2},
+				new int[]{3},
+				new int[]{4, 5},
+			};
+			b = a.Transpose ();
+			Assert.AreEqual (2, b.Count ());
+			Assert.IsTrue (new[]{1, 3, 4}.SequenceEqual (b.ElementAt (0)));
+			Assert.IsTrue (new[]{2, 5}.SequenceEqual (b.ElementAt (1)));
 			#endregion
 		}
 
