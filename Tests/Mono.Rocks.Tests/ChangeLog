@@ -1,3 +1,7 @@
+2008-09-25  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerableTest.cs: Add test for non-rectangular array.
+
 2008-09-23  Jonathan Pryor  <jpryor@novell.com>
 
 	* JaggedArrayTest.cs, RectangularArrayTest.cs: Added; tests for

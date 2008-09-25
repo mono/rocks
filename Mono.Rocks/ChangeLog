@@ -1,3 +1,9 @@
+2008-09-25  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerable.cs (Transpose): Don't insert default(TSource) when a row
+	  doesn't have enough elements for the transposed row, just skip it.
+	  This is Haskell's behavior.
+
 2008-09-23  Jonathan Pryor  <jpryor@novell.com>
 
 	* JaggedArray.cs, RectangularArray.cs: Added; extension methods for
