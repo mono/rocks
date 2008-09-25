@@ -5414,6 +5414,28 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
+        <Target Type="T:System.IO.Stream" />
+      </Targets>
+      <Member MemberName="WriteTo">
+        <MemberSignature Language="C#" Value="public static void WriteTo (this System.IO.Stream self, System.IO.Stream destination);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Void</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
+          <Parameter Name="destination" Type="System.IO.Stream" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <param name="destination">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamRocks" Member="M:Mono.Rocks.StreamRocks.WriteTo(System.IO.Stream,System.IO.Stream)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
         <Target Type="T:System.String" />
       </Targets>
       <Member MemberName="CaptureNamedGroups">
