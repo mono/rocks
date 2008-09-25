@@ -55,5 +55,34 @@ namespace Mono.Rocks.Tests {
 			Stream s = new MemoryStream ();
 			s.WithSystemConverter();
 		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void WriteTo_SelfNull ()
+		{
+			Stream s = null;
+			s.WriteTo (new MemoryStream ());
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void WriteTo_DestinationNull ()
+		{
+			Stream s = new MemoryStream ();
+			s.WriteTo (null);
+		}
+
+		[Test]
+		public void WriteTo ()
+		{
+			Stream s = new MemoryStream (
+					Encoding.UTF8.GetBytes ("Hello, world!"));
+			MemoryStream d = new MemoryStream ();
+
+			s.Position = 7;
+			s.WriteTo (d);
+			Assert.AreEqual (13, s.Position);
+			Assert.AreEqual (6, d.Length);
+			Assert.AreEqual (6, d.Position);
+			Assert.AreEqual ("world!", Encoding.UTF8.GetString (d.ToArray ()));
+		}
 	}
 }

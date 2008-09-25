@@ -42,5 +42,19 @@ namespace Mono.Rocks {
 			Check.Self (self);
 			return new SystemStreamConverter (self);
 		}
+
+		public static void WriteTo (this Stream self, Stream destination)
+		{
+			Check.Self (self);
+			Check.Destination (destination);
+
+			int size = self.CanSeek
+				? (int) System.Math.Min (self.Length - self.Position, 4096)
+				: 4096;
+			byte[] buf = new byte [size];
+			int r;
+			while ((r = self.Read (buf, 0, buf.Length)) > 0)
+				destination.Write (buf, 0, r);
+		}
 	}
 }

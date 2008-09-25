@@ -1,5 +1,9 @@
 2008-09-25  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/**: Add Stream.WriteTo() extension method.
+
+2008-09-25  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/**: Flush.
 
 2008-09-23  Jonathan Pryor  <jpryor@novell.com>

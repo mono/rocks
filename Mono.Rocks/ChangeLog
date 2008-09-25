@@ -1,5 +1,10 @@
 2008-09-25  Jonathan Pryor  <jpryor@novell.com>
 
+	* Check.cs: Add Check.Destination() method.
+	* Stream.cs: Add .WriteTo() method, which copies data between streams.
+
+2008-09-25  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerable.cs (Transpose): Don't insert default(TSource) when a row
 	  doesn't have enough elements for the transposed row, just skip it.
 	  This is Haskell's behavior.

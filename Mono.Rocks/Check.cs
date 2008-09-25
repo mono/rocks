@@ -44,6 +44,12 @@ namespace Mono.Rocks {
 				throw new ArgumentNullException ("composer");
 		}
 
+		public static void Destination (object destination)
+		{
+			if (destination == null)
+				throw new ArgumentNullException ("destination");
+		}
+
 		public static void List (object list)
 		{
 			if (list == null)

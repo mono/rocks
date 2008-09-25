@@ -1,5 +1,9 @@
 2008-09-25  Jonathan Pryor  <jpryor@novell.com>
 
+	* StreamTest.cs: Add tests for .WriteTo().
+
+2008-09-25  Jonathan Pryor  <jpryor@novell.com>
+
 	* TextReaderTest.cs: Add check that .Words() doesn't consume the
 	  entire TextReader.
 
