@@ -127,6 +127,12 @@ namespace Mono.Rocks.Tests {
 			Assert.IsTrue (r.WasDisposed);
 			Assert.AreEqual (1, words.Length);
 			Assert.AreEqual ("notext", words [0]);
+
+			r = new MyStringReader ("1 2 3 4");
+			Assert.AreEqual ("1", r.Words ().First ());
+			Assert.AreEqual ("2", r.Words ().First ());
+			Assert.AreEqual ("3", r.Words ().First ());
+			Assert.AreEqual ("4", r.Words ().First ());
 		}
 	}
 }
