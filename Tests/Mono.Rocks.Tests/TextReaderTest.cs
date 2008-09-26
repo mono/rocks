@@ -102,6 +102,14 @@ namespace Mono.Rocks.Tests {
 			s.Words ();
 		}
 
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Words_LevelsNull ()
+		{
+			TextReader              s = new StringReader ("");
+			Func<char, bool>[] levels = null;
+			s.Words (levels);
+		}
+
 		[Test, ExpectedException (typeof (ArgumentException))]
 		public void Words_OptionsInvalid()
 		{
@@ -109,18 +117,26 @@ namespace Mono.Rocks.Tests {
 			s.Words ((TextReaderRocksOptions) (-1));
 		}
 
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Words_FullLevelsNull ()
+		{
+			TextReader              s = new StringReader ("");
+			Func<char, bool>[] levels = null;
+			s.Words (TextReaderRocksOptions.None, levels);
+		}
+
 		[Test]
 		public void Words ()
 		{
-			MyStringReader r = new MyStringReader ("   skip  leading\r\n\tand trailing\vwhitespace   ");
+			MyStringReader r = new MyStringReader ("   (skip  leading,\r\n\tand trailing\vwhitespace)   ");
 			string[] words = r.Words ().ToArray ();
 			Assert.IsFalse (r.WasDisposed);
 			Assert.AreEqual (5, words.Length);
-			Assert.AreEqual ("skip",        words [0]);
-			Assert.AreEqual ("leading",     words [1]);
+			Assert.AreEqual ("(skip",       words [0]);
+			Assert.AreEqual ("leading,",    words [1]);
 			Assert.AreEqual ("and",         words [2]);
 			Assert.AreEqual ("trailing",    words [3]);
-			Assert.AreEqual ("whitespace",  words [4]);
+			Assert.AreEqual ("whitespace)", words [4]);
 
 			r = new MyStringReader ("notext");
 			words = r.Words (TextReaderRocksOptions.CloseReader).ToArray ();
@@ -133,6 +149,17 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("2", r.Words ().First ());
 			Assert.AreEqual ("3", r.Words ().First ());
 			Assert.AreEqual ("4", r.Words ().First ());
+
+			var reader = new StringReader ("(append 3.5 \"hello, world!\")");
+			words = reader.Words (
+				c => char.IsLetterOrDigit (c) || c == '.',
+				c => !char.IsWhiteSpace (c))
+				.ToArray ();
+			Assert.IsTrue (
+					new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
+					.SequenceEqual (words));
+
+			Assert.AreEqual (0, reader.Words (c => false).ToArray ().Length);
 		}
 	}
 }

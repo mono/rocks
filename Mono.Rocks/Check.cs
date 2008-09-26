@@ -50,6 +50,12 @@ namespace Mono.Rocks {
 				throw new ArgumentNullException ("destination");
 		}
 
+		public static void Levels (object levels)
+		{
+			if (levels == null)
+				throw new ArgumentNullException ("levels");
+		}
+
 		public static void List (object list)
 		{
 			if (list == null)

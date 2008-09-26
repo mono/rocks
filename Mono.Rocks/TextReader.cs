@@ -29,6 +29,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Mono.Rocks {
@@ -73,36 +74,58 @@ namespace Mono.Rocks {
 			}
 		}
 
-		public static IEnumerable<string> Words (this TextReader self)
+		public static IEnumerable<string> Words (this TextReader self, params Func<char, bool>[] levels)
 		{
-			return Words (self, TextReaderRocksOptions.None);
+			Check.Levels (levels);
+			if (levels.Length == 0)
+				levels = GetDefaultLevels ();
+			return Words (self, TextReaderRocksOptions.None, levels);
 		}
 
-		public static IEnumerable<string> Words (this TextReader self, TextReaderRocksOptions options)
+		private static Func<char, bool>[] GetDefaultLevels ()
+		{
+			return new Func<char, bool>[]{ c => !char.IsWhiteSpace (c) };
+		}
+
+		public static IEnumerable<string> Words (this TextReader self, TextReaderRocksOptions options, params Func<char, bool>[] levels)
 		{
 			Check.Self (self);
 			CheckOptions (options);
+			Check.Levels (levels);
+			if (levels.Length == 0)
+				levels = GetDefaultLevels ();
 
-			return CreateWordsIterator (self, options);
+			return CreateWordsIterator (self, options, levels);
 		}
 
-		private static IEnumerable<string> CreateWordsIterator (TextReader self, TextReaderRocksOptions options)
+		private static IEnumerable<string> CreateWordsIterator (TextReader self, TextReaderRocksOptions options, Func<char, bool>[] levels)
 		{
 			StringBuilder buf = new StringBuilder ();
 			try {
 				int c;
-				bool inWord = false;
+				int level = -1;
 				while ((c = self.Read ()) >= 0) {
-					if (!char.IsWhiteSpace ((char) c)) {
-						inWord = true;
+					char ch = (char) c;
+					int next_level = levels
+						.Select ((l, i) => l (ch) ? i : -1)
+						.Where (n => n >= 0)
+						.With (e => e.Count() > 0 ? e.Min () : -1);
+					if (next_level == level && level >= 0)
 						buf.Append ((char) c);
-					}
-					else {
-						if (inWord) {
+					else if (next_level >= 0) {
+						if (buf.Length > 0) {
 							yield return buf.ToString ();
 							buf.Length = 0;
 						}
-						inWord = false;
+						level = next_level;
+						buf.Append (ch);
+					}
+					else {
+						if (buf.Length > 0) {
+							yield return buf.ToString ();
+							buf.Length = 0;
+						}
+						level = -1;
 					}
 				}
 				if (buf.Length > 0)
