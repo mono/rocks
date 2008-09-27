@@ -1,5 +1,19 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* IValueReader.cs, IValueWriter.cs: Add methods so that IValueReader
+	  and IValueWriter support all the types of IConvertible.
+	* EnumerableValueReader.cs, TextValueReader.cs,
+	  SystemStreamConverter.cs: Support new IValueReader & IValueWriter
+	  methods.
+	* EnumerableValueReader.cs: Read() methods now fallback to using
+	  IConvertible.To*() methods for type conversion purposes.  This way
+	  if TypeDescriptor doesn't support a conversion (e.g. int->bool), the
+	  conversion can still be supported.
+	* SystemStreamConverter.cs: Provide a basic working implementation of
+	  Read(string) and Write(string) using length-prefixed UTF-8.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* Check.cs: Add .Accumulate(), .Categories().
 	* Either.cs: Add .TryParse<S,R>() overload; improve TypeConverter
 	  usage to check for conversions both from the source type and to the

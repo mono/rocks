@@ -1,5 +1,9 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/**: Flush IValueReader/IValueWriter changes.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/**: Flush all the doc changes from previous commit.
 
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>

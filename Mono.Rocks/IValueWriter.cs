@@ -1,5 +1,5 @@
 //
-// IValuReader.cs
+// IValueWriter.cs
 //
 // Author:
 //   Jonathan Pryor  <jpryor@novell.com>
@@ -30,24 +30,24 @@ using System;
 namespace Mono.Rocks {
 
 	[CLSCompliant (false)]
-	public interface IValueReader<TSelf>
-		where TSelf : IValueReader<TSelf>
+	public interface IValueWriter<TSelf>
+		where TSelf : IValueWriter<TSelf>
 	{
-		TSelf Read (out bool value);
-		TSelf Read (out byte value);
-		TSelf Read (out char value);
-		TSelf Read (out DateTime value);
-		TSelf Read (out decimal value);
-		TSelf Read (out double value);
-		TSelf Read (out short value);
-		TSelf Read (out int value);
-		TSelf Read (out long value);
-		TSelf Read (out sbyte value);
-		TSelf Read (out float value);
-		TSelf Read (out string value);
-		TSelf Read (out ushort value);
-		TSelf Read (out uint value);
-		TSelf Read (out ulong value);
+		TSelf Write (bool value);
+		TSelf Write (byte value);
+		TSelf Write (char value);
+		TSelf Write (DateTime value);
+		TSelf Write (decimal value);
+		TSelf Write (double value);
+		TSelf Write (short value);
+		TSelf Write (int value);
+		TSelf Write (long value);
+		TSelf Write (sbyte value);
+		TSelf Write (float value);
+		TSelf Write (string value);
+		TSelf Write (ushort value);
+		TSelf Write (uint value);
+		TSelf Write (ulong value);
 	}
 }
 

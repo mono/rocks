@@ -46,7 +46,7 @@ namespace Mono.Rocks.Tests {
 			new EnumerableValueReader<int> (values);
 		}
 
-		[Test, ExpectedException (typeof (NotSupportedException))]
+		[Test, ExpectedException (typeof (InvalidCastException))]
 		public void Read_UnsupportedT ()
 		{
 			int n;
@@ -57,12 +57,12 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Reads ()
 		{
-			string a, b, c;
+			short a, b, c;
 			new EnumerableValueReader<int> (new[]{1, 2, 3})
 				.Read (out a).Read (out b).Read (out c);
-			Assert.AreEqual ("1", a);
-			Assert.AreEqual ("2", b);
-			Assert.AreEqual ("3", c);
+			Assert.AreEqual ((short) 1, a);
+			Assert.AreEqual ((short) 2, b);
+			Assert.AreEqual ((short) 3, c);
 		}
 	}
 }

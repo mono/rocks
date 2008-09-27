@@ -78,6 +78,30 @@ namespace Mono.Rocks {
 			return this;
 		}
 
+		public TextValueReader Read (out DateTime value)
+		{
+			value = DateTime.Parse (Word ());
+			return this;
+		}
+
+		public TextValueReader Read (IFormatProvider provider, out DateTime value)
+		{
+			value = DateTime.Parse (Word (), provider);
+			return this;
+		}
+
+		public TextValueReader Read (out decimal value)
+		{
+			value = decimal.Parse (Word ());
+			return this;
+		}
+
+		public TextValueReader Read (IFormatProvider provider, out decimal value)
+		{
+			value = decimal.Parse (Word (), provider);
+			return this;
+		}
+
 		public TextValueReader Read (out double value)
 		{
 			value = double.Parse (Word ());
@@ -126,6 +150,20 @@ namespace Mono.Rocks {
 			return this;
 		}
 
+		[CLSCompliant (false)]
+		public TextValueReader Read (out sbyte value)
+		{
+			value = sbyte.Parse (Word ());
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public TextValueReader Read (IFormatProvider provider, out sbyte value)
+		{
+			value = sbyte.Parse (Word (), provider);
+			return this;
+		}
+
 		public TextValueReader Read (out float value)
 		{
 			value = float.Parse (Word ());
@@ -141,6 +179,48 @@ namespace Mono.Rocks {
 		public TextValueReader Read (out string value)
 		{
 			value = Word ();
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public TextValueReader Read (out ushort value)
+		{
+			value = ushort.Parse (Word ());
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public TextValueReader Read (IFormatProvider provider, out ushort value)
+		{
+			value = ushort.Parse (Word (), provider);
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public TextValueReader Read (out uint value)
+		{
+			value = uint.Parse (Word ());
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public TextValueReader Read (IFormatProvider provider, out uint value)
+		{
+			value = uint.Parse (Word (), provider);
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public TextValueReader Read (out ulong value)
+		{
+			value = ulong.Parse (Word ());
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public TextValueReader Read (IFormatProvider provider, out ulong value)
+		{
+			value = ulong.Parse (Word (), provider);
 			return this;
 		}
 	}

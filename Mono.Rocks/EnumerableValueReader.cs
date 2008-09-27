@@ -43,12 +43,21 @@ namespace Mono.Rocks {
 			this.items = values.GetEnumerator ();
 		}
 
-		internal R Item<R> ()
+		internal R Item<R> (Func<IConvertible, R> c)
 		{
 			if (!items.MoveNext ())
 				throw new InvalidOperationException ("no more elements");
-			return Either.TryParse<T, R> (items.Current)
-				.Fold<R> (v => v, v => {throw v;});
+
+			Either<R, Exception> e = Either.TryParse<T, R> (items.Current);
+
+			Exception ex = e.Fold (v => null, v => v);
+			if (ex != null) {
+				var v = items.Current as IConvertible;
+				if (v != null)
+					return c (v);
+				throw ex;
+			}
+			return e.Fold<R> (v => v, v => default (R));
 		}
 
 		public void Dispose ()
@@ -58,55 +67,95 @@ namespace Mono.Rocks {
 
 		public EnumerableValueReader<T> Read (out bool value)
 		{
-			value = Item<bool> ();
+			value = Item<bool> (c => c.ToBoolean (null));
 			return this;
 		}
 
 		public EnumerableValueReader<T> Read (out byte value)
 		{
-			value = Item<byte> ();
+			value = Item<byte> (c => c.ToByte (null));
 			return this;
 		}
 
 		public EnumerableValueReader<T> Read (out char value)
 		{
-			value = Item<char> ();
+			value = Item<char> (c => c.ToChar (null));
+			return this;
+		}
+
+		public EnumerableValueReader<T> Read (out DateTime value)
+		{
+			value = Item<DateTime> (c => c.ToDateTime (null));
+			return this;
+		}
+
+		public EnumerableValueReader<T> Read (out decimal value)
+		{
+			value = Item<decimal> (c => c.ToDecimal (null));
 			return this;
 		}
 
 		public EnumerableValueReader<T> Read (out double value)
 		{
-			value = Item<double> ();
+			value = Item<double> (c => c.ToDouble (null));
 			return this;
 		}
 
 		public EnumerableValueReader<T> Read (out short value)
 		{
-			value = Item<short> ();
+			value = Item<short> (c => c.ToInt16 (null));
 			return this;
 		}
 
 		public EnumerableValueReader<T> Read (out int value)
 		{
-			value = Item<int> ();
+			value = Item<int> (c => c.ToInt32 (null));
 			return this;
 		}
 
 		public EnumerableValueReader<T> Read (out long value)
 		{
-			value = Item<long> ();
+			value = Item<long> (c => c.ToInt64 (null));
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public EnumerableValueReader<T> Read (out sbyte value)
+		{
+			value = Item<sbyte> (c => c.ToSByte (null));
 			return this;
 		}
 
 		public EnumerableValueReader<T> Read (out float value)
 		{
-			value = Item<float> ();
+			value = Item<float> (c => c.ToSingle (null));
 			return this;
 		}
 
 		public EnumerableValueReader<T> Read (out string value)
 		{
-			value = Item<string> ();
+			value = Item<string> (c => c.ToString (null));
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public EnumerableValueReader<T> Read (out ushort value)
+		{
+			value = Item<ushort> (c => c.ToUInt16 (null));
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public EnumerableValueReader<T> Read (out uint value)
+		{
+			value = Item<uint> (c => c.ToUInt32 (null));
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public EnumerableValueReader<T> Read (out ulong value)
+		{
+			value = Item<ulong> (c => c.ToUInt16 (null));
 			return this;
 		}
 	}
@@ -115,7 +164,7 @@ namespace Mono.Rocks {
 
 		public static EnumerableValueReader<TSource> Read<TSource, TValue> (this EnumerableValueReader<TSource> self, out TValue value)
 		{
-			value = self.Item<TValue> ();
+			value = self.Item<TValue> (c => (TValue) c.ToType (typeof (TValue), null));
 			return self;
 		}
 	}

@@ -1,5 +1,10 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* EnumerableValueReaderTest.cs: Update the type thrown for unsupported
+	  conversions.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* TextReaderTest.cs: Add #region for doc usage.
 
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>

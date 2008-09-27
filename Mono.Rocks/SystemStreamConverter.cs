@@ -105,6 +105,47 @@ namespace Mono.Rocks {
 			return this;
 		}
 
+		public SystemStreamConverter Read (out char value)
+		{
+			AssertRead ();
+
+			value = BitConverter.ToChar (Take (2), 0);
+
+			return this;
+		}
+
+		public SystemStreamConverter Read (out DateTime value)
+		{
+			AssertRead ();
+
+			long ticks;
+			this.Read (out ticks);
+			value = new DateTime (ticks);
+
+			return this;
+		}
+
+		public SystemStreamConverter Read (out decimal value)
+		{
+			AssertRead ();
+
+			int a, b, c, d;
+			this.Read (out a).Read (out b).Read (out c).Read (out d);
+
+			value = new Decimal (new []{a, b, c, d});
+
+			return this;
+		}
+
+		public SystemStreamConverter Read (out double value)
+		{
+			AssertRead ();
+
+			value = BitConverter.ToDouble (Take (8), 0);
+
+			return this;
+		}
+
 		public SystemStreamConverter Read (out short value)
 		{
 			AssertRead ();
@@ -132,30 +173,36 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out double value)
-		{
-			AssertRead ();
-
-			value = BitConverter.ToDouble (Take (8), 0);
-
-			return this;
-		}
-
-		public SystemStreamConverter Read (out char value)
-		{
-			AssertRead ();
-
-			value = BitConverter.ToChar (Take (2), 0);
-
-			return this;
-		}
-
 		public SystemStreamConverter Read (out float value)
 		{
 			AssertRead ();
 
 			value = BitConverter.ToSingle (Take (4), 0);
 
+			return this;
+		}
+
+		public SystemStreamConverter Read (out string value)
+		{
+			int len;
+			this.Read (out len);
+			if (len < 0)
+				throw new InvalidOperationException ("Invalid string representation");
+
+			byte[] buf = new byte [len];
+			this.Read (buf);
+
+			value = Encoding.UTF8.GetString (buf);
+
+			return this;
+		}
+
+		[CLSCompliant (false)]
+		public SystemStreamConverter Read (out sbyte value)
+		{
+			byte b;
+			this.Read (out b);
+			value = (sbyte) b;
 			return this;
 		}
 
@@ -198,11 +245,6 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out string value)
-		{
-			throw new NotSupportedException ();
-		}
-
 		public SystemStreamConverter Read (int size, Encoding encoding, out string value)
 		{
 			AssertRead ();
@@ -233,6 +275,26 @@ namespace Mono.Rocks {
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
+		}
+
+		public SystemStreamConverter Write (DateTime value)
+		{
+			AssertWrite ();
+
+			return Write (value.Ticks);
+		}
+
+		public SystemStreamConverter Write (decimal value)
+		{
+			AssertWrite ();
+
+			int[] bits = decimal.GetBits (value);
+			if (bits.Length != 4)
+				throw new NotSupportedException ("Unexpected number of elements from decimal.GetBits().");
+			foreach (int b in bits)
+				Write (b);
+
+			return this;
 		}
 
 		public SystemStreamConverter Write (double value)
@@ -270,6 +332,23 @@ namespace Mono.Rocks {
 			return Write (BitConverter.GetBytes (value));
 		}
 
+		[CLSCompliant (false)]
+		public SystemStreamConverter Write (sbyte value)
+		{
+			AssertWrite ();
+
+			return Write ((byte) value);
+		}
+
+		public SystemStreamConverter Write (string value)
+		{
+			AssertWrite ();
+
+			byte[] data = Encoding.UTF8.GetBytes (value);
+
+			return Write (data.Length).Write (data);
+		}
+
 		public SystemStreamConverter Write (byte[] value)
 		{
 			AssertWrite ();
@@ -302,11 +381,6 @@ namespace Mono.Rocks {
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
-		}
-
-		public SystemStreamConverter Write (string value)
-		{
-			throw new NotSupportedException ();
 		}
 	}
 
