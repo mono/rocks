@@ -100,6 +100,31 @@ Assert.AreEqual (42, n.Value);
         <altmember cref="M:System.ComponentModel.TypeConverter.ConvertFromString(System.String)" />
       </Docs>
     </Member>
+    <Member MemberName="TryParse&lt;TSource,TResult&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;TResult&gt; TryParse&lt;TSource,TResult&gt; (TSource value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.Maybe&lt;TResult&gt;</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TSource" />
+        <TypeParameter Name="TResult" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="value" Type="TSource" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TSource">To be added.</typeparam>
+        <typeparam name="TResult">To be added.</typeparam>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="When&lt;T&gt;">
       <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; When&lt;T&gt; (bool condition, Func&lt;T&gt; creator);" />
       <MemberType>Method</MemberType>

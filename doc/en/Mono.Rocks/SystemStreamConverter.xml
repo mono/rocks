@@ -1,5 +1,5 @@
-<Type Name="StreamConverter" FullName="Mono.Rocks.StreamConverter">
-  <TypeSignature Language="C#" Value="public abstract class StreamConverter" />
+<Type Name="SystemStreamConverter" FullName="Mono.Rocks.SystemStreamConverter">
+  <TypeSignature Language="C#" Value="public sealed class SystemStreamConverter : Mono.Rocks.IValueReader&lt;Mono.Rocks.SystemStreamConverter&gt;, Mono.Rocks.IValueWriter&lt;Mono.Rocks.SystemStreamConverter&gt;" />
   <AssemblyInfo>
     <AssemblyName>Mono.Rocks</AssemblyName>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -7,57 +7,19 @@
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
   </Base>
-  <Interfaces />
+  <Interfaces>
+    <Interface>
+      <InterfaceName>Mono.Rocks.IValueReader&lt;Mono.Rocks.SystemStreamConverter&gt;</InterfaceName>
+    </Interface>
+    <Interface>
+      <InterfaceName>Mono.Rocks.IValueWriter&lt;Mono.Rocks.SystemStreamConverter&gt;</InterfaceName>
+    </Interface>
+  </Interfaces>
   <Docs>
     <summary>To be added.</summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
-    <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="protected StreamConverter (System.IO.Stream stream);" />
-      <MemberType>Constructor</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <Parameters>
-        <Parameter Name="stream" Type="System.IO.Stream" />
-      </Parameters>
-      <Docs>
-        <param name="stream">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="AssertRead">
-      <MemberSignature Language="C#" Value="protected void AssertRead ();" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters />
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="AssertWrite">
-      <MemberSignature Language="C#" Value="protected void AssertWrite ();" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters />
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
     <Member MemberName="BaseStream">
       <MemberSignature Language="C#" Value="public System.IO.Stream BaseStream { get; }" />
       <MemberType>Property</MemberType>
@@ -74,13 +36,13 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out bool value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out bool value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Boolean&amp;" RefType="out" />
@@ -93,13 +55,13 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out byte value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out byte value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Byte&amp;" RefType="out" />
@@ -112,13 +74,13 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (byte[] value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (byte[] value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Byte[]" />
@@ -131,13 +93,13 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out char value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out char value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Char&amp;" RefType="out" />
@@ -150,13 +112,13 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out double value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out double value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Double&amp;" RefType="out" />
@@ -169,13 +131,13 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out short value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out short value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Int16&amp;" RefType="out" />
@@ -188,13 +150,13 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out int value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out int value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Int32&amp;" RefType="out" />
@@ -207,13 +169,13 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out long value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out long value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Int64&amp;" RefType="out" />
@@ -226,13 +188,13 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out float value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out float value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Single&amp;" RefType="out" />
@@ -245,13 +207,37 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out ushort value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out string value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.String&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Read">
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out ushort value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.UInt16&amp;" RefType="out" />
@@ -264,13 +250,18 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out uint value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out uint value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.UInt32&amp;" RefType="out" />
@@ -283,13 +274,18 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (out ulong value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (out ulong value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.UInt64&amp;" RefType="out" />
@@ -302,13 +298,13 @@
       </Docs>
     </Member>
     <Member MemberName="Read">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read (int size, System.Text.Encoding encoding, out string value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Read (int size, System.Text.Encoding encoding, out string value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="size" Type="System.Int32" />
@@ -324,37 +320,14 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Read&lt;TValue&gt;">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Read&lt;TValue&gt; (out TValue value);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="TValue" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="value" Type="TValue&amp;" RefType="out" />
-      </Parameters>
-      <Docs>
-        <typeparam name="TValue">To be added.</typeparam>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (bool value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (bool value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Boolean" />
@@ -367,13 +340,13 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (byte value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (byte value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Byte" />
@@ -386,13 +359,13 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (byte[] value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (byte[] value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Byte[]" />
@@ -405,13 +378,13 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (char value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (char value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Char" />
@@ -424,13 +397,13 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (double value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (double value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Double" />
@@ -443,13 +416,13 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (short value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (short value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Int16" />
@@ -462,13 +435,13 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (int value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (int value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Int32" />
@@ -481,13 +454,13 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (long value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (long value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Int64" />
@@ -500,13 +473,13 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (float value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (float value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.Single" />
@@ -519,13 +492,37 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (ushort value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (string value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Write">
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (ushort value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.UInt16" />
@@ -538,13 +535,18 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (uint value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (uint value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.UInt32" />
@@ -557,13 +559,18 @@
       </Docs>
     </Member>
     <Member MemberName="Write">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write (ulong value);" />
+      <MemberSignature Language="C#" Value="public Mono.Rocks.SystemStreamConverter Write (ulong value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="value" Type="System.UInt64" />
@@ -575,33 +582,5 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Write&lt;TValue&gt;">
-      <MemberSignature Language="C#" Value="public abstract Mono.Rocks.StreamConverter Write&lt;TValue&gt; (TValue value);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>0.1.0.0</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
-      </ReturnValue>
-      <TypeParameters>
-        <TypeParameter Name="TValue" />
-      </TypeParameters>
-      <Parameters>
-        <Parameter Name="value" Type="TValue" />
-      </Parameters>
-      <Docs>
-        <typeparam name="TValue">To be added.</typeparam>
-        <param name="value">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
   </Members>
-  <Attributes>
-    <Attribute>
-      <AttributeName>System.CLSCompliant(false)</AttributeName>
-    </Attribute>
-  </Attributes>
 </Type>

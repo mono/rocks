@@ -29,6 +29,9 @@
         <Attribute>
           <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
         </Attribute>
+        <Attribute>
+          <AttributeName>System.Diagnostics.DebuggerHidden</AttributeName>
+        </Attribute>
       </Attributes>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
@@ -167,6 +170,9 @@ Console.WriteLine (5.DownTo (0).Implode (", "));
         <Attribute>
           <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
         </Attribute>
+        <Attribute>
+          <AttributeName>System.Diagnostics.DebuggerHidden</AttributeName>
+        </Attribute>
       </Attributes>
       <ReturnValue>
         <ReturnType>System.Collections.Generic.IEnumerable&lt;System.Int32&gt;</ReturnType>
@@ -288,6 +294,9 @@ Console.WriteLine (6.Times ().Implode (", "));
       <Attributes>
         <Attribute>
           <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Diagnostics.DebuggerHidden</AttributeName>
         </Attribute>
       </Attributes>
       <ReturnValue>

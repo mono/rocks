@@ -1,5 +1,9 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/**: Flush all the doc changes from previous commit.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add
 	  Mono.Rocks/EnumerableValueReader.cs, Mono.Rocks/IValueReader.cs,
 	  Mono.Rocks/IValueWriter.cs, Mono.Rocks/SystemStreamConverter.cs,

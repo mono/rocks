@@ -128,6 +128,7 @@ namespace Mono.Rocks.Tests {
 		[Test]
 		public void Words ()
 		{
+			#region Words
 			MyStringReader r = new MyStringReader ("   (skip  leading,\r\n\tand trailing\vwhitespace)   ");
 			string[] words = r.Words ().ToArray ();
 			Assert.IsFalse (r.WasDisposed);
@@ -160,6 +161,7 @@ namespace Mono.Rocks.Tests {
 					.SequenceEqual (words));
 
 			Assert.AreEqual (0, reader.Words (c => false).ToArray ().Length);
+			#endregion
 		}
 	}
 }

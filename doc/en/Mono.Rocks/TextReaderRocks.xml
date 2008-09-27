@@ -134,7 +134,7 @@
       </Docs>
     </Member>
     <Member MemberName="Words">
-      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self);" />
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Func&lt;char,bool&gt;[] categories);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -149,10 +149,22 @@
       </ReturnValue>
       <Parameters>
         <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+        <Parameter Name="categories" Type="System.Func&lt;System.Char,System.Boolean&gt;[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
       </Parameters>
       <Docs>
         <param name="self">
           A <see cref="T:System.IO.TextReader" /> to extract words from.
+        </param>
+        <param name="categories">
+          A <see cref="T:System.Func{System.Char,System.Boolean}" /> array
+          containing the different categories of characters that determines
+          what makes up a "word."
         </param>
         <summary>
           Creates an
@@ -175,19 +187,67 @@
             <see cref="T:System.IO.TextReader" /> disposal is up to the caller.
           </para>
           <block subset="none" type="note">
-            A "word" any contiguous series of characters for which
-            <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
-            returns <see langword="false" />.
+            <para>
+              A "word" is determined by <paramref name="categories" />.
+              If <paramref name="categories" /> is empty (the default), then a
+              word is any contiguous series of characters for which
+              <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
+              returns <see langword="false" />.
+            </para>
+            <para>
+              If <paramref name="categories" /> contains delegates, then a
+              "word" is any contiguous sequence of characters for which the
+              same <paramref name="categories" /> index returns 
+              <see langword="true" />, starting from the first delegate.  This
+              allows a "some characters are more important than others"
+              philosphy, allowing e.g. parenthesis to be returned separately
+              from alphanumeric characters, even if no whitespace separates
+              them.
+            </para>
           </block>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/TextReaderTest.cs#Words">MyStringReader r = new MyStringReader ("   (skip  leading,\r\n\tand trailing\vwhitespace)   ");
+string[] words = r.Words ().ToArray ();
+Assert.IsFalse (r.WasDisposed);
+Assert.AreEqual (5, words.Length);
+Assert.AreEqual ("(skip",       words [0]);
+Assert.AreEqual ("leading,",    words [1]);
+Assert.AreEqual ("and",         words [2]);
+Assert.AreEqual ("trailing",    words [3]);
+Assert.AreEqual ("whitespace)", words [4]);
+
+r = new MyStringReader ("notext");
+words = r.Words (TextReaderRocksOptions.CloseReader).ToArray ();
+Assert.IsTrue (r.WasDisposed);
+Assert.AreEqual (1, words.Length);
+Assert.AreEqual ("notext", words [0]);
+
+r = new MyStringReader ("1 2 3 4");
+Assert.AreEqual ("1", r.Words ().First ());
+Assert.AreEqual ("2", r.Words ().First ());
+Assert.AreEqual ("3", r.Words ().First ());
+Assert.AreEqual ("4", r.Words ().First ());
+
+var reader = new StringReader ("(append 3.5 \"hello, world!\")");
+words = reader.Words (
+	c =&gt; char.IsLetterOrDigit (c) || c == '.',
+	c =&gt; !char.IsWhiteSpace (c))
+	.ToArray ();
+Assert.IsTrue (
+		new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
+		.SequenceEqual (words));
+
+Assert.AreEqual (0, reader.Words (c =&gt; false).ToArray ().Length);
+</code>
         </remarks>
         <exception cref="T:System.ArgumentNullException">
-          <paramref name="self" /> is <see langword="null" />.
+          <paramref name="self" /> is <see langword="null" />, or
+          <paramref name="categories" /> is <see langword="null" />.
         </exception>
         <altmember cref="M:System.Char.IsWhiteSpace(System.Char)" />
       </Docs>
     </Member>
     <Member MemberName="Words">
-      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options);" />
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options, Func&lt;char,bool&gt;[] categories);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -203,6 +263,13 @@
       <Parameters>
         <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
         <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
+        <Parameter Name="categories" Type="System.Func&lt;System.Char,System.Boolean&gt;[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
       </Parameters>
       <Docs>
         <param name="self">
@@ -211,6 +278,11 @@
         <param name="options">
           A <see cref="T:Mono.Rocks.TextReaderRocksOptions" /> controlling
           method execution.
+        </param>
+        <param name="categories">
+          A <see cref="T:System.Func{System.Char,System.Boolean}" /> array
+          containing the different categories of characters that determines
+          what makes up a "word."
         </param>
         <summary>
           Creates an
@@ -236,13 +308,64 @@
             been returned.
           </para>
           <block subset="none" type="note">
-            A "word" any contiguous series of characters for which
-            <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
-            returns <see langword="false" />.
+            <para>
+              A "word" is determined by <paramref name="categories" />.
+              If <paramref name="categories" /> is empty (the default), then a
+              word is any contiguous series of characters for which
+              <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
+              returns <see langword="false" />.
+            </para>
+            <para>
+              If <paramref name="categories" /> contains delegates, then a
+              "word" is any contiguous sequence of characters for which the
+              same <paramref name="categories" /> index returns 
+              <see langword="true" />, starting from the first delegate.  This
+              allows a "some characters are more important than others"
+              philosphy, allowing e.g. parenthesis to be returned separately
+              from alphanumeric characters, even if no whitespace separates
+              them.
+            </para>
           </block>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/TextReaderTest.cs#Words">MyStringReader r = new MyStringReader ("   (skip  leading,\r\n\tand trailing\vwhitespace)   ");
+string[] words = r.Words ().ToArray ();
+Assert.IsFalse (r.WasDisposed);
+Assert.AreEqual (5, words.Length);
+Assert.AreEqual ("(skip",       words [0]);
+Assert.AreEqual ("leading,",    words [1]);
+Assert.AreEqual ("and",         words [2]);
+Assert.AreEqual ("trailing",    words [3]);
+Assert.AreEqual ("whitespace)", words [4]);
+
+r = new MyStringReader ("notext");
+words = r.Words (TextReaderRocksOptions.CloseReader).ToArray ();
+Assert.IsTrue (r.WasDisposed);
+Assert.AreEqual (1, words.Length);
+Assert.AreEqual ("notext", words [0]);
+
+r = new MyStringReader ("1 2 3 4");
+Assert.AreEqual ("1", r.Words ().First ());
+Assert.AreEqual ("2", r.Words ().First ());
+Assert.AreEqual ("3", r.Words ().First ());
+Assert.AreEqual ("4", r.Words ().First ());
+
+var reader = new StringReader ("(append 3.5 \"hello, world!\")");
+words = reader.Words (
+	c =&gt; char.IsLetterOrDigit (c) || c == '.',
+	c =&gt; !char.IsWhiteSpace (c))
+	.ToArray ();
+Assert.IsTrue (
+		new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
+		.SequenceEqual (words));
+
+Assert.AreEqual (0, reader.Words (c =&gt; false).ToArray ().Length);
+</code>
         </remarks>
+        <exception cref="T:System.ArgumentException">
+          <paramref name="options" /> contains an invalid value.
+        </exception>
         <exception cref="T:System.ArgumentNullException">
-          <paramref name="self" /> is <see langword="null" />.
+          <paramref name="self" /> is <see langword="null" />, or
+          <paramref name="categories" /> is <see langword="null" />.
         </exception>
         <altmember cref="M:System.Char.IsWhiteSpace(System.Char)" />
       </Docs>

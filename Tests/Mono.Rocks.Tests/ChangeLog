@@ -1,5 +1,9 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* TextReaderTest.cs: Add #region for doc usage.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* EitherTest.cs: Add tests for .TryParse() method.
 	* EnumerableValueReaderTest.cs: Added; tests for EnumerableValueReader.
 	* IEnumerableTest.cs: Add tests for .ToValueReader().

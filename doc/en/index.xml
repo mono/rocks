@@ -58,11 +58,15 @@
       <Type Name="Either`2" DisplayName="Either&lt;T1,T2&gt;" Kind="Class" />
       <Type Name="Either`3" DisplayName="Either&lt;T1,T2,T3&gt;" Kind="Class" />
       <Type Name="Either`4" DisplayName="Either&lt;T1,T2,T3,T4&gt;" Kind="Class" />
+      <Type Name="EnumerableValueReader`1" DisplayName="EnumerableValueReader&lt;T&gt;" Kind="Class" />
+      <Type Name="EnumerableValueReaderRocks" Kind="Class" />
       <Type Name="ICustomAttributeProviderRocks" Kind="Class" />
       <Type Name="IEnumerableRocks" Kind="Class" />
       <Type Name="Int16Rocks" Kind="Class" />
       <Type Name="Int32Rocks" Kind="Class" />
       <Type Name="Int64Rocks" Kind="Class" />
+      <Type Name="IValueReader`1" DisplayName="IValueReader&lt;TSelf&gt;" Kind="Interface" />
+      <Type Name="IValueWriter`1" DisplayName="IValueWriter&lt;TSelf&gt;" Kind="Interface" />
       <Type Name="JaggedArrayRocks" Kind="Class" />
       <Type Name="KeyValuePairRocks" Kind="Class" />
       <Type Name="Lambda" Kind="Class" />
@@ -74,17 +78,21 @@
       <Type Name="ObjectRocks" Kind="Class" />
       <Type Name="RectangularArrayRocks" Kind="Class" />
       <Type Name="Sequence" Kind="Class" />
-      <Type Name="StreamConverter" Kind="Class" />
       <Type Name="StreamRocks" Kind="Class" />
       <Type Name="StringRocks" Kind="Class" />
+      <Type Name="SystemStreamConverter" Kind="Class" />
+      <Type Name="SystemStreamConverterRocks" Kind="Class" />
       <Type Name="TextReaderRocks" Kind="Class" />
       <Type Name="TextReaderRocksOptions" Kind="Enumeration" />
+      <Type Name="TextValueReader" Kind="Class" />
+      <Type Name="TextValueReaderRocks" Kind="Class" />
       <Type Name="Tuple" Kind="Class" />
       <Type Name="Tuple`1" DisplayName="Tuple&lt;T&gt;" Kind="Structure" />
       <Type Name="Tuple`2" DisplayName="Tuple&lt;T1,T2&gt;" Kind="Structure" />
       <Type Name="Tuple`3" DisplayName="Tuple&lt;T1,T2,T3&gt;" Kind="Structure" />
       <Type Name="Tuple`4" DisplayName="Tuple&lt;T1,T2,T3,T4&gt;" Kind="Structure" />
       <Type Name="TupleRocks" Kind="Class" />
+      <Type Name="TypeRocks" Kind="Class" />
       <Type Name="UInt16Rocks" Kind="Class" />
       <Type Name="UInt32Rocks" Kind="Class" />
       <Type Name="UInt64Rocks" Kind="Class" />
@@ -2302,6 +2310,34 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
+        <Target Type="T:Mono.Rocks.EnumerableValueReader`1" />
+      </Targets>
+      <Member MemberName="Read&lt;TSource,TValue&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.EnumerableValueReader&lt;TSource&gt; Read&lt;TSource,TValue&gt; (this Mono.Rocks.EnumerableValueReader&lt;TSource&gt; self, out TValue value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.EnumerableValueReader&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="Mono.Rocks.EnumerableValueReader&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="value" Type="TValue&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.EnumerableValueReaderRocks" Member="M:Mono.Rocks.EnumerableValueReaderRocks.Read``2(Mono.Rocks.EnumerableValueReader{``0},``1@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
         <Target Type="T:System.Reflection.ICustomAttributeProvider" />
       </Targets>
       <Member MemberName="GetCustomAttribute&lt;TAttribute&gt;">
@@ -2824,142 +2860,6 @@
           <summary>To be added.</summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Concat``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})" />
-      </Member>
-    </ExtensionMethod>
-    <ExtensionMethod>
-      <Targets>
-        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
-      </Targets>
-      <Member MemberName="Convert&lt;TSource,TValue&gt;">
-        <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue value);" />
-        <MemberType>ExtensionMethod</MemberType>
-        <ReturnValue>
-          <ReturnType>System.Void</ReturnType>
-        </ReturnValue>
-        <TypeParameters>
-          <TypeParameter Name="TSource" />
-          <TypeParameter Name="TValue" />
-        </TypeParameters>
-        <Parameters>
-          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
-          <Parameter Name="value" Type="TValue&amp;" RefType="out" />
-        </Parameters>
-        <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <typeparam name="TValue">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
-        </Docs>
-        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Convert``2(System.Collections.Generic.IEnumerable{``0},``1@)" />
-      </Member>
-    </ExtensionMethod>
-    <ExtensionMethod>
-      <Targets>
-        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
-      </Targets>
-      <Member MemberName="Convert&lt;TSource,TValue1,TValue2&gt;">
-        <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue1,TValue2&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue1 value1, out TValue2 value2);" />
-        <MemberType>ExtensionMethod</MemberType>
-        <ReturnValue>
-          <ReturnType>System.Void</ReturnType>
-        </ReturnValue>
-        <TypeParameters>
-          <TypeParameter Name="TSource" />
-          <TypeParameter Name="TValue1" />
-          <TypeParameter Name="TValue2" />
-        </TypeParameters>
-        <Parameters>
-          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
-          <Parameter Name="value1" Type="TValue1&amp;" RefType="out" />
-          <Parameter Name="value2" Type="TValue2&amp;" RefType="out" />
-        </Parameters>
-        <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <typeparam name="TValue1">To be added.</typeparam>
-          <typeparam name="TValue2">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <summary>To be added.</summary>
-        </Docs>
-        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Convert``3(System.Collections.Generic.IEnumerable{``0},``1@,``2@)" />
-      </Member>
-    </ExtensionMethod>
-    <ExtensionMethod>
-      <Targets>
-        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
-      </Targets>
-      <Member MemberName="Convert&lt;TSource,TValue1,TValue2,TValue3&gt;">
-        <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue1,TValue2,TValue3&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue1 value1, out TValue2 value2, out TValue3 value3);" />
-        <MemberType>ExtensionMethod</MemberType>
-        <ReturnValue>
-          <ReturnType>System.Void</ReturnType>
-        </ReturnValue>
-        <TypeParameters>
-          <TypeParameter Name="TSource" />
-          <TypeParameter Name="TValue1" />
-          <TypeParameter Name="TValue2" />
-          <TypeParameter Name="TValue3" />
-        </TypeParameters>
-        <Parameters>
-          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
-          <Parameter Name="value1" Type="TValue1&amp;" RefType="out" />
-          <Parameter Name="value2" Type="TValue2&amp;" RefType="out" />
-          <Parameter Name="value3" Type="TValue3&amp;" RefType="out" />
-        </Parameters>
-        <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <typeparam name="TValue1">To be added.</typeparam>
-          <typeparam name="TValue2">To be added.</typeparam>
-          <typeparam name="TValue3">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <param name="value3">To be added.</param>
-          <summary>To be added.</summary>
-        </Docs>
-        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Convert``4(System.Collections.Generic.IEnumerable{``0},``1@,``2@,``3@)" />
-      </Member>
-    </ExtensionMethod>
-    <ExtensionMethod>
-      <Targets>
-        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
-      </Targets>
-      <Member MemberName="Convert&lt;TSource,TValue1,TValue2,TValue3,TValue4&gt;">
-        <MemberSignature Language="C#" Value="public static void Convert&lt;TSource,TValue1,TValue2,TValue3,TValue4&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, out TValue1 value1, out TValue2 value2, out TValue3 value3, out TValue4 value4);" />
-        <MemberType>ExtensionMethod</MemberType>
-        <ReturnValue>
-          <ReturnType>System.Void</ReturnType>
-        </ReturnValue>
-        <TypeParameters>
-          <TypeParameter Name="TSource" />
-          <TypeParameter Name="TValue1" />
-          <TypeParameter Name="TValue2" />
-          <TypeParameter Name="TValue3" />
-          <TypeParameter Name="TValue4" />
-        </TypeParameters>
-        <Parameters>
-          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
-          <Parameter Name="value1" Type="TValue1&amp;" RefType="out" />
-          <Parameter Name="value2" Type="TValue2&amp;" RefType="out" />
-          <Parameter Name="value3" Type="TValue3&amp;" RefType="out" />
-          <Parameter Name="value4" Type="TValue4&amp;" RefType="out" />
-        </Parameters>
-        <Docs>
-          <typeparam name="TSource">To be added.</typeparam>
-          <typeparam name="TValue1">To be added.</typeparam>
-          <typeparam name="TValue2">To be added.</typeparam>
-          <typeparam name="TValue3">To be added.</typeparam>
-          <typeparam name="TValue4">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value1">To be added.</param>
-          <param name="value2">To be added.</param>
-          <param name="value3">To be added.</param>
-          <param name="value4">To be added.</param>
-          <summary>To be added.</summary>
-        </Docs>
-        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Convert``5(System.Collections.Generic.IEnumerable{``0},``1@,``2@,``3@,``4@)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -4261,6 +4161,48 @@
       <Targets>
         <Target Type="T:System.Collections.Generic.IEnumerable`1" />
       </Targets>
+      <Member MemberName="Tokens&lt;TSource,TAccumulate,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; Tokens&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; accumulate, Func&lt;TAccumulate,Mono.Rocks.Tuple&lt;TResult,TAccumulate&gt;&gt; resultSelector, Func&lt;TSource,bool&gt;[] categories);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+          <TypeParameter Name="TAccumulate" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+          <Parameter Name="seed" Type="TAccumulate" />
+          <Parameter Name="accumulate" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
+          <Parameter Name="resultSelector" Type="System.Func&lt;TAccumulate,Mono.Rocks.Tuple&lt;TResult,TAccumulate&gt;&gt;" />
+          <Parameter Name="categories" Type="System.Func&lt;TSource,System.Boolean&gt;[]">
+            <Attributes>
+              <Attribute>
+                <AttributeName>System.ParamArray</AttributeName>
+              </Attribute>
+            </Attributes>
+          </Parameter>
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <typeparam name="TAccumulate">To be added.</typeparam>
+          <typeparam name="TResult">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="seed">To be added.</param>
+          <param name="accumulate">To be added.</param>
+          <param name="resultSelector">To be added.</param>
+          <param name="categories">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Tokens``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1},System.Func{``1,Mono.Rocks.Tuple{``2,``1}},System.Func{``0,System.Boolean}[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
       <Member MemberName="ToList&lt;TSource&gt;">
         <MemberSignature Language="C#" Value="public static System.Collections.Generic.List&lt;System.Collections.Generic.List&lt;TSource&gt;&gt; ToList&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.IEnumerable&lt;TSource&gt;&gt; self);" />
         <MemberType>ExtensionMethod</MemberType>
@@ -4314,6 +4256,50 @@
         </summary>
         </Docs>
         <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ToTuple(System.Collections.IEnumerable)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="ToValueReader">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.TextValueReader ToValueReader (this System.Collections.Generic.IEnumerable&lt;string&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.TextValueReader</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;System.String&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ToValueReader(System.Collections.Generic.IEnumerable{System.String})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Collections.Generic.IEnumerable`1" />
+      </Targets>
+      <Member MemberName="ToValueReader&lt;TSource&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.EnumerableValueReader&lt;TSource&gt; ToValueReader&lt;TSource&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.EnumerableValueReader&lt;TSource&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TSource" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Collections.Generic.IEnumerable&lt;TSource&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TSource">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.ToValueReader``1(System.Collections.Generic.IEnumerable{``0})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -5397,10 +5383,10 @@
         <Target Type="T:System.IO.Stream" />
       </Targets>
       <Member MemberName="WithSystemConverter">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.StreamConverter WithSystemConverter (this System.IO.Stream self);" />
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.SystemStreamConverter WithSystemConverter (this System.IO.Stream self);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
-          <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+          <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
         </ReturnValue>
         <Parameters>
           <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
@@ -5826,6 +5812,58 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
+        <Target Type="T:Mono.Rocks.SystemStreamConverter" />
+      </Targets>
+      <Member MemberName="Read&lt;TValue&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.SystemStreamConverter Read&lt;TValue&gt; (this Mono.Rocks.SystemStreamConverter self, out TValue value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="Mono.Rocks.SystemStreamConverter" RefType="this" />
+          <Parameter Name="value" Type="TValue&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.SystemStreamConverterRocks" Member="M:Mono.Rocks.SystemStreamConverterRocks.Read``1(Mono.Rocks.SystemStreamConverter,``0@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:Mono.Rocks.SystemStreamConverter" />
+      </Targets>
+      <Member MemberName="Write&lt;TValue&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.SystemStreamConverter Write&lt;TValue&gt; (this Mono.Rocks.SystemStreamConverter self, TValue value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="Mono.Rocks.SystemStreamConverter" RefType="this" />
+          <Parameter Name="value" Type="TValue" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.SystemStreamConverterRocks" Member="M:Mono.Rocks.SystemStreamConverterRocks.Write``1(Mono.Rocks.SystemStreamConverter,``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
         <Target Type="T:System.IO.TextReader" />
       </Targets>
       <Member MemberName="Lines">
@@ -5890,35 +5928,7 @@
         <Target Type="T:System.IO.TextReader" />
       </Targets>
       <Member MemberName="Words">
-        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self);" />
-        <MemberType>ExtensionMethod</MemberType>
-        <ReturnValue>
-          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
-        </ReturnValue>
-        <Parameters>
-          <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
-        </Parameters>
-        <Docs>
-          <param name="self">
-          A <see cref="T:System.IO.TextReader" /> to extract words from.
-        </param>
-          <summary>
-          Creates an
-          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
-          which will return all words from <paramref name="self" />
-          without <see cref="M:System.IO.TextReader.Close" />ing 
-          <paramref name="self" />.
-        </summary>
-        </Docs>
-        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader)" />
-      </Member>
-    </ExtensionMethod>
-    <ExtensionMethod>
-      <Targets>
-        <Target Type="T:System.IO.TextReader" />
-      </Targets>
-      <Member MemberName="Words">
-        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options);" />
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options, Func&lt;char,bool&gt;[] categories);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
@@ -5926,6 +5936,13 @@
         <Parameters>
           <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
           <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
+          <Parameter Name="categories" Type="System.Func&lt;System.Char,System.Boolean&gt;[]">
+            <Attributes>
+              <Attribute>
+                <AttributeName>System.ParamArray</AttributeName>
+              </Attribute>
+            </Attributes>
+          </Parameter>
         </Parameters>
         <Docs>
           <param name="self">
@@ -5935,6 +5952,11 @@
           A <see cref="T:Mono.Rocks.TextReaderRocksOptions" /> controlling
           method execution.
         </param>
+          <param name="categories">
+          A <see cref="T:System.Func{System.Char,System.Boolean}" /> array
+          containing the different categories of characters that determines
+          what makes up a "word."
+        </param>
           <summary>
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
@@ -5943,7 +5965,73 @@
           <paramref name="self" />.
         </summary>
         </Docs>
-        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader,Mono.Rocks.TextReaderRocksOptions)" />
+        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader,Mono.Rocks.TextReaderRocksOptions,System.Func{System.Char,System.Boolean}[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.TextReader" />
+      </Targets>
+      <Member MemberName="Words">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Func&lt;char,bool&gt;[] categories);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+          <Parameter Name="categories" Type="System.Func&lt;System.Char,System.Boolean&gt;[]">
+            <Attributes>
+              <Attribute>
+                <AttributeName>System.ParamArray</AttributeName>
+              </Attribute>
+            </Attributes>
+          </Parameter>
+        </Parameters>
+        <Docs>
+          <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to extract words from.
+        </param>
+          <param name="categories">
+          A <see cref="T:System.Func{System.Char,System.Boolean}" /> array
+          containing the different categories of characters that determines
+          what makes up a "word."
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />
+          without <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
+        </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader,System.Func{System.Char,System.Boolean}[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:Mono.Rocks.TextValueReader" />
+      </Targets>
+      <Member MemberName="Read&lt;TValue&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.TextValueReader Read&lt;TValue&gt; (this Mono.Rocks.TextValueReader self, out TValue value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.TextValueReader</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="Mono.Rocks.TextValueReader" RefType="this" />
+          <Parameter Name="value" Type="TValue&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.TextValueReaderRocks" Member="M:Mono.Rocks.TextValueReaderRocks.Read``1(Mono.Rocks.TextValueReader,``0@)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -5980,6 +6068,26 @@
         </summary>
         </Docs>
         <Link Type="Mono.Rocks.TupleRocks" Member="M:Mono.Rocks.TupleRocks.ToKeyValuePair``2(Mono.Rocks.Tuple{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Type" />
+      </Targets>
+      <Member MemberName="IsNullable">
+        <MemberSignature Language="C#" Value="public static bool IsNullable (this Type self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Boolean</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.Type" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.TypeRocks" Member="M:Mono.Rocks.TypeRocks.IsNullable(System.Type)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
