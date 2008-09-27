@@ -63,6 +63,7 @@
     <Compile Include="Mono.Rocks\TextReader.cs" />
     <Compile Include="Mono.Rocks\Tuple.cs" />
     <Compile Include="Mono.Rocks\Tuples.cs" />
+    <Compile Include="Mono.Rocks\Type.cs" />
     <Compile Include="Mono.Rocks\UInt16.cs" />
     <Compile Include="Mono.Rocks\UInt32.cs" />
     <Compile Include="Mono.Rocks\UInt64.cs" />

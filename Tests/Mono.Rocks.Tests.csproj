@@ -64,6 +64,7 @@
     <Compile Include="Mono.Rocks.Tests\StringTest.cs" />
     <Compile Include="Mono.Rocks.Tests\TextReaderTest.cs" />
     <Compile Include="Mono.Rocks.Tests\TuplesTest.cs" />
+    <Compile Include="Mono.Rocks.Tests\TypeTest.cs" />
     <Compile Include="Mono.Rocks.Tests\UInt16Test.cs" />
     <Compile Include="Mono.Rocks.Tests\UInt32Test.cs" />
     <Compile Include="Mono.Rocks.Tests\UInt64Test.cs" />

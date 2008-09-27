@@ -1,5 +1,9 @@
 2008-09-26  Jonathan Pryor  <jpryor@novell.com>
 
+	* Type.cs: Added; .IsNullable() extension method.
+
+2008-09-26  Jonathan Pryor  <jpryor@novell.com>
+
 	* Check.cs: Add Check.Levels().
 	* TextReader.cs: Rework .Words() to be a more general-purpose lexer,
 	  returning strings made up from "levels" of input characters.
