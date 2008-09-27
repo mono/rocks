@@ -4162,7 +4162,7 @@
         <Target Type="T:System.Collections.Generic.IEnumerable`1" />
       </Targets>
       <Member MemberName="Tokens&lt;TSource,TAccumulate,TResult&gt;">
-        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; Tokens&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; accumulate, Func&lt;TAccumulate,Mono.Rocks.Tuple&lt;TResult,TAccumulate&gt;&gt; resultSelector, Func&lt;TSource,bool&gt;[] categories);" />
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; Tokens&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; accumulate, Func&lt;TAccumulate,Mono.Rocks.Tuple&lt;TResult,TAccumulate&gt;&gt; resultSelector, Func&lt;TAccumulate,TSource,bool&gt;[] categories);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>System.Collections.Generic.IEnumerable&lt;TResult&gt;</ReturnType>
@@ -4177,7 +4177,7 @@
           <Parameter Name="seed" Type="TAccumulate" />
           <Parameter Name="accumulate" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
           <Parameter Name="resultSelector" Type="System.Func&lt;TAccumulate,Mono.Rocks.Tuple&lt;TResult,TAccumulate&gt;&gt;" />
-          <Parameter Name="categories" Type="System.Func&lt;TSource,System.Boolean&gt;[]">
+          <Parameter Name="categories" Type="System.Func&lt;TAccumulate,TSource,System.Boolean&gt;[]">
             <Attributes>
               <Attribute>
                 <AttributeName>System.ParamArray</AttributeName>
@@ -4196,7 +4196,7 @@
           <param name="categories">To be added.</param>
           <summary>To be added.</summary>
         </Docs>
-        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Tokens``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1},System.Func{``1,Mono.Rocks.Tuple{``2,``1}},System.Func{``0,System.Boolean}[])" />
+        <Link Type="Mono.Rocks.IEnumerableRocks" Member="M:Mono.Rocks.IEnumerableRocks.Tokens``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1},System.Func{``1,Mono.Rocks.Tuple{``2,``1}},System.Func{``1,``0,System.Boolean}[])" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -5840,6 +5840,53 @@
       <Targets>
         <Target Type="T:System.String" />
       </Targets>
+      <Member MemberName="Tokens">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Tokens (this string self, Func&lt;Nullable&lt;char&gt;,char,bool&gt;[] categories);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.String" RefType="this" />
+          <Parameter Name="categories" Type="System.Func&lt;System.Nullable&lt;System.Char&gt;,System.Char,System.Boolean&gt;[]">
+            <Attributes>
+              <Attribute>
+                <AttributeName>System.ParamArray</AttributeName>
+              </Attribute>
+            </Attributes>
+          </Parameter>
+        </Parameters>
+        <Docs>
+          <param name="self">
+          A <see cref="T:System.String" /> to extract tokens from.
+        </param>
+          <param name="categories">
+          A
+					<see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
+					array containing the different categories of characters that 
+					determines what makes up a "token."  If the 
+					<see cref="T:System.Nullable{System.Char}" /> parameter is 
+					<see langword="null" />, then the <see cref="T:System.Char" /> is
+					the first character within the token; otherwise, the
+					<see cref="T:System.Nullable{System.Char}" /> parameter contains the
+					character preceding the <see cref="T:System.Char" />.
+					The delegate should return <see langword="true" /> if the
+					<see cref="T:System.Char" /> is a supported character; otherwise,
+					<see langword="false" /> should be returned.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all tokens from <paramref name="self" />.
+        </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Tokens(System.String,System.Func{System.Nullable{System.Char},System.Char,System.Boolean}[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.String" />
+      </Targets>
       <Member MemberName="Words">
         <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this string self);" />
         <MemberType>ExtensionMethod</MemberType>
@@ -5927,8 +5974,8 @@
       <Targets>
         <Target Type="T:System.IO.TextReader" />
       </Targets>
-      <Member MemberName="Words">
-        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options, Func&lt;char,bool&gt;[] categories);" />
+      <Member MemberName="Tokens">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Tokens (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options, Func&lt;Nullable&lt;char&gt;,char,bool&gt;[] categories);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
@@ -5936,7 +5983,7 @@
         <Parameters>
           <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
           <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
-          <Parameter Name="categories" Type="System.Func&lt;System.Char,System.Boolean&gt;[]">
+          <Parameter Name="categories" Type="System.Func&lt;System.Nullable&lt;System.Char&gt;,System.Char,System.Boolean&gt;[]">
             <Attributes>
               <Attribute>
                 <AttributeName>System.ParamArray</AttributeName>
@@ -5946,16 +5993,25 @@
         </Parameters>
         <Docs>
           <param name="self">
-          A <see cref="T:System.IO.TextReader" /> to extract words from.
+          A <see cref="T:System.IO.TextReader" /> to extract tokens from.
         </param>
           <param name="options">
           A <see cref="T:Mono.Rocks.TextReaderRocksOptions" /> controlling
           method execution.
         </param>
           <param name="categories">
-          A <see cref="T:System.Func{System.Char,System.Boolean}" /> array
-          containing the different categories of characters that determines
-          what makes up a "word."
+          A
+					<see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
+					array containing the different categories of characters that 
+					determines what makes up a "token."  If the 
+					<see cref="T:System.Nullable{System.Char}" /> parameter is 
+					<see langword="null" />, then the <see cref="T:System.Char" /> is
+					the first character within the token; otherwise, the
+					<see cref="T:System.Nullable{System.Char}" /> parameter contains the
+					character preceding the <see cref="T:System.Char" />.
+					The delegate should return <see langword="true" /> if the
+					<see cref="T:System.Char" /> is a supported character; otherwise,
+					<see langword="false" /> should be returned.
         </param>
           <summary>
           Creates an
@@ -5965,22 +6021,22 @@
           <paramref name="self" />.
         </summary>
         </Docs>
-        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader,Mono.Rocks.TextReaderRocksOptions,System.Func{System.Char,System.Boolean}[])" />
+        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Tokens(System.IO.TextReader,Mono.Rocks.TextReaderRocksOptions,System.Func{System.Nullable{System.Char},System.Char,System.Boolean}[])" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
         <Target Type="T:System.IO.TextReader" />
       </Targets>
-      <Member MemberName="Words">
-        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Func&lt;char,bool&gt;[] categories);" />
+      <Member MemberName="Tokens">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Tokens (this System.IO.TextReader self, Func&lt;Nullable&lt;char&gt;,char,bool&gt;[] categories);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
         </ReturnValue>
         <Parameters>
           <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
-          <Parameter Name="categories" Type="System.Func&lt;System.Char,System.Boolean&gt;[]">
+          <Parameter Name="categories" Type="System.Func&lt;System.Nullable&lt;System.Char&gt;,System.Char,System.Boolean&gt;[]">
             <Attributes>
               <Attribute>
                 <AttributeName>System.ParamArray</AttributeName>
@@ -5990,12 +6046,49 @@
         </Parameters>
         <Docs>
           <param name="self">
-          A <see cref="T:System.IO.TextReader" /> to extract words from.
+          A <see cref="T:System.IO.TextReader" /> to extract tokens from.
         </param>
           <param name="categories">
-          A <see cref="T:System.Func{System.Char,System.Boolean}" /> array
-          containing the different categories of characters that determines
-          what makes up a "word."
+          A
+					<see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
+					array containing the different categories of characters that 
+					determines what makes up a "token."  If the 
+					<see cref="T:System.Nullable{System.Char}" /> parameter is 
+					<see langword="null" />, then the <see cref="T:System.Char" /> is
+					the first character within the token; otherwise, the
+					<see cref="T:System.Nullable{System.Char}" /> parameter contains the
+					character preceding the <see cref="T:System.Char" />.
+					The delegate should return <see langword="true" /> if the
+					<see cref="T:System.Char" /> is a supported character; otherwise,
+					<see langword="false" /> should be returned.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />
+          while optionally <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
+        </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Tokens(System.IO.TextReader,System.Func{System.Nullable{System.Char},System.Char,System.Boolean}[])" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.TextReader" />
+      </Targets>
+      <Member MemberName="Words">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to extract words from.
         </param>
           <summary>
           Creates an
@@ -6005,7 +6098,40 @@
           <paramref name="self" />.
         </summary>
         </Docs>
-        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader,System.Func{System.Char,System.Boolean}[])" />
+        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.IO.TextReader" />
+      </Targets>
+      <Member MemberName="Words">
+        <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+          <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
+        </Parameters>
+        <Docs>
+          <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to extract words from.
+        </param>
+          <param name="options">
+          A <see cref="T:Mono.Rocks.TextReaderRocksOptions" /> controlling
+          method execution.
+        </param>
+          <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />
+          while optionally <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
+        </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.TextReaderRocks" Member="M:Mono.Rocks.TextReaderRocks.Words(System.IO.TextReader,Mono.Rocks.TextReaderRocksOptions)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>

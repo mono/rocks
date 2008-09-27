@@ -1,6 +1,4 @@
 MCS = gmcs
-# warning CS1591: Missing XML comment for publicly visible type or member...
-MCS_FLAGS = -nowarn:1591
 MONODOCER = monodocer
 srcdir=.
 PACKAGE = mono-rocks
@@ -11,6 +9,12 @@ libdir = $(prefix)/lib
 
 mrdir  = lib/mono-rocks
 pkdir  = lib/pkgconfig
+
+# warning CS1591: Missing XML comment for publicly visible type or member...
+MCS_FLAGS = -nowarn:1591
+
+# in tests, CS0219: The variable ... was assigned/declared but not used.
+TST_FLAGS = -nowarn:0219,0168
 
 .PHONY: all check-gendarme check clean install shell
 
@@ -47,7 +51,7 @@ clean: doc-clean
 	rm -f $(mrdir)/*.dll*
 
 $(mrdir)/Mono.Rocks.Tests.dll: Mono.Rocks.Tests.dll.sources $(shell cat Mono.Rocks.Tests.dll.sources) $(mrdir)/Mono.Rocks.dll
-	$(MCS) -debug+ -r:$(mrdir)/Mono.Rocks.dll -r:System.Core -pkg:mono-nunit -t:library -out:$@ $(MCS_FLAGS) @Mono.Rocks.Tests.dll.sources
+	$(MCS) -debug+ -r:$(mrdir)/Mono.Rocks.dll -r:System.Core -pkg:mono-nunit -t:library -out:$@ $(MCS_FLAGS) $(TST_FLAGS) @Mono.Rocks.Tests.dll.sources
 
 check: $(mrdir)/Mono.Rocks.Tests.dll
 	nunit-console2 /exclude:NotWorking $(mrdir)/Mono.Rocks.Tests.dll

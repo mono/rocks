@@ -133,8 +133,8 @@
         <altmember cref="M:System.IO.TextReader.ReadLine" />
       </Docs>
     </Member>
-    <Member MemberName="Words">
-      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Func&lt;char,bool&gt;[] categories);" />
+    <Member MemberName="Tokens">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Tokens (this System.IO.TextReader self, Func&lt;Nullable&lt;char&gt;,char,bool&gt;[] categories);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -149,7 +149,7 @@
       </ReturnValue>
       <Parameters>
         <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
-        <Parameter Name="categories" Type="System.Func&lt;System.Char,System.Boolean&gt;[]">
+        <Parameter Name="categories" Type="System.Func&lt;System.Nullable&lt;System.Char&gt;,System.Char,System.Boolean&gt;[]">
           <Attributes>
             <Attribute>
               <AttributeName>System.ParamArray</AttributeName>
@@ -159,12 +159,212 @@
       </Parameters>
       <Docs>
         <param name="self">
-          A <see cref="T:System.IO.TextReader" /> to extract words from.
+          A <see cref="T:System.IO.TextReader" /> to extract tokens from.
         </param>
         <param name="categories">
-          A <see cref="T:System.Func{System.Char,System.Boolean}" /> array
-          containing the different categories of characters that determines
-          what makes up a "word."
+          A
+					<see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
+					array containing the different categories of characters that 
+					determines what makes up a "token."  If the 
+					<see cref="T:System.Nullable{System.Char}" /> parameter is 
+					<see langword="null" />, then the <see cref="T:System.Char" /> is
+					the first character within the token; otherwise, the
+					<see cref="T:System.Nullable{System.Char}" /> parameter contains the
+					character preceding the <see cref="T:System.Char" />.
+					The delegate should return <see langword="true" /> if the
+					<see cref="T:System.Char" /> is a supported character; otherwise,
+					<see langword="false" /> should be returned.
+        </param>
+        <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />
+          while optionally <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
+        </summary>
+        <returns>
+          An
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all tokens from <paramref name="self" />.
+        </returns>
+        <remarks>
+          <para>
+            This method is implemented by using deferred execution.
+          </para>
+          <para>
+            If <paramref name="options" /> contains
+            <see cref="F:Mono.Rocks.TextReaderRocksOptions.CloseReader" />,
+            then <paramref name="self" /> will be 
+            <see cref="M:System.IO.TextReader.Close" />ed once all lines have
+            been returned.
+          </para>
+          <block subset="none" type="note">
+            <para>
+              A "token" is determined by <paramref name="categories" />, and
+							is any contiguous sequence of characters for which the
+              same <paramref name="categories" /> index returns 
+              <see langword="true" />, starting from the first delegate.  This
+              allows a "some characters are more important than others"
+              philosphy, allowing e.g. parenthesis to be returned separately
+              from alphanumeric characters, even if no whitespace separates
+              them.
+            </para>
+          </block>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/TextReaderTest.cs#Tokens">var r = new MyStringReader ("(append 3.5 \"hello, world!\")");
+var words = r.Tokens (
+	(p, c) =&gt; char.IsLetterOrDigit (c) || c == '.',
+	(p, c) =&gt; !char.IsWhiteSpace (c))
+	.ToArray ();
+Assert.IsFalse (r.WasDisposed);
+Assert.IsTrue (
+		new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
+		.SequenceEqual (words));
+
+r = new MyStringReader ("Hello, world!");
+Assert.AreEqual (false, 
+	r.Tokens (TextReaderRocksOptions.CloseReader,
+		(p, c) =&gt; false).Any ());
+Assert.IsTrue (r.WasDisposed);
+</code>
+        </remarks>
+        <exception cref="T:System.ArgumentException">
+          <paramref name="categories" /> is empty.
+        </exception>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />, or
+          <paramref name="categories" /> is <see langword="null" />.
+        </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="Tokens">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Tokens (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options, Func&lt;Nullable&lt;char&gt;,char,bool&gt;[] categories);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+        <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
+        <Parameter Name="categories" Type="System.Func&lt;System.Nullable&lt;System.Char&gt;,System.Char,System.Boolean&gt;[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to extract tokens from.
+        </param>
+        <param name="options">
+          A <see cref="T:Mono.Rocks.TextReaderRocksOptions" /> controlling
+          method execution.
+        </param>
+        <param name="categories">
+          A
+					<see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
+					array containing the different categories of characters that 
+					determines what makes up a "token."  If the 
+					<see cref="T:System.Nullable{System.Char}" /> parameter is 
+					<see langword="null" />, then the <see cref="T:System.Char" /> is
+					the first character within the token; otherwise, the
+					<see cref="T:System.Nullable{System.Char}" /> parameter contains the
+					character preceding the <see cref="T:System.Char" />.
+					The delegate should return <see langword="true" /> if the
+					<see cref="T:System.Char" /> is a supported character; otherwise,
+					<see langword="false" /> should be returned.
+        </param>
+        <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all words from <paramref name="self" />
+          while optionally <see cref="M:System.IO.TextReader.Close" />ing 
+          <paramref name="self" />.
+        </summary>
+        <returns>
+          An
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all tokens from <paramref name="self" />.
+        </returns>
+        <remarks>
+          <para>
+            This method is implemented by using deferred execution.
+          </para>
+          <para>
+            If <paramref name="options" /> contains
+            <see cref="F:Mono.Rocks.TextReaderRocksOptions.CloseReader" />,
+            then <paramref name="self" /> will be 
+            <see cref="M:System.IO.TextReader.Close" />ed once all lines have
+            been returned.
+          </para>
+          <block subset="none" type="note">
+            <para>
+              A "token" is determined by <paramref name="categories" />, and
+							is any contiguous sequence of characters for which the
+              same <paramref name="categories" /> index returns 
+              <see langword="true" />, starting from the first delegate.  This
+              allows a "some characters are more important than others"
+              philosphy, allowing e.g. parenthesis to be returned separately
+              from alphanumeric characters, even if no whitespace separates
+              them.
+            </para>
+          </block>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/TextReaderTest.cs#Tokens">var r = new MyStringReader ("(append 3.5 \"hello, world!\")");
+var words = r.Tokens (
+	(p, c) =&gt; char.IsLetterOrDigit (c) || c == '.',
+	(p, c) =&gt; !char.IsWhiteSpace (c))
+	.ToArray ();
+Assert.IsFalse (r.WasDisposed);
+Assert.IsTrue (
+		new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
+		.SequenceEqual (words));
+
+r = new MyStringReader ("Hello, world!");
+Assert.AreEqual (false, 
+	r.Tokens (TextReaderRocksOptions.CloseReader,
+		(p, c) =&gt; false).Any ());
+Assert.IsTrue (r.WasDisposed);
+</code>
+        </remarks>
+        <exception cref="T:System.ArgumentException">
+          <paramref name="options" /> contains an invalid value, or
+          <paramref name="categories" /> is empty.
+        </exception>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />, or
+          <paramref name="categories" /> is <see langword="null" />.
+        </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="Words">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
+      </Parameters>
+      <Docs>
+        <param name="self">
+          A <see cref="T:System.IO.TextReader" /> to extract words from.
         </param>
         <summary>
           Creates an
@@ -188,21 +388,9 @@
           </para>
           <block subset="none" type="note">
             <para>
-              A "word" is determined by <paramref name="categories" />.
-              If <paramref name="categories" /> is empty (the default), then a
-              word is any contiguous series of characters for which
-              <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
-              returns <see langword="false" />.
-            </para>
-            <para>
-              If <paramref name="categories" /> contains delegates, then a
-              "word" is any contiguous sequence of characters for which the
-              same <paramref name="categories" /> index returns 
-              <see langword="true" />, starting from the first delegate.  This
-              allows a "some characters are more important than others"
-              philosphy, allowing e.g. parenthesis to be returned separately
-              from alphanumeric characters, even if no whitespace separates
-              them.
+              A "word" is any contiguous sequence of characters for which
+							<see cref="M:System.Char.IsWhiteSpace(System.Char)" />
+							returns <see langword="false" />.
             </para>
           </block>
           <code lang="C#" src="../../Tests/Mono.Rocks.Tests/TextReaderTest.cs#Words">MyStringReader r = new MyStringReader ("   (skip  leading,\r\n\tand trailing\vwhitespace)   ");
@@ -226,17 +414,6 @@ Assert.AreEqual ("1", r.Words ().First ());
 Assert.AreEqual ("2", r.Words ().First ());
 Assert.AreEqual ("3", r.Words ().First ());
 Assert.AreEqual ("4", r.Words ().First ());
-
-var reader = new StringReader ("(append 3.5 \"hello, world!\")");
-words = reader.Words (
-	c =&gt; char.IsLetterOrDigit (c) || c == '.',
-	c =&gt; !char.IsWhiteSpace (c))
-	.ToArray ();
-Assert.IsTrue (
-		new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
-		.SequenceEqual (words));
-
-Assert.AreEqual (0, reader.Words (c =&gt; false).ToArray ().Length);
 </code>
         </remarks>
         <exception cref="T:System.ArgumentNullException">
@@ -247,7 +424,7 @@ Assert.AreEqual (0, reader.Words (c =&gt; false).ToArray ().Length);
       </Docs>
     </Member>
     <Member MemberName="Words">
-      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options, Func&lt;char,bool&gt;[] categories);" />
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this System.IO.TextReader self, Mono.Rocks.TextReaderRocksOptions options);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -263,13 +440,6 @@ Assert.AreEqual (0, reader.Words (c =&gt; false).ToArray ().Length);
       <Parameters>
         <Parameter Name="self" Type="System.IO.TextReader" RefType="this" />
         <Parameter Name="options" Type="Mono.Rocks.TextReaderRocksOptions" />
-        <Parameter Name="categories" Type="System.Func&lt;System.Char,System.Boolean&gt;[]">
-          <Attributes>
-            <Attribute>
-              <AttributeName>System.ParamArray</AttributeName>
-            </Attribute>
-          </Attributes>
-        </Parameter>
       </Parameters>
       <Docs>
         <param name="self">
@@ -278,11 +448,6 @@ Assert.AreEqual (0, reader.Words (c =&gt; false).ToArray ().Length);
         <param name="options">
           A <see cref="T:Mono.Rocks.TextReaderRocksOptions" /> controlling
           method execution.
-        </param>
-        <param name="categories">
-          A <see cref="T:System.Func{System.Char,System.Boolean}" /> array
-          containing the different categories of characters that determines
-          what makes up a "word."
         </param>
         <summary>
           Creates an
@@ -309,21 +474,9 @@ Assert.AreEqual (0, reader.Words (c =&gt; false).ToArray ().Length);
           </para>
           <block subset="none" type="note">
             <para>
-              A "word" is determined by <paramref name="categories" />.
-              If <paramref name="categories" /> is empty (the default), then a
-              word is any contiguous series of characters for which
-              <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
-              returns <see langword="false" />.
-            </para>
-            <para>
-              If <paramref name="categories" /> contains delegates, then a
-              "word" is any contiguous sequence of characters for which the
-              same <paramref name="categories" /> index returns 
-              <see langword="true" />, starting from the first delegate.  This
-              allows a "some characters are more important than others"
-              philosphy, allowing e.g. parenthesis to be returned separately
-              from alphanumeric characters, even if no whitespace separates
-              them.
+              A "word" is any contiguous sequence of characters for which
+							<see cref="M:System.Char.IsWhiteSpace(System.Char)" />
+							returns <see langword="false" />.
             </para>
           </block>
           <code lang="C#" src="../../Tests/Mono.Rocks.Tests/TextReaderTest.cs#Words">MyStringReader r = new MyStringReader ("   (skip  leading,\r\n\tand trailing\vwhitespace)   ");
@@ -347,25 +500,13 @@ Assert.AreEqual ("1", r.Words ().First ());
 Assert.AreEqual ("2", r.Words ().First ());
 Assert.AreEqual ("3", r.Words ().First ());
 Assert.AreEqual ("4", r.Words ().First ());
-
-var reader = new StringReader ("(append 3.5 \"hello, world!\")");
-words = reader.Words (
-	c =&gt; char.IsLetterOrDigit (c) || c == '.',
-	c =&gt; !char.IsWhiteSpace (c))
-	.ToArray ();
-Assert.IsTrue (
-		new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
-		.SequenceEqual (words));
-
-Assert.AreEqual (0, reader.Words (c =&gt; false).ToArray ().Length);
 </code>
         </remarks>
         <exception cref="T:System.ArgumentException">
           <paramref name="options" /> contains an invalid value.
         </exception>
         <exception cref="T:System.ArgumentNullException">
-          <paramref name="self" /> is <see langword="null" />, or
-          <paramref name="categories" /> is <see langword="null" />.
+          <paramref name="self" /> is <see langword="null" />.
         </exception>
         <altmember cref="M:System.Char.IsWhiteSpace(System.Char)" />
       </Docs>

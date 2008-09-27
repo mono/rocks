@@ -132,12 +132,12 @@ namespace Mono.Rocks.Tests {
 		public void Reads ()
 		{
 			TextReader s = new StringReader (" pi  (True 42 C 3.14159) e (Y  1 2 (/3 4) 4 2.71  )  ");
-			var levels = new Func<char, bool>[] {
-				c => char.IsLetterOrDigit (c) || c == '.',
-				c => c == '+' || c == '-' || c == '*' || c == '/',
-				c => !char.IsWhiteSpace (c),
+			var categories = new Func<char?, char, bool>[] {
+				(_, c) => char.IsLetterOrDigit (c) || c == '.',
+				(_, c) => c == '+' || c == '-' || c == '*' || c == '/',
+				(_, c) => !char.IsWhiteSpace (c),
 			};
-			var reader = new TextValueReader (s.Words (levels));
+			var reader = new TextValueReader (s.Tokens (categories));
 
 			TvrData1 a;
 			TvrData2 b;

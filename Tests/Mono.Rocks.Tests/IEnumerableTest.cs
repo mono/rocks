@@ -220,6 +220,79 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Tokens_SelfNull ()
+		{
+			IEnumerable<int>             s = null;
+			Func<int, int, int>          a = (x, y) => x+y;
+			Func<int, Tuple<int, int>>  rs = x => Tuple.Create (x, 0);
+			Func<int, int, bool>[]    cats = new Func<int, int, bool>[]{
+				(p, c) => p + c < 10
+			};
+			IEnumerable<int>             r = s.Tokens (0, a, rs, cats);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Tokens_AccumulateNull ()
+		{
+			IEnumerable<int>             s = new[]{1, 2, 3};
+			Func<int, int, int>          a = null;
+			Func<int, Tuple<int, int>>  rs = x => Tuple.Create (x, 0);
+			Func<int, int, bool>[]    cats = new Func<int, int, bool>[]{
+				(p, c) => p + c < 10
+			};
+			IEnumerable<int>             r = s.Tokens (0, a, rs, cats);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Tokens_ResultSelectorNull ()
+		{
+			IEnumerable<int>             s = new[]{1, 2, 3};
+			Func<int, int, int>          a = (x, y) => x+y;
+			Func<int, Tuple<int, int>>  rs = null;
+			Func<int, int, bool>[]    cats = new Func<int, int, bool>[]{
+				(p, c) => p + c < 10
+			};
+			IEnumerable<int>             r = s.Tokens (0, a, rs, cats);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Tokens_CategoriesNull ()
+		{
+			IEnumerable<int>             s = new[]{1, 2, 3};
+			Func<int, int, int>          a = (x, y) => x+y;
+			Func<int, Tuple<int, int>>  rs = x => Tuple.Create (x, 0);
+			Func<int, int, bool>[]    cats = null;
+			IEnumerable<int>             r = s.Tokens (0, a, rs, cats);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentException))]
+		public void Tokens_CategoriesEmpty ()
+		{
+			IEnumerable<int>             s = new[]{1, 2, 3};
+			Func<int, int, int>          a = (x, y) => x+y;
+			Func<int, Tuple<int, int>>  rs = x => Tuple.Create (x, 0);
+			Func<int, int, bool>[]    cats = new Func<int, int, bool>[0];
+			IEnumerable<int>             r = s.Tokens (0, a, rs, cats);
+		}
+
+		// yet another TypeLoadException-related compiler bug.
+		[Test, Category ("NotWorking")]
+		public void Tokens ()
+		{
+			IEnumerable<int>             s = new[]{1, 1, 3, 5, 8, 13};
+			Func<int, int, int>          a = (x, y) => x+y;
+			Func<int, Tuple<int, int>>  rs = x => Tuple.Create (x, 0);
+			Func<int, int, bool>[]    cats = new Func<int, int, bool>[]{
+				(p, c) => p + c < 10
+			};
+			int[]                        r = s.Tokens (0, a, rs, cats).ToArray ();
+			Assert.AreSame (3, r.Length);
+			Assert.AreEqual (5, r [0]);
+			Assert.AreEqual (5, r [1]);
+			Assert.AreEqual (8, r [2]);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
 		public void ToValueReader_SelfNull ()
 		{
 			IEnumerable<string> s = null;

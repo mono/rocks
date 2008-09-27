@@ -200,7 +200,7 @@ namespace Mono.Rocks.Tests {
 		}
 
 		[Test]
-		public new void Equals ()
+		public void Equals ()
 		{
 			Maybe<int> x = 1.ToMaybe ();
 			Assert.IsTrue (x.Equals (x));

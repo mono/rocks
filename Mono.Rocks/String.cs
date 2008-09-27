@@ -52,6 +52,13 @@ namespace Mono.Rocks {
 			return new StringReader (self).Lines ();
 		}
 
+		public static IEnumerable<string> Tokens (this string self, params Func<char?, char, bool>[] categories)
+		{
+			Check.Self (self);
+
+			return new StringReader (self).Tokens (categories);
+		}
+
 		public static IEnumerable<string> Words (this string self)
 		{
 			Check.Self (self);

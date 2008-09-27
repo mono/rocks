@@ -2204,7 +2204,7 @@ Assert.AreEqual ("|123",
       </Docs>
     </Member>
     <Member MemberName="Tokens&lt;TSource,TAccumulate,TResult&gt;">
-      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; Tokens&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; accumulate, Func&lt;TAccumulate,Mono.Rocks.Tuple&lt;TResult,TAccumulate&gt;&gt; resultSelector, Func&lt;TSource,bool&gt;[] categories);" />
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;TResult&gt; Tokens&lt;TSource,TAccumulate,TResult&gt; (this System.Collections.Generic.IEnumerable&lt;TSource&gt; self, TAccumulate seed, Func&lt;TAccumulate,TSource,TAccumulate&gt; accumulate, Func&lt;TAccumulate,Mono.Rocks.Tuple&lt;TResult,TAccumulate&gt;&gt; resultSelector, Func&lt;TAccumulate,TSource,bool&gt;[] categories);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -2227,7 +2227,7 @@ Assert.AreEqual ("|123",
         <Parameter Name="seed" Type="TAccumulate" />
         <Parameter Name="accumulate" Type="System.Func&lt;TAccumulate,TSource,TAccumulate&gt;" />
         <Parameter Name="resultSelector" Type="System.Func&lt;TAccumulate,Mono.Rocks.Tuple&lt;TResult,TAccumulate&gt;&gt;" />
-        <Parameter Name="categories" Type="System.Func&lt;TSource,System.Boolean&gt;[]">
+        <Parameter Name="categories" Type="System.Func&lt;TAccumulate,TSource,System.Boolean&gt;[]">
           <Attributes>
             <Attribute>
               <AttributeName>System.ParamArray</AttributeName>

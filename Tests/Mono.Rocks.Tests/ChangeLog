@@ -1,5 +1,14 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerableTest.cs: Add tests for .Tokens().
+	* MaybeTest.cs: Remove compiler warning.
+	* StringTest.cs: Add tests for .Tokens().
+	* TextReaderTest.cs: Add tests for .Tokens().
+	* TextValueReaderTest.cs: Use .Tokens(), not .Words(), and update to
+	  new parameter types.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* EnumerableValueReaderTest.cs: Update the type thrown for unsupported
 	  conversions.
 

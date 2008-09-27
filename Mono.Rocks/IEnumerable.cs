@@ -311,11 +311,11 @@ namespace Mono.Rocks {
 				TAccumulate seed, 
 				Func<TAccumulate, TSource, TAccumulate> accumulate,
 				Func<TAccumulate, Tuple<TResult, TAccumulate>> resultSelector, 
-				params Func<TSource, bool>[] categories)
+				params Func<TAccumulate, TSource, bool>[] categories)
 		{
 			Check.Self (self);
 			Check.Accumulate (accumulate);
-			Check.ResultSelector (accumulate);
+			Check.ResultSelector (resultSelector);
 			Check.Categories (categories);
 			if (categories.Length == 0)
 				throw new ArgumentException ("categories", "must have one or more elements");
@@ -328,15 +328,15 @@ namespace Mono.Rocks {
 				TAccumulate seed, 
 				Func<TAccumulate, TSource, TAccumulate> accumulate,
 				Func<TAccumulate, Tuple<TResult, TAccumulate>> resultSelector, 
-				Func<TSource, bool>[] categories)
+				Func<TAccumulate, TSource, bool>[] categories)
 		{
 			bool have_data = false;
 			int cat = -1;
 			foreach (var s in self) {
 				int next_cat = categories
-					.Select ((l, i) => l (s) ? i : -1)
+					.Select ((l, i) => l (seed, s) ? i : -1)
 					.Where (n => n >= 0)
-					.With (e => e.Count () > 0 ? e.Min () : -1);
+					.With (e => e.Any () ? e.Min () : -1);
 				if (next_cat == cat && cat >= 0) {
 					seed = accumulate (seed, s);
 					have_data = true;

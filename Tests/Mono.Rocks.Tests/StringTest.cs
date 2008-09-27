@@ -79,6 +79,27 @@ namespace Mono.Rocks.Tests {
 			#endregion
 		}
 
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Tokens_SelfNull ()
+		{
+			string s = null;
+			s.Tokens ();
+		}
+
+		[Test]
+		public void Tokens ()
+		{
+			#region Tokens
+			string[] expected = {"(", "hello", ",", "world", "!)"};
+			string[] actual = "(hello, world!)"
+				.Tokens (
+						(p, c) => char.IsLetterOrDigit (c), // words
+						(p, c) => !char.IsWhiteSpace (c)    // non-space
+				).ToArray ();
+			AssertAreSame (expected, actual);
+			#endregion
+		}
+
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void Words_SelfNull ()

@@ -1,5 +1,19 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* IEnumerable.cs: Change .Tokens() categories from Func<TSource,bool>
+	  to Func<TAggregate, TSource, bool>, so that the callback can be
+	  "smarter" about category detection.
+	* String.cs: Add .Tokens() extension method on strings.
+	* TextReader.cs: Revert .Words() semantic changes so that .Words() now
+	  just returns whitespace-separated words (as before).  Add .Tokens()
+	  to return tokens extracted from the input stream (the newer .Words()
+	  semantics).  .Tokens() takes a different delegate type from
+	  IEnumerable<T>.Tokens(), so we need to map them (for the `#if false`
+	  block), as a non-translated version would require "exposing" the
+	  internal StringBuilder to public users.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* Check.cs: Add Check.Value().
 	* Stream.cs: .WithSystemConverter() should return SystemConverter.
 	* StreamConverter.cs: Re-add, as I had forgotten the point to

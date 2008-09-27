@@ -74,31 +74,27 @@ namespace Mono.Rocks {
 			}
 		}
 
-		public static IEnumerable<string> Words (this TextReader self, params Func<char, bool>[] categories)
+		public static IEnumerable<string> Tokens (this TextReader self, params Func<char?, char, bool>[] categories)
 		{
+			Check.Self (self);
 			Check.Categories (categories);
 			if (categories.Length == 0)
-				categories = GetDefaultCategories ();
-			return Words (self, TextReaderRocksOptions.None, categories);
+				throw new ArgumentException ("categories", "Must provide at least one catagory");
+			return Tokens (self, TextReaderRocksOptions.None, categories);
 		}
 
-		private static Func<char, bool>[] GetDefaultCategories ()
-		{
-			return new Func<char, bool>[]{ c => !char.IsWhiteSpace (c) };
-		}
-
-		public static IEnumerable<string> Words (this TextReader self, TextReaderRocksOptions options, params Func<char, bool>[] categories)
+		public static IEnumerable<string> Tokens (this TextReader self, TextReaderRocksOptions options, params Func<char?, char, bool>[] categories)
 		{
 			Check.Self (self);
 			CheckOptions (options);
 			Check.Categories (categories);
 			if (categories.Length == 0)
-				categories = GetDefaultCategories ();
+				throw new ArgumentException ("categories", "Must provide at least one catagory");
 
-			return CreateWordsIterator (self, options, categories);
+			return CreateTokensIterator (self, options, categories);
 		}
 
-		private static IEnumerable<string> CreateWordsIterator (TextReader self, TextReaderRocksOptions options, Func<char, bool>[] categories)
+		private static IEnumerable<string> CreateTokensIterator (TextReader self, TextReaderRocksOptions options, Func<char?, char, bool>[] categories)
 		{
 			try {
 #if true
@@ -108,9 +104,9 @@ namespace Mono.Rocks {
 				while ((c = self.Read ()) >= 0) {
 					char ch = (char) c;
 					int next_level = categories
-						.Select ((l, i) => l (ch) ? i : -1)
+						.Select ((l, i) => l (buf.Length == 0 ? ((char?) null) : (char?) buf [buf.Length-1], ch) ? i : -1)
 						.Where (n => n >= 0)
-						.With (e => e.Count() > 0 ? e.Min () : -1);
+						.With (e => e.Any () ? e.Min () : -1);
 					if (next_level == level && level >= 0)
 						buf.Append ((char) c);
 					else if (next_level >= 0) {
@@ -132,6 +128,9 @@ namespace Mono.Rocks {
 				if (buf.Length > 0)
 					yield return buf.ToString ();
 #else
+				var cats = categories.Select (
+						c => Lambda.F ((StringBuilder buf, char ch) => 
+							c (buf.Length == 0 ? ((char?) null) : (char?) buf [buf.Length-1], ch)));
 				return Chars (self).Tokens (
 						new StringBuilder (),
 						(buf, c) => buf.Append (c),
@@ -140,7 +139,7 @@ namespace Mono.Rocks {
 							buf.Length = 0; 
 							return Tuple.Create (r, buf);
 						},
-						categories);
+						cats.ToArray ());
 #endif
 			} finally {
 				if ((options & TextReaderRocksOptions.CloseReader) != 0) {
@@ -154,6 +153,19 @@ namespace Mono.Rocks {
 			int c;
 			while ((c = self.Read ()) >= 0)
 				yield return (char) c;
+		}
+
+		public static IEnumerable<string> Words (this TextReader self)
+		{
+			return Words (self, TextReaderRocksOptions.None);
+		}
+
+		public static IEnumerable<string> Words (this TextReader self, TextReaderRocksOptions options)
+		{
+			Check.Self (self);
+			CheckOptions (options);
+
+			return Tokens (self, options, (p, c) => !char.IsWhiteSpace (c));
 		}
 	}
 }

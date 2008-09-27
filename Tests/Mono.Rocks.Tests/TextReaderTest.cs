@@ -27,6 +27,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -94,6 +95,74 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("world!",  lines [3]);
 		}
 
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Tokens_SelfNull ()
+		{
+			TextReader s = null;
+			s.Tokens ();
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Tokens_CategoriesNull ()
+		{
+			TextReader                         s = new StringReader ("");
+			Func<char?, char, bool>[] categories = null;
+			IEnumerable<string>                r = s.Tokens (categories);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentException))]
+		public void Tokens_CategoriesEmpty ()
+		{
+			TextReader                         s = new StringReader ("");
+			Func<char?, char, bool>[] categories = new Func<char?, char, bool>[0];
+			IEnumerable<string>                r = s.Tokens (categories);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentException))]
+		public void Tokens_OptionsInvalid()
+		{
+			TextReader s = new StringReader ("");
+			s.Tokens ((TextReaderRocksOptions) (-1));
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void Tokens_FullCategoriesNull ()
+		{
+			TextReader                         s = new StringReader ("");
+			Func<char?, char, bool>[] categories = null;
+			IEnumerable<string>                r = s.Tokens (TextReaderRocksOptions.None, categories);
+		}
+
+		[Test, ExpectedException (typeof (ArgumentException))]
+		public void Tokens_FullCategoriesEmpty ()
+		{
+			TextReader                         s = new StringReader ("");
+			Func<char?, char, bool>[] categories = new Func<char?, char, bool>[0];
+			IEnumerable<string>                r = s.Tokens (TextReaderRocksOptions.None, categories);
+		}
+
+		[Test]
+		public void Tokens ()
+		{
+			#region Tokens
+			var r = new MyStringReader ("(append 3.5 \"hello, world!\")");
+			var words = r.Tokens (
+				(p, c) => char.IsLetterOrDigit (c) || c == '.',
+				(p, c) => !char.IsWhiteSpace (c))
+				.ToArray ();
+			Assert.IsFalse (r.WasDisposed);
+			Assert.IsTrue (
+					new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
+					.SequenceEqual (words));
+
+			r = new MyStringReader ("Hello, world!");
+			Assert.AreEqual (false, 
+				r.Tokens (TextReaderRocksOptions.CloseReader,
+					(p, c) => false).Any ());
+			Assert.IsTrue (r.WasDisposed);
+			#endregion
+		}
+
 		[Test]
 		[ExpectedException (typeof (ArgumentNullException))]
 		public void Words_SelfNull ()
@@ -102,27 +171,11 @@ namespace Mono.Rocks.Tests {
 			s.Words ();
 		}
 
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Words_LevelsNull ()
-		{
-			TextReader              s = new StringReader ("");
-			Func<char, bool>[] levels = null;
-			s.Words (levels);
-		}
-
 		[Test, ExpectedException (typeof (ArgumentException))]
 		public void Words_OptionsInvalid()
 		{
 			TextReader s = new StringReader ("");
 			s.Words ((TextReaderRocksOptions) (-1));
-		}
-
-		[Test, ExpectedException (typeof (ArgumentNullException))]
-		public void Words_FullLevelsNull ()
-		{
-			TextReader              s = new StringReader ("");
-			Func<char, bool>[] levels = null;
-			s.Words (TextReaderRocksOptions.None, levels);
 		}
 
 		[Test]
@@ -150,17 +203,6 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("2", r.Words ().First ());
 			Assert.AreEqual ("3", r.Words ().First ());
 			Assert.AreEqual ("4", r.Words ().First ());
-
-			var reader = new StringReader ("(append 3.5 \"hello, world!\")");
-			words = reader.Words (
-				c => char.IsLetterOrDigit (c) || c == '.',
-				c => !char.IsWhiteSpace (c))
-				.ToArray ();
-			Assert.IsTrue (
-					new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
-					.SequenceEqual (words));
-
-			Assert.AreEqual (0, reader.Words (c => false).ToArray ().Length);
 			#endregion
 		}
 	}

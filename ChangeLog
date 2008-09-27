@@ -1,5 +1,10 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* Makefile: Ignore more warnings when building unit tests.
+	* doc/en/**: Flush .Tokens() changes.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add
 	  Mono.Rocks/StreamConverter.cs to the build.
 	* doc/en/**: Flush SystemStreamConverter changes.

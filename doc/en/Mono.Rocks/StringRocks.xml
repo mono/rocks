@@ -704,6 +704,92 @@ Assert.AreEqual (Foo.Bar,    "Bar".ToEnum&lt;Foo&gt; ());
         </exception>
       </Docs>
     </Member>
+    <Member MemberName="Tokens">
+      <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Tokens (this string self, Func&lt;Nullable&lt;char&gt;,char,bool&gt;[] categories);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.1.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.Extension</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;System.String&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="self" Type="System.String" RefType="this" />
+        <Parameter Name="categories" Type="System.Func&lt;System.Nullable&lt;System.Char&gt;,System.Char,System.Boolean&gt;[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="self">
+          A <see cref="T:System.String" /> to extract tokens from.
+        </param>
+        <param name="categories">
+          A
+					<see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
+					array containing the different categories of characters that 
+					determines what makes up a "token."  If the 
+					<see cref="T:System.Nullable{System.Char}" /> parameter is 
+					<see langword="null" />, then the <see cref="T:System.Char" /> is
+					the first character within the token; otherwise, the
+					<see cref="T:System.Nullable{System.Char}" /> parameter contains the
+					character preceding the <see cref="T:System.Char" />.
+					The delegate should return <see langword="true" /> if the
+					<see cref="T:System.Char" /> is a supported character; otherwise,
+					<see langword="false" /> should be returned.
+        </param>
+        <summary>
+          Creates an
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all tokens from <paramref name="self" />.
+        </summary>
+        <returns>
+          An
+          <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
+          which will return all tokens from <paramref name="self" />.
+        </returns>
+        <remarks>
+          <para>
+            This method is implemented by using deferred execution.
+          </para>
+          <block subset="none" type="note">
+            <para>
+              A "token" is determined by <paramref name="categories" />, and
+							is any contiguous sequence of characters for which the
+              same <paramref name="categories" /> index returns 
+              <see langword="true" />, starting from the first delegate.  This
+              allows a "some characters are more important than others"
+              philosphy, allowing e.g. parenthesis to be returned separately
+              from alphanumeric characters, even if no whitespace separates
+              them.
+            </para>
+          </block>
+          <code lang="C#" src="../../Tests/Mono.Rocks.Tests/StringTest.cs#Tokens">string[] expected = {"(", "hello", ",", "world", "!)"};
+string[] actual = "(hello, world!)"
+	.Tokens (
+			(p, c) =&gt; char.IsLetterOrDigit (c), // words
+			(p, c) =&gt; !char.IsWhiteSpace (c)    // non-space
+	).ToArray ();
+AssertAreSame (expected, actual);
+</code>
+        </remarks>
+        <exception cref="T:System.ArgumentException">
+          <paramref name="categories" /> is empty.
+        </exception>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="self" /> is <see langword="null" />, or
+          <paramref name="categories" /> is <see langword="null" />.
+        </exception>
+      </Docs>
+    </Member>
     <Member MemberName="Words">
       <MemberSignature Language="C#" Value="public static System.Collections.Generic.IEnumerable&lt;string&gt; Words (this string self);" />
       <MemberType>Method</MemberType>
