@@ -78,10 +78,10 @@
       <Type Name="ObjectRocks" Kind="Class" />
       <Type Name="RectangularArrayRocks" Kind="Class" />
       <Type Name="Sequence" Kind="Class" />
+      <Type Name="StreamConverter" Kind="Class" />
+      <Type Name="StreamConverterRocks" Kind="Class" />
       <Type Name="StreamRocks" Kind="Class" />
       <Type Name="StringRocks" Kind="Class" />
-      <Type Name="SystemStreamConverter" Kind="Class" />
-      <Type Name="SystemStreamConverterRocks" Kind="Class" />
       <Type Name="TextReaderRocks" Kind="Class" />
       <Type Name="TextReaderRocksOptions" Kind="Enumeration" />
       <Type Name="TextValueReader" Kind="Class" />
@@ -5380,13 +5380,65 @@
     </ExtensionMethod>
     <ExtensionMethod>
       <Targets>
+        <Target Type="T:Mono.Rocks.StreamConverter" />
+      </Targets>
+      <Member MemberName="Read&lt;TValue&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.StreamConverter Read&lt;TValue&gt; (this Mono.Rocks.StreamConverter self, out TValue value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="Mono.Rocks.StreamConverter" RefType="this" />
+          <Parameter Name="value" Type="TValue&amp;" RefType="out" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamConverterRocks" Member="M:Mono.Rocks.StreamConverterRocks.Read``1(Mono.Rocks.StreamConverter,``0@)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:Mono.Rocks.StreamConverter" />
+      </Targets>
+      <Member MemberName="Write&lt;TValue&gt;">
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.StreamConverter Write&lt;TValue&gt; (this Mono.Rocks.StreamConverter self, TValue value);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="TValue" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="Mono.Rocks.StreamConverter" RefType="this" />
+          <Parameter Name="value" Type="TValue" />
+        </Parameters>
+        <Docs>
+          <typeparam name="TValue">To be added.</typeparam>
+          <param name="self">To be added.</param>
+          <param name="value">To be added.</param>
+          <summary>To be added.</summary>
+        </Docs>
+        <Link Type="Mono.Rocks.StreamConverterRocks" Member="M:Mono.Rocks.StreamConverterRocks.Write``1(Mono.Rocks.StreamConverter,``0)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
         <Target Type="T:System.IO.Stream" />
       </Targets>
       <Member MemberName="WithSystemConverter">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.SystemStreamConverter WithSystemConverter (this System.IO.Stream self);" />
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.StreamConverter WithSystemConverter (this System.IO.Stream self);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
-          <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
+          <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
         </ReturnValue>
         <Parameters>
           <Parameter Name="self" Type="System.IO.Stream" RefType="this" />
@@ -5808,58 +5860,6 @@
         </summary>
         </Docs>
         <Link Type="Mono.Rocks.StringRocks" Member="M:Mono.Rocks.StringRocks.Words(System.String)" />
-      </Member>
-    </ExtensionMethod>
-    <ExtensionMethod>
-      <Targets>
-        <Target Type="T:Mono.Rocks.SystemStreamConverter" />
-      </Targets>
-      <Member MemberName="Read&lt;TValue&gt;">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.SystemStreamConverter Read&lt;TValue&gt; (this Mono.Rocks.SystemStreamConverter self, out TValue value);" />
-        <MemberType>ExtensionMethod</MemberType>
-        <ReturnValue>
-          <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
-        </ReturnValue>
-        <TypeParameters>
-          <TypeParameter Name="TValue" />
-        </TypeParameters>
-        <Parameters>
-          <Parameter Name="self" Type="Mono.Rocks.SystemStreamConverter" RefType="this" />
-          <Parameter Name="value" Type="TValue&amp;" RefType="out" />
-        </Parameters>
-        <Docs>
-          <typeparam name="TValue">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
-        </Docs>
-        <Link Type="Mono.Rocks.SystemStreamConverterRocks" Member="M:Mono.Rocks.SystemStreamConverterRocks.Read``1(Mono.Rocks.SystemStreamConverter,``0@)" />
-      </Member>
-    </ExtensionMethod>
-    <ExtensionMethod>
-      <Targets>
-        <Target Type="T:Mono.Rocks.SystemStreamConverter" />
-      </Targets>
-      <Member MemberName="Write&lt;TValue&gt;">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.SystemStreamConverter Write&lt;TValue&gt; (this Mono.Rocks.SystemStreamConverter self, TValue value);" />
-        <MemberType>ExtensionMethod</MemberType>
-        <ReturnValue>
-          <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
-        </ReturnValue>
-        <TypeParameters>
-          <TypeParameter Name="TValue" />
-        </TypeParameters>
-        <Parameters>
-          <Parameter Name="self" Type="Mono.Rocks.SystemStreamConverter" RefType="this" />
-          <Parameter Name="value" Type="TValue" />
-        </Parameters>
-        <Docs>
-          <typeparam name="TValue">To be added.</typeparam>
-          <param name="self">To be added.</param>
-          <param name="value">To be added.</param>
-          <summary>To be added.</summary>
-        </Docs>
-        <Link Type="Mono.Rocks.SystemStreamConverterRocks" Member="M:Mono.Rocks.SystemStreamConverterRocks.Write``1(Mono.Rocks.SystemStreamConverter,``0)" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>

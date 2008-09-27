@@ -1,5 +1,11 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* Mono.Rocks.dll.sources, Mono.Rocks.csproj: Add
+	  Mono.Rocks/StreamConverter.cs to the build.
+	* doc/en/**: Flush SystemStreamConverter changes.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* doc/en/**: Flush IValueReader/IValueWriter changes.
 
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>

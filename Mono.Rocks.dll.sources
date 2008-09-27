@@ -22,6 +22,7 @@
 ./Mono.Rocks/RectangularArray.cs
 ./Mono.Rocks/Sequence.cs
 ./Mono.Rocks/Stream.cs
+./Mono.Rocks/StreamConverter.cs
 ./Mono.Rocks/SystemStreamConverter.cs
 ./Mono.Rocks/String.cs
 ./Mono.Rocks/TextReader.cs

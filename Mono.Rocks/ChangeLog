@@ -1,5 +1,18 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* Check.cs: Add Check.Value().
+	* Stream.cs: .WithSystemConverter() should return SystemConverter.
+	* StreamConverter.cs: Re-add, as I had forgotten the point to
+	  StreamConverter, which was to have a single Stream-oriented
+	  IValueReader/IValueWriter base class (though this was before there
+	  was IValueReader & IValueWriter), which could have multiple
+	  different "backends" -- BitConverter version, Mono.DataConvert, etc.
+	  Alas, CLS-noncompliant members can't be abstract, so provide (dumb)
+	  virtual versions instead.
+	* SystemStreamConverter.cs: Make an implementation of StreamConverter.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* IValueReader.cs, IValueWriter.cs: Add methods so that IValueReader
 	  and IValueWriter support all the types of IConvertible.
 	* EnumerableValueReader.cs, TextValueReader.cs,

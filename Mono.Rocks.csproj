@@ -61,6 +61,7 @@
     <Compile Include="Mono.Rocks\RectangularArray.cs" />
     <Compile Include="Mono.Rocks\Sequence.cs" />
     <Compile Include="Mono.Rocks\Stream.cs" />
+    <Compile Include="Mono.Rocks\StreamConverter.cs" />
     <Compile Include="Mono.Rocks\SystemStreamConverter.cs" />
     <Compile Include="Mono.Rocks\String.cs" />
     <Compile Include="Mono.Rocks\TextReader.cs" />

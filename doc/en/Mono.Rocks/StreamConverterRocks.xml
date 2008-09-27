@@ -1,5 +1,5 @@
-<Type Name="SystemStreamConverterRocks" FullName="Mono.Rocks.SystemStreamConverterRocks">
-  <TypeSignature Language="C#" Value="public static class SystemStreamConverterRocks" />
+<Type Name="StreamConverterRocks" FullName="Mono.Rocks.StreamConverterRocks">
+  <TypeSignature Language="C#" Value="public static class StreamConverterRocks" />
   <AssemblyInfo>
     <AssemblyName>Mono.Rocks</AssemblyName>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -19,7 +19,7 @@
   </Docs>
   <Members>
     <Member MemberName="Read&lt;TValue&gt;">
-      <MemberSignature Language="C#" Value="public static Mono.Rocks.SystemStreamConverter Read&lt;TValue&gt; (this Mono.Rocks.SystemStreamConverter self, out TValue value);" />
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.StreamConverter Read&lt;TValue&gt; (this Mono.Rocks.StreamConverter self, out TValue value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -30,13 +30,13 @@
         </Attribute>
       </Attributes>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
       </ReturnValue>
       <TypeParameters>
         <TypeParameter Name="TValue" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="self" Type="Mono.Rocks.SystemStreamConverter" RefType="this" />
+        <Parameter Name="self" Type="Mono.Rocks.StreamConverter" RefType="this" />
         <Parameter Name="value" Type="TValue&amp;" RefType="out" />
       </Parameters>
       <Docs>
@@ -49,7 +49,7 @@
       </Docs>
     </Member>
     <Member MemberName="Write&lt;TValue&gt;">
-      <MemberSignature Language="C#" Value="public static Mono.Rocks.SystemStreamConverter Write&lt;TValue&gt; (this Mono.Rocks.SystemStreamConverter self, TValue value);" />
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.StreamConverter Write&lt;TValue&gt; (this Mono.Rocks.StreamConverter self, TValue value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -60,13 +60,13 @@
         </Attribute>
       </Attributes>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
       </ReturnValue>
       <TypeParameters>
         <TypeParameter Name="TValue" />
       </TypeParameters>
       <Parameters>
-        <Parameter Name="self" Type="Mono.Rocks.SystemStreamConverter" RefType="this" />
+        <Parameter Name="self" Type="Mono.Rocks.StreamConverter" RefType="this" />
         <Parameter Name="value" Type="TValue" />
       </Parameters>
       <Docs>

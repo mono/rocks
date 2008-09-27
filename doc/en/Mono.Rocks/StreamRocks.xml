@@ -19,7 +19,7 @@
   </Docs>
   <Members>
     <Member MemberName="WithSystemConverter">
-      <MemberSignature Language="C#" Value="public static Mono.Rocks.SystemStreamConverter WithSystemConverter (this System.IO.Stream self);" />
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.StreamConverter WithSystemConverter (this System.IO.Stream self);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -30,7 +30,7 @@
         </Attribute>
       </Attributes>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.SystemStreamConverter</ReturnType>
+        <ReturnType>Mono.Rocks.StreamConverter</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="self" Type="System.IO.Stream" RefType="this" />

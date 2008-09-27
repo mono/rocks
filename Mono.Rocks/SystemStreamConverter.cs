@@ -35,7 +35,7 @@ using System.Text;
 
 namespace Mono.Rocks {
 
-	public sealed class SystemStreamConverter : IValueReader<SystemStreamConverter>, IValueWriter<SystemStreamConverter>
+	internal sealed class SystemStreamConverter : StreamConverter
 	{
 		internal SystemStreamConverter (Stream stream)
 		{
@@ -46,7 +46,7 @@ namespace Mono.Rocks {
 			buffer = new byte [8];
 		}
 
-		public Stream BaseStream { get; private set; }
+		Stream BaseStream { get; set; }
 
 		private void AssertRead ()
 		{
@@ -62,11 +62,11 @@ namespace Mono.Rocks {
 
 		private readonly byte[] buffer;
 
-		private void FillBuffer (byte[] buffer, int size)
+		private void FillBuffer (byte[] buffer, int offset, int count)
 		{
-			int read, offset = 0;
+			int read;
 
-			while ((read = BaseStream.Read (buffer, offset, size - offset)) > 0) {
+			while ((read = BaseStream.Read (buffer, offset, count - offset)) > 0) {
 				offset += read;
 			}
 
@@ -78,12 +78,12 @@ namespace Mono.Rocks {
 		{
 			byte[] buff = size <= buffer.Length ? buffer : new byte [size];
 
-			FillBuffer (buff, size);
+			FillBuffer (buff, 0, size);
 
 			return buff;
 		}
 
-		public SystemStreamConverter Read (out bool value)
+		public override StreamConverter Read (out bool value)
 		{
 			AssertRead ();
 
@@ -92,7 +92,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out byte value)
+		public override StreamConverter Read (out byte value)
 		{
 			AssertRead ();
 
@@ -105,7 +105,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out char value)
+		public override StreamConverter Read (out char value)
 		{
 			AssertRead ();
 
@@ -114,7 +114,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out DateTime value)
+		public override StreamConverter Read (out DateTime value)
 		{
 			AssertRead ();
 
@@ -125,7 +125,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out decimal value)
+		public override StreamConverter Read (out decimal value)
 		{
 			AssertRead ();
 
@@ -137,7 +137,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out double value)
+		public override StreamConverter Read (out double value)
 		{
 			AssertRead ();
 
@@ -146,7 +146,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out short value)
+		public override StreamConverter Read (out short value)
 		{
 			AssertRead ();
 
@@ -155,7 +155,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out int value)
+		public override StreamConverter Read (out int value)
 		{
 			AssertRead ();
 
@@ -164,7 +164,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out long value)
+		public override StreamConverter Read (out long value)
 		{
 			AssertRead ();
 
@@ -173,7 +173,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out float value)
+		public override StreamConverter Read (out float value)
 		{
 			AssertRead ();
 
@@ -182,7 +182,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (out string value)
+		public override StreamConverter Read (out string value)
 		{
 			int len;
 			this.Read (out len);
@@ -197,8 +197,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		[CLSCompliant (false)]
-		public SystemStreamConverter Read (out sbyte value)
+		public override StreamConverter Read (out sbyte value)
 		{
 			byte b;
 			this.Read (out b);
@@ -206,17 +205,16 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (byte[] value)
+		public override StreamConverter Read (byte[] value, int offset, int count)
 		{
 			AssertRead ();
 
-			FillBuffer (value, value.Length);
+			FillBuffer (value, offset, count);
 
 			return this;
 		}
 
-		[CLSCompliant (false)]
-		public SystemStreamConverter Read (out ushort value)
+		public override StreamConverter Read (out ushort value)
 		{
 			AssertRead ();
 
@@ -225,8 +223,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		[CLSCompliant (false)]
-		public SystemStreamConverter Read (out uint value)
+		public override StreamConverter Read (out uint value)
 		{
 			AssertRead ();
 
@@ -235,8 +232,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		[CLSCompliant (false)]
-		public SystemStreamConverter Read (out ulong value)
+		public override StreamConverter Read (out ulong value)
 		{
 			AssertRead ();
 
@@ -245,7 +241,7 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Read (int size, Encoding encoding, out string value)
+		public override StreamConverter Read (int size, Encoding encoding, out string value)
 		{
 			AssertRead ();
 
@@ -254,14 +250,14 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Write (bool value)
+		public override StreamConverter Write (bool value)
 		{
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
 		}
 
-		public SystemStreamConverter Write (byte value)
+		public override StreamConverter Write (byte value)
 		{
 			AssertWrite ();
 
@@ -270,21 +266,21 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Write (char value)
+		public override StreamConverter Write (char value)
 		{
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
 		}
 
-		public SystemStreamConverter Write (DateTime value)
+		public override StreamConverter Write (DateTime value)
 		{
 			AssertWrite ();
 
 			return Write (value.Ticks);
 		}
 
-		public SystemStreamConverter Write (decimal value)
+		public override StreamConverter Write (decimal value)
 		{
 			AssertWrite ();
 
@@ -297,50 +293,49 @@ namespace Mono.Rocks {
 			return this;
 		}
 
-		public SystemStreamConverter Write (double value)
+		public override StreamConverter Write (double value)
 		{
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
 		}
 
-		public SystemStreamConverter Write (short value)
+		public override StreamConverter Write (short value)
 		{
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
 		}
 
-		public SystemStreamConverter Write (int value)
+		public override StreamConverter Write (int value)
 		{
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
 		}
 
-		public SystemStreamConverter Write (long value)
+		public override StreamConverter Write (long value)
 		{
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
 		}
 
-		public SystemStreamConverter Write (float value)
+		public override StreamConverter Write (float value)
 		{
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
 		}
 
-		[CLSCompliant (false)]
-		public SystemStreamConverter Write (sbyte value)
+		public override StreamConverter Write (sbyte value)
 		{
 			AssertWrite ();
 
 			return Write ((byte) value);
 		}
 
-		public SystemStreamConverter Write (string value)
+		public override StreamConverter Write (string value)
 		{
 			AssertWrite ();
 
@@ -349,74 +344,35 @@ namespace Mono.Rocks {
 			return Write (data.Length).Write (data);
 		}
 
-		public SystemStreamConverter Write (byte[] value)
+		public override StreamConverter Write (byte[] value, int offset, int count)
 		{
 			AssertWrite ();
 			if (value == null)
 				throw new ArgumentNullException ("value");
 
-			BaseStream.Write (value, 0, value.Length);
+			BaseStream.Write (value, offset, count);
 			return this;
 		}
 
-		[CLSCompliant (false)]
-		public SystemStreamConverter Write (ushort value)
+		public override StreamConverter Write (ushort value)
 		{
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
 		}
 
-		[CLSCompliant (false)]
-		public SystemStreamConverter Write (uint value)
+		public override StreamConverter Write (uint value)
 		{
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
 		}
 
-		[CLSCompliant (false)]
-		public SystemStreamConverter Write (ulong value)
+		public override StreamConverter Write (ulong value)
 		{
 			AssertWrite ();
 
 			return Write (BitConverter.GetBytes (value));
-		}
-	}
-
-	public static class SystemStreamConverterRocks
-	{
-		public static SystemStreamConverter Read<TValue> (this SystemStreamConverter self, out TValue value)
-		{
-			Check.Self (self);
-
-			byte[] data = new byte [Marshal.SizeOf (typeof (TValue))];
-			self.Read (data);
-			GCHandle handle = GCHandle.Alloc (data, GCHandleType.Pinned);
-
-			try { 
-				value = (TValue) Marshal.PtrToStructure (handle.AddrOfPinnedObject (), typeof (TValue)); 
-			} finally {
-				handle.Free();
-			}
-
-			return self;
-		}
-
-		public static SystemStreamConverter Write<TValue> (this SystemStreamConverter self, TValue value)
-		{
-			Check.Self (self);
-
-			byte[] data = new byte [Marshal.SizeOf (typeof (TValue))];
-
-			GCHandle handle = GCHandle.Alloc(data, GCHandleType.Pinned);
-			try {
-				Marshal.StructureToPtr (value, handle.AddrOfPinnedObject(), false);
-			} finally {
-				handle.Free();
-			}
-
-			return self.Write (data);
 		}
 	}
 }
