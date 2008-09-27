@@ -1,3 +1,38 @@
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
+	* Check.cs: Add .Accumulate(), .Categories().
+	* Either.cs: Add .TryParse<S,R>() overload; improve TypeConverter
+	  usage to check for conversions both from the source type and to the
+	  destination type (in case they differ).
+	* EnumerableValueReader.cs: Added; IValueReader implementation for
+	  IEnumerable<T> types.
+	* IEnumerable.cs: Remove .Convert(), which is replaced by
+	  .ToValueReader().  So:
+	        "a b".Words ().Convert (out a, out b);
+	  can be replaced with:
+	        "a b".Words ().ToValueReader ().Read (out a).Read (out b);
+	  Add .Tokens(), a generalized version of TextReader.Words().
+	* IValueReader.cs, IValueWriter.cs: Added; brainstorm: the 
+	  Read/Write-style API from StreamConverter doesn't need to be 
+	  restricted to binary data, it could apply equally well to textual
+	  data, layered atop TextReader/TextWriter.  Must be interfaces so
+	  that both can be supported by SystemStreamConverter.  Generic types
+	  so that the .Read/.Write return types are of the "most-derived"
+	  type, allowing easy & correct, lossless method chaining.
+	* Maybe.cs: Add .TryParse<S,R>() overload; use Either.TryParse() for
+	  the implementation.
+	* Stream.cs: .WithSystemConverter() returns SystemStreamConverter.
+	* StreamConverter.cs: Rename to SystemStreamConverter.cs.
+	* SystemStreamConverter.cs: Remove StreamConverter type, make
+	  SystemStreamConverter public, and make SystemStreamConverter
+	  implement IValueReader and IValueWriter interfaces.
+	* TextValueReader.cs: Added; IValueReader implementation for
+	  IEnumerable<string> (see IEnumerable.cs for example).
+	* TextReader.cs: "categories" seems better than "levels" for .Words(),
+	  and matches .Tokens(); provide alternate implementation
+	  that uses .Tokens() for implementation (unused because of compiler
+	  runtime bug).
+
 2008-09-26  Jonathan Pryor  <jpryor@novell.com>
 
 	* Type.cs: Added; .IsNullable() extension method.

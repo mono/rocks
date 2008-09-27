@@ -41,15 +41,13 @@ namespace Mono.Rocks {
 
 		public static Maybe<T> TryParse<T> (string value)
 		{
-			TypeConverter c = TypeDescriptor.GetConverter (typeof (T));
-			if (c == null || !c.CanConvertFrom (typeof (string)))
-				return Maybe<T>.Nothing;
-			try {
-				return new Maybe<T> ((T) c.ConvertFromString (value));
-			}
-			catch {
-				return Maybe<T>.Nothing;
-			}
+			return TryParse<string, T> (value);
+		}
+
+		public static Maybe<TResult> TryParse<TSource, TResult> (TSource value)
+		{
+			Either<TResult, Exception> e = Either.TryParse<TSource, TResult> (value);
+			return e.Fold<Maybe<TResult>> (v => new Maybe<TResult> (v), v => Maybe<TResult>.Nothing);
 		}
 
 		public static Maybe<T> When<T> (bool condition, T value)

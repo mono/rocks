@@ -1,5 +1,5 @@
 //
-// StreamTest.cs
+// SystemStreamConverterTest.cs
 //
 // Authors:
 //   Jonathan Pryor  <jpryor@novell.com>
@@ -40,7 +40,7 @@ using Mono.Rocks;
 namespace Mono.Rocks.Tests {
 
 	[TestFixture]
-	public class StreamConverterTest : BaseRocksFixture {
+	public class SystemStreamConverterTest : BaseRocksFixture {
 
 		[Test]
 		public void Reads ()

@@ -219,31 +219,62 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual (10.5, d);
 		}
 
-		[Test]
-		public void Convert ()
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void ToValueReader_SelfNull ()
 		{
+			IEnumerable<string> s = null;
+			s.ToValueReader ();
+		}
+
+		[Test]
+		public void ToValueReader ()
+		{
+			#region ToValueReader
 			string s;
 			DateTime c;
 			double d;
 			int n;
 
-			"a 1970-01-01 2 3.14".Words().Convert (out s);
+			"a 1970-01-01 2 3.14".Words().ToValueReader ()
+				.Read (out s);
 			Assert.AreEqual ("a", s);
 
-			"a 1970-01-01 2 3.14".Words().Convert (out s, out c);
+			"a 1970-01-01 2 3.14".Words().ToValueReader ()
+				.Read (out s).Read (out c);
 			Assert.AreEqual ("a", s);
 			Assert.AreEqual (new DateTime (1970, 1, 1), c);
 
-			"a 1970-01-01 2 3.14".Words().Convert (out s, out c, out n);
+			"a 1970-01-01 2 3.14".Words().ToValueReader ()
+				.Read (out s).Read (out c).Read (out n);
 			Assert.AreEqual ("a", s);
 			Assert.AreEqual (new DateTime (1970, 1, 1), c);
 			Assert.AreEqual (2, n);
 
-			"a 1970-01-01 2 3.14".Words().Convert (out s, out c, out n, out d);
+			"a 1970-01-01 2 3.14".Words().ToValueReader ()
+				.Read (out s).Read (out c).Read (out n).Read (out d);
 			Assert.AreEqual ("a", s);
 			Assert.AreEqual (new DateTime (1970, 1, 1), c);
 			Assert.AreEqual (2, n);
 			Assert.AreEqual (3.14, d);
+			#endregion
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void ToValueReader_T_SelfNull ()
+		{
+			IEnumerable<int> s = null;
+			s.ToValueReader ();
+		}
+
+		[Test]
+		public void ToValueReader_T ()
+		{
+			string a, b, c;
+			new[]{1, 2, 3}.ToValueReader ()
+				.Read (out a).Read (out b).Read (out c);
+			Assert.AreEqual ("1", a);
+			Assert.AreEqual ("2", b);
+			Assert.AreEqual ("3", c);
 		}
 
 		[Test]

@@ -1,9 +1,8 @@
 //
-// Stream.cs
+// EnumerableValueReaderTest.cs
 //
-// Authors:
-//   Jonathan Pryor  <jpryor@novell.com>
-//   Bojan Rajkovic  <bojanr@brandeis.edu>
+// Author:
+//   Jonathan Pryor
 //
 // Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
@@ -28,33 +27,42 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
 
-namespace Mono.Rocks {
+using NUnit.Framework;
 
-	public static class StreamRocks {
+using Mono.Rocks;
 
-		public static SystemStreamConverter WithSystemConverter (this Stream self)
+namespace Mono.Rocks.Tests {
+
+	[TestFixture]
+	public class EnumerableValueReaderTest : BaseRocksFixture {
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void EnumerableValueReader_ValuesNull ()
 		{
-			Check.Self (self);
-
-			return new SystemStreamConverter (self);
+			IEnumerable<int> values = null;
+			new EnumerableValueReader<int> (values);
 		}
 
-		public static void WriteTo (this Stream self, Stream destination)
+		[Test, ExpectedException (typeof (NotSupportedException))]
+		public void Read_UnsupportedT ()
 		{
-			Check.Self (self);
-			Check.Destination (destination);
+			int n;
+			new EnumerableValueReader<DateTime> (new[]{DateTime.Now})
+				.Read (out n);
+		}
 
-			int size = self.CanSeek
-				? (int) System.Math.Min (self.Length - self.Position, 4096)
-				: 4096;
-			byte[] buf = new byte [size];
-			int r;
-			while ((r = self.Read (buf, 0, buf.Length)) > 0)
-				destination.Write (buf, 0, r);
+		[Test]
+		public void Reads ()
+		{
+			string a, b, c;
+			new EnumerableValueReader<int> (new[]{1, 2, 3})
+				.Read (out a).Read (out b).Read (out c);
+			Assert.AreEqual ("1", a);
+			Assert.AreEqual ("2", b);
+			Assert.AreEqual ("3", c);
 		}
 	}
 }

@@ -48,6 +48,15 @@ namespace Mono.Rocks.Tests {
 			v = Either.TryParse<int> ("42");
 			var n = v.Fold (i => i, i => -1);
 			Assert.AreEqual (42, n);
+
+			Either<bool, Exception> a = Either.TryParse<int, bool> (42);
+			e = a.Fold (i => null, i => i);
+			Assert.IsNotNull (e);
+			Assert.IsTrue (typeof (Exception).IsAssignableFrom (e.GetType()));
+
+			Either<string, Exception> b = Either.TryParse<int, string> (42);
+			var n2 = b.Fold (i => i, i => null);
+			Assert.AreEqual ("42", n2);
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]

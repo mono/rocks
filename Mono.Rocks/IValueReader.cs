@@ -1,9 +1,8 @@
 //
-// Stream.cs
+// IValuReader.cs
 //
-// Authors:
+// Author:
 //   Jonathan Pryor  <jpryor@novell.com>
-//   Bojan Rajkovic  <bojanr@brandeis.edu>
 //
 // Copyright (c) 2008 Novell, Inc. (http://www.novell.com)
 //
@@ -26,35 +25,22 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using System;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Mono.Rocks {
 
-	public static class StreamRocks {
-
-		public static SystemStreamConverter WithSystemConverter (this Stream self)
-		{
-			Check.Self (self);
-
-			return new SystemStreamConverter (self);
-		}
-
-		public static void WriteTo (this Stream self, Stream destination)
-		{
-			Check.Self (self);
-			Check.Destination (destination);
-
-			int size = self.CanSeek
-				? (int) System.Math.Min (self.Length - self.Position, 4096)
-				: 4096;
-			byte[] buf = new byte [size];
-			int r;
-			while ((r = self.Read (buf, 0, buf.Length)) > 0)
-				destination.Write (buf, 0, r);
-		}
+	public interface IValueReader<TSelf>
+		where TSelf : IValueReader<TSelf>
+	{
+		TSelf Read (out bool value);
+		TSelf Read (out byte value);
+		TSelf Read (out char value);
+		TSelf Read (out double value);
+		TSelf Read (out short value);
+		TSelf Read (out int value);
+		TSelf Read (out long value);
+		TSelf Read (out float value);
+		TSelf Read (out string value);
 	}
 }
+

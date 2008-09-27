@@ -46,8 +46,7 @@ namespace Mono.Rocks.Tests {
 			IEnumerable<IEnumerable<int>> r = s.Rows ();
 		}
 
-		// Skipped due to https://bugzilla.novell.com/show_bug.cgi?id=429264
-		[Test, Category ("NotWorking")]
+		[Test]
 		public void Rows ()
 		{
 			int[,] s = new int[,] {

@@ -41,12 +41,22 @@ namespace Mono.Rocks {
 
 		public static Either<T, Exception> TryParse<T> (string value)
 		{
+			return TryParse<string, T> (value);
+		}
+
+		public static Either<TResult, Exception> TryParse<TSource, TResult> (TSource value)
+		{
 			try {
-				TypeConverter c = TypeDescriptor.GetConverter (typeof (T));
-				return Either<T, Exception>.A ((T) c.ConvertFromString (value));
+				TypeConverter c = TypeDescriptor.GetConverter (typeof (TResult));
+				if (c.CanConvertFrom (typeof (TSource)))
+					return Either<TResult, Exception>.A ((TResult) c.ConvertFrom (value));
+				c = TypeDescriptor.GetConverter (typeof (TSource));
+				if (c.CanConvertTo (typeof (TResult)))
+					return Either<TResult, Exception>.A ((TResult) c.ConvertTo (value, typeof (TResult)));
+				return Either<TResult, Exception>.B (new NotSupportedException ());
 			}
 			catch (Exception e) {
-				return Either<T, Exception>.B (e);
+				return Either<TResult, Exception>.B (e);
 			}
 		}
 	}

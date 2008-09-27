@@ -1,3 +1,17 @@
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
+	* EitherTest.cs: Add tests for .TryParse() method.
+	* EnumerableValueReaderTest.cs: Added; tests for EnumerableValueReader.
+	* IEnumerableTest.cs: Add tests for .ToValueReader().
+	* MaybeTest.cs: Add tests for .TryParse() method.
+	* RectangularArrayTest.cs: Re-enable the test, as the bug was fixed.
+	* StreamConverterTest.cs: Rename to SystemStreamConverterTest.cs.
+	* TextValueReaderTest.cs: Added; tests for TextValueReader.
+
+2008-09-26  Jonathan Pryor  <jpryor@novell.com>
+
+	* TypeTest.cs: Added; tests for TypeRocks.
+
 2008-09-26  Jonathan Pryor  <jpryor@novell.com>
 
 	* TextReaderTest.cs: Add new tests for .Words() lexer capabilities.

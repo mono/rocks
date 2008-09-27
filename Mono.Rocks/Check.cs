@@ -32,6 +32,18 @@ namespace Mono.Rocks {
 
 	static class Check {
 
+		public static void Accumulate (object accumulate)
+		{
+			if (accumulate == null)
+				throw new ArgumentNullException ("accumulate");
+		}
+
+		public static void Categories (object categories)
+		{
+			if (categories == null)
+				throw new ArgumentNullException ("categories");
+		}
+
 		public static void Comparer (object comparer)
 		{
 			if (comparer == null)
@@ -48,12 +60,6 @@ namespace Mono.Rocks {
 		{
 			if (destination == null)
 				throw new ArgumentNullException ("destination");
-		}
-
-		public static void Levels (object levels)
-		{
-			if (levels == null)
-				throw new ArgumentNullException ("levels");
 		}
 
 		public static void List (object list)

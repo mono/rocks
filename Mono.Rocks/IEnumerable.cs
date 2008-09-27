@@ -172,62 +172,6 @@ namespace Mono.Rocks {
 			}
 		}
 
-		public static void Convert<TSource, TValue> (this IEnumerable<TSource> self, out TValue value)
-		{
-			TValue v1 = default(TValue);
-			ApplyPairs (self, 
-					v => v1 = Convert<TSource, TValue> (v)).Apply ();
-			value = v1;
-		}
-
-		private static TResult Convert<TSource, TResult> (TSource value)
-		{
-			TypeConverter conv = TypeDescriptor.GetConverter (typeof(TResult));
-			return (TResult) conv.ConvertFrom (value);
-		}
-
-		public static void Convert<TSource, TValue1, TValue2> (this IEnumerable<TSource> self, out TValue1 value1, out TValue2 value2)
-		{
-			TValue1 v1 = default(TValue1);
-			TValue2 v2 = default(TValue2);
-			ApplyPairs (self, 
-					v => v1 = Convert<TSource, TValue1> (v),
-					v => v2 = Convert<TSource, TValue2> (v)).Apply ();
-			value1 = v1;
-			value2 = v2;
-		}
-
-		public static void Convert<TSource, TValue1, TValue2, TValue3> (this IEnumerable<TSource> self, out TValue1 value1, out TValue2 value2, out TValue3 value3)
-		{
-			TValue1 v1 = default(TValue1);
-			TValue2 v2 = default(TValue2);
-			TValue3 v3 = default(TValue3);
-			ApplyPairs (self, 
-					v => v1 = Convert<TSource, TValue1> (v),
-					v => v2 = Convert<TSource, TValue2> (v),
-					v => v3 = Convert<TSource, TValue3> (v)).Apply ();
-			value1 = v1;
-			value2 = v2;
-			value3 = v3;
-		}
-
-		public static void Convert<TSource, TValue1, TValue2, TValue3, TValue4> (this IEnumerable<TSource> self, out TValue1 value1, out TValue2 value2, out TValue3 value3, out TValue4 value4)
-		{
-			TValue1 v1 = default(TValue1);
-			TValue2 v2 = default(TValue2);
-			TValue3 v3 = default(TValue3);
-			TValue4 v4 = default(TValue4);
-			ApplyPairs (self, 
-					v => v1 = Convert<TSource, TValue1> (v),
-					v => v2 = Convert<TSource, TValue2> (v),
-					v => v3 = Convert<TSource, TValue3> (v),
-					v => v4 = Convert<TSource, TValue4> (v)).Apply ();
-			value1 = v1;
-			value2 = v2;
-			value3 = v3;
-			value4 = v4;
-		}
-
 		public static IEnumerable<TSource> Sort<TSource> (this IEnumerable<TSource> self)
 		{
 			Check.Self (self);
@@ -361,6 +305,75 @@ namespace Mono.Rocks {
 			T t = a;
 			a = b;
 			b = t;
+		}
+
+		public static IEnumerable<TResult> Tokens<TSource, TAccumulate, TResult> (this IEnumerable<TSource> self, 
+				TAccumulate seed, 
+				Func<TAccumulate, TSource, TAccumulate> accumulate,
+				Func<TAccumulate, Tuple<TResult, TAccumulate>> resultSelector, 
+				params Func<TSource, bool>[] categories)
+		{
+			Check.Self (self);
+			Check.Accumulate (accumulate);
+			Check.ResultSelector (accumulate);
+			Check.Categories (categories);
+			if (categories.Length == 0)
+				throw new ArgumentException ("categories", "must have one or more elements");
+
+			return CreateTokensIterator (self, seed, accumulate, resultSelector, categories);
+		}
+
+		private static IEnumerable<TResult> CreateTokensIterator<TSource, TAccumulate, TResult> (
+				IEnumerable<TSource> self, 
+				TAccumulate seed, 
+				Func<TAccumulate, TSource, TAccumulate> accumulate,
+				Func<TAccumulate, Tuple<TResult, TAccumulate>> resultSelector, 
+				Func<TSource, bool>[] categories)
+		{
+			bool have_data = false;
+			int cat = -1;
+			foreach (var s in self) {
+				int next_cat = categories
+					.Select ((l, i) => l (s) ? i : -1)
+					.Where (n => n >= 0)
+					.With (e => e.Count () > 0 ? e.Min () : -1);
+				if (next_cat == cat && cat >= 0) {
+					seed = accumulate (seed, s);
+					have_data = true;
+				}
+				else if (next_cat >= 0) {
+					if (have_data) {
+						var r = resultSelector (seed);
+						yield return r._1;
+						seed = r._2;
+					}
+					cat = next_cat;
+					seed = accumulate (seed, s);
+				}
+				else {
+					if (have_data) {
+						var r = resultSelector (seed);
+						yield return r._1;
+						seed = r._2;
+					}
+					cat = -1;
+					have_data = false;
+				}
+			}
+			if (have_data)
+				yield return resultSelector (seed)._1;
+		}
+
+		public static TextValueReader ToValueReader (this IEnumerable<string> self)
+		{
+			return new TextValueReader (self);
+		}
+
+		public static EnumerableValueReader<TSource> ToValueReader<TSource> (this IEnumerable<TSource> self)
+		{
+			Check.Self (self);
+
+			return new EnumerableValueReader<TSource> (self);
 		}
 
 		// Haskell: zipWith

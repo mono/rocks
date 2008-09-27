@@ -73,6 +73,15 @@ namespace Mono.Rocks.Tests {
 			Assert.IsTrue (n.HasValue);
 			Assert.AreEqual (42, n.Value);
 			#endregion
+
+			#region TryParse2
+			Maybe<string> a = Maybe.TryParse<int, string> (42);
+			Assert.IsTrue (a.HasValue);
+			Assert.AreEqual ("42", a.Value);
+
+			Maybe<bool> b = Maybe.TryParse<int, bool> (42);
+			Assert.IsFalse (b.HasValue);
+			#endregion
 		}
 
 		[Test]

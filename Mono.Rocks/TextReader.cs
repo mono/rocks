@@ -74,39 +74,40 @@ namespace Mono.Rocks {
 			}
 		}
 
-		public static IEnumerable<string> Words (this TextReader self, params Func<char, bool>[] levels)
+		public static IEnumerable<string> Words (this TextReader self, params Func<char, bool>[] categories)
 		{
-			Check.Levels (levels);
-			if (levels.Length == 0)
-				levels = GetDefaultLevels ();
-			return Words (self, TextReaderRocksOptions.None, levels);
+			Check.Categories (categories);
+			if (categories.Length == 0)
+				categories = GetDefaultCategories ();
+			return Words (self, TextReaderRocksOptions.None, categories);
 		}
 
-		private static Func<char, bool>[] GetDefaultLevels ()
+		private static Func<char, bool>[] GetDefaultCategories ()
 		{
 			return new Func<char, bool>[]{ c => !char.IsWhiteSpace (c) };
 		}
 
-		public static IEnumerable<string> Words (this TextReader self, TextReaderRocksOptions options, params Func<char, bool>[] levels)
+		public static IEnumerable<string> Words (this TextReader self, TextReaderRocksOptions options, params Func<char, bool>[] categories)
 		{
 			Check.Self (self);
 			CheckOptions (options);
-			Check.Levels (levels);
-			if (levels.Length == 0)
-				levels = GetDefaultLevels ();
+			Check.Categories (categories);
+			if (categories.Length == 0)
+				categories = GetDefaultCategories ();
 
-			return CreateWordsIterator (self, options, levels);
+			return CreateWordsIterator (self, options, categories);
 		}
 
-		private static IEnumerable<string> CreateWordsIterator (TextReader self, TextReaderRocksOptions options, Func<char, bool>[] levels)
+		private static IEnumerable<string> CreateWordsIterator (TextReader self, TextReaderRocksOptions options, Func<char, bool>[] categories)
 		{
-			StringBuilder buf = new StringBuilder ();
 			try {
+#if true
+				StringBuilder buf = new StringBuilder ();
 				int c;
 				int level = -1;
 				while ((c = self.Read ()) >= 0) {
 					char ch = (char) c;
-					int next_level = levels
+					int next_level = categories
 						.Select ((l, i) => l (ch) ? i : -1)
 						.Where (n => n >= 0)
 						.With (e => e.Count() > 0 ? e.Min () : -1);
@@ -130,11 +131,29 @@ namespace Mono.Rocks {
 				}
 				if (buf.Length > 0)
 					yield return buf.ToString ();
+#else
+				return Chars (self).Tokens (
+						new StringBuilder (),
+						(buf, c) => buf.Append (c),
+						buf => {
+							var r = buf.ToString (); 
+							buf.Length = 0; 
+							return Tuple.Create (r, buf);
+						},
+						categories);
+#endif
 			} finally {
 				if ((options & TextReaderRocksOptions.CloseReader) != 0) {
 					self.Close ();
 				}
 			}
+		}
+
+		private static IEnumerable<char> Chars (TextReader self)
+		{
+			int c;
+			while ((c = self.Read ()) >= 0)
+				yield return (char) c;
 		}
 	}
 }
