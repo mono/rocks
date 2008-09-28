@@ -79,7 +79,7 @@ namespace Mono.Rocks.Tests {
 			Assert.IsTrue (a.HasValue);
 			Assert.AreEqual ("42", a.Value);
 
-			Maybe<bool> b = Maybe.TryParse<int, bool> (42);
+			Maybe<DateTime> b = Maybe.TryParse<int, DateTime> (42);
 			Assert.IsFalse (b.HasValue);
 			#endregion
 		}

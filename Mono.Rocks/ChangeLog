@@ -1,5 +1,18 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* Either.cs: Finish the "expend all efforts to convert values"
+	  approach by using IConvertable to convert the source value to the
+	  destination value, in this case by using Convert.ChangeType().
+	  Now allows EnumerableValueReader.Read() to perform "implicit"
+	  conversions, e.g. int->bool, which TypeDescriptor doesn't support.
+	  Consistently return NotSupportedException if the conversion throws
+	  an exception (as Convert.ChangeType() throws InvalidCastException if
+	  it fails, which makes for an ambiguous error condition).
+	* EnumerableValueReader.cs: Don't bother witih IConvertible changes,
+	  as Either.TryParse() now does this.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerable.cs: Change .Tokens() categories from Func<TSource,bool>
 	  to Func<TAggregate, TSource, bool>, so that the callback can be
 	  "smarter" about category detection.

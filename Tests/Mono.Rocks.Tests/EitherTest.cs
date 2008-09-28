@@ -37,9 +37,64 @@ namespace Mono.Rocks.Tests {
 	[TestFixture]
 	public class EitherTest : BaseRocksFixture {
 
+		struct CustomConvertible : IConvertible {
+			public const            bool      Boolean   = true;
+			public const            byte      Byte      = (byte) 1;
+			public const            char      Char      = 'a';
+			public static readonly  DateTime  DateTime  = new DateTime (2008, 9, 27);
+			public const            decimal   Decimal   = 5m;
+			public const            double    Double    = 6.0;
+			public const            short     Int16     = 7;
+			public const            int       Int32     = 8;
+			public const            long      Int64     = 9L;
+			public const            sbyte     SByte     = (sbyte) 10;
+			public const            float     Single    = 11.0f;
+			public static readonly  string    String    = "string";
+			public static readonly  object    Type      = new object ();
+			public const            ushort    UInt16    = 14;
+			public const            uint      UInt32    = 15U;
+			public const            ulong     UInt64    = 16UL;
+
+			TypeCode IConvertible.GetTypeCode ()
+				{return TypeCode.Object;}
+			bool IConvertible.ToBoolean (IFormatProvider p)
+				{return Boolean;}
+			byte IConvertible.ToByte (IFormatProvider p)
+				{return Byte;}
+			char IConvertible.ToChar (IFormatProvider p)
+				{return Char;}
+			DateTime IConvertible.ToDateTime (IFormatProvider p)
+				{return DateTime;}
+			decimal IConvertible.ToDecimal (IFormatProvider p)
+				{return Decimal;}
+			double IConvertible.ToDouble (IFormatProvider p)
+				{return Double;}
+			short IConvertible.ToInt16 (IFormatProvider p)
+				{return Int16;}
+			int IConvertible.ToInt32 (IFormatProvider p)
+				{return Int32;}
+			long IConvertible.ToInt64 (IFormatProvider p)
+				{return Int64;}
+			sbyte IConvertible.ToSByte (IFormatProvider p)
+				{return SByte;}
+			float IConvertible.ToSingle (IFormatProvider p)
+				{return Single;}
+			string IConvertible.ToString (IFormatProvider p)
+				{return String;}
+			object IConvertible.ToType (Type to, IFormatProvider p)
+				{return Type;}
+			ushort IConvertible.ToUInt16 (IFormatProvider p)
+				{return UInt16;}
+			uint IConvertible.ToUInt32 (IFormatProvider p)
+				{return UInt32;}
+			ulong IConvertible.ToUInt64 (IFormatProvider p)
+				{return UInt64;}
+		}
+
 		[Test]
 		public void TryParse ()
 		{
+			#region TryParse
 			var v = Either.TryParse<int> ("3.14159");
 			var e = v.Fold (i => null, i => i);
 			Assert.IsNotNull (e);
@@ -48,8 +103,10 @@ namespace Mono.Rocks.Tests {
 			v = Either.TryParse<int> ("42");
 			var n = v.Fold (i => i, i => -1);
 			Assert.AreEqual (42, n);
+			#endregion
 
-			Either<bool, Exception> a = Either.TryParse<int, bool> (42);
+			#region TryParse2
+			Either<DateTime, Exception> a = Either.TryParse<int, DateTime> (42);
 			e = a.Fold (i => null, i => i);
 			Assert.IsNotNull (e);
 			Assert.IsTrue (typeof (Exception).IsAssignableFrom (e.GetType()));
@@ -57,6 +114,12 @@ namespace Mono.Rocks.Tests {
 			Either<string, Exception> b = Either.TryParse<int, string> (42);
 			var n2 = b.Fold (i => i, i => null);
 			Assert.AreEqual ("42", n2);
+
+			Either<int, Exception> c = 
+				Either.TryParse<CustomConvertible, int> (new CustomConvertible ());
+			var n3 = c.Fold (i => i, i => -1);
+			Assert.AreEqual (CustomConvertible.Int32, n3);
+			#endregion
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]

@@ -50,13 +50,19 @@ namespace Mono.Rocks {
 				TypeConverter c = TypeDescriptor.GetConverter (typeof (TResult));
 				if (c.CanConvertFrom (typeof (TSource)))
 					return Either<TResult, Exception>.A ((TResult) c.ConvertFrom (value));
+
 				c = TypeDescriptor.GetConverter (typeof (TSource));
 				if (c.CanConvertTo (typeof (TResult)))
 					return Either<TResult, Exception>.A ((TResult) c.ConvertTo (value, typeof (TResult)));
-				return Either<TResult, Exception>.B (new NotSupportedException ());
+
+				// Convert.ChangeType uses IConvertible for type conversions;
+				// throws InvalidCastException if type could not be converted.
+				return Either<TResult, Exception>.A ((TResult) Convert.ChangeType (value, typeof (TResult)));
 			}
 			catch (Exception e) {
-				return Either<TResult, Exception>.B (e);
+				return Either<TResult, Exception>.B (new NotSupportedException (
+							string.Format ("Conversion from {0} to {1} is not supported.",
+								typeof (TSource).FullName, typeof (TResult).FullName), e));
 			}
 		}
 	}

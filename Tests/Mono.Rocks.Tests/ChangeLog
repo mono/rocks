@@ -1,5 +1,14 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* EitherTest.cs: Add some tests for IConvertible support within
+	  Either.TryParse().
+	* MaybeTest.cs: int->bool is now valid (via Convert.ChangeType), so
+	  try a int->DateTime conversion, which is currently unsupported.
+	* EnumerableValueReaderTest.cs: Show type conversion functionality
+	  in-action, by reading an int[] into a short, char, and decimal.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerableTest.cs: Add tests for .Tokens().
 	* MaybeTest.cs: Remove compiler warning.
 	* StringTest.cs: Add tests for .Tokens().
