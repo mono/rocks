@@ -44,7 +44,7 @@ namespace Mono.Rocks {
 
 		public static IEnumerable<string> Lines (this TextReader self)
 		{
-			return Lines (self, TextReaderRocksOptions.None);
+			return Lines (self, TextReaderRocksOptions.CloseReader);
 		}
 
 		public static IEnumerable<string> Lines (this TextReader self, TextReaderRocksOptions options)
@@ -70,6 +70,7 @@ namespace Mono.Rocks {
 			} finally {
 				if ((options & TextReaderRocksOptions.CloseReader) != 0) {
 					self.Close ();
+					self.Dispose ();
 				}
 			}
 		}
@@ -80,7 +81,7 @@ namespace Mono.Rocks {
 			Check.Categories (categories);
 			if (categories.Length == 0)
 				throw new ArgumentException ("categories", "Must provide at least one catagory");
-			return Tokens (self, TextReaderRocksOptions.None, categories);
+			return Tokens (self, TextReaderRocksOptions.CloseReader, categories);
 		}
 
 		public static IEnumerable<string> Tokens (this TextReader self, TextReaderRocksOptions options, params Func<char?, char, bool>[] categories)
@@ -144,6 +145,7 @@ namespace Mono.Rocks {
 			} finally {
 				if ((options & TextReaderRocksOptions.CloseReader) != 0) {
 					self.Close ();
+					self.Dispose ();
 				}
 			}
 		}
@@ -157,7 +159,7 @@ namespace Mono.Rocks {
 
 		public static IEnumerable<string> Words (this TextReader self)
 		{
-			return Words (self, TextReaderRocksOptions.None);
+			return Words (self, TextReaderRocksOptions.CloseReader);
 		}
 
 		public static IEnumerable<string> Words (this TextReader self, TextReaderRocksOptions options)

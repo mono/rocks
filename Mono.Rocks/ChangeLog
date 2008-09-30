@@ -1,3 +1,8 @@
+2008-09-30  Jonathan Pryor  <jpryor@novell.com>
+
+	* TextReader.cs: Change the default semantics of .Lines(), .Words(),
+	  and .Tokens() so that the TextReader *is* disposed by default.
+
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
 	* Either.cs: Finish the "expend all efforts to convert values"

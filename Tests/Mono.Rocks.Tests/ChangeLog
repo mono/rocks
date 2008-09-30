@@ -1,5 +1,10 @@
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
+	* TextReaderTest.cs: Update tests to check for TextReader disposal 
+	  by default.
+
+2008-09-27  Jonathan Pryor  <jpryor@novell.com>
+
 	* EitherTest.cs: Add some tests for IConvertible support within
 	  Either.TryParse().
 	* MaybeTest.cs: int->bool is now valid (via Convert.ChangeType), so

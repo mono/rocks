@@ -46,7 +46,7 @@
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
           which will return all lines of text from <paramref name="self" /> 
-          without <see cref="M:System.IO.TextReader.Close" />ing 
+          while <see cref="M:System.IO.TextReader.Close" />ing 
           <paramref name="self" />.
         </summary>
         <returns>
@@ -59,8 +59,7 @@
             This method is implemented by using deferred execution.
           </para>
           <para>
-            <paramref name="self" /> is not disposed.  
-            <see cref="T:System.IO.TextReader" /> disposal is up to the caller.
+            <paramref name="self" /> is disposed.  
           </para>
           <block subset="none" type="note">
             A "line of text" is the same as that used by 
@@ -120,7 +119,10 @@
             <see cref="F:Mono.Rocks.TextReaderRocksOptions.CloseReader" />,
             then <paramref name="self" /> will be 
             <see cref="M:System.IO.TextReader.Close" />ed once all lines have
-            been returned.
+            been returned; if 
+            <see cref="F:Mono.Rocks.TextReaderRocksOptions.CloseReader" />
+						is not specified, then the 
+            <see cref="T:System.IO.TextReader" /> will not be disposed.
           </para>
           <block subset="none" type="note">
             A "line of text" is the same as that used by 
@@ -163,17 +165,17 @@
         </param>
         <param name="categories">
           A
-					<see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
-					array containing the different categories of characters that 
-					determines what makes up a "token."  If the 
-					<see cref="T:System.Nullable{System.Char}" /> parameter is 
-					<see langword="null" />, then the <see cref="T:System.Char" /> is
-					the first character within the token; otherwise, the
-					<see cref="T:System.Nullable{System.Char}" /> parameter contains the
-					character preceding the <see cref="T:System.Char" />.
-					The delegate should return <see langword="true" /> if the
-					<see cref="T:System.Char" /> is a supported character; otherwise,
-					<see langword="false" /> should be returned.
+          <see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
+          array containing the different categories of characters that 
+          determines what makes up a "token."  If the 
+          <see cref="T:System.Nullable{System.Char}" /> parameter is 
+          <see langword="null" />, then the <see cref="T:System.Char" /> is
+          the first character within the token; otherwise, the
+          <see cref="T:System.Nullable{System.Char}" /> parameter contains the
+          character preceding the <see cref="T:System.Char" />.
+          The delegate should return <see langword="true" /> if the
+          <see cref="T:System.Char" /> is a supported character; otherwise,
+          <see langword="false" /> should be returned.
         </param>
         <summary>
           Creates an
@@ -201,7 +203,7 @@
           <block subset="none" type="note">
             <para>
               A "token" is determined by <paramref name="categories" />, and
-							is any contiguous sequence of characters for which the
+              is any contiguous sequence of characters for which the
               same <paramref name="categories" /> index returns 
               <see langword="true" />, starting from the first delegate.  This
               allows a "some characters are more important than others"
@@ -215,16 +217,16 @@ var words = r.Tokens (
 	(p, c) =&gt; char.IsLetterOrDigit (c) || c == '.',
 	(p, c) =&gt; !char.IsWhiteSpace (c))
 	.ToArray ();
-Assert.IsFalse (r.WasDisposed);
+Assert.IsTrue (r.WasDisposed);
 Assert.IsTrue (
 		new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
 		.SequenceEqual (words));
 
 r = new MyStringReader ("Hello, world!");
 Assert.AreEqual (false, 
-	r.Tokens (TextReaderRocksOptions.CloseReader,
+	r.Tokens (TextReaderRocksOptions.None,
 		(p, c) =&gt; false).Any ());
-Assert.IsTrue (r.WasDisposed);
+Assert.IsFalse (r.WasDisposed);
 </code>
         </remarks>
         <exception cref="T:System.ArgumentException">
@@ -271,17 +273,17 @@ Assert.IsTrue (r.WasDisposed);
         </param>
         <param name="categories">
           A
-					<see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
-					array containing the different categories of characters that 
-					determines what makes up a "token."  If the 
-					<see cref="T:System.Nullable{System.Char}" /> parameter is 
-					<see langword="null" />, then the <see cref="T:System.Char" /> is
-					the first character within the token; otherwise, the
-					<see cref="T:System.Nullable{System.Char}" /> parameter contains the
-					character preceding the <see cref="T:System.Char" />.
-					The delegate should return <see langword="true" /> if the
-					<see cref="T:System.Char" /> is a supported character; otherwise,
-					<see langword="false" /> should be returned.
+          <see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
+          array containing the different categories of characters that 
+          determines what makes up a "token."  If the 
+          <see cref="T:System.Nullable{System.Char}" /> parameter is 
+          <see langword="null" />, then the <see cref="T:System.Char" /> is
+          the first character within the token; otherwise, the
+          <see cref="T:System.Nullable{System.Char}" /> parameter contains the
+          character preceding the <see cref="T:System.Char" />.
+          The delegate should return <see langword="true" /> if the
+          <see cref="T:System.Char" /> is a supported character; otherwise,
+          <see langword="false" /> should be returned.
         </param>
         <summary>
           Creates an
@@ -309,7 +311,7 @@ Assert.IsTrue (r.WasDisposed);
           <block subset="none" type="note">
             <para>
               A "token" is determined by <paramref name="categories" />, and
-							is any contiguous sequence of characters for which the
+              is any contiguous sequence of characters for which the
               same <paramref name="categories" /> index returns 
               <see langword="true" />, starting from the first delegate.  This
               allows a "some characters are more important than others"
@@ -323,16 +325,16 @@ var words = r.Tokens (
 	(p, c) =&gt; char.IsLetterOrDigit (c) || c == '.',
 	(p, c) =&gt; !char.IsWhiteSpace (c))
 	.ToArray ();
-Assert.IsFalse (r.WasDisposed);
+Assert.IsTrue (r.WasDisposed);
 Assert.IsTrue (
 		new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
 		.SequenceEqual (words));
 
 r = new MyStringReader ("Hello, world!");
 Assert.AreEqual (false, 
-	r.Tokens (TextReaderRocksOptions.CloseReader,
+	r.Tokens (TextReaderRocksOptions.None,
 		(p, c) =&gt; false).Any ());
-Assert.IsTrue (r.WasDisposed);
+Assert.IsFalse (r.WasDisposed);
 </code>
         </remarks>
         <exception cref="T:System.ArgumentException">
@@ -370,7 +372,7 @@ Assert.IsTrue (r.WasDisposed);
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
           which will return all words from <paramref name="self" />
-          without <see cref="M:System.IO.TextReader.Close" />ing 
+          while <see cref="M:System.IO.TextReader.Close" />ing 
           <paramref name="self" />.
         </summary>
         <returns>
@@ -383,19 +385,18 @@ Assert.IsTrue (r.WasDisposed);
             This method is implemented by using deferred execution.
           </para>
           <para>
-            <paramref name="self" /> is not disposed.  
-            <see cref="T:System.IO.TextReader" /> disposal is up to the caller.
+            <paramref name="self" /> is disposed.  
           </para>
           <block subset="none" type="note">
             <para>
               A "word" is any contiguous sequence of characters for which
-							<see cref="M:System.Char.IsWhiteSpace(System.Char)" />
-							returns <see langword="false" />.
+              <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
+              returns <see langword="false" />.
             </para>
           </block>
           <code lang="C#" src="../../Tests/Mono.Rocks.Tests/TextReaderTest.cs#Words">MyStringReader r = new MyStringReader ("   (skip  leading,\r\n\tand trailing\vwhitespace)   ");
 string[] words = r.Words ().ToArray ();
-Assert.IsFalse (r.WasDisposed);
+Assert.IsTrue (r.WasDisposed);
 Assert.AreEqual (5, words.Length);
 Assert.AreEqual ("(skip",       words [0]);
 Assert.AreEqual ("leading,",    words [1]);
@@ -404,8 +405,8 @@ Assert.AreEqual ("trailing",    words [3]);
 Assert.AreEqual ("whitespace)", words [4]);
 
 r = new MyStringReader ("notext");
-words = r.Words (TextReaderRocksOptions.CloseReader).ToArray ();
-Assert.IsTrue (r.WasDisposed);
+words = r.Words (TextReaderRocksOptions.None).ToArray ();
+Assert.IsFalse (r.WasDisposed);
 Assert.AreEqual (1, words.Length);
 Assert.AreEqual ("notext", words [0]);
 
@@ -470,18 +471,21 @@ Assert.AreEqual ("4", r.Words ().First ());
             <see cref="F:Mono.Rocks.TextReaderRocksOptions.CloseReader" />,
             then <paramref name="self" /> will be 
             <see cref="M:System.IO.TextReader.Close" />ed once all lines have
-            been returned.
+            been returned; if 
+            <see cref="F:Mono.Rocks.TextReaderRocksOptions.CloseReader" />
+            is not specified, then the 
+            <see cref="T:System.IO.TextReader" /> will not be disposed.
           </para>
           <block subset="none" type="note">
             <para>
               A "word" is any contiguous sequence of characters for which
-							<see cref="M:System.Char.IsWhiteSpace(System.Char)" />
-							returns <see langword="false" />.
+              <see cref="M:System.Char.IsWhiteSpace(System.Char)" />
+              returns <see langword="false" />.
             </para>
           </block>
           <code lang="C#" src="../../Tests/Mono.Rocks.Tests/TextReaderTest.cs#Words">MyStringReader r = new MyStringReader ("   (skip  leading,\r\n\tand trailing\vwhitespace)   ");
 string[] words = r.Words ().ToArray ();
-Assert.IsFalse (r.WasDisposed);
+Assert.IsTrue (r.WasDisposed);
 Assert.AreEqual (5, words.Length);
 Assert.AreEqual ("(skip",       words [0]);
 Assert.AreEqual ("leading,",    words [1]);
@@ -490,8 +494,8 @@ Assert.AreEqual ("trailing",    words [3]);
 Assert.AreEqual ("whitespace)", words [4]);
 
 r = new MyStringReader ("notext");
-words = r.Words (TextReaderRocksOptions.CloseReader).ToArray ();
-Assert.IsTrue (r.WasDisposed);
+words = r.Words (TextReaderRocksOptions.None).ToArray ();
+Assert.IsFalse (r.WasDisposed);
 Assert.AreEqual (1, words.Length);
 Assert.AreEqual ("notext", words [0]);
 

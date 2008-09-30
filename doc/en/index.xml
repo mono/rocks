@@ -5930,7 +5930,7 @@
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
           which will return all lines of text from <paramref name="self" /> 
-          without <see cref="M:System.IO.TextReader.Close" />ing 
+          while <see cref="M:System.IO.TextReader.Close" />ing 
           <paramref name="self" />.
         </summary>
         </Docs>
@@ -6094,7 +6094,7 @@
           Creates an
           <see cref="T:System.Collections.Generic.IEnumerable{System.String}" />
           which will return all words from <paramref name="self" />
-          without <see cref="M:System.IO.TextReader.Close" />ing 
+          while <see cref="M:System.IO.TextReader.Close" />ing 
           <paramref name="self" />.
         </summary>
         </Docs>

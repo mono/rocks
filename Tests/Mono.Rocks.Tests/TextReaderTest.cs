@@ -76,7 +76,7 @@ namespace Mono.Rocks.Tests {
 		{
 			MyStringReader r = new MyStringReader ("hello\nout\rthere\r\nin\nTV\nland!");
 			string[] lines = r.Lines ().ToArray ();
-			Assert.IsFalse (r.WasDisposed);
+			Assert.IsTrue (r.WasDisposed);
 			Assert.AreEqual (6, lines.Length);
 			Assert.AreEqual ("hello", lines [0]);
 			Assert.AreEqual ("out",   lines [1]);
@@ -86,8 +86,8 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("land!", lines [5]);
 
 			r = new MyStringReader ("\nhello\n\nworld!");
-			lines = r.Lines (TextReaderRocksOptions.CloseReader).ToArray ();
-			Assert.IsTrue (r.WasDisposed);
+			lines = r.Lines (TextReaderRocksOptions.None).ToArray ();
+			Assert.IsFalse (r.WasDisposed);
 			Assert.AreEqual (4, lines.Length);
 			Assert.AreEqual ("",        lines [0]);
 			Assert.AreEqual ("hello",   lines [1]);
@@ -150,16 +150,16 @@ namespace Mono.Rocks.Tests {
 				(p, c) => char.IsLetterOrDigit (c) || c == '.',
 				(p, c) => !char.IsWhiteSpace (c))
 				.ToArray ();
-			Assert.IsFalse (r.WasDisposed);
+			Assert.IsTrue (r.WasDisposed);
 			Assert.IsTrue (
 					new[]{"(", "append", "3.5", "\"", "hello", ",", "world", "!\")"}
 					.SequenceEqual (words));
 
 			r = new MyStringReader ("Hello, world!");
 			Assert.AreEqual (false, 
-				r.Tokens (TextReaderRocksOptions.CloseReader,
+				r.Tokens (TextReaderRocksOptions.None,
 					(p, c) => false).Any ());
-			Assert.IsTrue (r.WasDisposed);
+			Assert.IsFalse (r.WasDisposed);
 			#endregion
 		}
 
@@ -184,7 +184,7 @@ namespace Mono.Rocks.Tests {
 			#region Words
 			MyStringReader r = new MyStringReader ("   (skip  leading,\r\n\tand trailing\vwhitespace)   ");
 			string[] words = r.Words ().ToArray ();
-			Assert.IsFalse (r.WasDisposed);
+			Assert.IsTrue (r.WasDisposed);
 			Assert.AreEqual (5, words.Length);
 			Assert.AreEqual ("(skip",       words [0]);
 			Assert.AreEqual ("leading,",    words [1]);
@@ -193,8 +193,8 @@ namespace Mono.Rocks.Tests {
 			Assert.AreEqual ("whitespace)", words [4]);
 
 			r = new MyStringReader ("notext");
-			words = r.Words (TextReaderRocksOptions.CloseReader).ToArray ();
-			Assert.IsTrue (r.WasDisposed);
+			words = r.Words (TextReaderRocksOptions.None).ToArray ();
+			Assert.IsFalse (r.WasDisposed);
 			Assert.AreEqual (1, words.Length);
 			Assert.AreEqual ("notext", words [0]);
 
