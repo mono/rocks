@@ -1,3 +1,14 @@
+2008-10-04  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerable.cs: The TypeLoadException-generating gmcs bug has been
+	  fixed, so now (1) the .Tokens() unit test can run, and (2) it found
+	  some bugs (unsurprisingly).  Fix them.  In particular, if we hit an
+	  element where acumulate(seed, s) returns false AND we already have
+	  an element, then we should return the previous element, reset the
+	  seed, and try accumulate(seed, s) again.  This way we don't "lose"
+	  elements during processing.
+	* TextReader.cs: .Tokens() can now use IEnumerableRocks.Tokens().
+
 2008-09-30  Jonathan Pryor  <jpryor@novell.com>
 
 	* TextReader.cs: Change the default semantics of .Lines(), .Words(),

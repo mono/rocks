@@ -332,30 +332,38 @@ namespace Mono.Rocks {
 		{
 			bool have_data = false;
 			int cat = -1;
-			foreach (var s in self) {
-				int next_cat = categories
+			var get_next_cat = Lambda.F<TSource, int> (s => categories
 					.Select ((l, i) => l (seed, s) ? i : -1)
 					.Where (n => n >= 0)
-					.With (e => e.Any () ? e.Min () : -1);
-				if (next_cat == cat && cat >= 0) {
-					seed = accumulate (seed, s);
+					.With (e => e.Any () ? e.Min () : -1));
+			var accum = Lambda.A<TSource, int> ((s, c) => {
+					seed      = accumulate (seed, s);
+					cat       = c;
 					have_data = true;
-				}
+			});
+			foreach (var s in self) {
+				int next_cat = get_next_cat (s);
+				if (next_cat == cat && cat >= 0)
+					accum (s, next_cat);
 				else if (next_cat >= 0) {
 					if (have_data) {
 						var r = resultSelector (seed);
 						yield return r._1;
 						seed = r._2;
 					}
-					cat = next_cat;
-					seed = accumulate (seed, s);
+					accum (s, next_cat);
+				}
+				else if (have_data) {
+					var r = resultSelector (seed);
+					yield return r._1;
+					seed = r._2;
+					cat  = -1;
+					have_data = false;
+					// retry
+					if ((next_cat = get_next_cat (s)) >= 0)
+						accum (s, next_cat);
 				}
 				else {
-					if (have_data) {
-						var r = resultSelector (seed);
-						yield return r._1;
-						seed = r._2;
-					}
 					cat = -1;
 					have_data = false;
 				}

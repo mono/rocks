@@ -1,4 +1,4 @@
-﻿//
+//
 // IEnumerableTest.cs
 //
 // Author:
@@ -35,6 +35,11 @@ using System.Text;
 using NUnit.Framework;
 
 using Mono.Rocks;
+
+// "The variable `r' is assigned but it's value is never used."
+// It's value isn't supposed to be used; it's purpose is as a manual check the
+// the generated .Curry() methods generate the correct return type.
+#pragma warning disable 0219
 
 namespace Mono.Rocks.Tests {
 
@@ -275,21 +280,18 @@ namespace Mono.Rocks.Tests {
 			IEnumerable<int>             r = s.Tokens (0, a, rs, cats);
 		}
 
-		// yet another TypeLoadException-related compiler bug.
-		[Test, Category ("NotWorking")]
+		[Test]
 		public void Tokens ()
 		{
-			IEnumerable<int>             s = new[]{1, 1, 3, 5, 8, 13};
-			Func<int, int, int>          a = (x, y) => x+y;
-			Func<int, Tuple<int, int>>  rs = x => Tuple.Create (x, 0);
-			Func<int, int, bool>[]    cats = new Func<int, int, bool>[]{
-				(p, c) => p + c < 10
-			};
-			int[]                        r = s.Tokens (0, a, rs, cats).ToArray ();
-			Assert.AreSame (3, r.Length);
-			Assert.AreEqual (5, r [0]);
-			Assert.AreEqual (5, r [1]);
-			Assert.AreEqual (8, r [2]);
+			#region Tokens
+			IEnumerable<int>  s      = new[]{1, 1, 3, 5, 8, 13};
+			IEnumerable<int>  tokens = s.Tokens (0, 
+					(x, y) => x + y,
+					r => Tuple.Create (r, 0),
+					(p, c) => p + c < 10
+			);
+			Assert.IsTrue (new[]{5, 5, 8}.SequenceEqual (tokens));
+			#endregion
 		}
 
 		[Test, ExpectedException (typeof (ArgumentNullException))]
@@ -796,12 +798,6 @@ namespace Mono.Rocks.Tests {
 			IEnumerable<char> x = new char[]{'a', 'a'};
 			Assert.AreEqual ("bcdaaefg", e.Intersperse (x).Implode ());
 #endif
-		}
-
-		static IEnumerable<char> aa ()
-		{
-			yield return 'a';
-			yield return 'a';
 		}
 
 		[Test]

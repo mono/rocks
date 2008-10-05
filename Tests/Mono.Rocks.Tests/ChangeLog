@@ -1,3 +1,9 @@
+2008-10-04  Jonathan Pryor  <jpryor@novell.com>
+
+	* IEnumerableTest.cs: Flush .Tokens() test.
+	* IEnumerableTest.cs, JaggedArrayTest.cs, MaybeTest.cs: Disable 
+	  some warnings.
+
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
 
 	* TextReaderTest.cs: Update tests to check for TextReader disposal 

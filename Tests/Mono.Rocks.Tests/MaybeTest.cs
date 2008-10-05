@@ -35,7 +35,7 @@ using Mono.Rocks;
 // "The variable `r'/etc. is assigned but it's value is never used."
 // It's value isn't supposed to be used; it's purpose is as a manual check 
 // the return type.
-#pragma warning disable 0219
+#pragma warning disable 0219, 0168
 
 namespace Mono.Rocks.Tests {
 

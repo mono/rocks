@@ -98,50 +98,19 @@ namespace Mono.Rocks {
 		private static IEnumerable<string> CreateTokensIterator (TextReader self, TextReaderRocksOptions options, Func<char?, char, bool>[] categories)
 		{
 			try {
-#if true
-				StringBuilder buf = new StringBuilder ();
-				int c;
-				int level = -1;
-				while ((c = self.Read ()) >= 0) {
-					char ch = (char) c;
-					int next_level = categories
-						.Select ((l, i) => l (buf.Length == 0 ? ((char?) null) : (char?) buf [buf.Length-1], ch) ? i : -1)
-						.Where (n => n >= 0)
-						.With (e => e.Any () ? e.Min () : -1);
-					if (next_level == level && level >= 0)
-						buf.Append ((char) c);
-					else if (next_level >= 0) {
-						if (buf.Length > 0) {
-							yield return buf.ToString ();
-							buf.Length = 0;
-						}
-						level = next_level;
-						buf.Append (ch);
-					}
-					else {
-						if (buf.Length > 0) {
-							yield return buf.ToString ();
-							buf.Length = 0;
-						}
-						level = -1;
-					}
-				}
-				if (buf.Length > 0)
-					yield return buf.ToString ();
-#else
 				var cats = categories.Select (
 						c => Lambda.F ((StringBuilder buf, char ch) => 
 							c (buf.Length == 0 ? ((char?) null) : (char?) buf [buf.Length-1], ch)));
-				return Chars (self).Tokens (
-						new StringBuilder (),
-						(buf, c) => buf.Append (c),
-						buf => {
-							var r = buf.ToString (); 
-							buf.Length = 0; 
-							return Tuple.Create (r, buf);
-						},
-						cats.ToArray ());
-#endif
+				foreach (var t in Chars (self).Tokens (
+							new StringBuilder (),
+							(buf, c) => buf.Append (c),
+							buf => {
+								var r = buf.ToString (); 
+								buf.Length = 0; 
+								return Tuple.Create (r, buf);
+							},
+							cats.ToArray ()))
+					yield return t;
 			} finally {
 				if ((options & TextReaderRocksOptions.CloseReader) != 0) {
 					self.Close ();
