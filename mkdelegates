@@ -72,37 +72,36 @@ qq(<para>
 </para>
 <list type="bullet">
  <item><term>
-  Delegate currying (<see cref="M:Mono.Rocks.DelegateRocks.Curry" />)
+  Delegate currying and partial application (<see cref="M:Mono.Rocks.DelegateRocks.Curry" />)
  </term></item>
  <item><term>
   Delegate composition (<see cref="M:Mono.Rocks.DelegateRocks.Compose" />)
  </term></item>
 </list>
 <para>
- Currying is a way to easily transform functions which accept N 
- arguments into functions which accept N-1 arguments, by "fixing"
- arguments with a value.
-</para>
-<para>
- Since C# functions aren't first class, but 
- <see cref="T:System.Delegate"/>s are, we can provide curring on
- delegate types instead on functions, which provides something quite
- similar.  The <see cref="M:Mono.Rocks.CurryRocks.Curry"/> methods 
- allow "fixing" one or more delegate parameters with values, 
- returning a new delegate which, when invoke, will pass the fixed 
- parameters to the original delegate.
+ Currying via partial application is a way to easily transform 
+ functions which accept N arguments into functions which accept 
+ N-1 arguments, by "fixing" arguments with a value.
 </para>
 <code lang="C#">
-Func&lt;int,int,int,int&gt; function = Lambda.F ((int a, int b, int c) => a + b + c);
+// partial application:
+Func&lt;int,int,int,int&gt; function = (int a, int b, int c) => a + b + c;
 Func&lt;int,int,int&gt;     f_3      = function.Curry (3);
 Func&lt;int&gt;             f_321    = function.Curry (3, 2, 1);
 Console.WriteLine (f_3 (2, 1));  // prints (3 + 2 + 1) == "6"
 Console.WriteLine (f_321 ());    // prints (3 + 2 + 1) == "6"</code>
 <para>
- All possible argument and return delegate permutations are provided
- for the <see cref="T:System.Action{T}"/>, 
- <see cref="T:System.Func{T,TResult}"/>, and related types.
+ "Traditional" currying converts a delegate that accepts N arguments
+ into a delegate which accepts only one argument, but when invoked may 
+ return a further delegate (etc.) until the final value is returned.
 </para>
+<code lang="C#">
+// traditional currying:
+Func&lt;int, Func&lt;int, Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+Func&lt;int, Func&lt;int, int&gt;&gt;            fc_1  = curry (1);
+Func&lt;int, int&gt;                       fc_12 = fc_1 (2);
+Console.WriteLine (fc_12 (3));        // prints (3 + 2 + 1) == "6"
+Console.WriteLine (curry (3)(2)(1));  // prints (3 + 2 + 1) == "6"</code>
 <para>
  Composition is a way to easy chain (or pipe) together multiple delegates
  so that the return value of a "composer" delegate is used as the input 
@@ -113,7 +112,12 @@ var              tostring = Lambda.F ((int n) => n.ToString ());
 var               doubler = Lambda.F ((int n) => n * 2);
 var  double_then_tostring = tostring.Compose (doubler);
 Console.WriteLine (double_then_tostring (5));
-	// Prints "10";</code>));
+	// Prints "10";</code>
+<para>
+ All possible argument and return delegate permutations are provided
+ for the <see cref="T:System.Action{T}"/>, 
+ <see cref="T:System.Func{T,TResult}"/>, and related types.
+</para>));
 	$g->Type ("public static partial class DelegateRocks ", sub {
 		for (my $ntypes = 1; $ntypes <= $n; ++$ntypes) {
 			for (my $nret = 0; $nret < $ntypes; ++$nret) {
@@ -155,6 +159,10 @@ Console.WriteLine (double_then_tostring (5));
 				);
 			}
 		}
+		$g->Write ("//\n");
+		$g->Write ("// \"Real\" currying method idea courtesy of:\n");
+		$g->Write ("// http://blogs.msdn.com/wesdyer/archive/2007/01/29/currying-and-partial-function-application.aspx\n");
+		$g->Write ("//\n\n");
 		for (my $ntypes = 1; $ntypes <= $n; ++$ntypes) {
 			$g->Write ("\n");
 			create_compose_doc ($g, $ntypes, 
@@ -175,6 +183,24 @@ Console.WriteLine (double_then_tostring (5));
 				sub { func_compose ($g, $ntypes); },
 				sub { compose_func_args ($g, $ntypes); },
 				sub { compose_body ($g, $ntypes); }
+			);
+			$g->Write ("\n");
+			create_tcurry_doc ($g, $ntypes, 
+				Generator::GetDocAction ($ntypes), tcurry_action_ret_xmls ($ntypes));
+			$g->Method (
+				sub { action_tcurry_ret_type ($g, $ntypes); },
+				sub { action_tcurry ($g, $ntypes); },
+				sub { tcurry_action_args ($g, $ntypes); },
+				sub { tcurry_body ($g, $ntypes); },
+			);
+			$g->Write ("\n");
+			create_tcurry_doc ($g, $ntypes, 
+				Generator::GetDocFunc ($ntypes), tcurry_func_ret_xmls ($ntypes));
+			$g->Method (
+				sub { func_tcurry_ret_type ($g, $ntypes); },
+				sub { func_tcurry ($g, $ntypes); },
+				sub { tcurry_func_args ($g, $ntypes); },
+				sub { tcurry_body ($g, $ntypes); },
 			);
 		}
 	});
@@ -469,5 +495,159 @@ sub compose_body {
 	$g->Write (") => self (composer (");
 	$g->ValueList ($ntypes);
 	$g->Write ("));\n");
+}
+
+sub create_tcurry_doc {
+	my ($g, $ntypes, $tself, @trets) = @_;
+
+	for (my $i = 1; $i <= $ntypes; ++$i) {
+		$g->XmlTypeparam (Generator::GetTypeParameter ($ntypes+1, $i), 
+			"A <see cref=\"T:$tself\" /> parameter type.");
+	}
+	if ($tself =~ m/Func/) {
+		$g->XmlTypeparam ("TResult", "The <see cref=\"T:$tself\"/> return type.");
+	}
+	$g->XmlParam ("self", qq(The <see cref="T:$tself" /> to curry.));
+	my $rets = qq(A <see cref="T:)
+		. join ("\" /> which, when invoked, will return \na <see cref=\"T:", @trets)
+		. "\" /> which, when invoked, will invoke <paramref name=\"self\" />";
+	if ($tself =~ m/Func/) {
+		$rets .= "\nand return the value that <paramref name=\"self\" /> returned";
+	}
+	$rets .= ".";
+	$g->XmlSummary ("Creates a <see cref=\"T:$trets[0]\"/> for currying.");
+	$g->XmlReturns ($rets);
+	$g->XmlRemarks (
+qq(<para>
+ This is the more "traditional" view of currying, turning a method
+ which takes <c>(X * Y)-&gt;Z</c> (i.e. separate arguments) into a
+ <c>X -&gt; (Y -&gt; Z)</c> (that is a "chain" of nested Funcs such that 
+ you provide only one argument to each Func until you provide enough
+ arguments to invoke the original method).
+</para>
+<code lang="C#">
+Func&lt;int,int,int,int&gt; function = (int a, int b, int c) =&gt; a + b + c;
+Func&lt;int,Func&lt;int,Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+Assert.AreEqual(6, curry (3)(2)(1));</code>));
+	$g->XmlException ("System.ArgumentNullException", 
+		qq(<paramref name="self" /> is <see langword="null" />.));
+}
+
+sub tcurry_action_ret_xmls {
+	my ($ntypes) = @_;
+
+	my @r = ();
+	for (my $i = 1; $i <= $ntypes; ++$i) {
+		push @r, tcurry_action_ret_xml ($ntypes, $i);
+	}
+
+	return @r;
+}
+
+sub tcurry_action_ret_xml {
+	my ($ntypes, $start) = @_;
+
+	my $r = "";
+	for (my $i = $start; $i < $ntypes; ++$i) {
+		$r .= "System.Func{" . Generator::GetTypeParameter ($ntypes, $i) .  ",";
+	}
+	$r .= "System.Action{" . Generator::GetTypeParameter ($ntypes, $ntypes) .  "}";
+	$r .= "}" x ($ntypes - $start);
+
+	return $r;
+}
+
+sub tcurry_func_ret_xml {
+	my ($ntypes, $start) = @_;
+
+	my $r = "";
+	for (my $i = $start; $i < $ntypes; ++$i) {
+		$r .= "System.Func{" . Generator::GetTypeParameter ($ntypes, $i) . ",";
+	}
+	$r .= "System.Func{" . Generator::GetTypeParameter ($ntypes, $ntypes) .  ",TResult}";
+	$r .= "}" x ($ntypes - $start);
+
+	return $r;
+}
+
+sub tcurry_func_ret_xmls {
+	my ($ntypes) = @_;
+
+	my @r = ();
+	for (my $i = 1; $i <= $ntypes; ++$i) {
+		push @r, tcurry_func_ret_xml ($ntypes, $i);
+	}
+
+	return @r;
+}
+
+sub action_tcurry_ret_type {
+	my ($g, $ntypes) = @_;
+
+	$g->Write ("public static ");
+	for (my $i = 1; $i < $ntypes; ++$i) {
+		$g->Write ("Func<")->TypeParameter ($ntypes, $i)->Write (", ");
+	}
+	$g->Write ("Action<")->TypeParameter ($ntypes, $ntypes)->Write (">");
+	$g->Write (">" x ($ntypes-1));
+}
+
+sub func_tcurry_ret_type {
+	my ($g, $ntypes) = @_;
+
+	$g->Write ("public static ");
+	for (my $i = 1; $i < $ntypes; ++$i) {
+		$g->Write ("Func<")->TypeParameter ($ntypes, $i)->Write (", ");
+	}
+	$g->Write ("Func<")->TypeParameter ($ntypes, $ntypes)->Write (", TResult>");
+	$g->Write (">" x ($ntypes-1));
+}
+
+sub action_tcurry {
+	my ($g, $ntypes) = @_;
+
+	$g->Write ("\n\tCurry<");
+	$g->TypeParameterList ($ntypes);
+	$g->Write (">");
+}
+
+sub func_tcurry {
+	my ($g, $ntypes) = @_;
+
+	$g->Write ("\n\tCurry<");
+	$g->TypeParameterList ($ntypes);
+	$g->Write (", TResult>");
+}
+
+sub tcurry_action_args {
+	my ($g, $ntypes) = @_;
+
+	$g->Write ("this ")->Action ($ntypes)->Write ("<");
+	$g->TypeParameterList ($ntypes);
+	$g->Write ("> self");
+}
+
+sub tcurry_func_args {
+	my ($g, $ntypes) = @_;
+
+	$g->Write ("this ")->Func ($ntypes)->Write ("<");
+	$g->TypeParameterList ($ntypes);
+	$g->Write (", TResult> self");
+}
+
+sub tcurry_body {
+	my ($g, $ntypes) = @_;
+
+	$g->Write ("Check.Self (self);\n\n");
+	if ($ntypes == 1) {
+		$g->Write ("return self;\n");
+		return;
+	}
+
+	$g->Write ("return ")->Value ($ntypes, 1);
+	for (my $i = 2; $i <= $ntypes; ++$i) {
+		$g->Write (" => ")->Value ($ntypes, $i);
+	}
+	$g->Write (" => self (")->ValueList ($ntypes)->Write (");\n");
 }
 

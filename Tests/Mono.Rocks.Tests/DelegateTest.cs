@@ -318,5 +318,71 @@ namespace Mono.Rocks.Tests {
 			var  double_then_tostring = tostring.Compose (doubler);
 			Assert.AreEqual ("10", double_then_tostring (5));
 		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void TraditionalCurry_A1_SelfNull ()
+		{
+			Action<byte> s = null;
+			Action<byte> r = s.Curry ();
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void TraditionalCurry_F1_SelfNull ()
+		{
+			Func<byte, char> s = null;
+			Func<byte, char> r = s.Curry ();
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void TraditionalCurry_A2_SelfNull ()
+		{
+			Action<byte, char>       s = null;
+			Func<byte, Action<char>> r = s.Curry ();
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void TraditionalCurry_F2_SelfNull ()
+		{
+			Func<byte, char, short>        s = null;
+			Func<byte, Func<char, short>>  r = s.Curry ();
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void TraditionalCurry_A3_SelfNull ()
+		{
+			Action<byte, char, short>              s = null;
+			Func<byte, Func<char, Action<short>>>  r = s.Curry ();
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void TraditionalCurry_F3_SelfNull ()
+		{
+			Func<byte, char, short, int>             s = null;
+			Func<byte, Func<char, Func<short, int>>> r = s.Curry ();
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void TraditionalCurry_A4_SelfNull ()
+		{
+			Action<byte, char, short, int>                   s = null;
+			Func<byte, Func<char, Func<short, Action<int>>>> r = s.Curry ();
+		}
+
+		[Test, ExpectedException (typeof (ArgumentNullException))]
+		public void TraditionalCurry_F4_SelfNull ()
+		{
+			Func<byte, char, short, int, long>                   s = null;
+			Func<byte, Func<char, Func<short, Func<int, long>>>> r = s.Curry ();
+		}
+
+		[Test]
+		public void TraditionalCurry ()
+		{
+			var a = Lambda.F<int, int, int, int> ((x, y, z) => x + y + z);
+			var b = a.Curry ();
+			var c = b (1);
+			var d = c (2);
+			Assert.AreEqual (6, d (3));
+		}
 	}
 }

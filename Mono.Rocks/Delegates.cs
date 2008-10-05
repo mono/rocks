@@ -41,37 +41,36 @@ namespace Mono.Rocks {
 	///   </para>
 	///   <list type="bullet">
 	///    <item><term>
-	///     Delegate currying (<see cref="M:Mono.Rocks.DelegateRocks.Curry" />)
+	///     Delegate currying and partial application (<see cref="M:Mono.Rocks.DelegateRocks.Curry" />)
 	///    </term></item>
 	///    <item><term>
 	///     Delegate composition (<see cref="M:Mono.Rocks.DelegateRocks.Compose" />)
 	///    </term></item>
 	///   </list>
 	///   <para>
-	///    Currying is a way to easily transform functions which accept N 
-	///    arguments into functions which accept N-1 arguments, by "fixing"
-	///    arguments with a value.
-	///   </para>
-	///   <para>
-	///    Since C# functions aren't first class, but 
-	///    <see cref="T:System.Delegate"/>s are, we can provide curring on
-	///    delegate types instead on functions, which provides something quite
-	///    similar.  The <see cref="M:Mono.Rocks.CurryRocks.Curry"/> methods 
-	///    allow "fixing" one or more delegate parameters with values, 
-	///    returning a new delegate which, when invoke, will pass the fixed 
-	///    parameters to the original delegate.
+	///    Currying via partial application is a way to easily transform 
+	///    functions which accept N arguments into functions which accept 
+	///    N-1 arguments, by "fixing" arguments with a value.
 	///   </para>
 	///   <code lang="C#">
-	///   Func&lt;int,int,int,int&gt; function = Lambda.F ((int a, int b, int c) => a + b + c);
+	///   // partial application:
+	///   Func&lt;int,int,int,int&gt; function = (int a, int b, int c) => a + b + c;
 	///   Func&lt;int,int,int&gt;     f_3      = function.Curry (3);
 	///   Func&lt;int&gt;             f_321    = function.Curry (3, 2, 1);
 	///   Console.WriteLine (f_3 (2, 1));  // prints (3 + 2 + 1) == "6"
 	///   Console.WriteLine (f_321 ());    // prints (3 + 2 + 1) == "6"</code>
 	///   <para>
-	///    All possible argument and return delegate permutations are provided
-	///    for the <see cref="T:System.Action{T}"/>, 
-	///    <see cref="T:System.Func{T,TResult}"/>, and related types.
+	///    "Traditional" currying converts a delegate that accepts N arguments
+	///    into a delegate which accepts only one argument, but when invoked may 
+	///    return a further delegate (etc.) until the final value is returned.
 	///   </para>
+	///   <code lang="C#">
+	///   // traditional currying:
+	///   Func&lt;int, Func&lt;int, Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+	///   Func&lt;int, Func&lt;int, int&gt;&gt;            fc_1  = curry (1);
+	///   Func&lt;int, int&gt;                       fc_12 = fc_1 (2);
+	///   Console.WriteLine (fc_12 (3));        // prints (3 + 2 + 1) == "6"
+	///   Console.WriteLine (curry (3)(2)(1));  // prints (3 + 2 + 1) == "6"</code>
 	///   <para>
 	///    Composition is a way to easy chain (or pipe) together multiple delegates
 	///    so that the return value of a "composer" delegate is used as the input 
@@ -83,6 +82,11 @@ namespace Mono.Rocks {
 	///   var  double_then_tostring = tostring.Compose (doubler);
 	///   Console.WriteLine (double_then_tostring (5));
 	///   	// Prints "10";</code>
+	///   <para>
+	///    All possible argument and return delegate permutations are provided
+	///    for the <see cref="T:System.Action{T}"/>, 
+	///    <see cref="T:System.Func{T,TResult}"/>, and related types.
+	///   </para>
 	/// </remarks>
 	public static partial class DelegateRocks  {
 
@@ -1385,6 +1389,11 @@ namespace Mono.Rocks {
 			Check.Self (self);
 			return (value2, value3, value4) => self (values._1, value2, value3, value4);
 		}
+		//
+		// "Real" currying method idea courtesy of:
+		// http://blogs.msdn.com/wesdyer/archive/2007/01/29/currying-and-partial-function-application.aspx
+		//
+
 
 		/// <typeparam name="T1">
 		///   A <see cref="T:System.Func{T1,T2}" /> parameter type.
@@ -1477,6 +1486,82 @@ namespace Mono.Rocks {
 			Check.Composer (composer);
 
 			return (value) => self (composer (value));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Action{T}" /> parameter type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Action{T}" /> to curry.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Action{T}"/> for currying.
+		/// </summary>
+		/// <returns>
+		///   A <see cref="T:System.Action{T}" /> which, when invoked, will invoke <paramref name="self" />.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    This is the more "traditional" view of currying, turning a method
+		///    which takes <c>(X * Y)-&gt;Z</c> (i.e. separate arguments) into a
+		///    <c>X -&gt; (Y -&gt; Z)</c> (that is a "chain" of nested Funcs such that 
+		///    you provide only one argument to each Func until you provide enough
+		///    arguments to invoke the original method).
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int,int,int,int&gt; function = (int a, int b, int c) =&gt; a + b + c;
+		///   Func&lt;int,Func&lt;int,Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+		///   Assert.AreEqual(6, curry (3)(2)(1));</code>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> is <see langword="null" />.
+		/// </exception>
+		public static Action<T>
+			Curry<T> (this Action<T> self)
+		{
+			Check.Self (self);
+
+			return self;
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T,TResult}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{T,TResult}"/> return type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Func{T,TResult}" /> to curry.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T,TResult}"/> for currying.
+		/// </summary>
+		/// <returns>
+		///   A <see cref="T:System.Func{T,TResult}" /> which, when invoked, will invoke <paramref name="self" />
+		///   and return the value that <paramref name="self" /> returned.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    This is the more "traditional" view of currying, turning a method
+		///    which takes <c>(X * Y)-&gt;Z</c> (i.e. separate arguments) into a
+		///    <c>X -&gt; (Y -&gt; Z)</c> (that is a "chain" of nested Funcs such that 
+		///    you provide only one argument to each Func until you provide enough
+		///    arguments to invoke the original method).
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int,int,int,int&gt; function = (int a, int b, int c) =&gt; a + b + c;
+		///   Func&lt;int,Func&lt;int,Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+		///   Assert.AreEqual(6, curry (3)(2)(1));</code>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> is <see langword="null" />.
+		/// </exception>
+		public static Func<T, TResult>
+			Curry<T, TResult> (this Func<T, TResult> self)
+		{
+			Check.Self (self);
+
+			return self;
 		}
 
 		/// <typeparam name="T1">
@@ -1576,6 +1661,90 @@ namespace Mono.Rocks {
 			Check.Composer (composer);
 
 			return (value1, value2) => self (composer (value1, value2));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Action{T1,T2}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Action{T1,T2}" /> parameter type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Action{T1,T2}" /> to curry.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T1,System.Action{T2}}"/> for currying.
+		/// </summary>
+		/// <returns>
+		///   A <see cref="T:System.Func{T1,System.Action{T2}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Action{T2}" /> which, when invoked, will invoke <paramref name="self" />.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    This is the more "traditional" view of currying, turning a method
+		///    which takes <c>(X * Y)-&gt;Z</c> (i.e. separate arguments) into a
+		///    <c>X -&gt; (Y -&gt; Z)</c> (that is a "chain" of nested Funcs such that 
+		///    you provide only one argument to each Func until you provide enough
+		///    arguments to invoke the original method).
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int,int,int,int&gt; function = (int a, int b, int c) =&gt; a + b + c;
+		///   Func&lt;int,Func&lt;int,Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+		///   Assert.AreEqual(6, curry (3)(2)(1));</code>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> is <see langword="null" />.
+		/// </exception>
+		public static Func<T1, Action<T2>>
+			Curry<T1, T2> (this Action<T1, T2> self)
+		{
+			Check.Self (self);
+
+			return value1 => value2 => self (value1, value2);
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{T1,T2,TResult}"/> return type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Func{T1,T2,TResult}" /> to curry.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T1,System.Func{T2,TResult}}"/> for currying.
+		/// </summary>
+		/// <returns>
+		///   A <see cref="T:System.Func{T1,System.Func{T2,TResult}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Func{T2,TResult}" /> which, when invoked, will invoke <paramref name="self" />
+		///   and return the value that <paramref name="self" /> returned.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    This is the more "traditional" view of currying, turning a method
+		///    which takes <c>(X * Y)-&gt;Z</c> (i.e. separate arguments) into a
+		///    <c>X -&gt; (Y -&gt; Z)</c> (that is a "chain" of nested Funcs such that 
+		///    you provide only one argument to each Func until you provide enough
+		///    arguments to invoke the original method).
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int,int,int,int&gt; function = (int a, int b, int c) =&gt; a + b + c;
+		///   Func&lt;int,Func&lt;int,Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+		///   Assert.AreEqual(6, curry (3)(2)(1));</code>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> is <see langword="null" />.
+		/// </exception>
+		public static Func<T1, Func<T2, TResult>>
+			Curry<T1, T2, TResult> (this Func<T1, T2, TResult> self)
+		{
+			Check.Self (self);
+
+			return value1 => value2 => self (value1, value2);
 		}
 
 		/// <typeparam name="T1">
@@ -1681,6 +1850,98 @@ namespace Mono.Rocks {
 			Check.Composer (composer);
 
 			return (value1, value2, value3) => self (composer (value1, value2, value3));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T1,System.Func{T2,System.Action{T3}}}"/> for currying.
+		/// </summary>
+		/// <returns>
+		///   A <see cref="T:System.Func{T1,System.Func{T2,System.Action{T3}}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Func{T2,System.Action{T3}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Action{T3}" /> which, when invoked, will invoke <paramref name="self" />.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    This is the more "traditional" view of currying, turning a method
+		///    which takes <c>(X * Y)-&gt;Z</c> (i.e. separate arguments) into a
+		///    <c>X -&gt; (Y -&gt; Z)</c> (that is a "chain" of nested Funcs such that 
+		///    you provide only one argument to each Func until you provide enough
+		///    arguments to invoke the original method).
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int,int,int,int&gt; function = (int a, int b, int c) =&gt; a + b + c;
+		///   Func&lt;int,Func&lt;int,Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+		///   Assert.AreEqual(6, curry (3)(2)(1));</code>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> is <see langword="null" />.
+		/// </exception>
+		public static Func<T1, Func<T2, Action<T3>>>
+			Curry<T1, T2, T3> (this Action<T1, T2, T3> self)
+		{
+			Check.Self (self);
+
+			return value1 => value2 => value3 => self (value1, value2, value3);
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{T1,T2,T3,TResult}"/> return type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T1,System.Func{T2,System.Func{T3,TResult}}}"/> for currying.
+		/// </summary>
+		/// <returns>
+		///   A <see cref="T:System.Func{T1,System.Func{T2,System.Func{T3,TResult}}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Func{T2,System.Func{T3,TResult}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Func{T3,TResult}" /> which, when invoked, will invoke <paramref name="self" />
+		///   and return the value that <paramref name="self" /> returned.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    This is the more "traditional" view of currying, turning a method
+		///    which takes <c>(X * Y)-&gt;Z</c> (i.e. separate arguments) into a
+		///    <c>X -&gt; (Y -&gt; Z)</c> (that is a "chain" of nested Funcs such that 
+		///    you provide only one argument to each Func until you provide enough
+		///    arguments to invoke the original method).
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int,int,int,int&gt; function = (int a, int b, int c) =&gt; a + b + c;
+		///   Func&lt;int,Func&lt;int,Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+		///   Assert.AreEqual(6, curry (3)(2)(1));</code>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> is <see langword="null" />.
+		/// </exception>
+		public static Func<T1, Func<T2, Func<T3, TResult>>>
+			Curry<T1, T2, T3, TResult> (this Func<T1, T2, T3, TResult> self)
+		{
+			Check.Self (self);
+
+			return value1 => value2 => value3 => self (value1, value2, value3);
 		}
 
 		/// <typeparam name="T1">
@@ -1792,6 +2053,106 @@ namespace Mono.Rocks {
 			Check.Composer (composer);
 
 			return (value1, value2, value3, value4) => self (composer (value1, value2, value3, value4));
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T1,System.Func{T2,System.Func{T3,System.Action{T4}}}}"/> for currying.
+		/// </summary>
+		/// <returns>
+		///   A <see cref="T:System.Func{T1,System.Func{T2,System.Func{T3,System.Action{T4}}}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Func{T2,System.Func{T3,System.Action{T4}}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Func{T3,System.Action{T4}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Action{T4}" /> which, when invoked, will invoke <paramref name="self" />.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    This is the more "traditional" view of currying, turning a method
+		///    which takes <c>(X * Y)-&gt;Z</c> (i.e. separate arguments) into a
+		///    <c>X -&gt; (Y -&gt; Z)</c> (that is a "chain" of nested Funcs such that 
+		///    you provide only one argument to each Func until you provide enough
+		///    arguments to invoke the original method).
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int,int,int,int&gt; function = (int a, int b, int c) =&gt; a + b + c;
+		///   Func&lt;int,Func&lt;int,Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+		///   Assert.AreEqual(6, curry (3)(2)(1));</code>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> is <see langword="null" />.
+		/// </exception>
+		public static Func<T1, Func<T2, Func<T3, Action<T4>>>>
+			Curry<T1, T2, T3, T4> (this Action<T1, T2, T3, T4> self)
+		{
+			Check.Self (self);
+
+			return value1 => value2 => value3 => value4 => self (value1, value2, value3, value4);
+		}
+
+		/// <typeparam name="T1">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T2">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T3">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="T4">
+		///   A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+		/// </typeparam>
+		/// <typeparam name="TResult">
+		///   The <see cref="T:System.Func{T1,T2,T3,T4,TResult}"/> return type.
+		/// </typeparam>
+		/// <param name="self">
+		///   The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+		/// </param>
+		/// <summary>
+		///   Creates a <see cref="T:System.Func{T1,System.Func{T2,System.Func{T3,System.Func{T4,TResult}}}}"/> for currying.
+		/// </summary>
+		/// <returns>
+		///   A <see cref="T:System.Func{T1,System.Func{T2,System.Func{T3,System.Func{T4,TResult}}}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Func{T2,System.Func{T3,System.Func{T4,TResult}}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Func{T3,System.Func{T4,TResult}}" /> which, when invoked, will return 
+		///   a <see cref="T:System.Func{T4,TResult}" /> which, when invoked, will invoke <paramref name="self" />
+		///   and return the value that <paramref name="self" /> returned.
+		/// </returns>
+		/// <remarks>
+		///   <para>
+		///    This is the more "traditional" view of currying, turning a method
+		///    which takes <c>(X * Y)-&gt;Z</c> (i.e. separate arguments) into a
+		///    <c>X -&gt; (Y -&gt; Z)</c> (that is a "chain" of nested Funcs such that 
+		///    you provide only one argument to each Func until you provide enough
+		///    arguments to invoke the original method).
+		///   </para>
+		///   <code lang="C#">
+		///   Func&lt;int,int,int,int&gt; function = (int a, int b, int c) =&gt; a + b + c;
+		///   Func&lt;int,Func&lt;int,Func&lt;int, int&gt;&gt;&gt; curry = function.Curry ();
+		///   Assert.AreEqual(6, curry (3)(2)(1));</code>
+		/// </remarks>
+		/// <exception cref="T:System.ArgumentNullException">
+		///   <paramref name="self" /> is <see langword="null" />.
+		/// </exception>
+		public static Func<T1, Func<T2, Func<T3, Func<T4, TResult>>>>
+			Curry<T1, T2, T3, T4, TResult> (this Func<T1, T2, T3, T4, TResult> self)
+		{
+			Check.Self (self);
+
+			return value1 => value2 => value3 => value4 => self (value1, value2, value3, value4);
 		}
 	}
 }

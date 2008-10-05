@@ -1,5 +1,9 @@
 2008-10-04  Jonathan Pryor  <jpryor@novell.com>
 
+	* Delegates.cs: Flush (adds "traditional" .Curry() methods).
+
+2008-10-04  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerable.cs: The TypeLoadException-generating gmcs bug has been
 	  fixed, so now (1) the .Tokens() unit test can run, and (2) it found
 	  some bugs (unsurprisingly).  Fix them.  In particular, if we hit an

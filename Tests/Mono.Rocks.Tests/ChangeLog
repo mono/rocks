@@ -1,5 +1,9 @@
 2008-10-04  Jonathan Pryor  <jpryor@novell.com>
 
+	* DelegateTest.cs: Add tests for traditional .Curry().
+
+2008-10-04  Jonathan Pryor  <jpryor@novell.com>
+
 	* IEnumerableTest.cs: Flush .Tokens() test.
 	* IEnumerableTest.cs, JaggedArrayTest.cs, MaybeTest.cs: Disable 
 	  some warnings.
