@@ -59,57 +59,41 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Create&lt;T1,T2,T3,T4&gt;">
-      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt; Create&lt;T1,T2,T3,T4&gt; (T1 value1, T2 value2, T3 value3, T4 value4);" />
+    <Member MemberName="Create&lt;T1,T2&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;T1,T2&gt; Create&lt;T1,T2&gt; (T1 value1, T2 value2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;</ReturnType>
+        <ReturnType>Mono.Rocks.Tuple&lt;T1,T2&gt;</ReturnType>
       </ReturnValue>
       <TypeParameters>
         <TypeParameter Name="T1" />
         <TypeParameter Name="T2" />
-        <TypeParameter Name="T3" />
-        <TypeParameter Name="T4" />
       </TypeParameters>
       <Parameters>
         <Parameter Name="value1" Type="T1" />
         <Parameter Name="value2" Type="T2" />
-        <Parameter Name="value3" Type="T3" />
-        <Parameter Name="value4" Type="T4" />
       </Parameters>
       <Docs>
         <typeparam name="T1">
-            The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
+            The first <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value type.
             </typeparam>
         <typeparam name="T2">
-            The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
-            </typeparam>
-        <typeparam name="T3">
-            The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
-            </typeparam>
-        <typeparam name="T4">
-            The fourth <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
+            The second <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value type.
             </typeparam>
         <param name="value1">
-            The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
+            The first <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value.
             </param>
         <param name="value2">
-            The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
-            </param>
-        <param name="value3">
-            The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
-            </param>
-        <param name="value4">
-            The fourth <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
+            The second <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value.
             </param>
         <summary>
-            Creates a <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" />.
+            Creates a <see cref="T:Mono.Rocks.Tuple{T1, T2}" />.
             </summary>
         <returns>
-            A <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> initialized with the parameter values.
+            A <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> initialized with the parameter values.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -161,41 +145,57 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="Create&lt;T1,T2&gt;">
-      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;T1,T2&gt; Create&lt;T1,T2&gt; (T1 value1, T2 value2);" />
+    <Member MemberName="Create&lt;T1,T2,T3,T4&gt;">
+      <MemberSignature Language="C#" Value="public static Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt; Create&lt;T1,T2,T3,T4&gt; (T1 value1, T2 value2, T3 value3, T4 value4);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.1.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>Mono.Rocks.Tuple&lt;T1,T2&gt;</ReturnType>
+        <ReturnType>Mono.Rocks.Tuple&lt;T1,T2,T3,T4&gt;</ReturnType>
       </ReturnValue>
       <TypeParameters>
         <TypeParameter Name="T1" />
         <TypeParameter Name="T2" />
+        <TypeParameter Name="T3" />
+        <TypeParameter Name="T4" />
       </TypeParameters>
       <Parameters>
         <Parameter Name="value1" Type="T1" />
         <Parameter Name="value2" Type="T2" />
+        <Parameter Name="value3" Type="T3" />
+        <Parameter Name="value4" Type="T4" />
       </Parameters>
       <Docs>
         <typeparam name="T1">
-            The first <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value type.
+            The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
             </typeparam>
         <typeparam name="T2">
-            The second <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value type.
+            The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
+            </typeparam>
+        <typeparam name="T3">
+            The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
+            </typeparam>
+        <typeparam name="T4">
+            The fourth <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value type.
             </typeparam>
         <param name="value1">
-            The first <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value.
+            The first <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
             </param>
         <param name="value2">
-            The second <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> value.
+            The second <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
+            </param>
+        <param name="value3">
+            The third <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
+            </param>
+        <param name="value4">
+            The fourth <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> value.
             </param>
         <summary>
-            Creates a <see cref="T:Mono.Rocks.Tuple{T1, T2}" />.
+            Creates a <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" />.
             </summary>
         <returns>
-            A <see cref="T:Mono.Rocks.Tuple{T1, T2}" /> initialized with the parameter values.
+            A <see cref="T:Mono.Rocks.Tuple{T1, T2, T3, T4}" /> initialized with the parameter values.
             </returns>
         <remarks>To be added.</remarks>
       </Docs>

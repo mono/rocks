@@ -473,6 +473,34 @@
         <Target Type="T:System.Action`1" />
       </Targets>
       <Member MemberName="Curry&lt;T&gt;">
+        <MemberSignature Language="C#" Value="public static Action&lt;T&gt; Curry&lt;T&gt; (this Action&lt;T&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Action&lt;T&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T}" /> to curry.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Action{T}" /> for currying.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``1(System.Action{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`1" />
+      </Targets>
+      <Member MemberName="Curry&lt;T&gt;">
         <MemberSignature Language="C#" Value="public static Action Curry&lt;T&gt; (this Action&lt;T&gt; self, T value);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
@@ -534,6 +562,40 @@
             </summary>
         </Docs>
         <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``1(System.Action{``0},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`2" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T1,Action&lt;T2&gt;&gt; Curry&lt;T1,T2&gt; (this Action&lt;T1,T2&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T1,System.Action&lt;T2&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2}" /> to curry.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T1,System.Action{T2}}" /> for currying.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``2(System.Action{``0,``1})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -697,6 +759,38 @@
         <Target Type="T:System.Func`2" />
       </Targets>
       <Member MemberName="Curry&lt;T,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T,TResult&gt; Curry&lt;T,TResult&gt; (this Func&lt;T,TResult&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T,TResult&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T,TResult&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T">To be added.</typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T,TResult}" /> to curry.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T,TResult}" /> for currying.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``2(System.Func{``0,``1})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`2" />
+      </Targets>
+      <Member MemberName="Curry&lt;T,TResult&gt;">
         <MemberSignature Language="C#" Value="public static Func&lt;TResult&gt; Curry&lt;T,TResult&gt; (this Func&lt;T,TResult&gt; self, T value);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
@@ -766,6 +860,44 @@
             </summary>
         </Docs>
         <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``2(System.Func{``0,``1},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T1,Func&lt;T2,Action&lt;T3&gt;&gt;&gt; Curry&lt;T1,T2,T3&gt; (this Action&lt;T1,T2,T3&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T1,System.Func&lt;T2,System.Action&lt;T3&gt;&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3}" /> to curry.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T1,System.Func{T2,System.Action{T3}}}" /> for currying.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Action{``0,``1,``2})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1037,6 +1169,44 @@
         <Target Type="T:System.Func`3" />
       </Targets>
       <Member MemberName="Curry&lt;T1,T2,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T1,Func&lt;T2,TResult&gt;&gt; Curry&lt;T1,T2,TResult&gt; (this Func&lt;T1,T2,TResult&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T1,System.Func&lt;T2,TResult&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,TResult&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,TResult}" /> to curry.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T1,System.Func{T2,TResult}}" /> for currying.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Func{``0,``1,``2})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`3" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,TResult&gt;">
         <MemberSignature Language="C#" Value="public static Func&lt;T2,TResult&gt; Curry&lt;T1,T2,TResult&gt; (this Func&lt;T1,T2,TResult&gt; self, T1 value1);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
@@ -1202,6 +1372,48 @@
             </summary>
         </Docs>
         <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``3(System.Func{``0,``1,``2},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Action`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T1,Func&lt;T2,Func&lt;T3,Action&lt;T4&gt;&gt;&gt;&gt; Curry&lt;T1,T2,T3,T4&gt; (this Action&lt;T1,T2,T3,T4&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T1,System.Func&lt;T2,System.Func&lt;T3,System.Action&lt;T4&gt;&gt;&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Action&lt;T1,T2,T3,T4&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Action{T1,T2,T3,T4}" /> parameter type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Action{T1,T2,T3,T4}" /> to curry.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T1,System.Func{T2,System.Func{T3,System.Action{T4}}}}" /> for currying.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Action{``0,``1,``2,``3})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -1601,6 +1813,48 @@
         <Target Type="T:System.Func`4" />
       </Targets>
       <Member MemberName="Curry&lt;T1,T2,T3,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T1,Func&lt;T2,Func&lt;T3,TResult&gt;&gt;&gt; Curry&lt;T1,T2,T3,TResult&gt; (this Func&lt;T1,T2,T3,TResult&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T1,System.Func&lt;T2,System.Func&lt;T3,TResult&gt;&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,TResult&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,TResult}" /> to curry.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T1,System.Func{T2,System.Func{T3,TResult}}}" /> for currying.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Func{``0,``1,``2,``3})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`4" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,TResult&gt;">
         <MemberSignature Language="C#" Value="public static Func&lt;T2,T3,TResult&gt; Curry&lt;T1,T2,T3,TResult&gt; (this Func&lt;T1,T2,T3,TResult&gt; self, T1 value1);" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
@@ -1882,6 +2136,52 @@
             </summary>
         </Docs>
         <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``4(System.Func{``0,``1,``2,``3},Mono.Rocks.Tuple{``0})" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:System.Func`5" />
+      </Targets>
+      <Member MemberName="Curry&lt;T1,T2,T3,T4,TResult&gt;">
+        <MemberSignature Language="C#" Value="public static Func&lt;T1,Func&lt;T2,Func&lt;T3,Func&lt;T4,TResult&gt;&gt;&gt;&gt; Curry&lt;T1,T2,T3,T4,TResult&gt; (this Func&lt;T1,T2,T3,T4,TResult&gt; self);" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Func&lt;T1,System.Func&lt;T2,System.Func&lt;T3,System.Func&lt;T4,TResult&gt;&gt;&gt;&gt;</ReturnType>
+        </ReturnValue>
+        <TypeParameters>
+          <TypeParameter Name="T1" />
+          <TypeParameter Name="T2" />
+          <TypeParameter Name="T3" />
+          <TypeParameter Name="T4" />
+          <TypeParameter Name="TResult" />
+        </TypeParameters>
+        <Parameters>
+          <Parameter Name="self" Type="System.Func&lt;T1,T2,T3,T4,TResult&gt;" RefType="this" />
+        </Parameters>
+        <Docs>
+          <typeparam name="T1">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T2">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T3">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="T4">
+            A <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> parameter type.
+            </typeparam>
+          <typeparam name="TResult">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> return type.
+            </typeparam>
+          <param name="self">
+            The <see cref="T:System.Func{T1,T2,T3,T4,TResult}" /> to curry.
+            </param>
+          <summary>
+            Creates a <see cref="T:System.Func{T1,System.Func{T2,System.Func{T3,System.Func{T4,TResult}}}}" /> for currying.
+            </summary>
+        </Docs>
+        <Link Type="Mono.Rocks.DelegateRocks" Member="M:Mono.Rocks.DelegateRocks.Curry``5(System.Func{``0,``1,``2,``3,``4})" />
       </Member>
     </ExtensionMethod>
     <ExtensionMethod>
@@ -5133,7 +5433,7 @@
         <Target Type="T:System.Nullable`1" />
       </Targets>
       <Member MemberName="Just&lt;T&gt;">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; Just&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct, ValueType, new();" />
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; Just&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct;" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
@@ -5172,7 +5472,7 @@
         <Target Type="T:System.Nullable`1" />
       </Targets>
       <Member MemberName="ToMaybe&lt;T&gt;">
-        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; ToMaybe&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct, ValueType, new();" />
+        <MemberSignature Language="C#" Value="public static Mono.Rocks.Maybe&lt;T&gt; ToMaybe&lt;T&gt; (this Nullable&lt;T&gt; self) where T : struct;" />
         <MemberType>ExtensionMethod</MemberType>
         <ReturnValue>
           <ReturnType>Mono.Rocks.Maybe&lt;T&gt;</ReturnType>
@@ -6001,17 +6301,17 @@
         </param>
           <param name="categories">
           A
-					<see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
-					array containing the different categories of characters that 
-					determines what makes up a "token."  If the 
-					<see cref="T:System.Nullable{System.Char}" /> parameter is 
-					<see langword="null" />, then the <see cref="T:System.Char" /> is
-					the first character within the token; otherwise, the
-					<see cref="T:System.Nullable{System.Char}" /> parameter contains the
-					character preceding the <see cref="T:System.Char" />.
-					The delegate should return <see langword="true" /> if the
-					<see cref="T:System.Char" /> is a supported character; otherwise,
-					<see langword="false" /> should be returned.
+          <see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
+          array containing the different categories of characters that 
+          determines what makes up a "token."  If the 
+          <see cref="T:System.Nullable{System.Char}" /> parameter is 
+          <see langword="null" />, then the <see cref="T:System.Char" /> is
+          the first character within the token; otherwise, the
+          <see cref="T:System.Nullable{System.Char}" /> parameter contains the
+          character preceding the <see cref="T:System.Char" />.
+          The delegate should return <see langword="true" /> if the
+          <see cref="T:System.Char" /> is a supported character; otherwise,
+          <see langword="false" /> should be returned.
         </param>
           <summary>
           Creates an
@@ -6050,17 +6350,17 @@
         </param>
           <param name="categories">
           A
-					<see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
-					array containing the different categories of characters that 
-					determines what makes up a "token."  If the 
-					<see cref="T:System.Nullable{System.Char}" /> parameter is 
-					<see langword="null" />, then the <see cref="T:System.Char" /> is
-					the first character within the token; otherwise, the
-					<see cref="T:System.Nullable{System.Char}" /> parameter contains the
-					character preceding the <see cref="T:System.Char" />.
-					The delegate should return <see langword="true" /> if the
-					<see cref="T:System.Char" /> is a supported character; otherwise,
-					<see langword="false" /> should be returned.
+          <see cref="T:System.Func{System.Nullable{System.Char},System.Char,System.Boolean}" />
+          array containing the different categories of characters that 
+          determines what makes up a "token."  If the 
+          <see cref="T:System.Nullable{System.Char}" /> parameter is 
+          <see langword="null" />, then the <see cref="T:System.Char" /> is
+          the first character within the token; otherwise, the
+          <see cref="T:System.Nullable{System.Char}" /> parameter contains the
+          character preceding the <see cref="T:System.Char" />.
+          The delegate should return <see langword="true" /> if the
+          <see cref="T:System.Char" /> is a supported character; otherwise,
+          <see langword="false" /> should be returned.
         </param>
           <summary>
           Creates an

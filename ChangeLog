@@ -1,5 +1,9 @@
 2008-10-04  Jonathan Pryor  <jpryor@novell.com>
 
+	* doc/en/**: Flush (monodocer update; mkdelegates doc update).
+
+2008-10-04  Jonathan Pryor  <jpryor@novell.com>
+
 	* mkdelegates: Add "traditional" currying extension methods.
 
 2008-09-27  Jonathan Pryor  <jpryor@novell.com>
